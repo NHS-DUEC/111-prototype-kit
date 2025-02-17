@@ -45,7 +45,7 @@
     "@x-govuk/govuk-prototype-filters": "^1.4.4",
     "browser-sync": "^3.0.0",
     "client-sessions": "^0.8.0",
-    "compression": "^1.7.4",
+    "compression": "^1.8.0",
     "cookie-parser": "^1.4.6",
     "cosmiconfig": "^9.0.0",
     "dotenv": "^16.4.7",
