@@ -68,7 +68,7 @@
     "@x-govuk/eslint-config": "^0.0.1",
     "mock-req-res": "^1.2.0",
     "np": "^10.2.0",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.1",
     "sinon": "^19.0.0",
     "stylelint": "^16.14.1",
     "stylelint-config-gds": "^2.0.0",
