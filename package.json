@@ -41,7 +41,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@inquirer/prompts": "^7.2.4",
+    "@inquirer/prompts": "^7.3.2",
     "@x-govuk/govuk-prototype-filters": "^1.4.4",
     "browser-sync": "^3.0.0",
     "client-sessions": "^0.8.0",
