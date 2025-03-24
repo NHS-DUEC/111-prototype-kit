@@ -54,10 +54,8 @@ const appViews = [
   path.join(__dirname, 'app/lib/views/'),
   path.join(__dirname, 'lib/example-templates/'),
   path.join(__dirname, 'lib/prototype-admin/'),
-  path.join(__dirname, 'lib/templates/'),
   path.join(__dirname, 'node_modules/nhsuk-frontend/packages/components'),
   path.join(__dirname, 'node_modules/nhsuk-frontend/packages/macros'),
-  path.join(__dirname, 'node_modules/nhsuk-frontend/packages'),
 ];
 
 const nunjucksConfig = {
@@ -178,7 +176,14 @@ app.get(/^([^.]+)$/, (req, res, next) => {
 // Example template routes
 app.use('/example-templates', exampleTemplatesApp);
 
-nunjucksAppEnv = nunjucks.configure(appViews, {
+// Nunjucks configuration for example templates
+const exampleTemplateViews = [
+  path.join(__dirname, 'lib/example-templates/'),
+  path.join(__dirname, 'node_modules/nhsuk-frontend/packages/components'),
+  path.join(__dirname, 'node_modules/nhsuk-frontend/packages/macros'),
+];
+
+nunjucksAppEnv = nunjucks.configure(exampleTemplateViews, {
   autoescape: true,
   express: exampleTemplatesApp,
 });
