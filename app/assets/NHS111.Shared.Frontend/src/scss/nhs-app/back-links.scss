@@ -1,0 +1,61 @@
+body:has(.nhsuk-back-link) {
+  .app-nhs-app-back-link-shim {
+    padding: 16px;
+    box-sizing: content-box;
+
+    &:before {
+      content: "\00a0"; // Non breaking space - to force the box open to the same height as the link below
+    }
+  }
+}
+
+.nhsuk-back-link {
+  background-color: #fff;
+  padding: 16px 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 16px 1fr 960px 1fr 16px;
+
+  @media (min-width: 48.0625em) {
+    // Ideally would be done with nhsuk-frontend media query mixin, but including this partial in both old and new web frontends makes that hard to do.
+    grid-template-columns: 32px 1fr 960px 1fr 32px;
+  }
+
+  .nhsuk-back-link__link {
+    // Aligning with the NHS App's styles
+    text-decoration: underline;
+    display: block;
+    text-indent: -9999px;
+    line-height: 0;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    justify-self: start;
+
+    &:focus,
+    &:active,
+    &:hover {
+      text-decoration: none;
+    }
+
+    &::after {
+      content: "Back";
+      text-indent: 0;
+      display: block;
+      line-height: 1.4;
+    }
+
+    // Overriding old world button styles
+    font-weight: normal;
+    letter-spacing: normal;
+    text-align: left;
+
+    &::before {
+      display: none;
+    }
+  }
+}

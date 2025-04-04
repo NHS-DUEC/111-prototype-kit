@@ -1,0 +1,10 @@
+.app-call-to-action {
+  background-color: $color_nhsuk-white;
+  border: 8px solid $color_nhsuk-blue;
+  padding: nhsuk-spacing(4);
+  margin-bottom: nhsuk-spacing(5);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}

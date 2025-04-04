@@ -1,0 +1,11 @@
+.app-section-break {
+  margin-top: nhsuk-spacing(5);
+  margin-bottom: nhsuk-spacing(5);
+  border-bottom: 4px solid #aeb7bd;
+  width: 130px;
+}
+
+.app-section-break--thin-wide {
+  width: auto;
+  border-bottom: 2px solid $color_nhsuk-grey-4;
+}

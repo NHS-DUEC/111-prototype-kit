@@ -1,8 +1,13 @@
 // External dependencies
-const express = require('express');
+const express = require('express')
 
-const router = express.Router();
+const router = express.Router()
 
 // Add your routes here - above the module.exports line
 
-module.exports = router;
+// if edge page requested anywhere in this app render the edge.html page
+router.get(/(^|\/)_edge(\/|$)/, (req, res) => {
+  res.render('edge.html')
+})
+
+module.exports = router

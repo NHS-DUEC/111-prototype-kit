@@ -1,0 +1,907 @@
+.overlay {
+  position: initial;
+  height: initial;
+  width: initial;
+  top: initial;
+  bottom: initial;
+  left: initial;
+  right: initial;
+  z-index: initial;
+  display: initial;
+}
+#loading {
+  background-image: initial;
+  background-position: initial;
+  background-repeat: initial;
+  height: initial;
+  display: initial;
+}
+#chat_history {
+  position: initial;
+  top: initial;
+  bottom: initial;
+  left: initial;
+  right: initial;
+  overflow-y: initial;
+  overflow-x: initial;
+}
+#chat_messages {
+  padding: initial;
+}
+#chat_messages.short {
+  position: initial;
+  left: initial;
+  bottom: initial;
+  right: initial;
+}
+#chat_footer {
+  position: initial;
+  height: initial;
+  bottom: initial;
+  left: initial;
+  right: initial;
+  border-top: initial;
+  overflow: initial;
+  box-shadow: initial;
+}
+#chat_footer.chat_footer_count_chars {
+  height: initial;
+}
+#chat_footer.confirming_attachment {
+  display: initial;
+}
+#chat.chat_count_chars #chat_history {
+  bottom: initial;
+}
+#chat_footer.chat_footer_count_chars #chat_message_wrap,
+#chat_footer.chat_footer_count_chars #chat_send,
+#chat_footer.chat_footer_count_chars #chat_attachment_wrap {
+  bottom: initial;
+}
+#chars_remaining {
+  position: initial;
+  bottom: initial;
+  right: initial;
+}
+.message_wrap {
+  padding: initial;
+  position: initial;
+  animation: initial;
+}
+.message_wrap.wrap_you {
+  animation: initial;
+}
+.message {
+  padding: initial;
+  border-top: initial;
+  box-shadow: initial;
+  border-radius: initial;
+  margin-right: initial;
+}
+.message.you {
+  margin-left: initial;
+  margin-right: initial;
+}
+.message_user {
+  font-weight: inherit;
+  overflow-wrap: initial;
+}
+.message_date {
+  float: initial;
+  font-size: initial;
+  line-height: initial;
+}
+.message_text {
+  clear: initial;
+  white-space: initial;
+  word-wrap: initial;
+}
+.message_tick {
+  background: initial;
+  height: initial;
+  left: initial;
+  position: initial;
+  top: initial;
+  width: initial;
+}
+.message_tick.you {
+  left: initial;
+  top: initial;
+  bottom: initial;
+  right: initial;
+  background-position: initial;
+}
+.message_combine {
+  padding-top: initial;
+}
+.first_message {
+  margin-top: initial;
+}
+#chat_message {
+  width: initial;
+  height: initial;
+  resize: initial;
+  border-width: initial;
+  background: initial;
+  line-height: initial;
+  outline: initial;
+  margin: initial;
+  padding: initial;
+  display: initial;
+}
+#chat_message_wrap {
+  position: initial;
+  top: initial;
+  bottom: initial;
+  left: initial;
+  right: initial;
+  border-radius: initial;
+  border: initial;
+  border-top: initial;
+  background: initial;
+  box-shadow: initial;
+  padding-left: initial;
+}
+#chat.chat_has_attachments #chat_message_wrap {
+  border-radius: initial;
+  left: initial;
+  padding-left: initial;
+}
+#chat_send,
+#chat_attachment_wrap {
+  position: initial;
+  right: initial;
+  top: initial;
+  bottom: initial;
+  width: initial;
+  color: inherit;
+  border: initial;
+  border-color: initial;
+  border-radius: initial;
+  box-shadow: initial;
+  font-weight: inherit;
+  text-align: initial;
+  line-height: initial;
+  text-shadow: initial;
+  cursor: initial;
+}
+#chat_send:active {
+  line-height: initial;
+}
+.selectable:hover {
+  cursor: initial;
+}
+#chat_info {
+  box-shadow: initial;
+  height: initial;
+  left: initial;
+  position: initial;
+  right: initial;
+  top: initial;
+  z-index: initial;
+}
+#chat_connectedto {
+  color: inherit;
+  font-size: initial;
+  font-weight: inherit;
+  line-height: initial;
+  margin: initial;
+  padding: initial;
+  text-shadow: initial;
+  background: initial;
+  white-space: initial;
+  overflow: initial;
+  text-overflow: initial;
+  float: initial;
+}
+#chat_end,
+#text_size,
+#chat_select_all,
+#chat_copy,
+.chat_button {
+  border-radius: initial;
+  padding: initial;
+  position: initial;
+  top: initial;
+  height: initial;
+  cursor: initial;
+  text-shadow: initial;
+  box-shadow: initial;
+  border: initial;
+  display: initial;
+  font-weight: inherit;
+}
+#chat_info_buttons {
+  float: initial;
+}
+#chat_end,
+#text_size {
+  right: initial;
+  margin-left: initial;
+}
+#chat_select_all {
+  right: initial;
+}
+#chat_copy {
+  right: initial;
+}
+.large_text {
+  font-size: initial;
+}
+.large_text #chat {
+  min-width: initial;
+}
+.small_text {
+  font-size: initial;
+}
+.panel {
+  display: initial;
+  position: initial;
+  top: initial;
+  left: initial;
+  width: initial;
+  margin-top: initial;
+  margin-left: initial;
+  padding: initial;
+  border-top: initial;
+  box-shadow: initial;
+  border-radius: initial;
+  color: inherit;
+  text-align: initial;
+}
+.form_panel {
+  padding: initial;
+  width: initial;
+  text-align: initial;
+}
+#welcome {
+  height: initial;
+  display: initial;
+  margin-left: initial;
+}
+.large_text #welcome {
+  height: initial;
+}
+#chat {
+  display: initial;
+  position: initial;
+  height: initial;
+  width: initial;
+}
+h1,
+h2 {
+  margin-top: initial;
+  margin-bottom: initial;
+}
+h3 {
+  font-size: initial;
+  margin-bottom: initial;
+  margin-top: initial;
+}
+h4 {
+  margin: initial;
+  font-weight: inherit;
+}
+#welcome_name,
+#welcome_subject {
+  width: initial;
+  margin: initial;
+}
+#email_send_wrap,
+#welcome_connect_wrap {
+  margin-top: initial;
+  text-align: initial;
+}
+#welcome_connect,
+#email_send {
+  font: inherit;
+  line-height: initial;
+  padding: initial;
+  display: initial;
+}
+#welcome_connecting {
+  background: initial;
+  height: initial;
+}
+#queueing {
+  display: initial;
+  height: initial;
+}
+#queueing_status {
+  background: initial;
+  height: initial;
+  width: initial;
+  margin: initial;
+}
+#reconnecting,
+#chat_ended {
+  bottom: initial;
+  font-size: initial;
+  left: initial;
+  padding: initial;
+  position: initial;
+  right: initial;
+  text-align: initial;
+  display: initial;
+  text-shadow: initial;
+  box-shadow: initial;
+  z-index: initial;
+}
+#chat.chat_count_chars #reconnecting {
+  padding-top: initial;
+  padding-bottom: initial;
+}
+#reconnecting {
+  filter: initial;
+  opacity: initial;
+  text-shadow: initial;
+}
+#chat.reconnecting #reconnecting {
+  display: initial;
+}
+#chat.reconnecting #chat_end {
+  display: initial;
+}
+.chat-typing-message {
+  font-weight: inherit;
+  color: inherit;
+  padding: initial;
+}
+#connect {
+  display: initial;
+}
+#connect_connecting {
+  background: initial;
+  height: initial;
+}
+.browser_ie_9 .message_tick,
+.browser_ie_8 .message_tick,
+.browser_ie_7 .message_tick {
+  background-position: initial;
+}
+.browser_ie_9 .message_tick.you,
+.browser_ie_8 .message_tick.you,
+.browser_ie_7 .message_tick.you {
+  background-position: initial;
+}
+.browser_ie_8 .message_tick.you,
+.browser_ie_7 .message_tick.you {
+  bottom: initial;
+}
+.browser_ie_8 #welcome,
+.browser_ie_7 #welcome {
+  background: initial;
+  border: initial;
+  width: initial;
+  margin-left: initial;
+  height: initial;
+  padding: initial;
+  border: initial;
+  border-bottom-width: initial;
+  zoom: initial;
+}
+.browser_ie_8 #welcome_name,
+.browser_ie_8 #welcome_subject,
+.browser_ie_7 #welcome_name,
+.browser_ie_7 #welcome_subject {
+  width: initial;
+}
+#welcome_ie_inner {
+  border-top: initial;
+  border-left: initial;
+  border-right: initial;
+  border-bottom: initial;
+  background: initial;
+  position: initial;
+  padding: initial;
+  height: initial;
+}
+html.browser_ie_7 {
+  overflow: initial;
+}
+.browser_ie_8 .message,
+.browser_ie_7 .message {
+  border-bottom: initial;
+}
+.browser_ie_8 #chat_message_wrap,
+.browser_ie_7 #chat_message_wrap {
+  padding-left: initial;
+}
+.browser_ie_8 #chat_message,
+.browser_ie_7 #chat_message {
+  height: initial;
+}
+#page-debug {
+  display: initial;
+}
+#no_endpoint {
+  height: initial;
+}
+#alert,
+#inactivity_timeout,
+#chat_restart,
+#chat_transcript,
+#confirm_end {
+  display: initial;
+  text-align: initial;
+  z-index: initial;
+}
+#alert {
+  top: initial;
+  margin-top: initial;
+}
+#chat_transcript_overlay,
+#alert_overlay,
+#confirm_end_overlay {
+  opacity: initial;
+  background: initial;
+  z-index: initial;
+}
+#alert_ok,
+#inactivity_timeout_continue,
+#inactivity_timeout_end,
+#chat_restart_ok,
+#chat_restart_cancel,
+#chat_transcript_send,
+#chat_transcript_cancel,
+#confirm_end_cancel,
+#confirm_end_confirm {
+  display: initial;
+  float: initial;
+  margin: initial;
+  font-size: initial;
+}
+#alert_message,
+#inactivity_timeout_message,
+#chat_restart_message {
+  font-size: initial;
+  text-overflow: initial;
+  overflow-x: initial;
+  max-height: initial;
+}
+#chat_transcript_email {
+  font-weight: inherit;
+}
+#chat_attachment_wrap {
+  right: initial;
+  left: initial;
+  width: initial;
+  border-radius: initial;
+  z-index: initial;
+  overflow: initial;
+}
+#chat_attachment {
+  padding: initial;
+  margin: initial;
+  text-indent: initial;
+  white-space: initial;
+  overflow: initial;
+  height: initial;
+  width: initial;
+  background: initial;
+  cursor: initial;
+  border: initial;
+}
+#chat_attachment.initialising {
+  background-image: initial;
+}
+#chat_attachment_files {
+  background: initial;
+  border: initial;
+}
+.attachment {
+  padding: initial;
+  position: initial;
+  min-height: initial;
+  margin-top: initial;
+}
+.attachment_icon,
+.attachment_download {
+  position: initial;
+  width: initial;
+  height: initial;
+  border-radius: initial;
+  line-height: initial;
+  font-size: initial;
+  top: initial;
+  left: initial;
+  overflow: initial;
+  text-align: initial;
+  text-transform: initial;
+}
+.attachment_download {
+  background: initial;
+  left: initial;
+  right: initial;
+  cursor: initial;
+  border: initial;
+  margin: initial;
+  padding: initial;
+  display: initial;
+}
+.attachment_downloadable .attachment_download {
+  display: initial;
+}
+.attachment_progress {
+  display: initial;
+  width: initial;
+  max-width: initial;
+  height: initial;
+  padding: initial;
+  box-shadow: initial;
+  border-radius: initial;
+  margin-top: initial;
+}
+.attachment_uploading .attachment_progress {
+  display: initial;
+}
+.attachment_uploading.attachment_failed .attachment_progress {
+  display: initial;
+}
+.attachment_progress_bar {
+  height: initial;
+  float: initial;
+  border-radius: initial;
+  width: initial;
+  transition: initial;
+  text-indent: initial;
+  overflow: initial;
+}
+.attachment_name {
+  font-weight: inherit;
+  overflow: initial;
+  white-space: initial;
+  text-overflow: initial;
+  font-size: initial;
+  line-height: initial;
+}
+.attachment_size,
+.attachment_status {
+  font-size: initial;
+  display: initial;
+  line-height: initial;
+}
+.attachment_name,
+.attachment_size {
+  display: initial;
+}
+.attachment_failed .attachment_size,
+.attachment_uploading .attachment_size {
+  display: initial;
+}
+.attachment_failed {
+  opacity: initial;
+}
+.attachment_failed .attachment_status {
+  display: initial;
+  font-style: initial;
+}
+#attachment_drop {
+  font-size: initial;
+  font-weight: inherit;
+  text-align: initial;
+  position: initial;
+  top: initial;
+  right: initial;
+  left: initial;
+  bottom: initial;
+  line-height: initial;
+  border: initial;
+}
+.attachment_image {
+  max-width: initial;
+  max-height: initial;
+  margin: initial;
+  box-shadow: initial;
+  background: initial;
+}
+.attachment.attachment_displaying_image {
+  padding: initial;
+}
+.attachment.attachment_displaying_image .attachment_download,
+.attachment.attachment_displaying_image .attachment_icon {
+  display: initial;
+}
+.attachments_confirm {
+  position: initial;
+  bottom: initial;
+  left: initial;
+  right: initial;
+  z-index: initial;
+  padding: initial;
+  box-shadow: initial;
+}
+.attachments_confirm_cancel,
+.attachments_confirm_ok {
+  float: initial;
+  margin-left: initial;
+}
+.attachments_confirm_files {
+  max-height: initial;
+  overflow-y: initial;
+}
+body {
+  font: inherit;
+}
+.message_date {
+  font-family: inherit;
+}
+h4 {
+  color: inherit;
+}
+.message_date {
+  color: inherit;
+}
+.message_user {
+  color: inherit;
+}
+.you .message_user {
+  color: inherit;
+}
+.message_text {
+  color: inherit;
+}
+.you .message_text {
+  color: inherit;
+}
+.message_text a {
+  color: inherit;
+}
+.message_text a:visited {
+  color: inherit;
+}
+#chat_transcript_email {
+  color: inherit;
+}
+#chat_ended {
+  color: inherit;
+}
+#reconnecting {
+  color: inherit;
+}
+.attachment_icon {
+  color: inherit;
+}
+.attachment_name {
+  color: inherit;
+}
+.attachment_size,
+.attachment_status {
+  color: inherit;
+}
+#attachment_drop {
+  color: inherit;
+}
+body {
+  background: initial;
+}
+.panel {
+  background: initial;
+  background-image: initial;
+}
+#chat_info {
+  background: initial;
+  background-image: initial;
+}
+.message,
+.attachments_confirm {
+  background: initial;
+  background-image: initial;
+}
+#chat_footer {
+  background: initial;
+  background-image: initial;
+}
+.style_flat .panel,
+.style_flat #chat_info,
+.style_flat .message,
+.style_flat #chat_footer,
+.style_flat .attachments_confirm {
+  background-image: initial;
+  box-shadow: initial;
+}
+.style_flat #chat_footer {
+  background: initial;
+  border: initial;
+}
+#reconnecting {
+  background: initial;
+}
+.attachment {
+  background: initial;
+}
+.attachment.attachment_failed {
+  background: initial;
+}
+.attachment_progress {
+  background: initial;
+}
+#attachment_drop {
+  background: initial;
+}
+.bg_action_highlight,
+.bg_highlight {
+  color: inherit;
+  background: initial;
+  background-image: initial;
+}
+.bg_action_highlight:hover {
+  background: initial;
+  background-image: initial;
+}
+.bg_minor_highlight {
+  color: inherit;
+  background: initial;
+  background-image: initial;
+}
+.bg_minor_highlight:hover {
+  background: initial;
+  background-image: initial;
+}
+.bg_action_highlight:focus,
+.bg_highlight:focus,
+.bg_minor_highlight:focus {
+  background: initial;
+  background-image: initial;
+  box-shadow: initial;
+}
+.style_flat .bg_action_highlight,
+.style_flat .bg_highlight,
+.style_flat .bg_action_highlight:hover,
+.style_flat .bg_minor_highlight,
+.style_flat .bg_minor_highlight:hover {
+  background-image: initial;
+}
+#welcome_name,
+#welcome_subject {
+  outline-color: initial;
+}
+.message .attachment_icon,
+.message .attachment_progress_bar {
+  background: initial;
+}
+.message.you .attachment_icon,
+.message.you .attachment_progress_bar {
+  background: initial;
+}
+.message.you .attachment_progress_bar.progress_unknown {
+  background: initial;
+  background-size: initial;
+  animation: initial;
+}
+.style_flat #chat_end,
+.style_flat #text_size,
+.style_flat #chat_send,
+.style_flat #chat_attachment_wrap,
+.style_flat .chat_button,
+.style_flat #chat_select_all,
+.style_flat #chat_copy {
+  box-shadow: initial;
+  border: initial;
+  text-shadow: initial;
+}
+.style_flat .message_tick {
+  display: initial;
+}
+.style_flat #chat_message_wrap {
+  box-shadow: initial;
+}
+.style_flat #chat_connectedto {
+  text-shadow: initial;
+}
+.style_flat #chat.chat_has_attachments #chat_message_wrap {
+  padding-left: initial;
+}
+.highlight_message {
+  width: initial;
+  top: initial;
+  bottom: initial;
+  background: initial;
+  position: initial;
+  opacity: initial;
+}
+.highlight_message:hover {
+  cursor: initial;
+}
+.browser_ie_8 #chars_remaining,
+.browser_ie_7 #chars_remaining,
+.browser_ie_8 #chat_select_all,
+.browser_ie_7 #chat_select_all,
+.browser_ie_8 #chat_copy,
+.browser_ie_7 #chat_copy {
+  display: initial;
+}
+#attachment_download {
+  display: initial;
+}
+@media only screen and (max-height: 600px) {
+  .panel {
+    top: initial;
+    margin-top: initial;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  #text_size {
+    display: initial;
+  }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select,
+  textarea,
+  input {
+    font-size: initial;
+  }
+}
+
+.send-message-error {
+  font-style: initial;
+}
+.sr-only {
+  position: initial;
+  left: initial;
+  top: initial;
+  width: initial;
+  height: initial;
+  overflow: initial;
+  font-family: inherit;
+}
+.row {
+  display: initial;
+}
+.column {
+  flex: initial;
+}
+.hidden {
+  display: initial;
+}
+.info_card {
+  color: inherit;
+  text-decoration: initial;
+  margin: initial;
+  overflow-wrap: initial;
+  flex-wrap: initial;
+}
+.info_card_icon {
+  margin-right: initial;
+  max-height: initial;
+  max-width: initial;
+}
+.info_card_title {
+  font-size: initial;
+  font-weight: inherit;
+}
+.quick_reply_container {
+  display: initial;
+  flex-flow: initial;
+  padding: initial;
+  list-style: initial;
+  margin: initial;
+  position: initial;
+  animation: initial;
+}
+.quick_reply_container.submitting {
+  opacity: initial;
+}
+.quick_reply_container.hidden {
+  display: initial;
+}
+ul:last-of-type {
+  display: initial;
+}
+.quick_reply {
+  border-radius: initial;
+  background: initial;
+  text-align: initial;
+  margin-right: initial;
+  margin-bottom: initial;
+  padding-left: initial;
+  padding-right: initial;
+  cursor: initial;
+  color: inherit;
+}
+.quick_reply:hover {
+  background: initial;
+}

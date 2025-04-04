@@ -1,0 +1,84 @@
+/**
+ * Place for any temporary hacks to live in the transition to nhsuk-frontend
+ */
+
+/**
+  * Temporary overrides for the footer component
+  * Convert these into a "proper" component when moving to the new frontend codebase
+  * See https://github.com/nhsuk/nhsuk-service-manual-community-backlog/issues/15#issuecomment-922877848
+  */
+.nhsuk-footer {
+  // Our use of hrs in the footer doesn't quite work with the default colour since they are the same
+  // Need to consider what to do about this - do we need to change anything upstream in nhsuk-frontend?
+  .nhsuk-section-break--visible {
+    border-bottom-color: #768692;
+  }
+
+  // nhsuk-frontend has no styles to cater for links that aren't part of the main footer navigation list
+  a,
+  a:visited {
+    color: #003087;
+  }
+
+  a:hover {
+    color: #7c2855;
+  }
+
+  // nhsuk-frontend applies the same colour as links to the copyright - but doesn't give any treatment to general text
+  p {
+    color: #231f20;
+  }
+
+  .nhsuk-footer__list-item {
+    float: none;
+  }
+}
+
+/**
+   * Temporary overrides for the header component
+   * Prevent nhsuk-frontend mobile overrides from compressing the header too much
+   * It's not necessary for us and looks weird
+   */
+.nhsuk-header__logo {
+  max-width: none;
+}
+
+.nhsuk-header__link--service {
+  align-items: center;
+  display: flex;
+}
+
+.nhsuk-header__service-name {
+  padding-left: nhsuk-spacing(3);
+  font-size: 19px;
+  font-size: nhsuk-px-to-rem(19);
+}
+
+/**
+ * Spacing on the bottom of buttons causes a bit of a nuisance in most situations so we're just gonna hack it out
+ */
+.nhsuk-button:last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * Back link overrides to make the nhsuk-frontend component work with buttons
+ * Remove once https://github.com/nhsuk/nhsuk-frontend/pull/838 is released and installed here
+ * (nhsuk-frontend@6.2.0)
+ */
+.nhsuk-back-link__link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  @include nhsuk-link-style-default;
+}
+
+/**
+ * Action link overrides to make the nhsuk-frontend component work with buttons
+ */
+.nhsuk-action-link__link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  @include nhsuk-link-style-default;
+}

@@ -1,22 +1,23 @@
 {
-  "semi": false,
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "objectWrap": "preserve",
+  "bracketSpacing": true,
+  "semi": true,
+  "experimentalOperatorPosition": "end",
+  "experimentalTernaries": false,
   "singleQuote": true,
-  "quoteProps": "preserve",
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "singleAttributePerLine": false,
+  "htmlWhitespaceSensitivity": "css",
+  "vueIndentScriptAndStyle": false,
+  "proseWrap": "preserve",
+  "insertPragma": false,
+  "printWidth": 200,
+  "requirePragma": false,
   "tabWidth": 2,
-  "trailingComma": "none",
-  "overrides": [
-    {
-      "files": "*.md",
-      "options": {
-        "embeddedLanguageFormatting": "off"
-      }
-    },
-    {
-      "files": "*.scss",
-      "options": {
-        "printWidth": 120,
-        "singleQuote": false
-      }
-    }
-  ]
+  "useTabs": true,
+  "embeddedLanguageFormatting": "auto"
 }

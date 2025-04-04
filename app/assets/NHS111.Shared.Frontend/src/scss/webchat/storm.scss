@@ -1,0 +1,280 @@
+@import "./partials/storm-reset";
+// @import "~nhsuk-frontend/packages/nhsuk";
+@import "~nhsuk-frontend/packages/core/all";
+@import "~nhsuk-frontend/packages/components/button/button";
+@import "~nhsuk-frontend/packages/components/card/card";
+@import "~nhsuk-frontend/packages/components/textarea/textarea";
+
+html {
+  overflow-y: hidden;
+  background-color: $color_nhsuk-grey-5;
+}
+
+#chat_info,
+.message_tick {
+  display: none;
+}
+
+#chat {
+  display: none;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: flex-end;
+}
+
+// Chat has to be display none by default, and then the JS makes it visible by directly setting the display to block
+// except that I need to to be display: flex. So overriding it here.
+// Slightly unusual selector - just trying to guard against possible variations in how browsers might set the value
+// rather than doing [style="display: block;"] in one go
+#chat[style*="display"][style*="block"] {
+  display: flex !important;
+}
+
+#chat_history {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#chat_messages {
+  @include clearfix();
+
+  // Hack to target iOS only
+  @supports (-webkit-touch-callout: none) {
+    @media screen and (max-width: 767px) {
+      padding: 0 18px;
+    }
+  }
+}
+
+.message_wrap {
+  min-width: 33%;
+  max-width: 80%;
+  float: left;
+  clear: both;
+  position: relative;
+  padding: nhsuk-spacing(2);
+  margin-bottom: nhsuk-spacing(4);
+  border-radius: nhsuk-spacing(2);
+  color: $color_nhsuk-white;
+  background-color: $color_nhsuk-blue;
+
+  &::before {
+    left: 20px;
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 12px solid transparent;
+    border-top: 0;
+    bottom: -12px;
+    border-left: 12px solid $color_nhsuk-blue;
+  }
+}
+
+.wrap_you {
+  float: right;
+  background-color: $color_nhsuk-white;
+  border: 2px solid $color_nhsuk-grey-1;
+  color: $nhsuk-text-color;
+
+  &::before {
+    left: auto;
+    right: 20px;
+    border-right: 12px solid $color_nhsuk-grey-1;
+    border-left: 0;
+  }
+}
+
+.message {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: transparent;
+  border: 0;
+}
+
+.message_date,
+.message_user {
+  padding-bottom: nhsuk-spacing(1);
+  border-bottom: 1px solid $nhsuk-border-color;
+  margin-bottom: nhsuk-spacing(1);
+  display: block;
+  flex: 1 1 auto;
+}
+
+.message_date {
+  text-align: right;
+}
+
+.message_text {
+  flex: 100%;
+}
+
+.message.you {
+  .message_user {
+    display: none;
+  }
+
+  .message_date {
+    text-align: left;
+  }
+}
+
+.chat-typing-message,
+#reconnecting {
+  padding: nhsuk-spacing(3);
+  background-color: $color_nhsuk-yellow;
+  clear: both;
+  margin: nhsuk-spacing(4) 0;
+}
+
+button {
+  @extend .nhsuk-button;
+  margin-bottom: 0;
+}
+
+#confirm_end_cancel {
+  @extend .nhsuk-button--secondary;
+}
+
+.panel,
+.bg_highlight,
+#connect,
+#queueing {
+  @extend .nhsuk-card;
+  display: block;
+  text-align: center;
+  width: auto;
+  padding: nhsuk-spacing(4);
+  margin: nhsuk-spacing(4) 0;
+  @include nhsuk-font(19);
+
+  h3 {
+    @include nhsuk-font(19);
+    margin: 0;
+  }
+}
+
+#error,
+#no_endpoint {
+  h3 {
+    @include nhsuk-font(19, bold);
+  }
+}
+
+#error,
+#no_endpoint,
+#confirm_end,
+#reconnecting {
+  display: none;
+}
+
+#chat_ended {
+  display: none !important; // We never want to show this - we're listening to the im.chat.ended message and showing our own end callout
+}
+
+@mixin spinner($baseColor) {
+  &::after {
+    height: 30px;
+    width: 30px;
+    content: "";
+    display: block;
+    border-radius: 15px;
+    position: absolute;
+    left: 50%;
+    bottom: nhsuk-spacing(4);
+    margin-left: -15px;
+
+    background: linear-gradient($baseColor, $baseColor) padding-box,
+      linear-gradient(to right, black, $baseColor) border-box;
+    border: 4px solid transparent;
+
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#connect,
+#queueing {
+  padding: nhsuk-spacing(4);
+  padding-bottom: (nhsuk-spacing(4) + 45px);
+  @include spinner(white);
+
+  // Position these so that if they are ever on screen simultaneously you only see one
+  // Without this, you see a brief flicker of both dialogs when the chat is loading
+  position: absolute;
+  width: 100%;
+
+  // Hack to target iOS only
+  @supports (-webkit-touch-callout: none) {
+    @media screen and (max-width: 767px) {
+      width: auto;
+      left: 18px;
+      right: 18px;
+      top: 0;
+    }
+  }
+}
+
+#reconnecting {
+  @include spinner($color_nhsuk-yellow);
+  position: relative;
+  padding-left: (nhsuk-spacing(4) + 25px);
+
+  &::after {
+    left: 8px;
+    top: 50%;
+    margin-top: -15px;
+    margin-left: 0;
+  }
+}
+
+#chat_footer {
+  flex-grow: 0;
+  flex-shrink: 1;
+  display: flex;
+  padding: 4px;
+}
+
+#chat_message_wrap {
+  flex-grow: 1;
+}
+
+#chat_message {
+  @extend .nhsuk-textarea;
+  resize: none;
+  position: relative;
+  z-index: 1;
+  background-color: white;
+}
+
+#chat_send {
+  @extend .nhsuk-button; // Forcibly reinstate these styles as the content guru anti-stylesheet nukes these
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+
+  &::before {
+    display: none;
+  }
+
+  &:active {
+    top: auto;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}

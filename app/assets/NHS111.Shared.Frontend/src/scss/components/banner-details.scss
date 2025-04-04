@@ -1,0 +1,45 @@
+.app-banner-details {
+  list-style: none;
+}
+
+.app-banner-details__summary {
+  @include nhsuk-font(19, bold);
+  @include nhsuk-link-style-default;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover {
+    path {
+      stroke: $nhsuk-link-hover-color;
+    }
+  }
+
+  &:active {
+    path {
+      stroke: $nhsuk-link-active-color;
+    }
+  }
+
+  &:focus {
+    path {
+      stroke: $nhsuk-focus-text-color;
+    }
+  }
+}
+
+
+.app-banner-details__icon {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
+
+[open] .app-banner-details__icon {
+  transform: translateY(-50%) rotate(180deg);
+}

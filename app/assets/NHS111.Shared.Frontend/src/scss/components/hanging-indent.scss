@@ -1,0 +1,14 @@
+.app-hanging-indent {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: nhsuk-spacing(2);
+  column-gap: nhsuk-spacing(2);
+}
+
+.app-hanging-indent__item {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.app-hanging-indent__content {
+}
