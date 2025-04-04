@@ -13,4 +13,6 @@ module.exports = {
   // Enable cookie-based session store (persists on restart)
   // Please note 4KB cookie limit per domain, cookies too large will silently be ignored
   useCookieSessionStore: 'false',
-};
+
+  debug: true
+}
