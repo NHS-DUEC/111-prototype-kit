@@ -1,8 +1,4 @@
-<!--
-  This is the main layout where you can:
-    - change the header and footer
-    - add custom CSS and JavaScript
--->
+<!-- This is the main layout where you can: - change the header and footer - add custom CSS and JavaScript -->
 
 <!-- Extends the prototype kit template which in turn extends the NHS.UK frontend template -->
 {% extends "prototype-kit-template.njk" %}
@@ -43,6 +39,10 @@
       {
         "URL": "/example-templates",
         "label": "Page templates"
+      },
+      {
+        "URL": "/prototype-admin/reset",
+        "label": "Reset data"
       }
     ]
   })}}
@@ -55,4 +55,7 @@
     <!-- For adding page specific JavsScript -->
     {% block pageScripts %}{% endblock %}
   {% endblock %}
+  {% if debug %}
+    {{ data | log }}
+  {% endif %}
 {% endblock %}
