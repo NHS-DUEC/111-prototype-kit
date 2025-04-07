@@ -1,0 +1,22 @@
+.app-card {
+
+  $this: #{&};
+
+  &--primary {
+
+    #{$this}__icon {
+      width: 40px;
+      height: 40px;
+    }
+
+  }
+
+  &--service {
+
+    #{$this}__icon {
+      fill: $color_nhsuk-grey-3;
+    }
+
+  }
+
+}

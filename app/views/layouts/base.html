@@ -1,6 +1,9 @@
-<!-- This is the main layout where you can: - change the header and footer - add custom CSS and JavaScript -->
+{% from "components/callout/macro.njk" import callout %}
+{% from "components/footer/macro.njk" import footer as appFooter with context %}
+{% from "components/call-to-action/macro.njk" import callToAction %}
+{% from "components/card/macro.njk" import card as appCard with context %}
+{% from "components/card/macro.njk" import service as appService with context %}
 
-<!-- Extends the layout from /lib/example-templates/template.html -->
 {% extends "template.html" %}
 
 <!-- Add your custom CSS or Sass in /app/assets/sass/main.scss -->
@@ -10,7 +13,7 @@
 
 <!-- Set the page title -->
 {% block pageTitle %}
-  NHS prototype kit
+  {{'NHS prototype kit' | test }}
 {% endblock %}
 
 <!-- Edit the header -->
