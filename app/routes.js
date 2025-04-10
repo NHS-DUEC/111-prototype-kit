@@ -6,7 +6,7 @@ const config = require('./config.js');
 // make some basic request information available to views
 router.all('*', (req, res, next) => {
 	const { path, params, originalUrl, body } = req;
-	let pathClasses;
+	let pathclasses = '';
 
 	/**
 	 * Checks if the provided `path` string is non-empty and processes it to build a dashed string.
@@ -15,11 +15,11 @@ router.all('*', (req, res, next) => {
 	 * 1. Verifies that the `path` string has a non-zero length.
 	 * 2. Splits the `path` by the "/" character into an array of segments.
 	 * 3. Filters out any empty segments that may result from leading or trailing slashes.
-	 * 4. Iterates through the filtered segments and builds a string (`pathClasses`)
+	 * 4. Iterates through the filtered segments and builds a string (`pathclasses`)
 	 *    by concatenating each segment, inserting a dash ("-") between segments.
 	 *
 	 * Example:
-	 *   If path = "/foo/bar/", the resulting `pathClasses` will be "foo-bar".
+	 *   If path = "/foo/bar/", the resulting `pathclasses` will be "foo-bar".
 	 */
 	if (path.length) {
 		path
@@ -27,16 +27,16 @@ router.all('*', (req, res, next) => {
 			.filter((segment) => segment !== '')
 			.forEach((segment, index, array) => {
 				// Append the current segment to the result string.
-				pathClasses += segment;
+				pathclasses += segment;
 				// Append a dash if it is not the last segment.
 				if (index < array.length - 1) {
-					pathClasses += '-';
+					pathclasses += '-';
 				}
 			});
 	}
 
 	res.locals.req = { path, params, originalUrl, body };
-	res.locals.pathClasses = pathClasses;
+	res.locals.pathclasses = pathclasses;
 	res.locals.defaults = {
 		layout: {
 			file: config.defaults.layout,

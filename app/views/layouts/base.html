@@ -5,7 +5,7 @@
 {% from "components/card/macro.njk" import service as appService with context %}
 
 {% set title = (page.title | d('title not set') + ' &ndash; ' + serviceName) | safe %}
-{% set bodyclasses = pathClasses + (' ' if page.bodyclasses else '') + page.bodyclasses | d('') %}
+{% set bodyclasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) %}
 
 {% set _layout = {
   content_primary: {
@@ -103,7 +103,7 @@
     {{ {
       session: data,
       request: req,
-      pathClasses: pathClasses
+      pathclasses: pathclasses
     } | log }}
   {% endif %}
 {% endblock %}
