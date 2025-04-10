@@ -19,7 +19,8 @@
 
       <p class="nhsuk-body">This will reset all of the data entered in this session.</p>
 
-      <form action="/prototype-admin/reset" method="post">
+      <form action="/prototype-admin/reset-session-data" method="post">
+        <input type="hidden" name="refurl" value="{{ referrer | d('/') }}">
         {{ button({
           text: "Reset all data"
         })}}
