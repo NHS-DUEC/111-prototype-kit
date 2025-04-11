@@ -1,0 +1,8 @@
+.prototype {
+  &-component-example {
+    border: 1px solid $nhsuk-border-color;
+    @include nhsuk-responsive-padding(3);
+    @include nhsuk-responsive-margin(6, "bottom");
+  }
+}
+

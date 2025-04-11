@@ -1,8 +1,10 @@
+{% from "attributes.njk" import nhsukAttributes %}
 {% from "components/callout/macro.njk" import callout %}
 {% from "components/footer/macro.njk" import footer as appFooter with context %}
 {% from "components/call-to-action/macro.njk" import callToAction %}
 {% from "components/card/macro.njk" import card as appCard with context %}
 {% from "components/card/macro.njk" import service as appService with context %}
+
 
 {% set title = (page.title | d('title not set') + ' &ndash; ' + serviceName) | safe %}
 {% set bodyclasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) %}
@@ -18,14 +20,17 @@
   }
 } | objectMerge(page.layout | d({})) %}
 
-{# this is the NHSUK Frontend template file found:  #}
+{#
+  this is the NHSUK Frontend template file currently found:
+  at the following path: lib/example-templates/template.html
+#}
 {% extends "template.html" %}
 
 {% block headCSS %}
   <link href="/css/main.css" rel="stylesheet">
 {% endblock %}
 
-<!-- Set the page title -->
+{# Set the page title #}
 {% block pageTitle %}{{ title }}{% endblock %}
 
 {% block header %}
@@ -94,15 +99,15 @@
 
 {% block bodyEnd %}
   {% block scripts %}
-    <!-- Custom JavaScript files can be added to this file -->
+    {# Custom JavaScript files can be added to this file #}
     {% include "includes/scripts.html" %}
-    <!-- For adding page specific JavsScript -->
+    {# For adding page specific JavsScript #}
     {% block pageScripts %}{% endblock %}
   {% endblock %}
   {% if debug %}
     {{ {
       session: data,
-      request: req,
+      request: request,
       pathclasses: pathclasses
     } | log }}
   {% endif %}

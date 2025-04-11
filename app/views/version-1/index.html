@@ -1,11 +1,18 @@
 {% set page = {
-  title: 'Version example'
+  title: 'Version example',
+  layout: {
+    content_secondary: {
+      visible: true
+    }
+  }
 } %}
 
 {% extends 'layouts/base.html' %}
 
-<!-- For adding page content -->
-<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
-{% block content %}
+{% block content_primary %}
   <h1 class="nhsuk-heading-m">Version 1</h1>
 {% endblock %}
+
+{% block content_secondary %}
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat odit id rem dolore. Tenetur maiores unde fuga cum quasi, ducimus, et quia, necessitatibus iure dignissimos optio illum temporibus incidunt nulla!</p>
+{% endblock content_secondary %}
