@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% block content_primary_header %}
+  <h1 class="nhsuk-heading-xl">
+    {{ page.title }}
+  </h1>
+{% endblock content_primary_header %}
+
+{% block content_primary %}
+
+  {% block description %}
+    <p>Description here</p>
+  {% endblock description %}
+
+  <section class="prototype-component-example">
+      {% block example %}{% endblock example %}
+  </section>
+
+  {# Size modifiers: xl, l, m #}
+  <hr class="nhsuk-section-break nhsuk-section-break--s nhsuk-section-break--visible">
+
+{% endblock content_primary %}

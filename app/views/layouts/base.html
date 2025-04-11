@@ -1,18 +1,17 @@
-{% from "components/callout/macro.njk" import callout %}
-{% from "components/footer/macro.njk" import footer as appFooter with context %}
-{% from "components/call-to-action/macro.njk" import callToAction %}
-{% from "components/card/macro.njk" import card as appCard with context %}
-{% from "components/card/macro.njk" import service as appService with context %}
+{% from "attributes.njk" import nhsukAttributes %}
+{% import "111/macros/prototype-kit.njk" as prototype %}
+{% from "111/components/callout/macro.njk" import callout %}
+{% from "111/components/footer/macro.njk" import footer as appFooter with context %}
+{% from "111/components/call-to-action/macro.njk" import callToAction %}
+{% from "111/components/card/macro.njk" import card as appCard with context %}
+{% from "111/components/card/macro.njk" import service as appService with context %}
 
-<!-- Extends the prototype kit template which in turn extends the NHS.UK frontend template -->
-{% extends "prototype-kit-template.njk" %}
-
-<!-- Add your custom CSS or Sass in /app/assets/sass/main.scss -->
-{% block head %}
 {% set title = (page.title | d('title not set') + ' &ndash; ' + serviceName) | safe %}
-{% set bodyclasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) %}
+{% set bodyclasses = pathclasses + (' ' if page.bodyclasses else
+  '') + (page.bodyclasses | d('')) %}
 
 {% set _layout = {
+  width: false,
   content_primary: {
     id: 'content-primary',
     width: 'two-thirds'
@@ -21,17 +20,18 @@
     id: 'content-secondary',
     width: 'one-third'
   }
-} | objectMerge(page.layout | d({})) %}
+} | merge(page.layout | d({})) %}
 
-{# this is the NHSUK Frontend template file found:  #}
-{% extends "template.html" %}
+{%- set widths = _layout.width | colWidths -%}
+{%- set primary_col_width = widths.primary_col_width -%}
+{%- set secondary_col_width = widths.secondary_col_width -%}
+
+<!-- Extends the prototype kit template which in turn extends the NHS.UK frontend template -->
+{% extends "prototype-kit-template.njk" %}
 
 {% block headCSS %}
-  <link href="/css/main.css" rel="stylesheet">
+<link href="/css/main.css" rel="stylesheet">
 {% endblock %}
-
-<!-- Set the page title -->
-{% block pageTitle %}{{ title }}{% endblock %}
 
 {% block header %}
   {{ header({
@@ -108,7 +108,7 @@
     {{ {
       session: data,
       request: req,
-      pathclasses: pathclasses
+      pathClasses: pathClasses
     } | log }}
   {% endif %}
 {% endblock %}
