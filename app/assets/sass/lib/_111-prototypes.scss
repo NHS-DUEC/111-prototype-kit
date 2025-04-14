@@ -1,8 +1,19 @@
 .prototype {
   &-component-example {
-    border: 1px solid $nhsuk-border-color;
-    @include nhsuk-responsive-padding(3);
     @include nhsuk-responsive-margin(6, "bottom");
+    &__body {
+      @include nhsuk-responsive-padding(3);
+      border: 1px solid $nhsuk-border-color;
+    }
+    &__header {
+      @include nhsuk-responsive-padding(3);
+      border: 1px solid $nhsuk-border-color;
+      border-bottom: 0;
+    }
+    &__footer {
+      border: 1px solid $nhsuk-border-color;
+      border-top: 0;
+    }
   }
 }
 
