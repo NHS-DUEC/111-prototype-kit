@@ -8,15 +8,9 @@
 
 {% block content_primary %}
 
-  {% block description %}
-    <p>Description here</p>
-  {% endblock description %}
+  {% block component_summary %}{% endblock component_summary %}
 
-  <section class="prototype-component-example">
-      {% block example %}{% endblock example %}
-  </section>
+  {% block component_documentation %}
 
-  {# Size modifiers: xl, l, m #}
-  <hr class="nhsuk-section-break nhsuk-section-break--s nhsuk-section-break--visible">
-
+  {% endblock component_documentation %}
 {% endblock content_primary %}

@@ -4,13 +4,38 @@
 
 {% extends "layouts/component.html" %}
 
-{% block example %}
-  {{
-    callout({
-      text: 'Some example text'
-    })
-  }}
-{% endblock example %}
+{% block component_documentation %}
+
+  {% call prototype.component({
+    name: page.title,
+    variant: 'default',
+    options: [
+      {
+        key: 'text',
+        value: 'A sample callout component' | quoteIt
+      }
+    ]
+  }) %}
+      {{
+        callout({
+          text: 'kjsdksjs'
+        })
+      }}
+  {% endcall %}
+
+  {% call prototype.component({
+    name: page.title,
+    variant: 'information'
+  }) %}
+      {{
+        callout({
+          text: 'Some example text',
+          classes: 'app-callout--info'
+        })
+      }}
+  {% endcall %}
+
+{% endblock component_documentation %}
 
 {% block description %}
   <p class="nhsuk-lede-text">You should use this component to display content it is important the user reads even if they do not read the entire page.</p>
