@@ -18,18 +18,18 @@
       </div>
       <div class="prototype-component-example__footer">
         {% set tabHTML %}
-        <code style="white-space: pre-wrap;">
-          {{- params.html | trim | htmlFormat | e | safe -}}
-        </code>
+        <pre><code class="hljs language-html">
+          {{- params.html | trim | htmlFormat | highlight | safe -}}
+        </code></pre>
         {% endset %}
-        {% set tabNJK %}
-          <code style="white-space: pre-wrap; overflow: auto;">{% filter trim %}
-            {{- "{{ " | e | safe }}{{ params.name | lower -}}
-          ({{ params.options | convertToJSON(false, 2) | safe -}})
-          {{- "}}" | e | safe }}
-          {%- endfilter -%}
-          </code>
-        {% endset %}
+
+        {% set njcontent %}{% filter trim %}
+            {{- "{{ " }}{{ params.name | lower -}}
+          ({{ params.options | convertToJSON(false, 2) | decode | safe -}})
+          {{- "}}" }}{%- endfilter -%}{% endset %}
+
+        {% set tabNJK %}{{ njcontent | safe }}{% endset %}
+
         {{
           tabs({
             items: [
@@ -44,7 +44,7 @@
                 label: "Nunjucks",
                 id: "nunjucks" + params.variant,
                 panel: {
-                  html: tabNJK
+                  html: tabNJK | highlight('js') | nl2br | decode | safe
                 }
               }
             ],

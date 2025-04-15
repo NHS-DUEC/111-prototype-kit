@@ -15,3 +15,8 @@
   {% endblock component_summary %}
   {% block component_documentation %}{% endblock component_documentation %}
 {% endblock content_primary %}
+
+{% block headCSS %}
+  {{ super() }}
+  <link href="/css/lib/highlight.css" rel="stylesheet">
+{% endblock headCSS %}
