@@ -55,9 +55,15 @@
 // Components that are not in the NHS.UK frontend library
 @import '../../views/components/lists/list-border';
 @import '../../views/components/related-nav/related-nav';
+@import '../../views/components/callout/callout';
 
 // sass for the 111 prototype kit
 @import './lib/111-prototypes';
 
+// --------------------------------------------------------
+// edit below this line but ideally keep things specific to
+// this instance within app/_app.scss
+// --------------------------------------------------------
+
 // sass specific to this instance of the prototype kit
-@import './prototype/prototype';
+@import './app/app';

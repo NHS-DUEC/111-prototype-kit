@@ -1,6 +1,12 @@
 {%- from 'tabs/macro.njk' import tabs %}
 
-{% macro component(params) %}
+{#
+# renderComponent macro
+# ##########################################################
+# Used for rendering a component in a consistent way for
+# documenting why, when and how to use a component
+######################################################### #}
+{% macro _component(params) %}
     <section class="prototype-component-example">
       <div class="prototype-component-example__header">
         <h2 class="prototype-component-example__heading nhsuk-heading-s nhsuk-u-margin-bottom-0">
@@ -17,7 +23,7 @@
         </code>
         {% endset %}
         {% set tabNJK %}
-          <code style="white-space: pre-wrap">{% filter trim %}
+          <code style="white-space: pre-wrap; overflow: auto;">{% filter trim %}
             {{- "{{ " | e | safe }}{{ params.name | lower -}}
           ({{ params.options | convertToJSON(false, 2) | safe -}})
           {{- "}}" | e | safe }}
@@ -49,17 +55,25 @@
     </section>
 {% endmacro %}
 
+{#
+# displayComponent macro
+# ##########################################################
+# Used for rendering a component in a consistent way for
+# documenting why, when and how to use a component
+######################################################### #}
 {% macro displayComponent(params) %}
   {% if caller %}
     {% set caller_contents %}
       {{ caller() }}
     {% endset %}
-    {% call component({
+    {% call _component({
       name: params.name,
       variant: params.variant,
       options: params.options,
       html: caller_contents
     }) %}
     {% endcall %}
+  {% else %}
+    <p>This displayComponent macro needs to used with a call block</p>
   {% endif %}
 {% endmacro %}

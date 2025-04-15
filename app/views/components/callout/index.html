@@ -1,5 +1,6 @@
 {% set page = {
-  title: 'Callout'
+  title: 'Callout',
+  summary: 'Highlight information that will help the user comprehend the question they are being asked or the action they are being told to take.'
 } %}
 
 {% extends "layouts/component.html" %}
@@ -10,7 +11,7 @@
     name: page.title,
     variant: 'default',
     options: {
-      text: 'Sample text value'
+      text: 'We need this in case we have to contact you for any reason'
     }
   } %}
 
@@ -29,10 +30,28 @@
     {{ callout(demo_2.options) }}
   {% endcall %}
 
-{% endblock component_documentation %}
+  {% set demo_3 = demo_1 | objectMerge({
+    variant: 'attention',
+    options: {
+      classes: 'app-callout--attention'
+    }
+  }) %}
 
-{% block description %}
-  <p class="nhsuk-lede-text">You should use this component to display content it is important the user reads even if they do not read the entire page.</p>
-{% endblock description %}
+  {% call prototype.displayComponent(demo_3) %}
+    {{ callout(demo_3.options) }}
+  {% endcall %}
+
+  {% set demo_4 = demo_1 | objectMerge({
+    variant: 'alert',
+    options: {
+      classes: 'app-callout--alert'
+    }
+  }) %}
+
+  {% call prototype.displayComponent(demo_4) %}
+    {{ callout(demo_4.options) }}
+  {% endcall %}
+
+{% endblock component_documentation %}
 
 
