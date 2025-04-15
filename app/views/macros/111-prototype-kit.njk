@@ -1,43 +1,42 @@
 {%- from 'tabs/macro.njk' import tabs %}
 
 {% macro component(params) %}
-  {% if caller %}
-    {%- set component_html -%}{{- caller() -}}{%- endset -%}
     <section class="prototype-component-example">
       <div class="prototype-component-example__header">
         <h2 class="prototype-component-example__heading nhsuk-heading-s nhsuk-u-margin-bottom-0">
-          {{ params.name }}
+          {{ params.name }} &ndash; {{ params.variant }}
         </h2>
       </div>
       <div class="prototype-component-example__body">
-        {{- caller() -}}
+        {{ params.html | safe }}
       </div>
       <div class="prototype-component-example__footer">
         {% set tabHTML %}
         <code style="white-space: pre-wrap;">
-          {{- component_html | trim | htmlFormat | e | safe -}}
+          {{- params.html | trim | htmlFormat | e | safe -}}
         </code>
         {% endset %}
         {% set tabNJK %}
-          <code style="white-space: pre-wrap">{%- raw %}{{
-  {% endraw %}{{ params.name | lower }}({ {% for option in params.options %}
-    {{ option.key }}: {{ option.value }}{% if not loop.last %},{% endif %}{% endfor %}
-  })
-{% raw %}}}{% endraw %}
-</code>{% endset %}
+          <code style="white-space: pre-wrap">{% filter trim %}
+            {{- "{{ " | e | safe }}{{ params.name | lower -}}
+          ({{ params.options | convertToJSON(false, 2) | safe -}})
+          {{- "}}" | e | safe }}
+          {%- endfilter -%}
+          </code>
+        {% endset %}
         {{
           tabs({
             items: [
               {
                 label: "HTML",
-                id: "html",
+                id: "html" + params.variant,
                 panel: {
                   html: tabHTML
-                  }
+                }
               },
               {
                 label: "Nunjucks",
-                id: "nunjucks",
+                id: "nunjucks" + params.variant,
                 panel: {
                   html: tabNJK
                 }
@@ -48,7 +47,19 @@
         }}
       </div>
     </section>
-  {% else %}
-    <p>This component should be used with the nunjucks 'call' tag</p>
+{% endmacro %}
+
+{% macro displayComponent(params) %}
+  {% if caller %}
+    {% set caller_contents %}
+      {{ caller() }}
+    {% endset %}
+    {% call component({
+      name: params.name,
+      variant: params.variant,
+      options: params.options,
+      html: caller_contents
+    }) %}
+    {% endcall %}
   {% endif %}
 {% endmacro %}

@@ -6,33 +6,27 @@
 
 {% block component_documentation %}
 
-  {% call prototype.component({
+  {% set demo_1 = {
     name: page.title,
     variant: 'default',
-    options: [
-      {
-        key: 'text',
-        value: 'A sample callout component' | quoteIt
-      }
-    ]
-  }) %}
-      {{
-        callout({
-          text: 'kjsdksjs'
-        })
-      }}
+    options: {
+      text: 'Sample text value'
+    }
+  } %}
+
+  {% call prototype.displayComponent(demo_1) %}
+    {{ callout(demo_1.options) }}
   {% endcall %}
 
-  {% call prototype.component({
-    name: page.title,
-    variant: 'information'
+  {% set demo_2 = demo_1 | objectMerge({
+    variant: 'information',
+    options: {
+      classes: 'app-callout--info'
+    }
   }) %}
-      {{
-        callout({
-          text: 'Some example text',
-          classes: 'app-callout--info'
-        })
-      }}
+
+  {% call prototype.displayComponent(demo_2) %}
+    {{ callout(demo_2.options) }}
   {% endcall %}
 
 {% endblock component_documentation %}
