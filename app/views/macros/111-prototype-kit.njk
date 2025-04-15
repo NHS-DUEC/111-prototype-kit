@@ -39,7 +39,7 @@
                 label: "Nunjucks",
                 id: "nunjucks",
                 panel: {
-                  html: tabNJK
+                  html: tabNJK | highlight('js') | nl2br | decode | safe
                 }
               }
             ],
