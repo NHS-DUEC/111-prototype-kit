@@ -23,12 +23,12 @@
         </code></pre>
         {% endset %}
 
-        {% set njcontent %}{% filter trim %}
+        {% set njcontent %}
             {{- "{{ " }}{{ params.name | lower -}}
-          ({{ params.options | convertToJSON(false, 2) | decode | safe -}})
-          {{- "}}" }}{%- endfilter -%}{% endset %}
+            ({{ params.options | convertToJSON(false, 2) | decode | safe -}})
+          {{- "}}" }}{% endset %}
 
-        {% set tabNJK %}{{ njcontent | safe }}{% endset %}
+        {% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
 
         {{
           tabs({
@@ -44,7 +44,7 @@
                 label: "Nunjucks",
                 id: "nunjucks" + params.variant,
                 panel: {
-                  html: tabNJK | highlight('js') | nl2br | decode | safe
+                  html: tabNJK
                 }
               }
             ],
