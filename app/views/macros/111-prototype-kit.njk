@@ -13,23 +13,29 @@
           {{ params.name }} &ndash; {{ params.variant }}
         </h2>
       </div>
-      <div class="prototype-component-example__body">
+      <div class="prototype-component-example__placeholder">
         {{ params.html | safe }}
       </div>
+      {% if params.description %}
+      <div class="prototype-component-example__body">
+        {% if params.description.html %}
+          {{ params.description.html | safe }}
+        {% else %}
+          <p>{{ params.description }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
       <div class="prototype-component-example__footer">
         {% set tabHTML %}
         <pre><code class="hljs language-html">
           {{- params.html | trim | htmlFormat | highlight | safe -}}
         </code></pre>
         {% endset %}
-
         {% set njcontent %}
             {{- "{{ " }}{{ params.name | lower -}}
             ({{ params.options | convertToJSON(false, 2) | decode | safe -}})
           {{- "}}" }}{% endset %}
-
         {% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
-
         {{
           tabs({
             items: [
@@ -70,6 +76,7 @@
       name: params.name,
       variant: params.variant,
       options: params.options,
+      description: params.description,
       html: caller_contents
     }) %}
     {% endcall %}
