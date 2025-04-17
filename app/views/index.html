@@ -6,6 +6,13 @@
 
 {% block content_primary %}
 
+{% embed "layouts/display_component.html" with { title: 'skjddjh' } %}
+  {% block example %}
+    <h1>Welcome!</h1>
+    <p>This content overrides the “content” block in layout.html.</p>
+  {% endblock example %}
+{% endembed %}
+
   <!-- You can delete the lines below -->
   <h2 class="nhsuk-heading-l">
     NHS prototype kit

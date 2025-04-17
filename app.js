@@ -23,6 +23,7 @@ const config = require('./app/config');
 const locals = require('./app/locals');
 const routes = require('./app/routes');
 const utils = require('./lib/utils');
+const EmbedExtension = require('./app/lib/extensions/embed');
 
 const prototypeAdminRoutes = require('./lib/middleware/prototype-admin-routes');
 const exampleTemplatesRoutes = require('./lib/example_templates_routes');
@@ -65,6 +66,9 @@ nunjucksConfig.express = app;
 
 let nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig);
 nunjucksAppEnv.addGlobal('version', packageInfo.version);
+
+// register it under the name “embed”
+nunjucksAppEnv.addExtension('EmbedExtension', new EmbedExtension());
 
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv);
