@@ -10,18 +10,19 @@
   {% set demo_1 = {
     name: page.title,
     variant: 'default',
+    description: 'By default callouts change background to white to make it stand out from other content on the page',
     options: {
       text: 'We need this in case we have to contact you for any reason'
     }
   } %}
 
   {% call prototype.displayComponent(demo_1) %}
-    {{ callout(demo_1.options) }}
+  {{ callout(demo_1.options) }}
   {% endcall %}
 
   {% set demo_2 = demo_1 | objectMerge({
     variant: 'information',
-    description: 'kjksjskjskj',
+    description: "The 'information' callout is used to present users with key information the need to understand",
     options: {
       classes: 'app-callout--info'
     }

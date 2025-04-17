@@ -1,6 +1,16 @@
 .prototype {
   &-component-example {
     @include nhsuk-responsive-margin(6, "bottom");
+
+    &__placeholder,
+    &__body,
+    &__footer,
+    &__header {
+      > *:last-child {
+        margin-bottom: 0;
+      }
+    }
+
     &__placeholder {
       @include nhsuk-responsive-padding(3);
       border: 1px solid $nhsuk-border-color;
@@ -14,9 +24,6 @@
       @include nhsuk-responsive-padding(3);
       border: 1px solid $nhsuk-border-color;
       border-top: 0;
-      > *:last-child {
-        margin-bottom: 0;
-      }
     }
     &__footer, &__body {
       border: 1px solid $nhsuk-border-color;

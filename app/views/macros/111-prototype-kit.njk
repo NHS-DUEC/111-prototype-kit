@@ -12,11 +12,16 @@
         <h2 class="prototype-component-example__heading nhsuk-heading-s nhsuk-u-margin-bottom-0">
           {{ params.name }} &ndash; {{ params.variant }}
         </h2>
+        {% if params.description.html %}
+          {{ params.description.html | safe }}
+        {% else %}
+          <p>{{ params.description }}</p>
+        {% endif %}
       </div>
       <div class="prototype-component-example__placeholder">
         {{ params.html | safe }}
       </div>
-      {% if params.description %}
+      {# {% if params.description %}
       <div class="prototype-component-example__body">
         {% if params.description.html %}
           {{ params.description.html | safe }}
@@ -24,7 +29,7 @@
           <p>{{ params.description }}</p>
         {% endif %}
       </div>
-      {% endif %}
+      {% endif %} #}
       <div class="prototype-component-example__footer">
         {% set tabHTML %}
         <pre><code class="hljs language-html">
