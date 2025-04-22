@@ -7,8 +7,7 @@
 {% from "111/components/card/macro.njk" import service as appService with context %}
 
 {% set title = (page.title | d('title not set') + ' &ndash; ' + serviceName) | safe %}
-{% set bodyclasses = pathclasses + (' ' if page.bodyclasses else
-  '') + (page.bodyclasses | d('')) %}
+{% set bodyclasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) %}
 
 {% set _layout = {
   width: false,
