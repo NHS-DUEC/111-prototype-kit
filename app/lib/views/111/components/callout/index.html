@@ -7,61 +7,31 @@
 
 {% block component_documentation %}
 
-  {% embed displayComponent with {
-    name: 'callout',
-    macro: callout,
-    description: 'By default callouts change background to white to make it stand out from other content on the page',
-    options: {
-      text: 'We need this in case we have to contact you for any reason'
-    }
-  } %}{% endembed %}
-
-  {% set demo_1 = {
-    name: page.title,
-    variant: 'default',
+  {% set baseComponentOptions = {
+    component: 'callout',
     description: 'By default callouts change background to white to make it stand out from other content on the page',
     options: {
       text: 'We need this in case we have to contact you for any reason'
     }
   } %}
 
-  {% call prototype.displayComponent(demo_1) %}
-  {{ callout(demo_1.options) }}
-  {% endcall %}
+  {% embed displayComponent with baseComponentOptions %}{% endembed %}
 
-  {% set demo_2 = demo_1 | objectMerge({
+  {% embed displayComponent with baseComponentOptions | objectMerge({
     variant: 'information',
-    description: "The 'information' callout is used to present users with key information the need to understand",
+    description: 'Information callouts have further visual emphasis',
     options: {
       classes: 'app-callout--info'
     }
   }) %}
 
-  {% call prototype.displayComponent(demo_2) %}
-    {{ callout(demo_2.options) }}
-  {% endcall %}
-
-  {% set demo_3 = demo_1 | objectMerge({
-    variant: 'attention',
-    options: {
-      classes: 'app-callout--attention'
-    }
-  }) %}
-
-  {% call prototype.displayComponent(demo_3) %}
-    {{ callout(demo_3.options) }}
-  {% endcall %}
-
-  {% set demo_4 = demo_1 | objectMerge({
+  {% embed displayComponent with baseComponentOptions | objectMerge({
     variant: 'alert',
+    description: 'Information callouts have further visual emphasis',
     options: {
       classes: 'app-callout--alert'
     }
   }) %}
-
-  {% call prototype.displayComponent(demo_4) %}
-    {{ callout(demo_4.options) }}
-  {% endcall %}
 
 {% endblock component_documentation %}
 

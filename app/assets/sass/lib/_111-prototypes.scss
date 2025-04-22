@@ -5,9 +5,15 @@
     &__placeholder,
     &__body,
     &__footer,
-    &__header {
+    &__header, &__description {
       > *:last-child {
         margin-bottom: 0;
+      }
+    }
+
+    &__description {
+      p {
+        @include nhsuk-font(16);
       }
     }
 

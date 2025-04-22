@@ -1,26 +1,50 @@
-{% set macroName = macro | getFunctionName %}
-{% set exampleHTML %}
-  {{ macro | callMacro(options) }}
-{% endset %}
+
+{##########################################################################
+# this is the component example block
+##########################################################################}
+{% if customExample %}
+  {% set exampleHTML %}
+    {%- block example %}{% endblock example -%}
+  {% endset %}
+{% else %}
+  {% set exampleHTML %}
+    {{ component | callMacroByName(options) }}
+  {% endset %}
+{% endif %}
+
+{##########################################################################
+# this is the html tab content
+##########################################################################}
 {% set tabHTML %}
     <pre><code class="hljs language-html">
       {{- exampleHTML | trim | htmlFormat | highlight | safe -}}
     </code></pre>
 {% endset %}
+
+{##########################################################################
+# this is the nunjucks tab content
+##########################################################################}
 {% set njcontent %}
-{{- "{{ " }}{{ name -}}
+{{- "{{ " }}{{ component -}}
 ({{ options | convertToJSON(false, 2) | decode | safe -}})
 {{- "}}" }}{% endset %}
 {% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
+
+
+{##########################################################################
+# build out the component example
+##########################################################################}
 <section class="prototype-component-example">
   <div class="prototype-component-example__header">
     <h2 class="prototype-component-example__heading nhsuk-heading-s nhsuk-u-margin-bottom-0">
-      {{ name }}{% if variant %} &ndash; {{ variant }}{% endif %}
+      {{ component | title }}{% if variant %} &ndash; {{ variant }}{% endif %}
     </h2>
-    {%- block description %}{% endblock description -%}
+    <div class="prototype-component-example__description">
+      {%- block description %}<p>{{ description }}</p>{% endblock description -%}
+    </div>
   </div>
   <div class="prototype-component-example__placeholder">
-    {{ exampleHTML | safe }}
+    {%- block example %}{{ exampleHTML | safe }}{% endblock example -%}
   </div>
   <div class="prototype-component-example__footer">
     {{
@@ -39,7 +63,7 @@
             panel: {
               html: tabNJK
             }
-          }
+          } if not customExample
         ],
         classes: 'nhsuk-u-margin-bottom-0'
       })
