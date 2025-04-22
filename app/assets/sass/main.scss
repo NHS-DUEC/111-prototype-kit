@@ -53,9 +53,9 @@
 @import "../NHS111.Shared.Frontend/src/scss/components/template-debug-wrapper";
 
 // Components that are not in the NHS.UK frontend library
-@import '../../views/components/lists/list-border';
-@import '../../views/components/related-nav/related-nav';
-@import '../../views/components/callout/callout';
+@import '../../lib/views/111/components/lists/list-border';
+@import '../../lib/views/111/components/related-nav/related-nav';
+@import '../../lib/views/111/components/callout/callout';
 
 // sass for the 111 prototype kit
 @import './lib/111-prototypes';

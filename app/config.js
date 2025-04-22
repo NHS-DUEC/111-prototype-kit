@@ -14,9 +14,13 @@ module.exports = {
 	// Please note 4KB cookie limit per domain, cookies too large will silently be ignored
 	useCookieSessionStore: 'false',
 
+	// when true will log some useful variables to the template
 	debug: true,
 
 	defaults: {
-		layout: 'layouts/base.html',
+		layout: '111/layouts/base.html',
 	},
+
+	// the path to the 'display component' embed template
+	displayComponent: '111/embeds/display_component.html',
 };

@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends page.layout.file | d(defaults.layout.file) %}
 
 <!-- Set the page title -->
 {% block pageTitle %}Edge - {{ serviceName }}{% endblock %}

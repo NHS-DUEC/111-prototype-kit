@@ -7,10 +7,22 @@
   }
 } %}
 
-{% extends 'layouts/base.html' %}
+{% extends page.layout.file | d(defaults.layout.file) %}
+
+{% block main_header %}
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus reiciendis id a nihil autem dolorem quis veniam perspiciatis. Exercitationem error unde, cumque recusandae aliquam odit porro molestiae enim fuga accusantium?</p>
+{% endblock main_header %}
+
+{% block main_footer %}
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus reiciendis id a nihil autem dolorem quis veniam perspiciatis. Exercitationem error unde, cumque recusandae aliquam odit porro molestiae enim fuga accusantium?</p>
+{% endblock main_footer %}
+
+{% block content_header %}
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam quidem provident nam a fuga quaerat eos mollitia ipsa ex adipisci aspernatur cumque pariatur atque autem, nihil corrupti aut vitae praesentium.</p>
+{% endblock content_header %}
 
 {% block content_primary %}
-  <h1 class="nhsuk-heading-m">Version 1</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum cupiditate minus qui officiis fugit asperiores? Voluptas vel, atque voluptatibus nemo magnam mollitia reiciendis. Odio recusandae officia iusto, laborum quae reiciendis!</p>
 {% endblock %}
 
 {% block content_secondary %}

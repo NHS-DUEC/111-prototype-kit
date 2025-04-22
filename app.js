@@ -23,7 +23,7 @@ const config = require('./app/config');
 const locals = require('./app/locals');
 const routes = require('./app/routes');
 const utils = require('./lib/utils');
-const EmbedExtension = require('./app/lib/extensions/embed');
+const appUtils = require('./app/lib/utils');
 
 const prototypeAdminRoutes = require('./lib/middleware/prototype-admin-routes');
 const exampleTemplatesRoutes = require('./lib/example_templates_routes');
@@ -51,6 +51,7 @@ app.use(cookieParser());
 // Nunjucks configuration for application
 const appViews = [
   path.join(__dirname, 'app/views/'),
+  path.join(__dirname, 'app/lib/views/'),
   path.join(__dirname, 'lib/example-templates/'),
   path.join(__dirname, 'lib/prototype-admin/'),
   path.join(__dirname, 'node_modules/nhsuk-frontend/packages/components'),
@@ -67,11 +68,10 @@ nunjucksConfig.express = app;
 let nunjucksAppEnv = nunjucks.configure(appViews, nunjucksConfig);
 nunjucksAppEnv.addGlobal('version', packageInfo.version);
 
-// register it under the name “embed”
-nunjucksAppEnv.addExtension('EmbedExtension', new EmbedExtension());
-
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv);
+appUtils.addExtensions(nunjucksAppEnv);
+appUtils.addNunjucksFiltersWithContext(nunjucksAppEnv);
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = `nhsuk-prototype-kit-${(Buffer.from(config.serviceName, 'utf8')).toString('hex')}`;
@@ -189,9 +189,6 @@ nunjucksAppEnv = nunjucks.configure(exampleTemplateViews, {
   express: exampleTemplatesApp,
 });
 nunjucksAppEnv.addGlobal('version', packageInfo.version);
-
-// Add Nunjucks filters
-utils.addNunjucksFilters(nunjucksAppEnv);
 
 exampleTemplatesApp.use('/', exampleTemplatesRoutes);
 

@@ -1,0 +1,85 @@
+{% set macroName = macro | getFunctionName %}
+{% set exampleHTML %}
+  {{ macro | callMacro(options) }}
+{% endset %}
+{% set tabHTML %}
+    <pre><code class="hljs language-html">
+      {{- exampleHTML | trim | htmlFormat | highlight | safe -}}
+    </code></pre>
+{% endset %}
+{% set njcontent %}
+{{- "{{ " }}{{ name -}}
+({{ options | convertToJSON(false, 2) | decode | safe -}})
+{{- "}}" }}{% endset %}
+{% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
+<section class="prototype-component-example">
+  <div class="prototype-component-example__header">
+    <h2 class="prototype-component-example__heading nhsuk-heading-s nhsuk-u-margin-bottom-0">
+      {{ name }}{% if variant %} &ndash; {{ variant }}{% endif %}
+    </h2>
+    {%- block description %}{% endblock description -%}
+  </div>
+  <div class="prototype-component-example__placeholder">
+    {{ exampleHTML | safe }}
+  </div>
+  <div class="prototype-component-example__footer">
+    {{
+      tabs({
+        items: [
+          {
+            label: "HTML",
+            id: "html" + variant,
+            panel: {
+              html: tabHTML
+            }
+          },
+          {
+            label: "Nunjucks",
+            id: "nunjucks" + variant,
+            panel: {
+              html: tabNJK
+            }
+          }
+        ],
+        classes: 'nhsuk-u-margin-bottom-0'
+      })
+    }}
+
+  </div>
+</section>
+
+{#
+
+    {% set tabHTML %}
+    <pre><code class="hljs language-html">
+      {{- params.html | trim | htmlFormat | highlight | safe -}}
+    </code></pre>
+    {% endset %}
+    {% set njcontent %}
+        {{- "{{ " }}{{ params.name | lower -}}
+        ({{ params.options | convertToJSON(false, 2) | decode | safe -}})
+      {{- "}}" }}{% endset %}
+    {% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
+    {{
+      tabs({
+        items: [
+          {
+            label: "HTML",
+            id: "html" + params.variant,
+            panel: {
+              html: tabHTML
+            }
+          },
+          {
+            label: "Nunjucks",
+            id: "nunjucks" + params.variant,
+            panel: {
+              html: tabNJK
+            }
+          }
+        ],
+        classes: 'nhsuk-u-margin-bottom-0'
+      })
+    }}
+
+#}
