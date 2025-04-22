@@ -39,7 +39,7 @@
     "html-format": "^1.1.7",
     "lodash": "^4.17.21",
     "mergician": "^2.0.2",
-    "nhsuk-frontend": "^9.3.0",
+    "nhsuk-frontend": "^9.4.1",
     "nunjucks": "^3.2.4",
     "path": "^0.12.7",
     "sass-embedded": "1.77.5",
