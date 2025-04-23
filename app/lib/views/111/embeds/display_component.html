@@ -2,10 +2,12 @@
 {##########################################################################
 # this is the component example block
 ##########################################################################}
+{# if we are using an example block as part of the embed #}
 {% if customExample %}
   {% set exampleHTML %}
     {%- block example %}{% endblock example -%}
   {% endset %}
+{# else safe to assume we are just calling the component's macro #}
 {% else %}
   {% set exampleHTML %}
     {{ component | callMacroByName(options) }}
@@ -52,14 +54,14 @@
         items: [
           {
             label: "HTML",
-            id: "html" + variant,
+            id: "html" + (variant | d('default')) | title,
             panel: {
               html: tabHTML
             }
           },
           {
             label: "Nunjucks",
-            id: "nunjucks" + variant,
+            id: "nunjucks" + (variant | d('default')) | title,
             panel: {
               html: tabNJK
             }
@@ -71,39 +73,3 @@
 
   </div>
 </section>
-
-{#
-
-    {% set tabHTML %}
-    <pre><code class="hljs language-html">
-      {{- params.html | trim | htmlFormat | highlight | safe -}}
-    </code></pre>
-    {% endset %}
-    {% set njcontent %}
-        {{- "{{ " }}{{ params.name | lower -}}
-        ({{ params.options | convertToJSON(false, 2) | decode | safe -}})
-      {{- "}}" }}{% endset %}
-    {% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
-    {{
-      tabs({
-        items: [
-          {
-            label: "HTML",
-            id: "html" + params.variant,
-            panel: {
-              html: tabHTML
-            }
-          },
-          {
-            label: "Nunjucks",
-            id: "nunjucks" + params.variant,
-            panel: {
-              html: tabNJK
-            }
-          }
-        ],
-        classes: 'nhsuk-u-margin-bottom-0'
-      })
-    }}
-
-#}
