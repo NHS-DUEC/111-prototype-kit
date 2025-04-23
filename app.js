@@ -71,7 +71,6 @@ nunjucksAppEnv.addGlobal('version', packageInfo.version);
 // Add Nunjucks filters
 utils.addNunjucksFilters(nunjucksAppEnv);
 appUtils.addExtensions(nunjucksAppEnv);
-appUtils.addNunjucksFiltersWithContext(nunjucksAppEnv);
 
 // Session uses service name to avoid clashes with other prototypes
 const sessionName = `nhsuk-prototype-kit-${(Buffer.from(config.serviceName, 'utf8')).toString('hex')}`;
