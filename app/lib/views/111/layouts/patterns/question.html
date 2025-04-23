@@ -14,7 +14,7 @@
 
     {% set callout_content %}
     {% if question.callout and not question.callout.hide %}
-      {% call callout({ classes: 'app-callout--info' } | objectMerge(question.callout)) %}
+      {% call callout({ classes: 'app-callout--info' } | merge(question.callout)) %}
       {% if question.callout.text %}
         <p>{{ question.callout.text }}</p>
       {% elseif question.callout.html %}
@@ -46,7 +46,7 @@
       {{
         button({
           text: 'Next'
-        } | objectMerge(question.actions.button | d({})))
+        } | merge(question.actions.button | d({})))
       }}
     {% endblock %}
 

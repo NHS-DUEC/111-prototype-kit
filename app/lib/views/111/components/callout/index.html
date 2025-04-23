@@ -3,11 +3,11 @@
   summary: 'Highlight information to help the user comprehend a question they are being asked or an action they are being told to take.'
 } %}
 
-{% extends "111/layouts/component.html" %}
+{% extends layouts.component %}
 
 {% block component_documentation %}
 
-  {% set baseComponentOptions = {
+  {% set options = {
     component: 'callout',
     description: 'By default callouts change background to white to make it stand out from other content on the page',
     options: {
@@ -15,9 +15,9 @@
     }
   } %}
 
-  {% embed displayComponent with baseComponentOptions %}
+  {% embed cdoc with options %}
 
-  {% embed displayComponent with baseComponentOptions | objectMerge({
+  {% embed cdoc with options | merge({
     variant: 'information',
     description: 'Information callouts have further visual emphasis',
     options: {
@@ -25,7 +25,7 @@
     }
   }) %}
 
-  {% embed displayComponent with baseComponentOptions | objectMerge({
+  {% embed cdoc with options | merge({
     variant: 'alert',
     description: 'Used to present critical information',
     options: {
@@ -33,7 +33,7 @@
     }
   }) %}
 
-  {% embed displayComponent with baseComponentOptions | objectMerge({
+  {% embed cdoc with options | merge({
     variant: 'attention',
     description: 'Used to present critical information',
     options: {
