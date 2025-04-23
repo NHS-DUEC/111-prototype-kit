@@ -11,6 +11,7 @@
   '') + (page.bodyclasses | d('')) %}
 
 {% set _layout = {
+  width: false,
   content_primary: {
     id: 'content-primary',
     width: 'two-thirds'
@@ -69,15 +70,28 @@
 
       <div class="nhsuk-grid-row">
 
-        <div class="nhsuk-grid-column-{{ _layout.content_primary.width }}" id="{{ _layout.content_primary.id }}">
+        {% if _layout.width %}
+          {% if _layout.width == '2/3' %}
+            {% set primary_col_width = 'two-thirds' %}
+            {% set secondary_col_width = 'one-third' %}
+          {% elif _layout.width == '1/3' %}
+            {% set primary_col_width = 'one-third' %}
+            {% set secondary_col_width = 'two-thirds' %}
+          {% elif _layout.width == '1/2' %}
+            {% set primary_col_width = 'one-half' %}
+            {% set secondary_col_width = 'one-half' %}
+          {% endif %}
+        {% endif %}
+
+        <div class="nhsuk-grid-column-{{ primary_col_width | d(_layout.content_primary.width) }}" id="{{ _layout.content_primary.id }}">
           {%- block content_primary_header %}{% endblock content_primary_header -%}
           {% block content_primary %}{% endblock %}
           {%- block content_primary_footer %}{% endblock content_primary_footer -%}
         </div>
         <!-- /.nhsuk-grid-column-{{ _layout.content_primary.width }} -->
 
-        {% if _layout.content_secondary.visible %}
-        <div class="nhsuk-grid-column-{{ _layout.content_secondary.width }}" id="{{ _layout.content_secondary.id }}">
+        {% if _layout.content_secondary.show or _layout.width %}
+        <div class="nhsuk-grid-column-{{ secondary_col_width | d(_layout.content_secondary.width | d('one-third')) }}" id="{{ _layout.content_secondary.id }}">
           {%- block content_secondary_header %}{% endblock content_secondary_header -%}
           {% block content_secondary %}{% endblock %}
           {%- block content_secondary_footer %}{% endblock content_secondary_footer -%}

@@ -2,38 +2,12 @@
   title: 'Version example',
   layout: {
     content_secondary: {
-      visible: true
+      show: true
     }
   }
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
-
-{# {% block main_header %}
-  {% raw %}{% block main %}{% endraw %}
-  <div class="prototype-block-highlight">
-    {% raw %}{% block main_header %}{% endblock main_header %}{% endraw %}
-  </div>
-{% endblock main_header %}
-
-{% block main_footer %}
-  <div class="prototype-block-highlight">
-    {% raw %}{% block main_footer %}{% endblock main_footer %}{% endraw %}
-  </div>
-  {% raw %}{% endblock main %}{% endraw %}
-{% endblock main_footer %}
-
-{% block content_header %}
-  <div class="prototype-block-highlight">
-    {% raw %}{% block content_header %}{% endblock content_header %}{% endraw %}
-  </div>
-{% endblock content_header %}
-
-{% block content_footer %}
-  <div class="prototype-block-highlight">
-    {% raw %}{% block content_footer %}{% endblock content_footer %}{% endraw %}
-  </div>
-{% endblock content_footer %}
 
 {% block content_primary %}
   <div class="prototype-block-highlight">
@@ -45,67 +19,4 @@
   <div class="prototype-block-highlight">
     {% raw %}{% block content_secondary %}{% endblock content_secondary %}{% endraw %}
   </div>
-  {% endblock content_secondary %} #}
-
-{% block main %}
-  <div class="prototype-block-highlight" style="border-color:darkgreen">
-    <div style="color: darkgreen;">{% raw %}{% block main %}{% endraw %}</div>
-    {% block main_header %}
-      <div class="prototype-block-highlight" style="border-color:orangered; color:orangered;">{% raw %}{% block main_header %}{% endblock main_header %}{% endraw %}</div>
-    {% endblock main_header %}
-
-    <div class="nhsuk-width-container {{ containerClasses }}">
-      <main class="nhsuk-main-wrapper {{ mainclasses }}" id="maincontent" role="main">
-        {% block main_body %}
-        <div class="prototype-block-highlight" style="border-color:orangered; color:orangered;">
-          <div style="color:orangered;">{% raw %}{% block main_body %}{% endraw %}</div>
-          {% block beforeContent %}<div class="prototype-block-highlight" style="border-color:darkmagenta; color:darkmagenta;">{% raw %}{% block beforeContent %}{% endblock beforeContent %}{% endraw %}</div>{% endblock beforeContent %}
-          {% block content %}
-          <div class="prototype-block-highlight" style="border-color: #4314de; color: 4314de;">
-            <div style="color: #4314de;">{% raw %}{% block content %}{% endraw %}</div>
-            {% block content_header %}
-            <div class="prototype-block-highlight" style="border-color: darkred; color: darkred;">{% raw %}{% block content_header %}{% endblock content_header %}{% endraw %}</div>
-            {% endblock content_header %}
-            <div class="nhsuk-grid-row">
-              <div class="nhsuk-grid-column-two-thirds">
-                {% block content_primary %}
-                  <div class="prototype-block-highlight" style="border-color: darkred;">
-                    <div style="color: darkred;">{% raw %}{% block content_primary %}{% endraw %}</div>
-                    {% block content_primary_header %}
-                      <div class="prototype-block-highlight" style="border-color:black; color:black;">{% raw %}{% block content_primary_header %}{% endblock content_primary_header %}{% endraw %}</div>
-                    {% endblock content_primary_header %}
-                    {% block content_primary_body %}
-                      <div class="prototype-block-highlight" style="border-color:black; color:black;">{% raw %}{% block content_primary_body %}{% endblock content_primary_body %}{% endraw %}</div>
-                    {% endblock content_primary_body %}
-                    {% block content_primary_footer %}
-                      <div class="prototype-block-highlight" style="border-color:black; color:black;">{% raw %}{% block content_primary_footer %}{% endblock content_primary_footer %}{% endraw %}</div>
-                    {% endblock content_primary_footer %}
-                    <div style="color: darkred;">{% raw %}{% endblock content_primary %}{% endraw %}</div>
-                  </div>
-                {% endblock content_primary %}
-              </div>
-              <div class="nhsuk-grid-column-one-third">
-                {% block content_secondary %}
-                <div class="prototype-block-highlight" style="border-color: darkred;">
-                  <div style="color: darkred;">{% raw %}{% block content_secondary %}{% endraw %}</div>
-                  <div style="color: darkred;">{% raw %}{% endblock content_secondary %}{% endraw %}</div>
-                </div>
-              {% endblock content_secondary %}
-              </div>
-            </div>
-            {% block content_footer %}
-            <div class="prototype-block-highlight" style="border-color: darkred; color: darkred;">{% raw %}{% block content_footer %}{% endblock content_footer %}{% endraw %}</div>
-            {% endblock content_footer %}
-            <div style="color: #4314de;">{% raw %}{% endblock content %}{% endraw %}</div>
-          </div>
-          {% endblock content %}
-          <div style="color:orangered;">{% raw %}{% endblock main_body %}{% endraw %}</div>
-        </div>
-        {% endblock main_body %}
-      </main>
-    </div>
-
-    <div class="prototype-block-highlight" style="border-color:orangered; color:orangered;">{% raw %}{% block main_footer %}{% endblock main_footer %}{% endraw %}</div>
-    <div style="color: darkgreen;">{% raw %}{% endblock main %}{% endraw %}</div>
-  </div>
-{% endblock main %}
+{% endblock content_secondary %}
