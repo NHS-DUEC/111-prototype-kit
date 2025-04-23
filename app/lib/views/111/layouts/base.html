@@ -70,18 +70,24 @@
 
       <div class="nhsuk-grid-row">
 
-        {% if _layout.width %}
-          {% if _layout.width == '2/3' %}
-            {% set primary_col_width = 'two-thirds' %}
-            {% set secondary_col_width = 'one-third' %}
-          {% elif _layout.width == '1/3' %}
-            {% set primary_col_width = 'one-third' %}
-            {% set secondary_col_width = 'two-thirds' %}
-          {% elif _layout.width == '1/2' %}
-            {% set primary_col_width = 'one-half' %}
-            {% set secondary_col_width = 'one-half' %}
-          {% endif %}
-        {% endif %}
+        {%- if _layout.width -%}
+          {%- if _layout.width == '2/3' -%}
+            {%- set primary_col_width = 'two-thirds' -%}
+            {%- set secondary_col_width = 'one-third' -%}
+          {%- elif _layout.width == '1/3' -%}
+            {%- set primary_col_width = 'one-third' -%}
+            {%- set secondary_col_width = 'two-thirds' -%}
+          {%- elif _layout.width == '1/2' -%}
+            {%- set primary_col_width = 'one-half' -%}
+            {%- set secondary_col_width = 'one-half' -%}
+          {%- elif _layout.width == '1/4' -%}
+            {%- set primary_col_width = 'one-quarter' -%}
+            {%- set secondary_col_width = 'three-quarters' -%}
+          {%- elif _layout.width == '3/4' -%}
+            {%- set primary_col_width = 'three-quarters' -%}
+            {%- set secondary_col_width = 'one-quarter' -%}
+          {%- endif %}
+        {%- endif -%}
 
         <div class="nhsuk-grid-column-{{ primary_col_width | d(_layout.content_primary.width) }}" id="{{ _layout.content_primary.id }}">
           {%- block content_primary_header %}{% endblock content_primary_header -%}

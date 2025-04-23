@@ -49,12 +49,7 @@ router.all('*', (req, res, next) => {
 	// send some request details to the view
 	res.locals.request = { path, params, originalUrl };
 
-	res.locals.defaults = {
-		layout: {
-			file: config.defaults.layout,
-		},
-	};
-
+  // create a layouts object from config
 	res.locals.layouts = config.layouts;
 
 	next();

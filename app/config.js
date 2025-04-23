@@ -17,10 +17,6 @@ module.exports = {
 	// when true will log some useful variables to the template
 	debug: true,
 
-	defaults: {
-		layout: '111/layouts/base.html',
-	},
-
   layouts: {
     base: '111/layouts/base.html',
     component: '111/layouts/component.html'
