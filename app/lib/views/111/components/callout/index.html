@@ -33,4 +33,12 @@
     }
   }) %}
 
+  {% embed displayComponent with baseComponentOptions | objectMerge({
+    variant: 'attention',
+    description: 'Used to present critical information',
+    options: {
+      classes: 'app-callout--attention'
+    }
+  }) %}
+
 {% endblock component_documentation %}
