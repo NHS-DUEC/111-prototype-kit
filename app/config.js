@@ -21,6 +21,11 @@ module.exports = {
 		layout: '111/layouts/base.html',
 	},
 
+  layouts: {
+    base: '111/layouts/base.html',
+    component: '111/layouts/component.html'
+  },
+
 	// the path to the 'display component' embed template
 	displayComponent: '111/embeds/display_component.html',
 };

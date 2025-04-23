@@ -36,5 +36,16 @@
       border-top: 0;
     }
   }
+
+  &-block-highlight {
+    border: 2px solid #000;
+  }
+
 }
 
+code {
+  background-color: #fff;
+  color: #d14;
+  padding: 2px 8px;
+  word-break: break-word;
+}

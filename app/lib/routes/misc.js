@@ -55,6 +55,8 @@ router.all('*', (req, res, next) => {
 		},
 	};
 
+	res.locals.layouts = config.layouts;
+
 	next();
 });
 
