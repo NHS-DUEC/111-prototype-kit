@@ -1,6 +1,9 @@
 {% set page = {
-  title: '111 Prototype Kit Docs',
+  title: 'Layout - 111 Prototype Kit Docs',
   layout: {
+    content_primary: {
+      classes: 'testtttt'
+    },
     content_secondary: {
       visible: true
     }
@@ -14,6 +17,12 @@
   <div class="nhsuk-width-container {{ containerClasses }}">
     <div class="nhsuk-main-wrapper {{ mainclasses }}">
 
+      {{ backLink({
+        href: "../",
+        text: "Go back",
+        classes: 'nhsuk-u-margin-bottom-4'
+      }) }}
+
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-two-thirds">
           <span class="nhsuk-caption-xl">
@@ -24,11 +33,10 @@
           </h1>
           <p>NHS 111 Online uses standard <a href="https://service-manual.nhs.uk/design-system/styles/layout">layouts</a> fron the <a href="https://service-manual.nhs.uk/design-system">NHSUK Design System</a>.</p>
           <p>To make prototyping easier we have extended the <a href="https://github.com/nhsuk/nhsuk-frontend/blob/main/packages/template.njk">NHSUK Frontend Nunjucks template</a> to include additional 'blocks' in commonly used places.</p>
-          <p>These underlying blocks are the basis for creating precomposed 'layout' templates for common patterns used across our service.</p>
+          <p>These underlying blocks are the basis for creating precomposed 'layout' templates for common patterns used across the <a href="https://111.nhs.uk">111 Online service</a>.</p>
           <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
           <h2 class="nhsuk-heading-l">Block structure</h2>
           <p>The following is representative of the block structure we have created for 111 Online prototypes.</p>
-          <p>The blocks are nested and come with surrounding mark-up to control the layout, overriding a block higher up the inheritance chain provides the opportunity disregard the provided mark-up if it does not meet your needs.</p>
         </div>
       </div>
 
@@ -100,27 +108,140 @@
 
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-two-thirds">
+
+          <p>The blocks are nested and come with surrounding mark-up to control the layout as standard, overriding a block higher up the inheritance chain provides the opportunity disregard the provided mark-up if it does not meet your needs.</p>
+
           <h2 class="nhsuk-heading-l">Configuration</h2>
+
           <p>Layouts provided with the 111 Online version of the NHSUK Prototype Kit can also be configured, this should minimise the need to create entirely new layouts or override layout blocks.</p>
-          <h3 class="nhsuk-heading-m">The 'page' object</h3>
-          <p>111 Online prototype layouts can be configured using a <code>page</code> variable for example:</p>
+          <h3 class="nhsuk-heading-m">The 'page' configuration object</h3>
+          <p>111 Online prototype layouts can be configured using a <code class="app-code">page</code> variable which is similar to 'frontmatter' which is used in many templating frameworks.</p>
+          <p>In the follwoing example, the <code class="app-code">layout</code> object is controlling the width of the content_primary block and the content_secondary block.</p>
 
-<pre class="hljs">
-<code style="display:block;">{%- raw -%}{%- set page = {
-  title: 'Page title',
-  layout: {
-    content_primary: {
-      <span style="background: transparent;">width: 'one-half'</span>
-    },
-    content_secondary: {
-      <span style="background: transparent;">width: 'one-half'</span>
-    }
-  }
-} -%}{% endraw %}
-</code>
-</pre>
+          {%- set block1 %}
+          {%- raw -%}
+          {% set page = {
+            title: 'Page title',
+            layout: {
+              width: 'one-half'
+            }
+          } %}{% endraw %}
+          {%- endset -%}
 
-  <p>The <code>layout</code> object is controlling the width of the content_primary block and the content_secondary block.</p>
+          <pre><code class="app-code app-code--block hljs language-twig" style="display:block;">{{- block1 | dedent | trim | highlight('twig') | safe }}</code></pre>
+
+          <p>It has been designed to accept the width of the content_primary column and then automatically handle the corresponding width for content_secondary. </p>
+          <p>So in the previous example, the width of the content_primary column will be one-half and the width of content_secondary column is automatically set to one-half.</p>
+
+          <h2 class="nhsuk-heading-m">
+            Layout width options
+          </h2>
+
+          {{ table({
+            firstCellIsHeader: false,
+            head: [
+              {
+                text: "Width value"
+              },
+              {
+                text: "Content primary"
+              },
+              {
+                text: "Content secondary"
+              }
+            ],
+            rows: [
+              [
+                {
+                  text: "one-third"
+                },
+                {
+                  text: "one-third"
+                },
+                {
+                  text: "two-thirds"
+                }
+              ],
+              [
+                {
+                  text: "two-thirds"
+                },
+                {
+                  text: "two-thirds"
+                },
+                {
+                  text: "one-third"
+                }
+              ],
+              [
+                {
+                  text: "one-half"
+                },
+                {
+                  text: "one-half"
+                },
+                {
+                  text: "one-half"
+                }
+              ],
+              [
+                {
+                  text: "one-quarter"
+                },
+                {
+                  text: "one-quarter"
+                },
+                {
+                  text: "two-quarters"
+                }
+              ],
+              [
+                {
+                  text: "two-quarters"
+                },
+                {
+                  text: "two-quarters"
+                },
+                {
+                  text: "one-quarter"
+                }
+              ]
+            ]
+          }) }}
+
+          {%- set block2 -%}
+          {%- raw %}
+          {% set page = {
+            title: 'Page title',
+            layout: {
+              content_primary: {
+                width: 'one-half',
+                id: 'custom_id',
+                classes: 'additional-css-classes'
+              },
+              content_secondary: {
+                width: 'one-half',
+                id: 'another_custom_id'
+              }
+            }
+          } %}
+
+          {% extends page.layout.file | d(layouts.base) %}
+
+          {% block content_primary %}
+            <h1 class="nhsuk-heading-xl">
+              A simple page
+            </h1>
+            <p>Some content</p>
+          {% endblock content_primary %}
+          {% endraw %}{%- endset -%}
+
+          <h2 class="nhsuk-heading-m">
+            Independant column widths and attributes
+          </h2>
+          <p>If you wish to control the column widths and attributes independantly you can use the following configuration.</p>
+
+          <pre><code class="app-code app-code--block hljs language-twig" style="display:block;">{{- block2 | dedent | trim | highlight('twig') | safe -}}</code></pre>
 
         </div>
       </div>
@@ -129,3 +250,8 @@
   </div>
 
 {% endblock main %}
+
+{% block headCSS %}
+  {{ super() }}
+  <link href="/css/lib/highlight.css" rel="stylesheet">
+{% endblock headCSS %}

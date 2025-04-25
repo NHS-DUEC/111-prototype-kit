@@ -22,6 +22,10 @@
   }
 } | merge(page.layout | d({})) %}
 
+{%- set widths = _layout.width | colWidths -%}
+{%- set primary_col_width = widths.primary_col_width -%}
+{%- set secondary_col_width = widths.secondary_col_width -%}
+
 {#
   this is the NHSUK Frontend template file currently found:
   at the following path: lib/example-templates/template.html
@@ -57,6 +61,13 @@
   <div class="nhsuk-width-container {{ containerClasses }}">
     <main class="nhsuk-main-wrapper {{ mainclasses }}" id="maincontent" role="main">
 
+      {% if page.layout.back or _sublayout.back %}
+        {{ backLink({
+          href: page.layout.back.href | d(_sublayout.back.href | d('#')),
+          text: page.layout.back.text | d(_sublayout.back.text | d('Go back'))
+        }) }}
+      {% endif %}
+
       {# kept to honour the block if somebody has used it based on the prototype kit docs #}
       {% block beforeContent %}{% endblock beforeContent %}
 
@@ -70,26 +81,9 @@
 
       <div class="nhsuk-grid-row">
 
-        {%- if _layout.width -%}
-          {%- if _layout.width == '2/3' -%}
-            {%- set primary_col_width = 'two-thirds' -%}
-            {%- set secondary_col_width = 'one-third' -%}
-          {%- elif _layout.width == '1/3' -%}
-            {%- set primary_col_width = 'one-third' -%}
-            {%- set secondary_col_width = 'two-thirds' -%}
-          {%- elif _layout.width == '1/2' -%}
-            {%- set primary_col_width = 'one-half' -%}
-            {%- set secondary_col_width = 'one-half' -%}
-          {%- elif _layout.width == '1/4' -%}
-            {%- set primary_col_width = 'one-quarter' -%}
-            {%- set secondary_col_width = 'three-quarters' -%}
-          {%- elif _layout.width == '3/4' -%}
-            {%- set primary_col_width = 'three-quarters' -%}
-            {%- set secondary_col_width = 'one-quarter' -%}
-          {%- endif %}
-        {%- endif -%}
+        {{ _layout | log }}
 
-        <div class="nhsuk-grid-column-{{ primary_col_width | d(_layout.content_primary.width) }}" id="{{ _layout.content_primary.id }}">
+        <div class="nhsuk-grid-column-{{ primary_col_width | d(_layout.content_primary.width) }}{{ (' ' + _layout.content_primary.classes) if _layout.content_primary.classes }}" id="{{ _layout.content_primary.id }}">
           {%- block content_primary_header %}{% endblock content_primary_header -%}
           {% block content_primary %}{% endblock %}
           {%- block content_primary_footer %}{% endblock content_primary_footer -%}
@@ -156,5 +150,6 @@
       request: request,
       pathclasses: pathclasses
     } | log }}
+    {{ widths | log }}
   {% endif %}
 {% endblock %}

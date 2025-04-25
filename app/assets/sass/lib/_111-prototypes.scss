@@ -43,9 +43,12 @@
 
 }
 
-code {
+code.app-code {
   background-color: #fff;
-  color: #d14;
-  padding: 2px 8px;
+  padding: .1em .2em;
   word-break: break-word;
+  &.app-code--block {
+    display: block;
+    padding: .75em;
+  }
 }

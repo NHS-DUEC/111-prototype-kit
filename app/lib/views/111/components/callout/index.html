@@ -1,9 +1,12 @@
 {% set page = {
   title: 'Callout',
+  layout: {
+    file: layouts.component
+  },
   summary: 'Highlight information to help the user comprehend a question they are being asked or an action they are being told to take.'
 } %}
 
-{% extends layouts.component %}
+{% extends page.layout.file | d(layouts.base) %}
 
 {% block component_documentation %}
 
@@ -15,9 +18,9 @@
     }
   } %}
 
-  {% embed cdoc with options %}
+  {% embed componentDoc with options %}
 
-  {% embed cdoc with options | merge({
+  {% embed componentDoc with options | merge({
     variant: 'information',
     description: 'Information callouts have further visual emphasis',
     options: {
@@ -25,7 +28,7 @@
     }
   }) %}
 
-  {% embed cdoc with options | merge({
+  {% embed componentDoc with options | merge({
     variant: 'alert',
     description: 'Used to present critical information',
     options: {
@@ -33,7 +36,7 @@
     }
   }) %}
 
-  {% embed cdoc with options | merge({
+  {% embed componentDoc with options | merge({
     variant: 'attention',
     description: 'Used to present critical information',
     options: {
