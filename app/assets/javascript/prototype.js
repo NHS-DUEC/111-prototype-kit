@@ -1,7 +1,7 @@
 var copyblocks = {
   settings: {
     selector: 'prototype-copy-block',
-    buttonClass: '.prototype-copy-button',
+    buttonClass: 'prototype-copy-button',
     defaultText: 'Copy code',
     tempText: 'Copied'
   },
@@ -20,7 +20,7 @@ var copyblocks = {
 
       // Create copy button
       const button = document.createElement('button');
-      button.classList.add('prototype-copy-button');
+      button.classList.add(that.settings.buttonClass);
       button.setAttribute('data-target', blockId);
       button.textContent = that.settings.defaultText;
 
@@ -31,7 +31,7 @@ var copyblocks = {
     });
 
     // Set up copy functionality with feedback
-    document.querySelectorAll(that.settings.buttonClass).forEach(button => {
+    document.querySelectorAll('.' + that.settings.buttonClass).forEach(button => {
       button.addEventListener('click', () => {
         const targetId = button.getAttribute('data-target');
         const targetElement = document.getElementById(targetId);
