@@ -1,13 +1,13 @@
 var copyblocks = {
   settings: {
-    selector: '.prototype-copy-block',
+    selector: 'prototype-copy-block',
     buttonClass: '.prototype-copy-button',
-    defaultText: 'Copy',
+    defaultText: 'Copy code',
     tempText: 'Copied'
   },
   init: function() {
     const that = this;
-    const copyBlocks = document.querySelectorAll(that.settings.selector);
+    const copyBlocks = document.querySelectorAll('.' + that.settings.selector);
 
     copyBlocks.forEach((block, index) => {
       // Create wrapper
@@ -22,7 +22,7 @@ var copyblocks = {
       const button = document.createElement('button');
       button.classList.add('prototype-copy-button');
       button.setAttribute('data-target', blockId);
-      button.textContent = 'Copy';
+      button.textContent = that.settings.defaultText;
 
       // Insert wrapper and reparent the block and button
       block.parentNode.insertBefore(wrapper, block);

@@ -118,7 +118,7 @@
           <p>111 Online prototype layouts can be configured using a <code class="app-code">page</code> variable which is similar to 'frontmatter' which is used in many templating frameworks.</p>
           <p>In the follwoing example, the <code class="app-code">layout</code> object is controlling the width of the content_primary block and the content_secondary block.</p>
 
-          {%- set block1 %}
+          {% call prototype.codeBlock() %}
           {%- raw -%}
           {% set page = {
             title: 'Page title',
@@ -126,9 +126,7 @@
               width: 'one-half'
             }
           } %}{% endraw %}
-          {%- endset -%}
-
-          <pre class="prototype-copy-block" id="example1"><code class="app-code app-code--block hljs language-twig" style="display:block;">{{- block1 | dedent | trim | highlight('twig') | safe }}</code></pre>
+          {%- endcall -%}
 
           <p>It has been designed to accept the width of the content_primary column and then automatically handle the corresponding width for content_secondary. </p>
           <p>So in the previous example, the width of the content_primary column will be one-half and the width of content_secondary column is automatically set to one-half.</p>
@@ -208,33 +206,6 @@
               ]
             ]
           }) }}
-
-          {%- set block2 -%}
-          {%- raw %}
-          {% set page = {
-            title: 'Page title',
-            layout: {
-              content_primary: {
-                width: 'one-half',
-                id: 'custom_id',
-                classes: 'additional-css-classes'
-              },
-              content_secondary: {
-                width: 'one-half',
-                id: 'another_custom_id'
-              }
-            }
-          } %}
-
-          {% extends page.layout.file | d(layouts.base) %}
-
-          {% block content_primary %}
-            <h1 class="nhsuk-heading-xl">
-              A simple page
-            </h1>
-            <p>Some content</p>
-          {% endblock content_primary %}
-          {% endraw %}{%- endset -%}
 
           <h2 class="nhsuk-heading-m">
             Independant column widths and attributes
