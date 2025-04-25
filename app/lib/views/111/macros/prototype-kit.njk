@@ -90,8 +90,12 @@
   {% endif %}
 {% endmacro %}
 
-{# {% macro repeat(times) %}
+{% macro repeat(times) %}
   {% for i in range(times) %}
     {{ caller() }}
   {% endfor %}
-{% endmacro %} #}
+{% endmacro %}
+
+{%- macro codeBlock() -%}
+  <pre class="prototype-copy-block"><code class="app-code app-code--block hljs {{ syntax | d('language-twig') }}" style="display:block;">{{- caller() | dedent | trim | highlight(syntaxAlt | d(syntax | d('twig'))) | safe -}}</code></pre>
+{% endmacro %}

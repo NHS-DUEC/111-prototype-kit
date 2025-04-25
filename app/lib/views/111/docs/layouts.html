@@ -128,7 +128,7 @@
           } %}{% endraw %}
           {%- endset -%}
 
-          <pre><code class="app-code app-code--block hljs language-twig" style="display:block;">{{- block1 | dedent | trim | highlight('twig') | safe }}</code></pre>
+          <pre class="prototype-copy-block" id="example1"><code class="app-code app-code--block hljs language-twig" style="display:block;">{{- block1 | dedent | trim | highlight('twig') | safe }}</code></pre>
 
           <p>It has been designed to accept the width of the content_primary column and then automatically handle the corresponding width for content_secondary. </p>
           <p>So in the previous example, the width of the content_primary column will be one-half and the width of content_secondary column is automatically set to one-half.</p>
@@ -241,7 +241,33 @@
           </h2>
           <p>If you wish to control the column widths and attributes independantly you can use the following configuration.</p>
 
-          <pre><code class="app-code app-code--block hljs language-twig" style="display:block;">{{- block2 | dedent | trim | highlight('twig') | safe -}}</code></pre>
+          {% call prototype.codeBlock() %}
+            {%- raw %}
+              {% set page = {
+                title: 'Page title',
+                layout: {
+                  content_primary: {
+                    width: 'one-half',
+                    id: 'custom_id',
+                    classes: 'additional-css-classes'
+                  },
+                  content_secondary: {
+                    width: 'one-half',
+                    id: 'another_custom_id'
+                  }
+                }
+              } %}
+
+              {% extends page.layout.file | d(layouts.base) %}
+
+              {% block content_primary %}
+                <h1 class="nhsuk-heading-xl">
+                  A simple page
+                </h1>
+                <p>Some content</p>
+              {% endblock content_primary %}
+            {% endraw %}
+          {% endcall %}
 
         </div>
       </div>
@@ -255,3 +281,6 @@
   {{ super() }}
   <link href="/css/lib/highlight.css" rel="stylesheet">
 {% endblock headCSS %}
+
+{% block pageScripts %}
+{% endblock pageScripts %}

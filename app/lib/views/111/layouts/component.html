@@ -1,6 +1,13 @@
 {% set _sublayout = {
-  back: {
-    href: '/111/'
+  breadcrumbs: {
+    items: [
+      {
+        href: "../",
+        text: "Components"
+      }
+    ],
+    href: "#",
+    text: page.title | lower
   }
 } %}
 
