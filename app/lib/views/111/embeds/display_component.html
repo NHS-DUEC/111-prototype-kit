@@ -17,10 +17,16 @@
 {##########################################################################
 # this is the html tab content
 ##########################################################################}
-{% set tabHTML %}
-    <pre><code class="hljs language-html">
+{# {% set tabHTML %}
+    <pre class="prototype-copy-block"><code class="hljs language-html">
       {{- exampleHTML | trim | htmlFormat | highlight | safe -}}
     </code></pre>
+{% endset %} #}
+
+{% set tabHTML %}
+  {% call prototype.codeBlock() %}
+    {{ exampleHTML | safe }}
+  {% endcall %}
 {% endset %}
 
 {##########################################################################
@@ -30,7 +36,7 @@
 {{- "{{ " }}{{ component -}}
 ({{ options | convertToJSON(false, 2) | decode | safe -}})
 {{- "}}" }}{% endset %}
-{% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
+{% set tabNJK %}<pre class="prototype-copy-block"><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
 
 
 {##########################################################################
@@ -67,7 +73,7 @@
             }
           } if not customExample
         ],
-        classes: 'nhsuk-u-margin-bottom-0'
+        classes: 'nhsuk-u-margin-bottom-0 prototype-tabs'
       })
     }}
 

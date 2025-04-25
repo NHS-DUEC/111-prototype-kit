@@ -2,6 +2,7 @@ var copyblocks = {
   settings: {
     selector: 'prototype-copy-block',
     buttonClass: 'prototype-copy-button',
+    wrapprClass: 'prototype-copy-wrapper',
     defaultText: 'Copy code',
     tempText: 'Copied'
   },
@@ -12,7 +13,7 @@ var copyblocks = {
     copyBlocks.forEach((block, index) => {
       // Create wrapper
       const wrapper = document.createElement('div');
-      wrapper.classList.add('prototype-copy-wrapper');
+      wrapper.classList.add(that.settings.wrapprClass);
 
       // Assign unique ID to the block
       const blockId = `${that.settings.selector.slice(1)}-${index}`;

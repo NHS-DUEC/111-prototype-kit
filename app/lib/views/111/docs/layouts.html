@@ -115,17 +115,18 @@
 
           <p>Layouts provided with the 111 Online version of the NHSUK Prototype Kit can also be configured, this should minimise the need to create entirely new layouts or override layout blocks.</p>
           <h3 class="nhsuk-heading-m">The 'page' configuration object</h3>
-          <p>111 Online prototype layouts can be configured using a <code class="app-code">page</code> variable which is similar to 'frontmatter' which is used in many templating frameworks.</p>
+          <p>111 Online prototype layouts can be configured using a <code class="app-code">page</code> variable which is similar to 'frontmatter' used by many templating frameworks.</p>
           <p>In the follwoing example, the <code class="app-code">layout</code> object is controlling the width of the content_primary block and the content_secondary block.</p>
 
           {% call prototype.codeBlock() %}
-          {%- raw -%}
-          {% set page = {
-            title: 'Page title',
-            layout: {
-              width: 'one-half'
-            }
-          } %}{% endraw %}
+            {%- raw -%}
+              {% set page = {
+                title: 'Page title',
+                layout: {
+                  width: 'one-half'
+                }
+              } %}
+            {% endraw %}
           {%- endcall -%}
 
           <p>It has been designed to accept the width of the content_primary column and then automatically handle the corresponding width for content_secondary. </p>
@@ -252,6 +253,3 @@
   {{ super() }}
   <link href="/css/lib/highlight.css" rel="stylesheet">
 {% endblock headCSS %}
-
-{% block pageScripts %}
-{% endblock pageScripts %}
