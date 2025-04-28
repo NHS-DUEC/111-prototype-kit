@@ -60,13 +60,14 @@
   {% block main_body %}
   <div class="nhsuk-width-container {{ containerClasses }}">
 
-    {% set showBreadCrumbs = page.breadcrumbs or _sublayout.breadcrumbs or layout.breadcrumbs %}
-    {% set showBackLink = page.layout.back or _sublayout.layout.back %}
+    {%- set showBreadCrumbs = page.breadcrumbs or _sublayout.layout.breadcrumbs or layout.layout.breadcrumbs -%}
+    {%- set showBackLink = page.layout.back or _sublayout.layout.back -%}
 
     {%- block context_navigation -%}
-    {% if showBreadCrumbs or showBackLink %}
+    {%- if showBreadCrumbs or showBackLink -%}
     <div class="app-context-navigation">
-      {% if page.breadcrumbs or _sublayout.breadcrumbs or layout.breadcrumbs %}
+      {# this is opinionated, if there is a back link, then do not show the breadcrumbs #}
+      {% if showBreadCrumbs and not showBackLink %}
       <div class="app-context-navigation__breadcrumbs">
         {{ breadcrumb(page.layout.breadcrumbs | d(_sublayout.layout.breadcrumbs | d(layout.layout.breadcrumbs) | d({
           items: [
@@ -85,12 +86,12 @@
       </div>
       {% endif %}
       {% if showBackLink %}
-      {% block back_link %}
-      {{ backLink({
-        href: page.layout.back.href | d(_sublayout.layout.back.href | d('javascript:history.back();')),
-        text: page.layout.back.text | d(_sublayout.layout.back.text | d('Go back'))
-      }) }}
-      {% endblock back_link %}
+        {% block back_link %}
+        {{ backLink({
+          href: page.layout.back.href | d(_sublayout.layout.back.href | d('javascript:history.back();')),
+          text: page.layout.back.text | d(_sublayout.layout.back.text | d('Go back'))
+        }) }}
+        {% endblock back_link %}
       {% endif %}
     </div>
     {% endif %}

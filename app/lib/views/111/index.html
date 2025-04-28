@@ -13,18 +13,35 @@
   <h1 class="nhsuk-heading-xl">
     111 Prototype Kit
   </h1>
-  <p>Placeholder for fuller documenation.</p>
-    {{ contentsList({
-      items: [
-        {
-          text: "Layout",
-          href: "docs/layouts"
-        },
-        {
-          text: "Callout component",
-          href: "components/callout/"
-        }
-      ]
-    }) }}
+
+  <h2 class="nhsuk-heading-l">
+    Documentation
+  </h2>
+
+  {{ contentsList({
+    items: [
+      {
+        text: "Page 'Layout' for 111 Online",
+        href: "docs/layouts"
+      }
+    ]
+  }) }}
+
+  <h2 class="nhsuk-heading-l">
+    Components
+  </h2>
+
+  {{ contentsList({
+    items: [
+      {
+        text: "Callout",
+        href: "components/callout/"
+      },
+      {
+        text: "Section break",
+        href: "components/section-break/"
+      }
+    ]
+  }) }}
 
 {% endblock content_primary %}

@@ -1,21 +1,19 @@
 {% set _sublayout = {
-  breadcrumbs: {
-    items: [
-      {
-        href: "../",
-        text: "Components"
-      }
-    ],
-    href: "#",
-    text: page.title | lower
+  layout: {
+    breadcrumbs: {
+      items: [
+        {
+          href: "/111/",
+          text: "Components"
+        }
+      ],
+      href: ".",
+      text: page.title
+    }
   }
 } %}
 
-{% extends "111/layouts/base.html" %}
-
-{% block name %}
-
-{% endblock name %}
+{% extends layouts.base %}
 
 {% block content_primary_header %}
   <div class="nhsuk-caption-xl">111 Component</div>
