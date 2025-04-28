@@ -59,37 +59,44 @@
 
   {% block main_body %}
   <div class="nhsuk-width-container {{ containerClasses }}">
+
+    {% set showBreadCrumbs = page.breadcrumbs or _sublayout.breadcrumbs or layout.breadcrumbs %}
+    {% set showBackLink = page.layout.back or _sublayout.layout.back %}
+
+    {%- block context_navigation -%}
+    {% if showBreadCrumbs or showBackLink %}
+    <div class="app-context-navigation">
+      {% if page.breadcrumbs or _sublayout.breadcrumbs or layout.breadcrumbs %}
+      <div class="app-context-navigation__breadcrumbs">
+        {{ breadcrumb(page.layout.breadcrumbs | d(_sublayout.layout.breadcrumbs | d(layout.layout.breadcrumbs) | d({
+          items: [
+          {
+            href: "#",
+            text: "Level one"
+          },
+          {
+            href: "#",
+            text: "Level two"
+          }
+          ],
+          href: ".",
+          text: "Level three"
+        }))) }}
+      </div>
+      {% endif %}
+      {% if showBackLink %}
+      {% block back_link %}
+      {{ backLink({
+        href: page.layout.back.href | d(_sublayout.layout.back.href | d('javascript:history.back();')),
+        text: page.layout.back.text | d(_sublayout.layout.back.text | d('Go back'))
+      }) }}
+      {% endblock back_link %}
+      {% endif %}
+    </div>
+    {% endif %}
+    {%- endblock context_navigation -%}
+
     <main class="nhsuk-main-wrapper {{ mainclasses }}" id="maincontent" role="main">
-
-
-      {% block context_navigation %}
-        <div class="app-context-navigation nhsuk-u-margin-bottom-6">
-          <div class="app-context-navigation__breadcrumbs">
-            {{ breadcrumb(page.breadcrumbs | d(_sublayout.breadcrumbs | d(layout.breadcrumbs) | d({
-              items: [
-                {
-                  href: "#",
-                  text: "Level one"
-                },
-                {
-                  href: "#",
-                  text: "Level two"
-                }
-              ],
-              href: ".",
-              text: "Level three"
-            }))) }}
-          </div>
-          {% if page.layout.back or _sublayout.back %}
-            {% block back_link %}
-              {{ backLink({
-                href: page.layout.back.href | d(_sublayout.back.href | d('#')),
-                text: page.layout.back.text | d(_sublayout.back.text | d('Go back'))
-              }) }}
-            {% endblock back_link %}
-          {% endif %}
-        </div>
-      {% endblock context_navigation %}
 
       {# kept to honour the block if somebody has used it based on the prototype kit docs #}
       {% block beforeContent %}{% endblock beforeContent %}
