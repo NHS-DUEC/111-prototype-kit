@@ -38,7 +38,7 @@ const createPathClass = (path) => {
 };
 
 // make some request information available to views
-router.all('*', (req, res, next) => {
+router.all(/(.*)/, (req, res, next) => {
 	// obtain some values from the request object
 	const { path, params, originalUrl, body } = req;
 
@@ -56,8 +56,11 @@ router.all('*', (req, res, next) => {
 });
 
 // if edge page requested anywhere in this app render the edge.html page
-router.get(/(^|\/)_edge(\/|$)/, (req, res) => {
-	res.render('edge.html');
+router.get(/(.*)/, (req, res, next) => {
+  if (/(^|\/)_edge(\/|$)/.test(req.path)) {
+    return res.render('edge.html');
+  }
+  next();
 });
 
 router.get('/reset-session', (req, res) => {
