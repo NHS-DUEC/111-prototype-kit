@@ -38,19 +38,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
 
-    <title>
-      {% block pageTitle %}NHS prototype kit{% endblock %}
-    </title>
+    <title>{% block pageTitle %}NHS prototype kit{% endblock %}</title>
 
     <link href="https://www.nhs.uk/" rel="preconnect">
-    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin="crossorigin">
+    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
 
-    <link type="font/woff2" href="https://assets.nhs.uk/fonts/frutigerltw01-55roman.woff2" rel="preload" as="font" crossorigin="crossorigin">
-    <link type="font/woff2" href="https://assets.nhs.uk/fonts/frutigerltw01-65bold.woff2" rel="preload" as="font" crossorigin="crossorigin">
+    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" rel="preload" as="font" crossorigin>
+    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" rel="preload" as="font" crossorigin>
 
     {% block headCSS %}
       <link href="/css/main.css" rel="stylesheet">
@@ -77,39 +75,34 @@
 
   </head>
 
-  <body class="{{ bodyclasses }}">
+  <body class="{{ bodyClasses }}">
 
-    <script>
-      document.body.className = (
-        (document.body.className)
-        ? document.body.className + ' js-enabled'
-        : 'js-enabled');
-    </script>
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     {% block bodyStart %}{% endblock %}
 
-    {% block skipLink %}
-      {{ skipLink({
+      {% block skipLink %}
+        {{ skipLink({
           href: '#maincontent',
           text: 'Skip to main content'
         }) }}
-    {% endblock %}
+      {% endblock %}
 
-    {% block header %}
-      {{ header({}) }}
-    {% endblock %}
+      {% block header %}
+        {{ header({}) }}
+      {% endblock %}
 
-    {% block main %}
-      <div class="nhsuk-width-container {{ containerClasses }}">
-        {% block beforeContent %}{% endblock %}
-        <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main">
-          {% block content %}{% endblock %}
-        </main>
-      </div>
-    {% endblock %}
+      {% block main %}
+        <div class="nhsuk-width-container {{ containerClasses }}">
+          {% block beforeContent %}{% endblock %}
+          <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main">
+            {% block content %}{% endblock %}
+          </main>
+        </div>
+      {% endblock %}
 
-    {% block footer %}
-      {{ footer() }}
-    {% endblock %}
+      {% block footer %}
+        {{ footer() }}
+      {% endblock %}
 
     {% block bodyEnd %}{% endblock %}
 
