@@ -2,7 +2,7 @@
 
 module.exports = {
 	// Service name
-	serviceName: '111 online',
+	serviceName: '111 Online',
 
 	// Port to run nodemon on locally
 	port: 2000,
@@ -17,12 +17,14 @@ module.exports = {
 	// when true will log some useful variables to the template
 	debug: true,
 
+  // alias common layouts here
   layouts: {
     base: '111/layouts/base.html',
     component: '111/layouts/component.html'
   },
 
-	// the paths to common embed templates
+	// alias the paths to common embed templates
 	displayComponent: '111/embeds/display_component.html',
 	codeBlock: '111/embeds/code_block.html',
+
 };
