@@ -25,7 +25,7 @@
     "client-sessions": "^0.8.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2",
+    "express": "^5.1.0",
     "express-session": "^1.18.1",
     "gulp": "^5.0.0",
     "gulp-babel": "^8.0.0",
@@ -39,10 +39,12 @@
     "html-format": "^1.1.7",
     "lodash": "^4.17.21",
     "mergician": "^2.0.2",
-    "nhsuk-frontend": "^9.3.0",
+    "nhsuk-frontend": "^9.4.1",
+    "mergician": "^2.0.2",
     "nunjucks": "^3.2.4",
     "path": "^0.12.7",
-    "sass": "^1.86.3"
+    "sass-embedded": "1.77.5",
+    "plugin-error": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
