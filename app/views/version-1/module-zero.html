@@ -5,3 +5,22 @@
 } %}
 
 {% extends "111/layouts/module-zero.html" %}
+
+{#
+
+  You could override the emergenices list with an entirely bespoke chunk of html if you wish
+  {% block custom_emergencies %}{% endblock custom_emergencies %}
+
+  or you could simply replace or append to the list by adding emergencies to the page object
+
+  emergencies: {
+    append: true,
+    items: [
+      {
+        condition: 'signs of a stroke',
+        description: 'face dropping on one side, difficulty speaking'
+      }
+    ]
+  }
+
+#}

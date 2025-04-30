@@ -1,8 +1,8 @@
 // https://jhildenbiddle.github.io/mergician/
 const { mergician } = require('mergician');
 
-module.exports = function merge(...objects) {
+module.exports = function mergeAppendArrays(...objects) {
   return mergician({
-    appendArrays: false
+    appendArrays: true
   })(...objects);
 };
