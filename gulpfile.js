@@ -111,7 +111,11 @@ function startBrowserSync(done) {
 
 // Watch for changes within assets/
 function watch() {
-  gulp.watch('app/assets/sass/**/*.scss', compileStyles);
+  gulp.watch([
+    'app/assets/sass/**/*.scss',
+    'app/views/**/*.scss',
+    'app/lib/**/**/*.scss'
+  ], compileStyles);
   gulp.watch('app/assets/javascript/**/*.js', compileScripts);
   gulp.watch('app/assets/**/**/*.*', compileAssets);
 }

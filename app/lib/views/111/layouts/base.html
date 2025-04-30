@@ -1,8 +1,50 @@
+{#
+  prototype-kit-template.njk can be found at: lib/templates/
+  template.njk can be found at: node_modules/nhsuk-frontend/packages/
+#}
+{% extends "prototype-kit-template.njk" %}
+
 {% from "attributes.njk" import nhsukAttributes %}
+{%- from 'action-link/macro.njk' import actionLink %}
+{%- from 'back-link/macro.njk' import backLink %}
+{%- from 'breadcrumb/macro.njk' import breadcrumb %}
+{%- from 'button/macro.njk' import button %}
+{%- from 'card/macro.njk' import card %}
+{%- from 'character-count/macro.njk' import characterCount %}
+{%- from 'checkboxes/macro.njk' import checkboxes %}
+{%- from 'contents-list/macro.njk' import contentsList %}
+{%- from 'date-input/macro.njk' import dateInput %}
+{%- from 'details/macro.njk' import details %}
+{%- from 'do-dont-list/macro.njk' import list %}
+{%- from 'error-message/macro.njk' import errorMessage %}
+{%- from 'error-summary/macro.njk' import errorSummary %}
+{%- from 'fieldset/macro.njk' import fieldset %}
+{%- from 'footer/macro.njk' import footer %}
+{%- from 'header/macro.njk' import header %}
+{%- from 'hero/macro.njk' import hero %}
+{%- from 'hint/macro.njk' import hint %}
+{%- from 'images/macro.njk' import image %}
+{%- from 'input/macro.njk' import input %}
+{%- from 'inset-text/macro.njk' import insetText %}
+{%- from 'label/macro.njk' import label %}
+{%- from 'pagination/macro.njk' import pagination %}
+{%- from 'panel/macro.njk' import panel with context %}
+{%- from 'radios/macro.njk' import radios %}
+{%- from 'select/macro.njk' import select %}
+{%- from 'skip-link/macro.njk' import skipLink %}
+{%- from 'skip-link/macro.njk' import skipLink %}
+{%- from 'summary-list/macro.njk' import summaryList %}
+{%- from 'tables/macro.njk' import table %}
+{%- from 'tabs/macro.njk' import tabs %}
+{%- from 'tag/macro.njk' import tag %}
+{%- from 'task-list/macro.njk' import taskList %}
+{%- from 'textarea/macro.njk' import textarea %}
+{%- from 'warning-callout/macro.njk' import warningCallout %}
+
 {% import "111/macros/prototype-kit.njk" as prototype %}
-{% from "111/components/callout/macro.njk" import callout %}
+{% from "111/components/callout/macro.njk" import callout with context %}
+{% from "111/components/call-to-action/macro.njk" import callToAction with context %}
 {% from "111/components/footer/macro.njk" import footer as appFooter with context %}
-{% from "111/components/call-to-action/macro.njk" import callToAction %}
 {% from "111/components/card/macro.njk" import card as appCard with context %}
 {% from "111/components/card/macro.njk" import service as appService with context %}
 
@@ -25,19 +67,12 @@
 {%- set primary_col_width = widths.primary_col_width -%}
 {%- set secondary_col_width = widths.secondary_col_width -%}
 
-{#
-  this is the NHSUK Frontend template file currently found:
-  at the following path: lib/example-templates/template.html
-#}
-{% extends "template.html" %}
-
-{% block headCSS %}
+{% block head %}
   <link href="/css/main.css" rel="stylesheet">
 {% endblock %}
 
 {# Set the page title #}
-{% block pageTitle %}{{ title }}
-{% endblock %}
+{% block pageTitle %}{{ title }}{% endblock %}
 
 {% block header %}
   {{ header({
@@ -147,7 +182,7 @@
 {% endblock main %}
 
 {% block footer %}
-  {{ footer(page.footer | d({
+  {{ appFooter(page.footer | d({
     "links": [
       {
         "URL": "/",
