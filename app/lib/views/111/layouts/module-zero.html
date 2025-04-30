@@ -13,7 +13,7 @@
   <div class="app-callout app-callout--alert app-callout--alert-bordered nhsuk-u-reading-width nhsuk-u-margin-bottom-2">
 
     <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-4 app-u-color-red">{{ page.heading.text | default((page.title) | default(_sublayout.title)) }}</h1>
-    <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-3">Call 999 now for any of these:</h2>
+    <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-3">{{ page.subheading.text | default("Call 999 now for any of these:") }}</h2>
 
     {% block content_primary_body %}
       {% block custom_emergencies %}
