@@ -1,0 +1,11 @@
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block content_primary %}
+  <h1 class="nhsuk-heading-l">Page not found</h1>
+  <p class="nhsuk-u-margin-bottom-2">If you typed the web address, check it is correct.</p>
+  <p>If you pasted the web address, check you copied the entire address.</p>
+  {% call callout() %}
+    <p><strong>{{ URLNotFound }}</strong></p>
+  {% endcall %}
+  <p><a href="/">Go to Home</a></p>
+{% endblock %}
