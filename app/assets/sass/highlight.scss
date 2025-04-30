@@ -1,0 +1,10 @@
+// @import "../../../../node_modules/highlight.js/scss/github.scss";
+@import "../../../node_modules/highlight.js/scss/github.scss";
+
+pre {
+  margin-top: 0!important;
+  code.hljs {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

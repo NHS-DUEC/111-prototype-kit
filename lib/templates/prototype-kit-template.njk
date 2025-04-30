@@ -1,5 +1,6 @@
 {% extends "template.njk" %}
 
+{% from "attributes.njk" import nhsukAttributes %}
 {%- from 'action-link/macro.njk' import actionLink %}
 {%- from 'back-link/macro.njk' import backLink %}
 {%- from 'breadcrumb/macro.njk' import breadcrumb %}
@@ -35,3 +36,5 @@
 {%- from 'task-list/macro.njk' import taskList %}
 {%- from 'textarea/macro.njk' import textarea %}
 {%- from 'warning-callout/macro.njk' import warningCallout %}
+
+{% set assetPath = '/nhsuk-frontend/assets' %}
