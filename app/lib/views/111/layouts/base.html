@@ -1,8 +1,6 @@
-{#
-  prototype-kit-template.njk can be found at: lib/templates/
-  template.njk can be found at: node_modules/nhsuk-frontend/packages/
-#}
-{% extends "prototype-kit-template.njk" %}
+{% set assetPath = '/nhsuk-frontend/assets' %}
+
+{% extends "template.njk" %}
 
 {% from "attributes.njk" import nhsukAttributes %}
 {%- from 'action-link/macro.njk' import actionLink %}
@@ -41,7 +39,7 @@
 {%- from 'textarea/macro.njk' import textarea %}
 {%- from 'warning-callout/macro.njk' import warningCallout %}
 
-{% import "111/macros/prototype-kit.njk" as prototype %}
+{% import "111/macros/prototype-kit.njk" as prototype with context %}
 {% from "111/components/callout/macro.njk" import callout with context %}
 {% from "111/components/call-to-action/macro.njk" import callToAction with context %}
 {% from "111/components/footer/macro.njk" import footer as appFooter with context %}
@@ -69,6 +67,7 @@
 
 {% block head %}
   <link href="/css/main.css" rel="stylesheet">
+  <script src="/nhsuk-frontend/nhsuk.min.js" defer></script>
 {% endblock %}
 
 {# Set the page title #}
