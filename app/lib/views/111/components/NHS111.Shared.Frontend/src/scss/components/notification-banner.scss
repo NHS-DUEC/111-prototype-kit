@@ -9,7 +9,7 @@
 .app-notification-banner__inner {
   @include nhsuk-responsive-padding(2, 'top');
   @include nhsuk-responsive-padding(2, 'bottom');
-  @include govuk-width-container;
+  @include nhsuk-width-container;
 }
 
 .app-notification-banner__inner p {
