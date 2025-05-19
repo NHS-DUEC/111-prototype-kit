@@ -1,9 +1,6 @@
 {% set page = {
   title: 'Layout - 111 Prototype Kit Docs',
   layout: {
-    content_primary: {
-      classes: 'testtttt'
-    },
     content_secondary: {
       visible: true
     }
@@ -191,15 +188,15 @@
                   text: "one-quarter"
                 },
                 {
-                  text: "two-quarters"
+                  text: "three-quarters"
                 }
               ],
               [
                 {
-                  text: "two-quarters"
+                  text: "three-quarters"
                 },
                 {
-                  text: "two-quarters"
+                  text: "three-quarters"
                 },
                 {
                   text: "one-quarter"
@@ -249,7 +246,7 @@
 
 {% endblock main %}
 
-{% block headCSS %}
+{% block head %}
   {{ super() }}
-  <link href="/css/lib/highlight.css" rel="stylesheet">
-{% endblock headCSS %}
+  <link href="/css/highlight.css" rel="stylesheet">
+{% endblock head %}
