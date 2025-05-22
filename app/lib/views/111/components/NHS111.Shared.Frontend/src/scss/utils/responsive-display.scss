@@ -1,5 +1,5 @@
 .app-u-small-screen-only {
-  @include mq($from: tablet) {
+  @include nhsuk-media-query($from: tablet) {
     display: none;
   }
 }
@@ -7,7 +7,7 @@
 .app-u-large-screen-only {
   display: none;
 
-  @include mq($from: tablet) {
+  @include nhsuk-media-query($from: tablet) {
     display: block;
   }
 }

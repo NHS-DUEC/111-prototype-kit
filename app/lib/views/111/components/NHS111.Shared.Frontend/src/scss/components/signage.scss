@@ -3,7 +3,7 @@
   padding-left: 0;
   padding-top: nhsuk-spacing(2);
 
-  @include mq($from: desktop) {
+  @include nhsuk-media-query($from: desktop) {
     column-count: 2;
     column-gap: 32px;
   }
@@ -22,7 +22,7 @@
   position: relative;
   text-decoration: none;
 
-  @include mq($until: tablet) {
+  @include nhsuk-media-query($until: tablet) {
     padding: 12px 34px 12px 16px;
   }
 
@@ -66,7 +66,7 @@
   right: 12px;
   top: 14px;
 
-  @include mq($until: tablet) {
+  @include nhsuk-media-query($until: tablet) {
     top: 12px;
     right: 5px;
   }
