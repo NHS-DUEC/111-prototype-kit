@@ -38,6 +38,7 @@
     "highlight.js": "^11.11.1",
     "html-format": "^1.1.7",
     "lodash": "^4.17.21",
+    "mergician": "^2.0.2",
     "nhsuk-frontend": "^9.6.1",
     "nunjucks": "^3.2.4",
     "path": "^0.12.7",
