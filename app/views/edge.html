@@ -1,18 +1,9 @@
 {% extends page.layout.file | d(layouts.base) %}
 
-<!-- Set the page title -->
 {% block pageTitle %}Edge - {{ serviceName }}{% endblock %}
 
-<!-- For adding page content -->
-<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
-{% block content %}
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
-
-      <h1 class="nhsuk-heading-m">
-        You have reached the edge of this prototype
-      </h1>
-
-    </div>
-  </div>
+{% block content_primary %}
+  <h1 class="nhsuk-heading-m">
+    You have reached the edge of this prototype
+  </h1>
 {% endblock %}
