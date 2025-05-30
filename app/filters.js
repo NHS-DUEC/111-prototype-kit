@@ -14,7 +14,7 @@ function loadFilters(directoryPath, targetObject) {
 			const filePath = path.join(directoryPath, file);
 			// Attach the required module as a property of the filters object
 			targetObject[moduleName] = require(filePath);
-			console.log(`Loaded filter: ${moduleName}`);
+			// console.log(`Loaded filter: ${moduleName}`);
 		}
 	});
 }
