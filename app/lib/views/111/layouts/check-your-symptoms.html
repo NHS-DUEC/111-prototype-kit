@@ -1,8 +1,8 @@
-{% set page = {
-  title: 'Get help for your symptoms'
+{% set _sublayout = {
+  title: 'Check your symptoms'
 } %}
 
-{% extends page.layout.file | d(layouts.base) %}
+{% extends page.layout.file | d(layouts['base']) %}
 
 {% block content_primary %}
 
@@ -29,7 +29,7 @@
     <li>look after yourself at home</li>
   </ul>
 
-  <a href="module-zero" class="nhsuk-button">
+  <a href="{{ page.startLink | default(_sublayout.startLink | default('#')) }}" class="nhsuk-button">
     Start now
   </a>
 
