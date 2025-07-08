@@ -1,22 +1,5 @@
 {% set page = {
-  title: 'Version example',
-  layout: {
-    content_secondary: {
-      show: true
-    }
-  }
+  startLink: 'check-your-symptoms'
 } %}
 
-{% extends page.layout.file | d(layouts.base) %}
-
-{% block content_primary %}
-  <div class="prototype-block-highlight">
-    {% raw %}{% block content_primary %}{% endblock content_primary %}{% endraw %}
-  </div>
-{% endblock content_primary %}
-
-{% block content_secondary %}
-  <div class="prototype-block-highlight">
-    {% raw %}{% block content_secondary %}{% endblock content_secondary %}{% endraw %}
-  </div>
-{% endblock content_secondary %}
+{% extends "111/layouts/start.html" %}

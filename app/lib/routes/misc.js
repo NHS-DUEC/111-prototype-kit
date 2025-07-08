@@ -63,6 +63,14 @@ router.get(/(.*)/, (req, res, next) => {
   next();
 });
 
+router.post(/(.*)/, (req, res, next) => {
+  var { redirectTo } = req.body;
+  if (redirectTo) {
+    return res.redirect(redirectTo)
+  }
+  next();
+});
+
 router.get('/reset-session', (req, res) => {
 	req.session.data = {};
 	Object.assign(req.session.data, sessionDataDefaults);
