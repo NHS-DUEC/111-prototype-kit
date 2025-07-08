@@ -70,6 +70,7 @@ router.get('/reset-session', (req, res) => {
 });
 
 // Catch-all route for handling 404 errors
+<<<<<<< Updated upstream
 // router.use((req, res, next) => {
 //   const fullUrl = `${req.protocol}://${req.get('Host')}${req.originalUrl}`;
 //   res.status(404).render('111/404.njk', { URLNotFound: fullUrl });
@@ -80,5 +81,17 @@ router.get('/reset-session', (req, res) => {
 //   console.error(err.stack);
 //   res.status(500).render('111/500.njk', { message: 'Something went wrong!' });
 // });
+=======
+router.use((req, res, next) => {
+  const fullUrl = `${req.protocol}://${req.get('Host')}${req.originalUrl}`;
+  res.status(404).render('111/404.njk', { URLNotFound: fullUrl });
+});
+
+// Global error handler (optional)
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).render('111/500.njk', { message: 'Something went wrong!' });
+});
+>>>>>>> Stashed changes
 
 module.exports = router;
