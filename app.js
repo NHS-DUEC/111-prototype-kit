@@ -208,18 +208,17 @@ app.post(/^\/([^.]+)$/, (req, res) => {
   }));
 });
 
-// Catch 404 and forward to error handler
+// Custom 404 handler, placed at the end after all routes
 app.use((req, res, next) => {
-  const err = new Error(`Page not found: ${req.path}`); // eslint-disable-line no-console
-  err.status = 404;
-  next(err);
+  // This will only run if no route above has matched
+  const fullUrl = `${req.protocol}://${req.get('Host')}${req.originalUrl}`;
+  res.status(404).render('111/404.njk', { URLNotFound: fullUrl });
 });
 
-// Display error
-app.use((err, req, res) => {
-  console.error(err.message); // eslint-disable-line no-console
-  res.status(err.status || 500);
-  res.send(err.message);
+// Global error handler (optional, to handle other errors)
+app.use((err, req, res, next) => {
+  console.error(err.stack);  // eslint-disable-line no-console
+  res.status(500).render('111/500.njk', { message: err.message });
 });
 
 // Run the application
