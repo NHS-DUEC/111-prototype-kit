@@ -173,6 +173,10 @@ app.use('/nhsuk-frontend', express.static(path.join(__dirname, 'node_modules/nhs
 // Use custom application routes
 app.use('/', routes);
 
+// Use 111 online application routes
+app.use('/components', require('./app/lib/routes/components'));
+app.use('/', require('./app/lib/routes/misc'));
+
 // Automatically route pages
 app.get(/^([^.]+)$/, (req, res, next) => {
   automaticRouting.matchRoutes(req, res, next);

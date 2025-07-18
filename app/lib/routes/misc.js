@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const config = require('../../config.js');
-var sessionDataDefaults = require('../../data/session-data-defaults');
 
 // ################################################
 // MISC
@@ -63,18 +62,28 @@ router.get(/(.*)/, (req, res, next) => {
   next();
 });
 
+
+/**
+ * Extracts the 'redirectTo' property from the request body.
+ *
+ * @route POST /misc
+ * @param {Object} req - Express request object.
+ * @param {Object} req.body - The body of the request.
+ * @param {string} req.body.redirectTo - The URL or path to redirect to.
+ * @param {Object} res - Express response object.
+ * @returns {void}
+ */
 router.post(/(.*)/, (req, res, next) => {
-  var { redirectTo } = req.body;
-  if (redirectTo) {
-    return res.redirect(redirectTo)
-  }
+  let { redirectTo } = req.body;
+  req.redirectTo = redirectTo ? redirectTo : false;
   next();
+}, (req, res) => {
+    return res.redirect(req.redirectTo)
 });
 
-router.get('/reset-session', (req, res) => {
-	req.session.data = {};
-	Object.assign(req.session.data, sessionDataDefaults);
-	res.redirect('/');
+// supress dev tools 404
+router.use('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
+  res.status(204).end();
 });
 
 module.exports = router;
