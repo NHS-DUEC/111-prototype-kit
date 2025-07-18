@@ -12,6 +12,7 @@
       {{ question.text | d(page.title | d('Question text is required for this template')) }}
     </h1>
 
+    {# This creates the 'callout' markup #}
     {% set callout_content %}
     {% if question.callout and not question.callout.hide %}
       {% call callout({ classes: 'app-callout--info' } | merge(question.callout)) %}
@@ -24,24 +25,32 @@
     {% endif %}
     {% endset %}
 
+    {# if there is a callout #}
     {% if calloutHTML or question.callout %}
+      {# check it should be placed here (at the top) #}
       {% if not question.callout.position or question.callout.position == 'top' %}
         {{ calloutHTML | d(callout_content) | safe }}
       {% endif %}
     {% endif %}
 
+    {# block for content before the question #}
     {% block question_prepend %}{% endblock %}
 
+    {# block for the question content or "body" #}
     {% block question_body %}{% endblock question_body %}
 
+    {# if there is a callout #}
     {% if calloutHTML or question.callout %}
+      {# check it should be placed here (at the bottom) #}
       {% if question.callout.position == 'bottom' %}
         {{ calloutHTML | d(callout_content) | safe }}
       {% endif %}
     {% endif %}
 
+    {# block for content after the question #}
     {% block question_append %}{% endblock %}
 
+    {# block for question actions (buttons) #}
     {% block question_actions %}
       {{
         button({
