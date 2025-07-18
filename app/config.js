@@ -25,7 +25,7 @@ module.exports = {
   },
 
 	// alias the paths to common embed templates
-	displayComponent: '111/embeds/display_component.html',
-	codeBlock: '111/embeds/code_block.html',
+	displayComponentPath: '111/embeds/display_component.html',
+	codeBlockPath: '111/embeds/code_block.html',
 
 };
