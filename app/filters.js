@@ -4,6 +4,11 @@ let filters = {};
 // the name of filters directory containing modules
 const modulesPath = path.join(__dirname, 'lib/filters');
 
+/**
+ *
+ * @param {String} directoryPath The directory to be search for files
+ * @param {Object} targetObject The object for the filters to be added to
+ */
 function loadFilters(directoryPath, targetObject) {
 	// Read files synchronously for simplicity
 	const files = fs.readdirSync(directoryPath);
@@ -22,6 +27,6 @@ function loadFilters(directoryPath, targetObject) {
 // Load the modules into the filter object
 loadFilters(modulesPath, filters);
 
-module.exports = function (env) {
+module.exports = function () {
 	return filters;
 };
