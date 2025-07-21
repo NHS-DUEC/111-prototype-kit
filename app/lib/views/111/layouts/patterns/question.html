@@ -1,20 +1,24 @@
 {% set layout = {
-  file: 'layouts/base'
+  file: '111/layouts/base.html'
 } %}
+
+{% set question = _sublayout.question | merge(page.question) %}
 
 {% extends layout.file %}
 
 {% block content_primary %}
 
-  <form method="post">
+  <form method="post" action="{{ page.question.action | default('#') }}">
 
-    <h1 class="nhsuk-heading-l">
-      {{ question.text | d(page.title | d('Question text is required for this template')) }}
-    </h1>
+    {% if not question.supressHeading -%}
+      <h1 class="nhsuk-heading-l">
+        {{ question.text | d(page.title | d('Question text is required for this template')) | noOrphans }}
+      </h1>
+    {%- endif %}
 
     {# This creates the 'callout' markup #}
     {% set callout_content %}
-    {% if question.callout and not question.callout.hide %}
+    {% if (question.callout.text or question.callout.html) and not question.callout.hide %}
       {% call callout({ classes: 'app-callout--info' } | merge(question.callout)) %}
       {% if question.callout.text %}
         <p>{{ question.callout.text }}</p>

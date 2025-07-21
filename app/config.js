@@ -21,7 +21,8 @@ module.exports = {
     'base': '111/layouts/base.html',
     'question': '111/layouts/patterns/question.html',
     'component': '111/layouts/component.html',
-    'check-your-symptoms': '111/layouts/check-your-symptoms.html'
+    'check-your-symptoms': '111/layouts/check-your-symptoms.html',
+    'date': '111/layouts/patterns/date.html',
   },
 
 	// alias the paths to common embed templates

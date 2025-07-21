@@ -1,0 +1,7 @@
+{% set page = {
+  question: {
+    text: 'What is your date of birth?'
+  }
+} %}
+
+{% extends page.layout.file | d(layouts['date']) %}
