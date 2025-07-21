@@ -75,7 +75,7 @@ router.get(/(.*)/, (req, res, next) => {
  */
 router.post(/(.*)/, (req, res, next) => {
   let { redirectTo } = req.body;
-  req.redirectTo = redirectTo ? redirectTo : false;
+  req.redirectTo = redirectTo ? redirectTo : '';
   next();
 }, (req, res) => {
     return res.redirect(req.redirectTo)

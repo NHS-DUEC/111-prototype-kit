@@ -1,7 +1,8 @@
 {% set page = {
   question: {
     text: 'What is your date of birth?'
-  }
+  },
+  redirectTo: 'start'
 } %}
 
 {% extends page.layout.file | d(layouts['date']) %}
