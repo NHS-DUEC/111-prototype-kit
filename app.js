@@ -209,15 +209,15 @@ app.post(/^\/([^.]+)$/, (req, res) => {
 });
 
 // Custom 404 handler, placed at the end after all routes
-app.use((req, res, next) => {
+app.use((req, res) => {
   // This will only run if no route above has matched
   const fullUrl = `${req.protocol}://${req.get('Host')}${req.originalUrl}`;
   res.status(404).render('111/404.njk', { URLNotFound: fullUrl });
 });
 
 // Global error handler (optional, to handle other errors)
-app.use((err, req, res, next) => {
-  console.error(err.stack);  // eslint-disable-line no-console
+app.use((err, req, res) => {
+  console.error(err.stack); // eslint-disable-line no-console
   res.status(500).render('111/500.njk', { message: err.message });
 });
 
@@ -228,8 +228,8 @@ function startServer(currentPort) {
   server.on('listening', () => {
     port = currentPort;
     if (
-      process.env.WATCH !== 'true' &&
-      process.env.NODE_ENV !== 'production'
+      process.env.WATCH !== 'true'
+      && process.env.NODE_ENV !== 'production'
     ) {
       /* eslint-disable no-console */
       console.info(`Running at http://localhost:${port}/`);
