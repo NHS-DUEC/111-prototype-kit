@@ -19,10 +19,11 @@ module.exports = {
   // alias common layouts here
   layouts: {
     'base': '111/layouts/base.html',
-    'question': '111/layouts/patterns/question.html',
     'component': '111/layouts/component.html',
     'check-your-symptoms': '111/layouts/check-your-symptoms.html',
+    'question': '111/layouts/patterns/question.html',
     'date': '111/layouts/patterns/date.html',
+    'modzero': '111/layouts/patterns/confirm-it-is-not.html'
   },
 
 	// alias the paths to common embed templates
