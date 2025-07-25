@@ -227,6 +227,7 @@ function startServer(currentPort) {
 
   server.on('listening', () => {
     port = currentPort;
+    process.env.PORT = String(port);
     if (
       process.env.WATCH !== 'true'
       && process.env.NODE_ENV !== 'production'

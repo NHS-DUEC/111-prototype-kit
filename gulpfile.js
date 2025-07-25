@@ -14,7 +14,9 @@ const PluginError = require('plugin-error')
 const config = require('./app/config');
 
 // Set configuration variables
-const port = parseInt(process.env.PORT) || config.port;
+function getPort() {
+  return parseInt(process.env.PORT, 10) || config.port;
+}
 
 // Delete all the files in /public build directory
 function cleanPublic() {
@@ -93,10 +95,11 @@ function reload() {
 
 // Start browsersync
 function startBrowserSync(done) {
+  const currentPort = getPort();
   browserSync.init(
     {
-      proxy: 'localhost:' + port,
-      port: port + 1000,
+      proxy: 'localhost:' + currentPort,
+      port: currentPort + 1000,
       ui: false,
       files: ['app/views/**/*.*', 'app/lib/views/**/*.*', 'lib/example-templates/**/*.*'],
       ghostMode: false,
