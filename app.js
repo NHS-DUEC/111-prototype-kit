@@ -30,7 +30,7 @@ const prototypeAdminRoutes = require('./lib/middleware/prototype-admin-routes');
 const exampleTemplatesRoutes = require('./lib/example_templates_routes');
 
 // Set configuration variables
-const port = parseInt(process.env.PORT, 10) || config.port;
+let port = parseInt(process.env.PORT, 10) || config.port;
 
 // Initialise applications
 const app = express();
@@ -209,31 +209,48 @@ app.post(/^\/([^.]+)$/, (req, res) => {
 });
 
 // Custom 404 handler, placed at the end after all routes
-app.use((req, res, next) => {
+app.use((req, res) => {
   // This will only run if no route above has matched
   const fullUrl = `${req.protocol}://${req.get('Host')}${req.originalUrl}`;
   res.status(404).render('111/404.njk', { URLNotFound: fullUrl });
 });
 
 // Global error handler (optional, to handle other errors)
-app.use((err, req, res, next) => {
-  console.error(err.stack);  // eslint-disable-line no-console
+app.use((err, req, res) => {
+  console.error(err.stack); // eslint-disable-line no-console
   res.status(500).render('111/500.njk', { message: err.message });
 });
 
 // Run the application
-app.listen(port);
+function startServer(currentPort) {
+  const server = app.listen(currentPort);
 
-if (
-  process.env.WATCH !== 'true' // If the user isn’t running watch
-  && process.env.NODE_ENV !== 'production' // and it’s not in production mode
-) {
-  /* eslint-disable no-console */
-  console.info(`Running at http://localhost:${port}/`);
-  console.info('');
-  console.warn('Warning: It looks like you may have run the command `npm start` locally.');
-  console.warn('Press `Ctrl+C` and then run `npm run watch` instead');
-  /* eslint-enable no-console */
+  server.on('listening', () => {
+    port = currentPort;
+    if (
+      process.env.WATCH !== 'true'
+      && process.env.NODE_ENV !== 'production'
+    ) {
+      /* eslint-disable no-console */
+      console.info(`Running at http://localhost:${port}/`);
+      console.info('');
+      console.warn('Warning: It looks like you may have run the command `npm start` locally.');
+      console.warn('Press `Ctrl+C` and then run `npm run watch` instead');
+      /* eslint-enable no-console */
+    }
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      const tryPort = currentPort + 1;
+      console.warn(`Port ${currentPort} in use, trying ${tryPort}`); // eslint-disable-line no-console
+      startServer(tryPort);
+    } else {
+      throw err;
+    }
+  });
 }
+
+startServer(port);
 
 module.exports = app;
