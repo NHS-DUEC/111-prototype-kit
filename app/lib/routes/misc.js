@@ -45,6 +45,13 @@ router.all(/(.*)/, (req, res, next) => {
 		res.locals.pathclasses = createPathClass(path);
 	}
 
+  // this is to help render prototype as though it is running in the NHS App
+  if(req.session.data.NHSAppMode == 'true') {
+    res.locals.NHSAppMode = true;
+  } else {
+    res.locals.NHSAppMode = false;
+  }
+
 	// send some request details to the view
 	res.locals.request = { path, params, originalUrl };
 

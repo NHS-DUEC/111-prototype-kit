@@ -74,16 +74,21 @@
 {% block pageTitle %}{{ title }}{% endblock %}
 
 {% block header %}
-  {{ header({
-    "service": {
-        "name": serviceName,
-        "href": "/"
-      },
-      "showNav": "false",
-      "showSearch": "false"
-    })
-  }}
-{% endblock %}
+    {% if not NHSAppMode %}
+      {{
+        header({
+          "service": {
+            "name": serviceName,
+            "href": "/"
+          },
+          "showNav": "false",
+          "showSearch": "false"
+        })
+      }}
+    {% else %}
+    <div class="app-nhs-app-back-link-shim"></div>
+    {% endif %}
+  {% endblock %}
 
 {% block main %}
 
@@ -92,7 +97,14 @@
 
   {% block main_body %}
   <div class="nhsuk-width-container {{ containerClasses }}">
-
+      {% if NHSAppMode %}
+      <div class="nhsuk-back-link nhsuk-u-margin-bottom-5">
+          <a href="/" class=" nhsuk-back-link__link">
+            <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"><path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path></svg>
+            Go back
+          </a>
+      </div>
+    {% endif %}
     {%- set showBreadCrumbs = page.breadcrumbs or _sublayout.layout.breadcrumbs or layout.layout.breadcrumbs -%}
     {%- set showBackLink = page.layout.back or _sublayout.layout.back -%}
 
@@ -214,5 +226,6 @@
       pathclasses: pathclasses
     } | log }}
     {{ widths | log }}
+    {{ NHSAppMode | log }}
   {% endif %}
 {% endblock %}
