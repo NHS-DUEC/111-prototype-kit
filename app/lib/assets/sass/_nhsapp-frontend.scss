@@ -1,0 +1,58 @@
+// ----------------------------------------------------------------------------------
+// NHS App Frontend styles
+// ----------------------------------------------------------------------------------
+// Taken from the NHS App Frontend package
+// located in node_modules/nhsapp-frontend/dist/nhsapp
+// This file should not be edited directly.
+// Instead, add your styles to: app/assets/sass/main.scss
+// ----------------------------------------------------------------------------------
+
+// styles
+@import "node_modules/nhsapp-frontend/dist/nhsapp/styles/icon/icons";
+@import "node_modules/nhsapp-frontend/dist/nhsapp/styles/typography";
+
+// styles not currently in the npm package so have been stolen from
+// https://github.com/nhsuk/nhsapp-frontend/
+@import "nhsapp-frontend/container";
+@import "nhsapp-frontend/mobile-iframe";
+
+// components
+@import "node_modules/nhsapp-frontend/dist/nhsapp/components/badge/badge";
+@import "node_modules/nhsapp-frontend/dist/nhsapp/components/button";
+@import "node_modules/nhsapp-frontend/dist/nhsapp/components/card/card";
+@import "node_modules/nhsapp-frontend/dist/nhsapp/components/tag/tag";
+@import "node_modules/nhsapp-frontend/dist/nhsapp/components/timeline/timeline";
+@import "node_modules/nhsapp-frontend/dist/nhsapp/components/summary-list";
+
+// The following components stolen from:
+// https://github.com/nhsuk/nhsapp-frontend/tree/main/docs/_includes/layouts/partials
+// as they are not in the nhsapp-frontend npm package
+// @import "../../views/nhsapp/components/bottom-nav-native/bottom-nav-native";
+@import "../../views/nhsapp/components/bottom-navigation/bottom-navigation";
+@import "../../views/nhsapp/components/global-navigation-native/global-navigation-native";
+
+// utilities
+@import "node_modules/nhsapp-frontend/dist/nhsapp/utilities/truncate";
+
+.nhs-app-native {
+  .nhsuk-back-link {
+    margin-bottom: 12px;
+    padding-top: nhsuk-spacing(1);
+
+    @include nhsuk-media-query($from: desktop) {
+      margin-bottom: nhsuk-spacing(3);
+      padding-top: nhsuk-spacing(2);
+    }
+  }
+}
+
+// Native container width
+// This is used to ensure the content does not stretch too wide on larger screens
+// and to maintain a consistent look with the NHS App design.
+// .nhs-app-native .nhsuk-width-container {
+//   max-width: 704px; // 768px - 64px (32px padding on each side)
+
+//   @include nhsuk-media-query($from: desktop) {
+//     margin: 0 auto;
+//   }
+// }

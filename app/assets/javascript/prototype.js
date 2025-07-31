@@ -60,6 +60,23 @@ var copyblocks = {
   }
 }
 
+var headerScroll = {
+  init: function() {
+    const header = document.querySelector('.app-global-navigation-native');
+    if (!header) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
+};
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  headerScroll.init();
   copyblocks.init()
 });

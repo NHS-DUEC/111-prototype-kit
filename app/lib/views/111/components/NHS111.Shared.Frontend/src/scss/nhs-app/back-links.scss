@@ -1,8 +1,7 @@
 body:has(.nhsuk-back-link) {
   .app-nhs-app-back-link-shim {
-    padding: 16px;
+    height: 36px; // Height of the back link
     box-sizing: content-box;
-
     &:before {
       content: "\00a0"; // Non breaking space - to force the box open to the same height as the link below
     }
@@ -11,7 +10,7 @@ body:has(.nhsuk-back-link) {
 
 .nhsuk-back-link {
   background-color: #fff;
-  padding: 16px 0;
+  padding: 11px 0;
   position: fixed;
   top: 0;
   right: 0;
@@ -31,7 +30,7 @@ body:has(.nhsuk-back-link) {
     text-decoration: underline;
     display: block;
     text-indent: -9999px;
-    line-height: 0;
+    line-height: 0.25;
     grid-column-start: 3;
     grid-column-end: 3;
     justify-self: start;
