@@ -1,0 +1,52 @@
+{% set page = {
+  title: '111 Prototype Kit Docs',
+  layout: {
+    content_secondary: {
+      visible: true
+    }
+  }
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block content_primary %}
+  <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-6">
+    Settings
+  </h1>
+
+  {# <p>Configure this {{ serviceName }} prototype</p> #}
+
+  <form action="#" method="post">
+
+    {{ radios({
+      name: "appframe",
+      fieldset: {
+        legend: {
+          text: "NHS App mode",
+          isPageHeading: false,
+          classes: "nhsuk-fieldset__legend--m"
+        }
+      },
+      hint: {
+        text: 'Changes to the page to the layout used when 111 online is viewed within the NHS App'
+      },
+      value: data.appframe,
+      items: [
+        {
+          value: "true",
+          text: "Enable"
+        },
+        {
+          value: "false",
+          text: "Disable"
+        }
+      ]
+    }) }}
+
+    {{ button({
+      text: "Save"
+    }) }}
+
+  </form>
+
+{% endblock content_primary %}

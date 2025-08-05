@@ -46,10 +46,10 @@ router.all(/(.*)/, (req, res, next) => {
 	}
 
   // this is to help render prototype as though it is running in the NHS App
-  if(req.session.data.NHSAppMode == 'true') {
-    res.locals.NHSAppMode = true;
+  if(req.session.data.appframe == 'true') {
+    res.locals.appframe = true;
   } else {
-    res.locals.NHSAppMode = false;
+    res.locals.appframe = false;
   }
 
 	// send some request details to the view
@@ -59,6 +59,12 @@ router.all(/(.*)/, (req, res, next) => {
 	res.locals.layouts = config.layouts;
 
 	next();
+});
+
+router.post('/settings', (req, res) => {
+  // toggle the appframe value in the session
+  // req.session.data.appframe = req.session.data.appframe === 'true' ? 'false' : 'true';
+  res.redirect(req.get('referer') || '/');
 });
 
 // if edge page requested anywhere in this app render the edge.html page

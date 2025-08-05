@@ -51,9 +51,9 @@
 {% from "nhsapp/components/global-navigation-native/macro.njk" import nhsappGlobalNavigation with context %}
 
 {% set title = (page.title | default(_sublayout.title | default('title not set')) + ' &ndash; ' + serviceName) | safe %}
-{% set bodyClasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) + (' nhs-app-native' if NHSAppMode) %}
-{% set containerClasses = page.containerClasses | default('') + (' app-width-container' if NHSAppMode) %}
-{% set mainClasses = (page.mainClasses | default('')) + (' app-main-wrapper' if NHSAppMode) %}
+{% set bodyClasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) + (' nhs-app-native' if appframe) %}
+{% set containerClasses = page.containerClasses | default('') + (' app-width-container' if appframe) %}
+{% set mainClasses = (page.mainClasses | default('')) + (' app-main-wrapper' if appframe) %}
 
 {% set _layout = {
   width: false,
@@ -80,7 +80,7 @@
 {% block pageTitle %}{{ title }}{% endblock %}
 
 {% block header %}
-    {% if NHSAppMode %}
+    {% if appframe %}
       {# <div class="app-nhs-app-back-link-shim"></div> #}
       {{ nhsappGlobalNavigation() }}
     {% else %}
@@ -104,7 +104,7 @@
 
   {% block main_body %}
 
-    {% if NHSAppMode %}
+    {% if appframe %}
       {# <div class="nhsuk-back-link nhsuk-u-margin-bottom-5">
           <a href="/" class=" nhsuk-back-link__link">
             <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"><path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path></svg>
@@ -202,7 +202,7 @@
 {% endblock main %}
 
 {% block footer %}
-  {% if NHSAppMode %}
+  {% if appframe %}
     {{ nhsappBottomNavigation() }}
   {% else %}
   {{ appFooter(page.footer | d({
@@ -239,6 +239,6 @@
       pathclasses: pathclasses
     } | log }}
     {{ widths | log }}
-    {{ NHSAppMode | log }}
+    {{ appframe | log }}
   {% endif %}
 {% endblock %}
