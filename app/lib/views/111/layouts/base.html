@@ -236,9 +236,8 @@
     {{ {
       session: data,
       request: request,
-      pathclasses: pathclasses
+      pathclasses: pathclasses,
+      appframe: appframe
     } | log }}
-    {{ widths | log }}
-    {{ appframe | log }}
   {% endif %}
 {% endblock %}
