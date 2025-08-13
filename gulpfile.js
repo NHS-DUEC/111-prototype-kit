@@ -7,6 +7,7 @@ const browserSync = require('browser-sync');
 const clean = require('gulp-clean');
 const gulpSass = require('gulp-sass')
 const dartSass = require('sass-embedded')
+const packageImporter = require('sass-package-importer');
 const nodemon = require('gulp-nodemon');
 const PluginError = require('plugin-error')
 
@@ -30,7 +31,7 @@ function compileStyles(done) {
   return gulp
     .src(['app/assets/sass/**/*.scss'])
     .pipe(
-      sass()
+      sass({ importers: [packageImporter] })
       .on('error', (error) => {
         done(
           new PluginError('compileCSS', error.messageFormatted, {
