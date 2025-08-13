@@ -27191,3 +27191,12 @@ dl dt {
 [class*=nhsuk-] input[type=checkbox] + label {
   padding-left: 1em;
 }
+
+@import 'pkg:nhsapp-frontend/';
+
+// The following components stolen from:
+// https://github.com/nhsuk/nhsapp-frontend/tree/main/docs/_includes/layouts/partials
+// as they are not in the nhsapp-frontend npm package
+// @import "../../views/nhsapp/components/bottom-nav-native/bottom-nav-native";
+@import "../../lib/views/nhsapp/components/bottom-navigation/bottom-navigation";
+@import "../../lib/views/nhsapp/components/global-navigation-native/global-navigation-native"

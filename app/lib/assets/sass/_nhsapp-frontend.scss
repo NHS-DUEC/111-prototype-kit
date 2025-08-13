@@ -8,8 +8,8 @@
 // ----------------------------------------------------------------------------------
 
 // styles
-@import "node_modules/nhsapp-frontend/dist/nhsapp/styles/icon/icons";
-@import "node_modules/nhsapp-frontend/dist/nhsapp/styles/typography";
+@import "nhsapp-frontend/dist/nhsapp/styles/icon/icons";
+@import "nhsapp-frontend/dist/nhsapp/styles/typography";
 
 // styles not currently in the npm package so have been stolen from
 // https://github.com/nhsuk/nhsapp-frontend/
@@ -17,12 +17,12 @@
 @import "nhsapp-frontend/mobile-iframe";
 
 // components
-@import "node_modules/nhsapp-frontend/dist/nhsapp/components/badge/badge";
-@import "node_modules/nhsapp-frontend/dist/nhsapp/components/button";
-@import "node_modules/nhsapp-frontend/dist/nhsapp/components/card/card";
-@import "node_modules/nhsapp-frontend/dist/nhsapp/components/tag/tag";
-@import "node_modules/nhsapp-frontend/dist/nhsapp/components/timeline/timeline";
-@import "node_modules/nhsapp-frontend/dist/nhsapp/components/summary-list";
+@import "nhsapp-frontend/dist/nhsapp/components/badge/badge";
+@import "nhsapp-frontend/dist/nhsapp/components/button";
+@import "nhsapp-frontend/dist/nhsapp/components/card/card";
+@import "nhsapp-frontend/dist/nhsapp/components/tag/tag";
+@import "nhsapp-frontend/dist/nhsapp/components/timeline/timeline";
+@import "nhsapp-frontend/dist/nhsapp/components/summary-list";
 
 // The following components stolen from:
 // https://github.com/nhsuk/nhsapp-frontend/tree/main/docs/_includes/layouts/partials
@@ -32,7 +32,7 @@
 @import "../../views/nhsapp/components/global-navigation-native/global-navigation-native";
 
 // utilities
-@import "node_modules/nhsapp-frontend/dist/nhsapp/utilities/truncate";
+@import "nhsapp-frontend/dist/nhsapp/utilities/truncate";
 
 .nhs-app-native {
   .nhsuk-back-link {

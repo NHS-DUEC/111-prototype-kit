@@ -1,7 +1,6 @@
 {% extends 'layout.html' %}
 
 {% set bodyClasses = "app-iframe__page" %}
-
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block content %}
@@ -14,18 +13,17 @@
     <iframe
       id="inlineFrameExample"
       title="Inline Frame Example"
-      src="{{ data.frameURL | default('/') }}?appframe=true">
+      src="{{ data.frameURL | default(page.frameURL | default('/')) }}?appframe=true">
     </iframe>
   </div>
 
   <style>
-
     html, body {
       margin: 0;
       padding: 0;
       width: 100vw;
       height: 100vh;
-      overflow: visible;
+      overflow: hidden;
     }
 
     .app-iframe__scaler {
@@ -56,7 +54,6 @@
   </style>
 
   <script>
-
     function scaleFluidContent() {
       const scaler = document.getElementsByClassName('app-iframe__scaler')[0];
       const content = document.getElementsByClassName('app-iframe__scaler__content')[0];
@@ -83,11 +80,10 @@
 {% endblock bodyStart %}
 
 {% block bodyEnd %}
-    </div>
-  </div>
+{{ super() }}
+</div>
+</div>
 {% endblock bodyEnd %}
-
-
 
 {% block footer %}
 {% endblock %}
