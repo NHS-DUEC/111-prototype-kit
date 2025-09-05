@@ -3,7 +3,7 @@
     <div class="nhsuk-grid-row">
       <ul class="app-bottom-navigation__list">
         <li class="app-bottom-navigation__item">
-          <a class="app-bottom-navigation__link" href="/pages/home-{{ data['accountType'] }}">
+          <a class="app-bottom-navigation__link" href="/">
             {% if hub === "Home" %}
               {{ nhsappIcon('homeFilled') }}
             {% else %}
@@ -13,7 +13,7 @@
           </a>
         </li>
         <li class="app-bottom-navigation__item">
-          <a class="app-bottom-navigation__link" href="/pages/messages-{{ data['accountType'] }}">
+          <a class="app-bottom-navigation__link" href="#">
             {% if hub === "Messages" %}
               {% if data['messages'] > 0 %}
                 {{ nhsappIcon('messagesUnreadFilled') }}
@@ -31,7 +31,7 @@
           </a>
         </li>
         <li class="app-bottom-navigation__item">
-          <a class="app-bottom-navigation__link" href="/pages/profile-{{ data['accountType'] }}">
+          <a class="app-bottom-navigation__link" href="#">
             {% if hub === "Profile" %}
               {{ nhsappIcon('account') }}
             {% else %}
