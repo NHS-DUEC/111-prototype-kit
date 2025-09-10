@@ -27192,7 +27192,8 @@ dl dt {
   padding-left: 1em;
 }
 
-@import 'nhsapp-frontend/dist/nhsapp/all';
+// Import NHS.UK frontend library
+@import "nhsuk-frontend/dist/nhsuk";
 
 // The following components stolen from:
 // https://github.com/nhsuk/nhsapp-frontend/tree/main/docs/_includes/layouts/partials
