@@ -1,0 +1,4 @@
+{% set thisBlock %}
+  {% block code %}{% endblock code %}
+{% endset %}
+<pre class="prototype-copy-block"><code class="app-code app-code--block hljs language-twig" style="display:block;">{{- thisBlock | dedent | trim | highlight('twig') | safe -}}</code></pre>

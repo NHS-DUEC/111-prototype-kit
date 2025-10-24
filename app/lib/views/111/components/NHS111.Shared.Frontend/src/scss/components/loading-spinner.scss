@@ -1,0 +1,84 @@
+.app-loading-overlay {
+  background: #e6e6e6;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  z-index: 999;
+  margin: 0;
+}
+
+.app-loading-overlay__inner {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+}
+
+.app-loading-overlay__text {
+  margin-bottom: nhsuk-spacing(5);
+  font-size: nhsuk-font-size(19);
+  font-weight: bold;
+}
+
+.app-spinner {
+  color: $color_nhsuk-black;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0; // Necessary to override lobotomized owl, remove when everything is ported to nhsuk-frontend
+}
+
+.app-spinner div {
+  transform-origin: 40px 40px;
+  animation: app-spinner 1.2s linear infinite;
+  margin: 0; // Necessary to override lobotomized owl, remove when everything is ported to nhsuk-frontend
+}
+
+.app-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: $color_nhsuk-black;
+}
+
+@for $i from 0 through 11 {
+  .app-spinner div:nth-child(#{$i + 1}) {
+    transform: rotate(0deg + 30 * $i);
+    animation-delay: -1.1s + $i * 0.1;
+  }
+}
+
+@keyframes app-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.app-standalone-spinner {
+  margin: nhsuk-spacing(5) auto;
+  display: block;
+
+  .app-spinner {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+.app-standalone-spinner__text {
+  text-align: center;
+  margin-bottom: nhsuk-spacing(5);
+  font-weight: bold;
+}

@@ -1,0 +1,37 @@
+{% set _sublayout = {
+  layout: {
+    breadcrumbs: {
+      items: [
+        {
+          href: "/111/",
+          text: "Components"
+        }
+      ],
+      href: ".",
+      text: page.title
+    }
+  }
+} %}
+
+{% extends layouts.base %}
+
+{% block content_primary_header %}
+  <div class="nhsuk-caption-xl">111 Component</div>
+  <h1 class="nhsuk-heading-xl">
+    {{ page.title }}
+  </h1>
+{% endblock content_primary_header %}
+
+{% block content_primary %}
+  {% block component_summary %}
+    {% if page.summary %}
+      <p class="nhsuk-lede-text">{{ page.summary }}</p>
+    {% endif %}
+  {% endblock component_summary %}
+  {% block component_documentation %}{% endblock component_documentation %}
+{% endblock content_primary %}
+
+{% block head %}
+  {{ super() }}
+  <link href="/css/highlight.css" rel="stylesheet">
+{% endblock head %}

@@ -1,0 +1,110 @@
+@use "sass:math";
+
+.app-search-field {
+  margin-bottom: nhsuk-spacing(6);
+}
+
+.app-search-field__inner {
+  @supports (display: flex) {
+    display: flex;
+  }
+  background: $color_nhsuk-white;
+  border-bottom: 2px solid $color_nhsuk-blue;
+}
+
+.app-search-field__input {
+  width: 80%;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  @include nhsuk-font(19, normal, 2.2);
+  border: 2px solid transparent; // Need this to stop text moving when you focus/unfocus the box
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: nhsuk-spacing(1);
+
+  @supports (display: flex) {
+    flex-basis: 100%;
+    flex-shrink: 1;
+    width: auto;
+  }
+
+  &:focus {
+    @include nhsuk-focused-input;
+  }
+
+  /* clears the "X" from Internet Explorer */
+  &::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  &::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* clears the "X" from Chrome */
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+.app-search-field__button {
+  border: 0;
+  background: $color_nhsuk-white;
+  padding: 12px 8px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 1px;
+  line-height: normal;
+  text-decoration: none;
+
+  @include nhsuk-media-query($from: mobile) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  &:focus {
+    @include nhsuk-focused-button;
+    box-shadow: none;
+
+    &::after {
+      position: absolute;
+      content: "";
+      height: $nhsuk-focus-width;
+      width: 100%;
+      bottom: -(math.div($nhsuk-focus-width, 2));
+      left: 0;
+      background-color: $color_nhsuk-black;
+    }
+  }
+}
+
+.app-search-field__button--with-divider::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: -1px;
+  width: 1px;
+  background-color: #a0a0a0;
+}
+
+.app-search-field__icon {
+  vertical-align: middle;
+
+  .app-search-field__button:hover & g {
+    stroke: $nhsuk-link-hover-color;
+  }
+
+  .app-search-field__button:focus & g {
+    stroke: $color_nhsuk-black;
+  }
+}

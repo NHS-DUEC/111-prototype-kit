@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loading spinner bound to a clickable element inline spinner is hidden again when pageshow event fires 1`] = `"<button data-loading-spinner="Overlay text" id="test-button">Test</button><div class="app-loading-overlay"><div class="app-loading-overlay__inner"><p class="app-loading-overlay__text">Overlay text</p><div class="app-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>"`;
+
+exports[`loading spinner bound to a clickable element inline spinner is hidden again when pageshow event fires 2`] = `"<button data-loading-spinner="Overlay text" id="test-button">Test</button>"`;
+
+exports[`loading spinner bound to a clickable element inline spinner is hidden again when the custom hide-loading-spinner event fires 1`] = `"<button data-loading-spinner="Overlay text" id="test-button">Test</button><div class="app-loading-overlay"><div class="app-loading-overlay__inner"><p class="app-loading-overlay__text">Overlay text</p><div class="app-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>"`;
+
+exports[`loading spinner bound to a clickable element inline spinner is hidden again when the custom hide-loading-spinner event fires 2`] = `"<button data-loading-spinner="Overlay text" id="test-button">Test</button>"`;
+
+exports[`loading spinner bound to a clickable element loads custom data from hidden fields when shown 1`] = `
+"
+      <input type="hidden" id="find-by-id" value="Hidden fields by ID">
+      <input type="hidden" name="find-by-name" value="Hidden fields by name">
+      <input type="hidden" data-attribute="find-by-data-attribute" value="Hidden fields by data attribute">
+
+      <button data-loading-spinner="by ID: {{#find-by-id}} | by name: {{[name=find-by-name]}} | by data attribute: {{[data-attribute]}}" id="test-button">Test</button><div class="app-loading-overlay"><div class="app-loading-overlay__inner"><p class="app-loading-overlay__text">by ID: Hidden fields by ID | by name: Hidden fields by name | by data attribute: Hidden fields by data attribute</p><div class="app-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>"
+`;
+
+exports[`loading spinner bound to a clickable element shows loading overlay when clicked 1`] = `"<button data-loading-spinner="Overlay text" id="test-button">Test</button><div class="app-loading-overlay"><div class="app-loading-overlay__inner"><p class="app-loading-overlay__text">Overlay text</p><div class="app-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>"`;
+
+exports[`loading spinner bound to a form shows loading overlay when submitted 1`] = `
+"<form id="test-form" data-loading-spinner="Overlay text">
+        <button type="submit" id="test-button">Test</button>
+      </form><div class="app-loading-overlay"><div class="app-loading-overlay__inner"><p class="app-loading-overlay__text">Overlay text</p><div class="app-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>
+      "
+`;

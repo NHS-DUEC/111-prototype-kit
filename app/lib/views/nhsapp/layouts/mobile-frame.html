@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% set bodyClasses = "app-iframe__page" %}
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block content %}
+
+  <div class="app-iframe__container">
+    <div class="app-iframe__header"></div>
+    <svg class="ios-notch" viewBox="-40 0 300 31">
+      <path d="M0 1V0h219v1a5 5 0 0 0-5 5v3c0 12.15-9.85 22-22 22H27C14.85 31 5 21.15 5 9V6a5 5 0 0 0-5-5z" fill-rule="evenodd"></path>
+    </svg>
+    <iframe
+      id="inlineFrameExample"
+      title="Inline Frame Example"
+      src="{{ data.frameURL | default(page.frameURL | default('/')) }}?appframe=true">
+    </iframe>
+  </div>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .app-iframe__scaler {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .app-iframe__scaler__content {
+      transform-origin: top left;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+    }
+
+    header.nhsuk-header {
+      position: static;
+      top: 0;
+      left: 0;
+      width: calc(50vw);
+      padding: 0 1.5em;
+      transform-origin: 0;
+      display: none;
+    }
+
+  </style>
+
+  <script>
+    function scaleFluidContent() {
+      const scaler = document.getElementsByClassName('app-iframe__scaler')[0];
+      const content = document.getElementsByClassName('app-iframe__scaler__content')[0];
+
+      // Measure natural content size
+      const contentWidth = content.offsetWidth;
+      const contentHeight = content.offsetHeight;
+
+      const scaleX = window.innerWidth / contentWidth;
+      const scaleY = window.innerHeight / contentHeight;
+      const scale = Math.min(scaleX, scaleY);
+
+      scaler.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', scaleFluidContent);
+    window.addEventListener('DOMContentLoaded', scaleFluidContent);
+  </script>
+{% endblock %}
+
+{% block bodyStart %}
+  <div class="app-iframe__scaler">
+    <div class="app-iframe__scaler__content">
+{% endblock bodyStart %}
+
+{% block bodyEnd %}
+      {{ super() }}
+    </div>
+    <!-- / app-iframe__scaler__content -->
+  </div>
+  <!-- / app-iframe__scaler -->
+{% endblock bodyEnd %}
+
+{% block footer %}
+{% endblock %}

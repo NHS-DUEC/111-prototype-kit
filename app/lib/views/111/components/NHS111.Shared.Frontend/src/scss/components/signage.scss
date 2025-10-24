@@ -1,0 +1,73 @@
+.app-signage {
+  list-style: none;
+  padding-left: 0;
+  padding-top: nhsuk-spacing(2);
+
+  @include nhsuk-media-query($from: desktop) {
+    column-count: 2;
+    column-gap: 32px;
+  }
+}
+
+.app-signage__item {
+  margin: 0;
+  padding-bottom: 4px;
+  break-inside: avoid;
+}
+
+.app-signage__link {
+  background: $color_nhsuk-blue;
+  display: block;
+  padding: 12px 40px 12px 24px;
+  position: relative;
+  text-decoration: none;
+
+  @include nhsuk-media-query($until: tablet) {
+    padding: 12px 34px 12px 16px;
+  }
+
+  &,
+  &:visited {
+    color: $color_nhsuk-white;
+  }
+
+  &:hover {
+    background: $color_shade-nhsuk-blue-35;
+    color: $color_nhsuk-white;
+    box-shadow: none;
+    text-decoration: underline;
+  }
+
+  &:active {
+    background: $color_shade-nhsuk-blue-50;
+    color: $color_nhsuk-white;
+  }
+
+  &:focus {
+    background: $nhsuk-focus-color;
+    box-shadow: inset 0 -4px 0 0 $nhsuk-focus-text-color;
+    color: $nhsuk-focus-text-color;
+
+    .app-signage__icon {
+      fill: $nhsuk-focus-text-color;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.app-signage__icon {
+  fill: $color_nhsuk-white;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 12px;
+  top: 14px;
+
+  @include nhsuk-media-query($until: tablet) {
+    top: 12px;
+    right: 5px;
+  }
+}

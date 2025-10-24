@@ -1,0 +1,81 @@
+
+{##########################################################################
+# this is the component example block
+##########################################################################}
+{# if we are using an example block as part of the embed #}
+{% if customExample %}
+  {% set exampleHTML %}
+    {%- block example %}{% endblock example -%}
+  {% endset %}
+{# else safe to assume we are just calling the component's macro #}
+{% else %}
+  {% set exampleHTML %}
+    {{ component | callMacroByName(options) }}
+  {% endset %}
+{% endif %}
+
+{##########################################################################
+# this is the html tab content
+##########################################################################}
+{# {% set tabHTML %}
+    <pre class="prototype-copy-block"><code class="hljs language-html">
+      {{- exampleHTML | trim | htmlFormat | highlight | safe -}}
+    </code></pre>
+{% endset %} #}
+
+{% set tabHTML %}
+  {% call prototype.codeBlock() %}
+    {{ exampleHTML | safe }}
+  {% endcall %}
+{% endset %}
+
+{##########################################################################
+# this is the nunjucks tab content
+##########################################################################}
+{% set njcontent %}
+{{- "{{ " }}{{ component -}}
+({{ options | convertToJSON(false, 2) | decode | safe -}})
+{{- "}}" }}{% endset %}
+{% set tabNJK %}<pre class="prototype-copy-block"><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
+
+
+{##########################################################################
+# build out the component example
+##########################################################################}
+<section class="prototype-component-example">
+  <div class="prototype-component-example__header">
+    <h2 class="prototype-component-example__heading nhsuk-heading-s nhsuk-u-margin-bottom-0">
+      {{ component | title }}{% if variant %} &ndash; {{ variant }}{% endif %}
+    </h2>
+    <div class="prototype-component-example__description">
+      {%- block description %}<p>{{ description }}</p>{% endblock description -%}
+    </div>
+  </div>
+  <div class="prototype-component-example__placeholder">
+    {%- block example %}{{ exampleHTML | safe }}{% endblock example -%}
+  </div>
+  <div class="prototype-component-example__footer">
+    {{
+      tabs({
+        items: [
+          {
+            label: "HTML",
+            id: "html" + (variant | d('default')) | title,
+            panel: {
+              html: tabHTML
+            }
+          },
+          {
+            label: "Nunjucks",
+            id: "nunjucks" + (variant | d('default')) | title,
+            panel: {
+              html: tabNJK
+            }
+          } if not customExample
+        ],
+        classes: 'nhsuk-u-margin-bottom-0 prototype-tabs'
+      })
+    }}
+
+  </div>
+</section>

@@ -1,0 +1,44 @@
+{% set _sublayout = {
+  file: '111/layouts/patterns/question.html',
+  question: {
+    supressHeading: true,
+    callout: {
+      position: 'bottom'
+    },
+    dateInput: {
+      id: page.question.text | default('date') | toCamelCase,
+      namePrefix: page.question.text | default('date') | toCamelCase,
+      fieldset: {
+        legend: {
+          text: page.question.text | d("Enter a date"),
+          classes: "nhsuk-label--l",
+          isPageHeading: true
+        }
+      },
+      hint: {
+        text: page.question.hint | default("For example, 9 12 1981")
+      },
+      items: [
+        {
+          name: "day",
+          classes: "nhsuk-input--width-2"
+        },
+        {
+          name: "month",
+          classes: "nhsuk-input--width-2"
+        },
+        {
+          name: "year",
+          classes: "nhsuk-input--width-4"
+        }
+      ]
+    }
+  }
+} %}
+
+{% extends _sublayout.file %}
+
+{% block question_body %}
+  {# this uses a default object from this layout file but that will be superceded by properties set within the page object #}
+  {{ dateInput(_sublayout.question.dateInput | merge(page.question.dateInput | default({}))) }}
+{% endblock question_body %}

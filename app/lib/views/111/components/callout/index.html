@@ -1,0 +1,47 @@
+{% set page = {
+  title: 'Callout',
+  layout: {
+    file: layouts.component
+  },
+  summary: 'Highlight information to help the user comprehend a question they are being asked or an action they are being told to take.'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block component_documentation %}
+
+  {% set options = {
+    component: 'callout',
+    description: 'By default callouts change background to white to make it stand out from other content on the page',
+    options: {
+      text: 'We need this in case we have to contact you for any reason'
+    }
+  } %}
+
+  {% embed componentDoc with options %}
+
+  {% embed componentDoc with options | merge({
+    variant: 'information',
+    description: 'Information callouts have further visual emphasis',
+    options: {
+      classes: 'app-callout--info'
+    }
+  }) %}
+
+  {% embed componentDoc with options | merge({
+    variant: 'alert',
+    description: 'Used to present critical information',
+    options: {
+      classes: 'app-callout--alert'
+    }
+  }) %}
+
+  {% embed componentDoc with options | merge({
+    variant: 'attention',
+    description: 'Used to present critical information',
+    options: {
+      classes: 'app-callout--attention'
+    }
+  }) %}
+
+{% endblock component_documentation %}

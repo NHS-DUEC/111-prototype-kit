@@ -1,0 +1,90 @@
+.prototype {
+  &-component-example {
+    @include nhsuk-responsive-margin(6, "bottom");
+
+    &__placeholder,
+    &__body,
+    &__footer,
+    &__header, &__description {
+      > *:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__description {
+      p {
+        @include nhsuk-font(16);
+      }
+    }
+
+    &__placeholder {
+      @include nhsuk-responsive-padding(3);
+      border: 1px solid $nhsuk-border-color;
+    }
+    &__header {
+      @include nhsuk-responsive-padding(3);
+      border: 1px solid $nhsuk-border-color;
+      border-bottom: 0;
+    }
+    &__body {
+      @include nhsuk-responsive-padding(3);
+      border: 1px solid $nhsuk-border-color;
+      border-top: 0;
+    }
+    &__footer, &__body {
+      border: 1px solid $nhsuk-border-color;
+      border-top: 0;
+    }
+  }
+
+  &-block-highlight {
+    border: 2px solid #000;
+  }
+
+  &-copy-wrapper {
+    position: relative;
+    // text-align: right;
+    background-color: white;
+    padding: 1em;
+    margin: 0 0 1em 0;
+  }
+
+  &-copy-block {
+    margin: 0 0 1em 0;
+    text-align-last: left;
+  }
+
+  &-copy-button {
+    // position: absolute;
+    // top: .3rem;
+    // right: .3rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid darkgreen;
+    color: darkgreen;
+    border-bottom-width: 4px;
+    display: block;
+    // when in tabs this button sucks so move it below
+    .prototype-tabs & {
+      position: relative;
+    }
+  }
+
+}
+
+code.app-code {
+  background-color: #fff;
+  padding: .1em .2em;
+  word-break: break-word;
+  &.app-code--block {
+    display: block;
+    padding: 0;
+  }
+}
+
+.prototype-tabs {
+  .nhsuk-tabs__panel {
+    padding: 0em;
+  }
+}

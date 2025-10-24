@@ -1,0 +1,19 @@
+.app-notification-banner {
+  background-color: #f0f4f5;
+}
+
+.app-notification-banner--highlight {
+  background-color: #fada8b;
+}
+
+.app-notification-banner__inner {
+  @include nhsuk-responsive-padding(2, 'top');
+  @include nhsuk-responsive-padding(2, 'bottom');
+  @include nhsuk-width-container;
+}
+
+.app-notification-banner__inner p {
+  @include nhsuk-font(16);
+  margin-bottom: 0;
+}
+

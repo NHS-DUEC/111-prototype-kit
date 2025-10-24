@@ -1,0 +1,243 @@
+{% set assetPath = '/nhsuk-frontend/assets' %}
+
+{% extends "template.njk" %}
+
+{% from "attributes.njk" import nhsukAttributes %}
+{%- from 'action-link/macro.njk' import actionLink %}
+{%- from 'back-link/macro.njk' import backLink %}
+{%- from 'breadcrumb/macro.njk' import breadcrumb %}
+{%- from 'button/macro.njk' import button %}
+{%- from 'card/macro.njk' import card %}
+{%- from 'character-count/macro.njk' import characterCount %}
+{%- from 'checkboxes/macro.njk' import checkboxes %}
+{%- from 'contents-list/macro.njk' import contentsList %}
+{%- from 'date-input/macro.njk' import dateInput %}
+{%- from 'details/macro.njk' import details %}
+{%- from 'do-dont-list/macro.njk' import list %}
+{%- from 'error-message/macro.njk' import errorMessage %}
+{%- from 'error-summary/macro.njk' import errorSummary %}
+{%- from 'fieldset/macro.njk' import fieldset %}
+{%- from 'footer/macro.njk' import footer %}
+{%- from 'header/macro.njk' import header %}
+{%- from 'hero/macro.njk' import hero %}
+{%- from 'hint/macro.njk' import hint %}
+{%- from 'images/macro.njk' import image %}
+{%- from 'input/macro.njk' import input %}
+{%- from 'inset-text/macro.njk' import insetText %}
+{%- from 'label/macro.njk' import label %}
+{%- from 'pagination/macro.njk' import pagination %}
+{%- from 'panel/macro.njk' import panel with context %}
+{%- from 'radios/macro.njk' import radios %}
+{%- from 'select/macro.njk' import select %}
+{%- from 'skip-link/macro.njk' import skipLink %}
+{%- from 'skip-link/macro.njk' import skipLink %}
+{%- from 'summary-list/macro.njk' import summaryList %}
+{%- from 'tables/macro.njk' import table %}
+{%- from 'tabs/macro.njk' import tabs %}
+{%- from 'tag/macro.njk' import tag %}
+{%- from 'task-list/macro.njk' import taskList %}
+{%- from 'textarea/macro.njk' import textarea %}
+{%- from 'warning-callout/macro.njk' import warningCallout %}
+
+{% import "111/macros/prototype-kit.njk" as prototype with context %}
+{% from "111/components/callout/macro.njk" import callout with context %}
+{% from "111/components/call-to-action/macro.njk" import callToAction with context %}
+{% from "111/components/footer/macro.njk" import footer as appFooter with context %}
+{% from "111/components/card/macro.njk" import card as appCard with context %}
+{% from "111/components/card/macro.njk" import service as appService with context %}
+
+{%- from "nhsapp/styles/icon/macro.njk" import nhsappIcon %}
+{% from "nhsapp/components/bottom-navigation/macro.njk" import nhsappBottomNavigation with context %}
+{% from "nhsapp/components/global-navigation-native/macro.njk" import nhsappGlobalNavigation with context %}
+
+{% set title = (page.title | default(_sublayout.title | default('title not set')) + ' &ndash; ' + serviceName) | safe %}
+{% set bodyClasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) + (' nhs-app-native' if appframe) %}
+{% set containerClasses = page.containerClasses | default('') + (' app-width-container' if appframe) %}
+{% set mainClasses = (page.mainClasses | default('')) + (' app-main-wrapper' if appframe) %}
+
+{% set _layout = {
+  width: false,
+  content_primary: {
+    id: 'content-primary',
+    width: 'two-thirds'
+  },
+  content_secondary: {
+    id: 'content-secondary',
+    width: 'one-third'
+  }
+} | merge(page.layout | d({})) %}
+
+{%- set widths = _layout.width | colWidths -%}
+{%- set primary_col_width = widths.primary_col_width -%}
+{%- set secondary_col_width = widths.secondary_col_width -%}
+
+{% block head %}
+  <link href="/css/main.css" rel="stylesheet">
+  <script src="/nhsuk-frontend/nhsuk.min.js" defer></script>
+{% endblock %}
+
+{# Set the page title #}
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block header %}
+    {% if appframe %}
+      {# <div class="app-nhs-app-back-link-shim"></div> #}
+      {{ nhsappGlobalNavigation() }}
+    {% else %}
+      {{
+        header({
+          "service": {
+            "name": serviceName,
+            "href": "/"
+          },
+          "showNav": "false",
+          "showSearch": "false"
+        })
+      }}
+    {% endif %}
+  {% endblock %}
+
+{% block main %}
+
+  {# here because we might want a full width thing before content (a hero for example) #}
+  {% block main_header %}{% endblock main_header %}
+
+  {% block main_body %}
+
+    {% if appframe %}
+      {# <div class="nhsuk-back-link nhsuk-u-margin-bottom-5">
+          <a href="/" class=" nhsuk-back-link__link">
+            <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"><path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path></svg>
+            Go back
+          </a>
+      </div> #}
+    {% endif %}
+
+    <div class="nhsuk-width-container {{ containerClasses }}">
+      {%- set showBreadCrumbs = page.breadcrumbs or _sublayout.layout.breadcrumbs or layout.layout.breadcrumbs -%}
+      {%- set showBackLink = page.layout.back or _sublayout.layout.back -%}
+
+      {%- block context_navigation -%}
+        {%- if showBreadCrumbs or showBackLink -%}
+        <div class="app-context-navigation">
+          {# this is opinionated, if there is a back link, then do not show the breadcrumbs #}
+          {% if showBreadCrumbs and not showBackLink %}
+          <div class="app-context-navigation__breadcrumbs">
+            {{ breadcrumb(page.layout.breadcrumbs | d(_sublayout.layout.breadcrumbs | d(layout.layout.breadcrumbs) | d({
+              items: [
+              {
+                href: "#",
+                text: "Level one"
+              },
+              {
+                href: "#",
+                text: "Level two"
+              }
+              ],
+              href: ".",
+              text: "Level three"
+            }))) }}
+          </div>
+          {% endif %}
+          {% if showBackLink %}
+            {% block back_link %}
+              {{ backLink({
+                href: page.layout.back.href | d(_sublayout.layout.back.href | d('javascript:history.back();')),
+                text: page.layout.back.text | d(_sublayout.layout.back.text | d('Go back'))
+              }) }}
+            {% endblock back_link %}
+          {% endif %}
+        </div>
+        {% endif %}
+      {%- endblock context_navigation -%}
+
+      <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main">
+
+        {# kept to honour the block if somebody has used it based on the prototype kit docs #}
+        {% block beforeContent %}{% endblock beforeContent %}
+
+        {% block content %}
+
+          {# a block for content before the default layout but within the container #}
+          {% block content_header %}{% endblock content_header %}
+
+          {# the main 111 content block - can be overidden (for example to create a custom grid of more than two columns) #}
+          {% block content_body %}
+
+            <div class="nhsuk-grid-row">
+
+              <div class="nhsuk-grid-column-{{ primary_col_width | d(_layout.content_primary.width) }}{{ (' ' + _layout.content_primary.classes) if _layout.content_primary.classes }}" id="{{ _layout.content_primary.id }}">
+                {%- block content_primary_header %}{% endblock content_primary_header -%}
+                {% block content_primary %}{% endblock %}
+                {%- block content_primary_footer %}{% endblock content_primary_footer -%}
+              </div>
+              <!-- /.nhsuk-grid-column-{{ _layout.content_primary.width }} -->
+
+              {% if _layout.content_secondary.show or _layout.width %}
+              <div class="nhsuk-grid-column-{{ secondary_col_width | d(_layout.content_secondary.width | d('one-third')) }}" id="{{ _layout.content_secondary.id }}">
+                {%- block content_secondary_header %}{% endblock content_secondary_header -%}
+                {% block content_secondary %}{% endblock %}
+                {%- block content_secondary_footer %}{% endblock content_secondary_footer -%}
+              </div>
+              <!-- /.nhsuk-grid-column-{{ _layout.content_secondary.width }} -->
+              {% endif %}
+
+            </div>
+            <!-- /.nhsuk-grid-column-grid-row -->
+
+          {% endblock content_body %}
+
+          {# a block for content after the default layout but within the container #}
+          {% block content_footer %}{% endblock content_footer %}
+
+        {%- endblock content -%}
+      </main>
+    </div>
+    <!-- /.nhsuk-width-container -->
+  {% endblock main_body %}
+
+  {# here because we might want a full width thing after content (for example, a thick footer) #}
+  {% block main_footer %}{% endblock main_footer %}
+
+{% endblock main %}
+
+{% block footer %}
+  {% if appframe %}
+    {{ nhsappBottomNavigation() }}
+  {% else %}
+  {{ appFooter(page.footer | d({
+    "links": [
+      {
+        "URL": "/",
+        "label": "Home"
+      },
+      {
+        "URL": "/example-templates",
+        "label": "Page templates"
+      },
+      {
+        "URL": "/prototype-admin/reset-session-data",
+        "label": "Reset session data"
+      }
+    ]
+  })) }}
+  {% endif %}
+{% endblock %}
+
+{% block bodyEnd %}
+  {% block scripts %}
+    {# Custom JavaScript files can be added to this file #}
+    {% include "includes/scripts.html" %}
+    {% include "111/includes/scripts.html" %}
+    {# For adding page specific JavsScript #}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+  {% if debug %}
+    {{ {
+      session: data,
+      request: request,
+      pathclasses: pathclasses,
+      appframe: appframe
+    } | log }}
+  {% endif %}
+{% endblock %}

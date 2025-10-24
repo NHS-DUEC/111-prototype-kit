@@ -1,0 +1,39 @@
+$callout-border-width: 4px;
+
+.app-callout {
+  @include nhsuk-responsive-padding(5);
+  margin-bottom: nhsuk-spacing(5);
+  background-color: $color_nhsuk-white;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.app-callout--alert {
+  border-top: ($callout-border-width * 2) solid $color_nhsuk-red;
+}
+
+/* Used on the modzero page, where the standard callout--alert doesn't sit nicely on the pink background without an extra border */
+.app-callout--alert-bordered {
+  border-right: 1px solid $nhsuk-border-color;
+  border-bottom: 1px solid $nhsuk-border-color;
+  border-left: 1px solid $nhsuk-border-color;
+}
+
+.app-callout--info {
+  border-left: $callout-border-width solid $color_nhsuk-grey-1;
+}
+
+.app-callout--warning {
+  border-top: $callout-border-width solid #ffb81c;
+}
+
+.app-callout--location {
+  @include nhsuk-responsive-padding(4);
+  border-left: $callout-border-width solid $color_nhsuk-grey-4;
+  border-right: 1px solid $nhsuk-border-color;
+  border-bottom: 1px solid $nhsuk-border-color;
+  border-top: 1px solid $nhsuk-border-color;
+  margin-bottom: nhsuk-spacing(4);
+}

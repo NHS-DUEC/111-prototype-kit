@@ -1,0 +1,96 @@
+// ==========================================================================
+// COMPONENTS / #GLOBAL NAVIGATION NATIVE
+// ==========================================================================
+
+.app-global-navigation-native {
+  background-color: $color_nhsuk-grey-5;
+  padding: 12px 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  // Add scrolled state with border
+  &.scrolled {
+    border-bottom: 2px solid rgba(33, 43, 50, 0.1);
+  }
+}
+
+.app-global-navigation-native__nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-global-navigation-native__nav-list {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-global-navigation-native__nav-item {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.app-global-navigation-native__nav-link {
+  display: block;
+  padding: 12px;
+
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.app-global-navigation-native__nav-icon {
+  display: block;
+  fill: $nhsuk-focus-text-color;
+  flex-shrink: 0;
+  height: 32px;
+  width: 32px;
+}
+
+.app-global-navigation-native__nav-button {
+  @include nhsuk-font-size(16);
+
+  border: 2px solid $color_nhsuk-grey-4;
+  border-radius: 8px;
+  color: $nhsuk-text-color;
+  display: block;
+  padding: 4px 8px;
+  text-decoration: none;
+
+  &:hover {
+    border-color: $color_nhsuk-grey-3;
+    color: $nhsuk-text-color;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: $nhsuk-text-color;
+
+    &:hover {
+      color: $nhsuk-text-color;
+    }
+  }
+
+  &:focus {
+    border-color: $nhsuk-focus-color;
+  }
+}
+
+.app-global-navigation-native__logo {
+  &:focus {
+    .nhsuk-logo {
+      .nhsuk-logo__background {
+        fill: $nhsuk-focus-color;
+      }
+      .nhsuk-logo__text {
+        fill: $nhsuk-focus-text-color;
+      }
+    }
+  }
+}

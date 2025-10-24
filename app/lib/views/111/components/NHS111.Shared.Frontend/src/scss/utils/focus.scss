@@ -1,0 +1,9 @@
+.app-u-no-focus-outline {
+  // Use with caution!
+  // Can be used to remove focus outlines from elements when you place focus
+  // on them with JavaScript, for screenreader focus management. But when you don't
+  // need to indicate to the user that it is focused
+  &:focus {
+    outline: 0;
+  }
+}

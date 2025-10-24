@@ -1,0 +1,27 @@
+.app-u-small-screen-only {
+  @include nhsuk-media-query($from: tablet) {
+    display: none;
+  }
+}
+
+.app-u-large-screen-only {
+  display: none;
+
+  @include nhsuk-media-query($from: tablet) {
+    display: block;
+  }
+}
+
+.app-u-js-only {
+  display: none;
+
+  .js-enabled & {
+    display: revert;
+  }
+}
+
+.app-u-js-disabled {
+  .js-enabled & {
+    display: none;
+  }
+}

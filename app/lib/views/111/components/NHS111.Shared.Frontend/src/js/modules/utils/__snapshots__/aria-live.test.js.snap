@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`aria helpers ariaAssertiveMessage correctly inserts the message into the dom: message present 1`] = `
+"
+      <div id="aria-assertive"><p>Test one</p></div>
+      <div id="aria-polite"></div>
+    "
+`;
+
+exports[`aria helpers ariaAssertiveMessage correctly inserts the message into the dom: message removed 1`] = `
+"
+      <div id="aria-assertive"></div>
+      <div id="aria-polite"></div>
+    "
+`;
+
+exports[`aria helpers ariaPoliteMessage correctly inserts the message into the dom: message present 1`] = `
+"
+      <div id="aria-assertive"></div>
+      <div id="aria-polite"><p>Test one</p></div>
+    "
+`;
+
+exports[`aria helpers ariaPoliteMessage correctly inserts the message into the dom: message removed 1`] = `
+"
+      <div id="aria-assertive"></div>
+      <div id="aria-polite"></div>
+    "
+`;

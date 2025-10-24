@@ -1,0 +1,48 @@
+.template-debug-wrapper {
+  margin: 0 !important;
+}
+
+.template-debug-enabled {
+  .template-debug-wrapper {
+    outline: 2px dotted #333;
+    padding: 20px 10px 10px 10px;
+    position: relative;
+    margin: 10px !important;
+
+    &::before {
+      background-color: #333;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0 5px;
+      font-size: 10px;
+      height: 15px;
+      line-height: 15px;
+      content: attr(data-template-filename);
+    }
+  }
+}
+
+.template-debug-toggle {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+
+  label {
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    background-color: $nhsuk-button-color;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    padding: 2px;
+  }
+
+  input {
+    @include visually-hidden();
+  }
+}

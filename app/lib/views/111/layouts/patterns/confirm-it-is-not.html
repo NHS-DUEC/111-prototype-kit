@@ -1,0 +1,94 @@
+{% set _sublayout = {
+  title: 'Check it’s not an emergency',
+  layout: {
+    content_primary: {
+      width: 'full'
+    }
+  }
+} %}
+
+{% extends layouts.base %}
+
+{% block content_primary %}
+  <div class="app-callout app-callout--alert app-callout--alert-bordered nhsuk-u-reading-width nhsuk-u-margin-bottom-2">
+
+    <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-4 app-u-color-red">{{ page.heading.text | default((page.title) | default(_sublayout.title)) }}</h1>
+    <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-3">{{ page.subheading.text | default("Call 999 now for any of these:") }}</h2>
+
+    {% block content_primary_body %}
+      {% block custom_list %}
+
+      {% set listFromPage = page.list | d({}) %}
+
+        {% set list = {
+          items: [
+            {
+              "title": "signs of a heart attack",
+              "text": "chest pain, pressure
+              , heaviness, tightness or squeezing across the chest"
+            },
+            {
+              "title": "signs of a stroke",
+              "text": "face dropping on one side, can’t hold both arms up, difficulty speaking"
+            },
+            {
+              "title": "sudden confusion (delirium)",
+              "text": "cannot be sure of own name or age"
+            },
+            {
+              "title": "suicide attempt",
+              "text": "by taking something or self-harming"
+            },
+            {
+              "title": "severe difficulty breathing",
+              "text": "not being able to get words out, choking or gasping"
+            },
+            {
+              "title": "heavy bleeding",
+              "text": "spraying, pouring or enough to make a puddle"
+            },
+            {
+              "title": "severe injuries",
+              "text": "after a serious accident"
+            },
+            {
+              "title": "seizure (fit)",
+              "text": "shaking or jerking because of a fit, or unconscious (can’t be woken up)"
+            },
+            {
+              "title": "sudden, rapid swelling",
+              "text": "of the lips, mouth, throat or tongue"
+            },
+            {
+              "title": "labour or childbirth",
+              "text": "waters breaking, more frequent intense cramps (contractions), baby coming, or just born"
+            }
+          ]
+        } %}
+        {% if page.list.append %}
+          {% set listObject = list | mergeAppendArrays(page.list | d({})) %}
+        {% else %}
+          {% set listObject = list | merge(page.list | d({})) %}
+        {% endif %}
+        <ul class="nhsuk-list nhsuk-list--bullet app-two-tone-list">
+          {% for item in listObject.items %}
+            <li>
+              <b class="app-two-tone-list__highlight">{{ item.title }}&nbsp;</b>
+              <br aria-hidden="true">
+              {{ item.text }}
+            </li>
+          {% endfor %}
+        </ul>
+
+      {% endblock custom_list %}
+
+      {% block custom_assistive_content %}
+        <p>Deaf people can use 18000 to contact 999 using text relay.</p>
+      {% endblock custom_assistive_content %}
+
+      <a href="{{ page.nextLink.url | d('#') }}" class="nhsuk-button nhsuk-u-margin-top-2 nhsuk-u-margin-bottom-2">{{ page.nextLink.text | default('I have none of these') }}</a>
+
+    {% endblock content_primary_body %}
+
+  </div>
+{% endblock content_primary %}

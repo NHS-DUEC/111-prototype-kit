@@ -1,0 +1,54 @@
+{% set _sublayout = {
+  title: 'Check your symptoms'
+} %}
+
+{% extends page.layout.file | d(layouts['base']) %}
+
+{% block content_primary %}
+
+  <h1>
+    <span class="nhsuk-caption-l">111 online</span>
+    Check your symptoms
+  </h1>
+
+  <p class="nhsuk-body-l">
+    If you’re worried about a symptom, answer some questions and we will tell you what do do next.
+  </p>
+  <p>
+    Depending on your symptoms, we might advise you to:
+  </p>
+
+  <ul>
+    <li>call 999 or go to A&E in an emergency</li>
+    <li>go to an urgent treatment centre</li>
+    <li>see an evening and weekend (out-of-hours) GP</li>
+    <li>book a callback from a nurse</li>
+    <li>get urgent specialist support, for dental or mental health problems</li>
+    <li>contact your own GP surgery</li>
+    <li>see a pharmacist for help with a minor illness</li>
+    <li>look after yourself at home</li>
+  </ul>
+
+  <a href="{{ page.startLink | default(_sublayout.startLink | default('#')) }}" class="nhsuk-button">
+    Start now
+  </a>
+
+  <div class="nhsuk-card">
+    <div class="nhsuk-card__content">
+      <p>
+        <a href="/edge">Call 111</a>
+        if you cannot use the online service because you:
+      </p>
+      <ul>
+        <li>need help for a child under 5</li>
+        <li>have complex problems caused by an existing medical condition</li>
+        <li>need to get end-of-life care</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    <a href="/edge">Other ways to contact 111 if you have a hearing problem or need help in other languages</a>
+  </p>
+
+{% endblock content_primary %}

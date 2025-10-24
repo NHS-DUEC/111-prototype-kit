@@ -1,0 +1,47 @@
+.app-service-details {
+  margin: nhsuk-spacing(5) 0;
+  background-color: $color_nhsuk-white;
+  border-left: $callout-border-width solid $color_nhsuk-grey-1;
+
+  @include nhsuk-media-query($from: desktop) {
+    display: flex;
+  }
+}
+
+.app-service-details__content {
+  padding: nhsuk-spacing(3) nhsuk-spacing(5) nhsuk-spacing(3) nhsuk-spacing(3);
+
+  @include nhsuk-media-query($from: desktop) {
+    max-width: 40%;
+    min-width: 320px;
+  }
+}
+
+.app-service-details__map {
+  height: 400px;
+  padding: nhsuk-spacing(1);
+
+  @supports (aspect-ratio: auto) {
+    width: auto;
+    height: auto;
+    aspect-ratio: 1;
+    flex-grow: 1;
+
+    @include nhsuk-media-query($from: desktop) {
+      aspect-ratio: 3/2;
+    }
+  }
+}
+
+.app-service-details__map__img {
+  @supports (object-fit: cover) {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+}
+
+.app-service-details__map__gmap {
+  height: 100%;
+}

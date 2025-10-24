@@ -1,0 +1,9 @@
+.app-callout {
+  &__heading {
+    margin: 0;
+  }
+  &--attention {
+    border: $callout-border-width*2 solid #005eb8;
+    padding: 2em;
+  }
+}

@@ -1,0 +1,53 @@
+<footer role="contentinfo">
+  <div class="nhsuk-footer-container">
+    <div class="nhsuk-width-container">
+      <h2 class="nhsuk-u-visually-hidden">Support links</h2>
+      <div class="nhsuk-footer app-footer
+        {%- if params.classes %} {{ params.classes }}{% endif %}" {{- nhsukAttributes(params.attributes) }}>
+
+        <div class="nhsuk-u-reading-width">
+
+          {{ insetText({
+            html: "<p class='nhsuk-u-margin-bottom-0'>Always follow any medical advice you’ve already been given by your doctor.<p>",
+            classes: "nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-4 nhsuk-u-padding-top-2 nhsuk-u-padding-bottom-2 app-footer__inset-text"
+          }) }}
+
+          <hr class="nhsuk-section-break nhsuk-section-break--m nhsuk-section-break--visible app-footer__section-break">
+
+          <div class="app-u-reading-width-16">
+            <p class="nhsuk-body-s">
+              This website only stores the cookies that are needed to make it work. Read more about
+              <a href="/edge" id="cookie-link">how we use cookies<span class="nhsuk-u-visually-hidden">
+                  (opens in a new tab)</span></a>.
+            </p>
+            <span class="nhsuk-u-visually-hidden">The following links open in a new tab:</span>
+            <ul class="nhsuk-list nhsuk-body-s">
+              <li>
+                <a data-test-id="footer-privacy-statement-link" target="_blank" class="app-footer__link" data-event-trigger="click" data-event-value="Footer: Privacy" href="/Help/Privacy">Privacy statement</a>
+              </li>
+              <li>
+                <a data-test-id="footer-terms-and-conditions-link" target="_blank" class="app-footer__link" data-event-trigger="click" data-event-value="Footer: Terms" href="/Help/Terms">Terms and conditions</a>
+              </li>
+              <li>
+                <a data-test-id="footer-accessibility-statement-link" target="_blank" class="app-footer__link" data-event-trigger="click" data-event-value="Footer: Accessibility" href="/Help/Accessibility">Accessibility statement</a>
+              </li>
+            </ul>
+          </div>
+
+          <hr class="nhsuk-section-break nhsuk-section-break--m nhsuk-section-break--visible app-footer__section-break">
+
+          <p class="nhsuk-body-s" data-test-id="medical-device-text">
+            <svg class="app-footer__ukca-mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 -.012 5076.27 5071.462" aria-hidden="true">
+              <path fill="#4c6272" d="M1509.72 2747.03H814.711C365.48 2747.03 0 3107.61 0 3550.83v1520.61h528.281V3557.93c0-155.84 131.676-282.63 293.528-282.63h680.801c161.85 0 293.53 126.79 293.53 282.63v1513.51h528.28V3550.83c0-443.22-365.47-803.8-814.7-803.8m3566.55 2324.41h-683.14l-1117.83-879.7v879.71h-528.27V2747.03h528.27v885.5l1117.76-885.5h680.29L3602.91 3911.94l1473.36 1159.5M2324.42-.012H803.816C360.594-.012 0 372.57 0 821.801v680.809c0 449.23 360.594 821.8 803.816 821.8H2324.42v-528.27H810.914c-155.844 0-282.633-131.68-282.633-293.53V821.801c0-161.84 126.789-293.52 282.633-293.52H2324.42V-.012M3275.3 1056.58v456.95c0 155.84 131.68 282.64 293.53 282.64h680.81c161.85 0 293.53-126.8 293.53-282.64v-456.95zm981.44 1267.86h-695.01c-449.23 0-814.7-360.59-814.7-803.81V-.012h528.27V528.31h1267.87V-.011h528.27V1520.63c0 443.22-365.47 803.81-814.7 803.81" transform="scale(1 -1)" transform-origin="center"></path>
+            </svg>
+            NHS 111 online is a
+            <a href="https://digital.nhs.uk/services/nhs-111-online/nhs-111-online-is-a-class-1-medical-device" target="_blank" rel="noopener" data-event-trigger="click" data-event-value="Footer: Class 1 medical device">Class 1 medical device<span class="nhsuk-u-visually-hidden">
+                (opens in a new tab)</span></a>.
+          </p>
+        </div>
+
+      </div>
+      {# close nhsuk-width-container #}
+    </div>
+    {# close nhsuk-footer-container #}
+  </footer>

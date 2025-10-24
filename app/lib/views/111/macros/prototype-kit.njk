@@ -1,0 +1,101 @@
+{%- from 'tabs/macro.njk' import tabs %}
+
+{#
+# renderComponent macro
+# ##########################################################
+# Used for rendering a component in a consistent way for
+# documenting why, when and how to use a component
+######################################################### #}
+{% macro _component(params) %}
+    <section class="prototype-component-example">
+      <div class="prototype-component-example__header">
+        <h2 class="prototype-component-example__heading nhsuk-heading-s nhsuk-u-margin-bottom-0">
+          {{ params.name }} &ndash; {{ params.variant }}
+        </h2>
+        {% if params.description.html %}
+          {{ params.description.html | safe }}
+        {% else %}
+          <p>{{ params.description }}</p>
+        {% endif %}
+      </div>
+      <div class="prototype-component-example__placeholder">
+        {{ params.html | safe }}
+      </div>
+      {# {% if params.description %}
+      <div class="prototype-component-example__body">
+        {% if params.description.html %}
+          {{ params.description.html | safe }}
+        {% else %}
+          <p>{{ params.description }}</p>
+        {% endif %}
+      </div>
+      {% endif %} #}
+      <div class="prototype-component-example__footer">
+        {% set tabHTML %}
+        <pre><code class="hljs language-html">
+          {{- params.html | trim | htmlFormat | highlight | safe -}}
+        </code></pre>
+        {% endset %}
+        {% set njcontent %}
+            {{- "{{ " }}{{ params.name | lower -}}
+            ({{ params.options | convertToJSON(false, 2) | decode | safe -}})
+          {{- "}}" }}{% endset %}
+        {% set tabNJK %}<pre><code class="hljs language-twig">{{ njcontent | highlight('twig') | decode | safe }}</code></pre>{% endset %}
+        {{
+          tabs({
+            items: [
+              {
+                label: "HTML",
+                id: "html" + params.variant,
+                panel: {
+                  html: tabHTML
+                }
+              },
+              {
+                label: "Nunjucks",
+                id: "nunjucks" + params.variant,
+                panel: {
+                  html: tabNJK
+                }
+              }
+            ],
+            classes: 'nhsuk-u-margin-bottom-0'
+          })
+        }}
+      </div>
+    </section>
+{% endmacro %}
+
+{#
+# displayComponent macro
+# ##########################################################
+# Used for rendering a component in a consistent way for
+# documenting why, when and how to use a component
+######################################################### #}
+{% macro displayComponent(params) %}
+  {% if caller %}
+    {% set caller_contents %}
+      {{ caller() }}
+    {% endset %}
+    {% call _component({
+      name: params.name,
+      variant: params.variant,
+      options: params.options,
+      description: params.description,
+      html: caller_contents
+    }) %}
+    {% endcall %}
+  {% else %}
+    <p>This displayComponent macro needs to used with a call block</p>
+  {% endif %}
+{% endmacro %}
+
+{% macro repeat(times) %}
+  {% for i in range(times) %}
+    {{ caller() }}
+  {% endfor %}
+{% endmacro %}
+
+{%- macro codeBlock() -%}
+  <pre class="prototype-copy-block"><code class="app-code app-code--block hljs {{ syntax | d('language-twig') }}" style="display:block;">{{- caller() | dedent | trim | highlight(syntaxAlt | d(syntax | d('twig'))) | safe -}}</code></pre>
+{% endmacro %}

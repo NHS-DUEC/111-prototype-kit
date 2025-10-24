@@ -1,0 +1,46 @@
+.app-inline-spinner {
+  color: $color_nhsuk-white;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  margin: 0 !important; // Because of the lobotomised owl. Get rid of this when we can
+}
+
+.app-inline-spinner span {
+  transform-origin: 15px 15px;
+  animation: app-inline-spinner 1.2s linear infinite;
+  display: block;
+  margin: 0 !important; // Because of the lobotomised owl. Get rid of this when we can
+}
+
+.app-inline-spinner span:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 13px;
+  width: 4px;
+  height: 8px;
+  border-radius: 20%;
+  background: $color_nhsuk-white;
+}
+
+@for $i from 0 through 11 {
+  .app-inline-spinner span:nth-child(#{$i + 1}) {
+    transform: rotate(0deg + 30 * $i);
+    animation-delay: -1.1s + $i * 0.1;
+  }
+}
+
+@keyframes app-inline-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

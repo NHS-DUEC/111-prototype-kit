@@ -1,0 +1,38 @@
+body[class*="module-zero"] {
+  background-color: #FAE9E8!important; // 10% tint of NHS red
+}
+
+.module-zero-container {
+  position: relative;
+  background-color: $color_nhsuk-white;
+  @include nhsuk-responsive-margin(3, 'bottom');
+  @include nhsuk-responsive-padding(5, 'top');
+  @include nhsuk-responsive-padding(5, 'right');
+  @include nhsuk-responsive-padding(3, 'bottom');
+  @include nhsuk-responsive-padding(5, 'left');
+  border: 1px solid $color_nhsuk-grey-4;
+  border-top: 0;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    right: -1px;
+    content: '';
+    border-top: 8px solid $color_nhsuk-red;
+  }
+
+  .nhsuk-caption-l {
+    color: $nhsuk-text-color;
+  }
+  .nhsuk-heading-xl {
+    color: $color_nhsuk-red;
+  }
+  li {
+    color: #4D555B; // 80% tint of $nhsuk-text-color
+  }
+  li b {
+    color: $nhsuk-text-color;
+    display: block;
+  }
+}

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inline spinner bound to a clickable element doesn't show spinner when conditional spinner evaluates to false 1`] = `
+"
+      <button data-inline-spinner="" data-inline-spinner-condition="#conditional-element-which-doesnt-exist" id="test-button">Test</button>
+      "
+`;
+
+exports[`inline spinner bound to a clickable element inline spinner is hidden again when pageshow event fires 1`] = `"<button data-inline-spinner="" id="test-button" disabled="">Please wait<span class="app-inline-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></button>"`;
+
+exports[`inline spinner bound to a clickable element inline spinner is hidden again when pageshow event fires 2`] = `"<button data-inline-spinner="" id="test-button">Test</button>"`;
+
+exports[`inline spinner bound to a clickable element shows inline spinner when clicked 1`] = `"<button data-inline-spinner="" id="test-button" disabled="">Please wait<span class="app-inline-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></button>"`;
+
+exports[`inline spinner bound to a clickable element shows spinner and correctly sets / unsets double click prevention 1`] = `"<button data-inline-spinner="" data-module="nhsuk-button" data-prevent-double-click="" id="test-button" disabled="">Please wait<span class="app-inline-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></button>"`;
+
+exports[`inline spinner bound to a clickable element shows spinner when conditional spinner evaluates to true 1`] = `
+"
+      <button data-inline-spinner="" data-inline-spinner-condition="#conditional-element-which-exists" id="test-button" disabled="">Please wait<span class="app-inline-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></button>
+      <div id="conditional-element-which-exists"></div>
+      "
+`;

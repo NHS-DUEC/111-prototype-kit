@@ -1,0 +1,30 @@
+/**
+ * Custom homepage specific modification to the nhsuk-expander-group
+ * Not the cleanest implementation ever, but it's not anticipated that this be used in many other places
+ */
+.app-expander-group--homepage {
+  .nhsuk-expander {
+    @include nhsuk-media-query($until: tablet) {
+      & {
+        margin-bottom: 0;
+      }
+
+      &.app-expander--mobile-highlight {
+        border-width: 0 0 2px 0;
+
+        .nhsuk-details__summary-text {
+          @include nhsuk-typography-weight-bold;
+        }
+      }
+
+      &:not(.app-expander--mobile-highlight) {
+        border-width: 0 0 1px 0;
+
+        &,
+        .nhsuk-details__summary {
+          background: transparent;
+        }
+      }
+    }
+  }
+}

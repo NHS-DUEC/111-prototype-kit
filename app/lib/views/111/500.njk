@@ -1,0 +1,9 @@
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block content_primary %}
+  <h1 class="nhsuk-heading-l">Internal server error</h1>
+  {% call callout() %}
+     <p>{{ message }}</p>
+  {% endcall %}
+  <p><a href="/">Go to Home</a></p>
+{% endblock %}
