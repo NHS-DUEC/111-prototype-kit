@@ -39,7 +39,7 @@
   }
 
   &:active {
-    background: $color_shade-nhsuk-blue-50;
+    background: nhsuk-shade(nhsuk-colour("green"), 50%);
     color: $color_nhsuk-white;
   }
 

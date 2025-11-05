@@ -24,6 +24,7 @@ dotenv.config({
 
 // Local dependencies
 const config = require('./app/config')
+const appUtils = require('./app/lib/utils')
 const locals = require('./app/locals')
 const routes = require('./app/routes')
 const exampleTemplatesRoutes = require('./lib/example_templates_routes')
@@ -193,10 +194,10 @@ app.set('query parser', 'extended')
 app.set('trust proxy', 1)
 
 // Middleware to serve static assets
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/nhsuk-frontend', express.static(path.join(__dirname, 'node_modules/nhsuk-frontend/packages')))
-app.use('/nhsuk-frontend', express.static(path.join(__dirname, 'node_modules/nhsuk-frontend/dist')))
-app.use('/nhsapp-frontend', express.static(path.join(__dirname, 'node_modules/nhsapp-frontend/dist')))
+app.use(express.static(join(__dirname, 'public')));
+app.use('/nhsuk-frontend', express.static(join(__dirname, 'node_modules/nhsuk-frontend/packages')))
+app.use('/nhsuk-frontend', express.static(join(__dirname, 'node_modules/nhsuk-frontend/dist')))
+app.use('/nhsapp-frontend', express.static(join(__dirname, 'node_modules/nhsapp-frontend/dist')))
 
 // Use public folder for static assets
 app.use(express.static(join(__dirname, 'public')))
