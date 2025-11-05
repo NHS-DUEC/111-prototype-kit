@@ -32,7 +32,7 @@
   }
 
   &:hover {
-    background: $color_shade-nhsuk-blue-35;
+    background: nhsuk-shade(nhsuk-colour("green"), 35%);
     color: $color_nhsuk-white;
     box-shadow: none;
     text-decoration: underline;

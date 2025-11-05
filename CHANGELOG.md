@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+- Upgrade NHS frontend from 10.0 to 10.1
+
+## 7.1.0 - 20 October 2025
+
+### :new: **New features**
+
+- Add a filter for formatting NHS numbers with spaces ([PR ](https://github.com/nhsuk/nhsuk-prototype-kit/pull/663))
+
+### :wrench: **Fixes**
+
+- Fix Browsersync in Codespaces
+- Fix nested query strings not saving correctly ([PR #645](https://github.com/nhsuk/nhsuk-prototype-kit/pull/645), Fixes [#644](https://github.com/nhsuk/nhsuk-prototype-kit/issues/644))
+
+## 7.0.1 - 5 September 2025
+
 :wrench: **Fixes**
 
 - Fix NHS.UK frontend allowed paths on password page
