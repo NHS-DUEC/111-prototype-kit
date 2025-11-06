@@ -28,6 +28,6 @@ module.exports = {
 
 	// alias the paths to common embed templates
 	displayComponentPath: '111/embeds/display_component.html',
-	codeBlockPath: '111/embeds/code_block.html',
+	codeBlockPath: '111/embeds/code_block.html'
 
-};
+}
