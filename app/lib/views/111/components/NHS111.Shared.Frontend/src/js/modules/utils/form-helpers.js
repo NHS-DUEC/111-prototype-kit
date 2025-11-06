@@ -42,6 +42,21 @@ export function trackOriginalAria(form) {
   );
 }
 
+export function normaliseErrorSummary(ErrorSummary) {
+  if (typeof ErrorSummary === "function") {
+    return ErrorSummary;
+  }
+
+  if (
+    ErrorSummary &&
+    typeof ErrorSummary.initErrorSummary === "function"
+  ) {
+    return (...args) => ErrorSummary.initErrorSummary(...args);
+  }
+
+  return () => {};
+}
+
 export function formError(
   form,
   ErrorSummary,
@@ -72,10 +87,19 @@ export function formError(
     previousErrorSummary.remove();
   }
 
+  const initialiseErrorSummary = normaliseErrorSummary(ErrorSummary);
   const errorSummary = template.content;
 
   form.prepend(errorSummary);
-  ErrorSummary();
+  initialiseErrorSummary();
+
+  const errorSummaryElement = form.querySelector(
+    "[data-test-id=\"feedback-error-summary\"]"
+  );
+  if (errorSummaryElement) {
+    errorSummaryElement.setAttribute("tabindex", "-1");
+    errorSummaryElement.focus();
+  }
 
   const field = form.querySelector(`#${fieldId}`);
   const formGroup = field.closest(".nhsuk-form-group");

@@ -13,20 +13,22 @@ import { initInlineSpinners } from "./modules/inline-spinner";
 import { initInterstitialForm } from "./modules/interstitial-form";
 import initLoadingSpinners from "./modules/loading-spinner";
 import { initServiceAuditing } from "./service-auditing";
+import { normaliseErrorSummary } from "./modules/utils/form-helpers";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const initialiseErrorSummary = normaliseErrorSummary(ErrorSummary);
   // Initialise nhsuk-frontend modules
   Button();
   CharacterCount();
   Details();
-  ErrorSummary();
+  initialiseErrorSummary();
 
   // Initialise third party modules
   autosize(document.querySelectorAll("[data-autosize]"));
 
   // Initialise custom modules
   initClickEvents();
-  initFeedback(ErrorSummary);
+  initFeedback(initialiseErrorSummary);
   initLoadingSpinners();
   initInlineSpinners();
   initServiceAuditing();

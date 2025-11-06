@@ -8,7 +8,7 @@ export class FeedbackForm {
     this.formSections = this.form.querySelectorAll(
       "[data-feedback-form-section]"
     );
-    this.ErrorSummary = ErrorSummary;
+    this.ErrorSummary = formHelpers.normaliseErrorSummary(ErrorSummary);
   }
 
   init() {
