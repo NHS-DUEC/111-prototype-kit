@@ -8,7 +8,7 @@ export class EmailSurveyForm {
     );
     this.button = this.form.querySelector("[data-email-survey-submit]");
     this.cancelButton = this.form.querySelector("[data-email-survey-cancel]");
-    this.ErrorSummary = ErrorSummary;
+    this.ErrorSummary = formHelpers.normaliseErrorSummary(ErrorSummary);
   }
 
   init() {

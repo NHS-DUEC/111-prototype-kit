@@ -84,7 +84,9 @@ describe("email survey", () => {
 
       initSurvey(ErrorSummary);
 
-      document.querySelector("form").submit();
+      document
+        .querySelector("form")
+        .dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
 
       expect(submitHandlerCalled).toEqual(true);
 

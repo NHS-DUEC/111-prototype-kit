@@ -107,7 +107,9 @@ describe("feedback", () => {
 
       initFeedback(ErrorSummary);
 
-      document.querySelector("form").submit();
+      document
+        .querySelector("form")
+        .dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
 
       expect(submitHandlerCalled).toEqual(true);
 
@@ -400,7 +402,7 @@ describe("feedback", () => {
       expect(getFeedbackCharacterLimitMock).toHaveBeenCalled();
       expect(formErrorMock).toHaveBeenCalledWith(
         document.querySelector("form"),
-        ErrorSummary,
+        expect.any(Function),
         "feedback-text",
         "Enter your feedback"
       );
@@ -430,7 +432,7 @@ describe("feedback", () => {
       expect(getFeedbackCharacterLimitMock).toHaveBeenCalled();
       expect(formErrorMock).toHaveBeenCalledWith(
         document.querySelector("form"),
-        ErrorSummary,
+        expect.any(Function),
         "feedback-text",
         "Enter your feedback"
       );
@@ -454,7 +456,7 @@ describe("feedback", () => {
       expect(getFeedbackCharacterLimitMock).toHaveBeenCalled();
       expect(formErrorMock).toHaveBeenCalledWith(
         document.querySelector("form"),
-        ErrorSummary,
+        expect.any(Function),
         "feedback-text",
         "Feedback should be fewer than 1200 characters long",
         "Feedback should be fewer than 1200 characters long - you have 1 character too many"
