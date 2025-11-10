@@ -1,56 +1,42 @@
 {% set page = {
-  title: 'Home'
+  title: 'Home',
+  layout: {
+    content_secondary: {
+      show: true
+    }
+  }
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
+{% block content_header %}
+  <h1 class="nhsuk-heading-l">
+    111 online 'Emergency Prescriptions'
+  </h1>
+{% endblock content_header %}
+
 {% block content_primary %}
 
-  <!-- You can delete the lines below -->
-  <h2 class="nhsuk-heading-l">
-    NHS prototype kit
-    <span class="nhsuk-caption-xl nhsuk-caption--bottom">Version
-      {{version}}</span>
-  </h2>
+  <p>This is a prototype developed by a team within NHS England's Digital Urgent and Emergency Care directorate who are working to solve the following problems:</p>
 
-  <hr>
-
-  <h1 class="nhsuk-heading-xl">
-    {{ serviceName }}
-  </h1>
-
-  <p>Set the service name for your prototype by editing
-    <strong>/app/config.js</strong>.</p>
-
-  <p>
-    This is the index page for your prototype. You can find it at
-    <strong>/app/views/index.html</strong>.
-  </p>
-
-  <hr>
-
-  <h2 class="nhsuk-heading-l">
-    Get started
-  </h2>
-
-  <ul class="nhsuk-list nhsuk-list--bullet">
+  <ul class="nhsuk-list nhsuk-list--number">
     <li>
-      <a href="https://prototype-kit.service-manual.nhs.uk/how-tos">NHS prototype kit guides</a>
-      – including a tutorial
+      Reduce the number of avoidable emergency prescription referrals from 111 online.
     </li>
     <li>
-      <a href="https://service-manual.nhs.uk/design-system">NHS digital service manual</a>
-      – for code snippets and guidance on using NHS styles, components and patterns
+      Prevent intentional and unintentional overuse of emergency prescription referrals.
     </li>
   </ul>
 
-  <p>
-    There is a selection of
-    <a href="/example-templates">example page templates</a>
-    in
-    <strong>/lib/example-templates/</strong>. To use these, copy and paste them into
-    <strong>/app/views/</strong>.
-  </p>
-  <!-- End of content -->
-
 {% endblock %}
+
+{% block content_secondary %}
+  <ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+      <a href="https://nhsd-confluence.digital.nhs.uk/spaces/1O/pages/1191510714/111+Emergency+Prescriptions+Misuse">Confluence page</a>
+    </li>
+    <li>
+      <a href="https://nhsdigitalcorporate.enterprise.slack.com/archives/C09F8H04QE6">EP Misuse on slack</a>
+    </li>
+  </ul>
+{% endblock content_secondary %}
