@@ -9,7 +9,6 @@
 
 // styles
 @import "nhsapp-frontend/dist/nhsapp/styles/icon/icons";
-@import "nhsapp-frontend/dist/nhsapp/styles/typography";
 
 // styles not currently in the npm package so have been stolen from
 // https://github.com/nhsuk/nhsapp-frontend/
@@ -19,7 +18,6 @@
 // components
 @import "nhsapp-frontend/dist/nhsapp/components/badge/badge";
 @import "nhsapp-frontend/dist/nhsapp/components/button";
-@import "nhsapp-frontend/dist/nhsapp/components/card/card";
 @import "nhsapp-frontend/dist/nhsapp/components/tag/tag";
 @import "nhsapp-frontend/dist/nhsapp/components/timeline/timeline";
 @import "nhsapp-frontend/dist/nhsapp/components/summary-list";
