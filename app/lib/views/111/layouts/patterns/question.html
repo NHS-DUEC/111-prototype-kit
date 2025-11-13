@@ -12,7 +12,7 @@
 
     {% if not question.supressHeading -%}
       <h1 class="nhsuk-heading-l">
-        {{ question.text | d(page.title | d('Question text is required for this template')) | noOrphans }}
+        {{ question.text | d(page.title | d('Question text is required for this template')) | noOrphans | safe }}
       </h1>
     {%- endif %}
 

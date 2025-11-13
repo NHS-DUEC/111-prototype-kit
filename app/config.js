@@ -23,6 +23,7 @@ module.exports = {
     'check-your-symptoms': '111/layouts/check-your-symptoms.html',
     'question': '111/layouts/patterns/question.html',
     'date': '111/layouts/patterns/date.html',
+    'yesno': '111/layouts/patterns/yes-no.html',
     'modzero': '111/layouts/patterns/confirm-it-is-not.html'
   },
 

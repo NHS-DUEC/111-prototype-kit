@@ -1,0 +1,15 @@
+{% set page = {
+  title: 'Did you send a repeat prescription request to your GP surgery?',
+  layout: {
+    file: layouts.yesno
+  },
+  question: {
+    callout: {
+      text: 'We would like to know why you ran out of medicine. Your answer will only be used to improve the service.'
+    }
+  }
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+
