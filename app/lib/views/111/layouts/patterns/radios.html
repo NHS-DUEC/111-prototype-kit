@@ -1,0 +1,31 @@
+{% set _sublayout = {
+  file: '111/layouts/patterns/question.html',
+  question: {
+    supressHeading: false,
+    radios: {
+      idPrefix: page.question.text | default(page.title | default('Question')) | toCamelCase,
+      name: page.question.text | default(page.title | default('Question')) | toCamelCase,
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "not-sure",
+          text: "I'm not sure"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }
+  }
+} %}
+
+{% extends _sublayout.file %}
+
+{% block question_body %}
+  {# this uses a default object from this layout file but that will be superceded by properties set within the page object #}
+  {{ radios(_sublayout.question.radios | merge(page.question.radios | default({}))) }}
+{% endblock question_body %}

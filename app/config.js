@@ -24,6 +24,7 @@ module.exports = {
     'question': '111/layouts/patterns/question.html',
     'date': '111/layouts/patterns/date.html',
     'yesno': '111/layouts/patterns/yes-no.html',
+    'radios': '111/layouts/patterns/radios.html',
     'modzero': '111/layouts/patterns/confirm-it-is-not.html'
   },
 
