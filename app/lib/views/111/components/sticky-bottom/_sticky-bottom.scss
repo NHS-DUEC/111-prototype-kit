@@ -1,0 +1,84 @@
+.app-u-sticky-bottom {
+    border-top: 2px solid #d8dde0;
+    bottom: 0;
+    position: sticky;
+}
+
+
+.app-banner-details {
+    list-style: none
+}
+
+.app-banner-details__summary {
+    color: #005eb8;
+    cursor: pointer;
+    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    list-style: none;
+    position: relative
+}
+
+.app-banner-details__summary:visited {
+    color: #330072
+}
+
+.app-banner-details__summary:hover {
+    color: #7c2855;
+    text-decoration: none
+}
+
+.app-banner-details__summary:focus {
+    background-color: #ffeb3b;
+    -webkit-box-shadow: 0 -2px #ffeb3b,0 4px #212b32;
+    box-shadow: 0 -2px #ffeb3b,0 4px #212b32;
+    color: #212b32;
+    outline: 4px solid transparent;
+    text-decoration: none
+}
+
+.app-banner-details__summary:focus:hover {
+    text-decoration: none
+}
+
+.app-banner-details__summary:focus:visited {
+    color: #212b32
+}
+
+.app-banner-details__summary:focus .nhsuk-icon {
+    fill: #212b32
+}
+
+.app-banner-details__summary:active {
+    color: #002f5c
+}
+
+.app-banner-details__summary::-webkit-details-marker {
+    display: none
+}
+
+.app-banner-details__summary:hover path {
+    stroke: #7c2855
+}
+
+.app-banner-details__summary:active path {
+    stroke: #002f5c
+}
+
+.app-banner-details__summary:focus path {
+    stroke: #212b32
+}
+
+.app-banner-details__icon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+[open] .app-banner-details__icon {
+    -webkit-transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%) rotate(180deg)
+}
