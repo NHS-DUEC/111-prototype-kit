@@ -16,15 +16,7 @@ router.post('/questions-flow/original/was-a-repeat-prescription-requested', func
 
 router.post('/questions-flow/original/what-happened-to-your-repeat-rx-request', function(req, res, next){
   var answer = req.session.data['whatHappenedToYourRepeatPrescriptionRequest'];
-  if(answer == 'not-approved-by-gp') {
-    console.log('Redirecting to not-approved-by-gp');
-    return res.redirect('what-happened-to-your-repeat-rx-request');
-  } else if (answer <= 1) {
-    console.log('Less than 1 year')
-    return res.redirect('under-1-notice')
-  } else {
-    console.log('Under 5')
-  }
+  next();
 });
 
 module.exports = router;

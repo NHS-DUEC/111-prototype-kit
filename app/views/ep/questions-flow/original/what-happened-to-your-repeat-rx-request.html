@@ -4,9 +4,7 @@
     compressedFlowTransition: true
   },
   bodyAttributes: {
-    "data-no-exit-transition": "true",
-    "data-transition-message": "Skipping some screens...",
-    "data-transition-delay": "1.25"
+    "data-no-exit-transition": "true"
   },
   layout: {
     file: layouts.radios
@@ -14,25 +12,26 @@
   question: {
     radios: {
       items: [
-        {
-          text: "It's not been approved yet by the GP",
-          value: "not-approved-by-gp"
-        },
-        {
-          text: "It was approved but was not ready to collect at the pharmacy",
-          value: "approved-but-not-ready"
-        },
-        {
-          text: "The medicine was not available at the pharmacy",
-          value: "not-available-at-pharmacy"
-        },
-        {
-          text: "I'm not sure",
-          value: "not-sure"
-        }
+      {
+        text: "It's not been approved yet by the GP",
+        value: "not-approved-by-gp"
+      },
+      {
+        text: "It was approved but was not ready to collect at the pharmacy",
+        value: "approved-but-not-ready"
+      },
+      {
+        text: "The medicine was not available at the pharmacy",
+        value: "not-available-at-pharmacy"
+      },
+      {
+        text: "I'm not sure",
+        value: "not-sure"
+      }
       ]
     }
-  }
+  },
+  redirectTo: "when-meds-due"
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
