@@ -11,6 +11,7 @@
  */
 function colWidthsFilter(width) {
   const widths = {
+    'full': { primary_col_width: 'full', secondary_col_width: 'full' },
     'two-thirds': { primary_col_width: 'two-thirds', secondary_col_width: 'one-third' },
     'one-third': { primary_col_width: 'one-third', secondary_col_width: 'two-thirds' },
     'one-half': { primary_col_width: 'one-half', secondary_col_width: 'one-half' },

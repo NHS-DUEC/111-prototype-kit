@@ -1,5 +1,11 @@
 {% set page = {
-  title: 'Where to get help'
+  title: 'Where to get help',
+  scripts: {
+    compressedFlowTransition: true
+  },
+  bodyAttributes: {
+    "data-no-entry-transition": "true"
+  }
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
@@ -28,7 +34,7 @@
   {{
     actionLink({
       text: "Start my request",
-      href: "#"
+      href: "./confirmation"
     })
   }}
 
