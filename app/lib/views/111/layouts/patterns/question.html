@@ -2,7 +2,7 @@
   file: '111/layouts/base.html'
 } %}
 
-{% set question = _sublayout.question | merge(page.question) %}
+{% set question = _sublayout.question | merge(page.question | default({})) %}
 
 {% extends layout.file %}
 

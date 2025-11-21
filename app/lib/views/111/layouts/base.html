@@ -58,7 +58,7 @@
 
 {# some defalt body attributes should be added here if needed #}
 {% set bodyAttributes = (_sublayout.bodyAttributes | default({
-  "data-transition-message": "Skipping forward ⏭",
+  "data-transition-message": "Skipping forward »",
   "data-transition-delay": "1"
 })) | merge(page.bodyAttributes | default({})) %}
 
