@@ -47,7 +47,19 @@ router.post('/questions-flow/version-1/what-happened-to-your-repeat-rx-request',
   if(answer == 'not-available-at-pharmacy') {
     return res.redirect('pharmacy-out-of-stock-question');
   }
+  next();
+});
 
+router.post('/questions-flow/version-1/pharmacy-out-of-stock-question', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data['didYourPharmacyTryToFindYourMedicineFromElsewhere'];
+  req.session.data.answers.didYourPharmacyTryToFindYourMedicineFromElsewhere = answer;
+
+  if(answer == 'no') {
+    return res.redirect('pharmacy-out-of-stock-info');
+  } else {
+    return res.redirect('when-meds-due');
+  }
   next();
 });
 

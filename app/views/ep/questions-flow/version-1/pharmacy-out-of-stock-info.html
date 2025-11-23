@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'If the medicine is not in stock',
+  title: 'If your medicine is not in stock',
   layout: {
     file: layouts.yesno
   },
@@ -21,7 +21,7 @@
   {% call callout({
     classes: "app-callout--attention"
   }) %}
-    <h2>{{ page.title }}</h2>
+    <h2 class="nhsuk-heading-m">{{ page.title }}</h2>
     <p>Your pharmacist should contact another nearby pharmacy.</p>
     <p>It is the pharmacist's responsibility to help you get the medicine you need.</p>
   {% endcall %}

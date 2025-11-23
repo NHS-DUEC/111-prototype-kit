@@ -102,10 +102,19 @@
     <p>Check if your pharmacy has an app or text service which tells you when your medicines are available.</p>
     <p>Some pharmacies also offer a 24 hour a day medicine dispenser, if you have trouble going during their opening times.</p>
 
-  {# {%- elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%} #}
+  {%- elif data.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
 
-    {# <h2>Next time your pharmacy is out of stock</h2> #}
-    {# <p>The pharmacist should call other local pharmacies to help find stock of your medicine if they cannot get it in time.</p> #}
+    <h2>Prepare for next time</h2>
+    <p>Set a reminder in your phone or on a calendar to remember to order your repeat prescription.</p>
+    <p>You can order it using:</p>
+
+    <ul class="nhsuk-list nhsuk-list--bullet">
+      <li><a href="https://www.nhs.uk/nhs-app/">the NHS app</a></li>
+      <li>your GP surgery website</li>
+      <li>your pharmacy app</li>
+    </ul>
+
+    <p>Allow extra time for your prescription to be approved during busy times, like Easter, Christmas and New Year.</p>
 
   {%- endif -%}
 
