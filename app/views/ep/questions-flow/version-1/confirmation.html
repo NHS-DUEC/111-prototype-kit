@@ -139,6 +139,14 @@
 
     <p>Remember to allow extra time for your prescription to be approved during public or bank holidays, like Christmas and New Year. </p>
 
+  {%- elif data.whyDidYouNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
+
+    <div class="app-section-break nhsuk-u-margin-bottom-5"></div>
+
+    <h2>Next time you travel</h2>
+
+    <p>Set a note in your phone or calendar to remember to take your medicines with you. Take extra with you for travel delays. Try to make sure you also have some at home as well for your return.</p>
+
   {%- endif -%}
 
 {%- endblock content_primary -%}
