@@ -85,7 +85,6 @@
           })
         }}
 
-
     {%- endif -%}
 
     {%- if data.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
@@ -95,19 +94,42 @@
       }) %}
 
         <h2>Help save NHS money</h2>
-        <p>The emergency prescription service is here for you when you need it but you can help save the NHS money if you get your medicine with a standard repeat prescription.</p>
-        <p>You could set a reminder in your phone or on a calendar to remember to order your repeat prescription.</p>
-        <p>You can order it using:</p>
-
-        <ul class="nhsuk-list nhsuk-list--bullet">
-          <li><a href="https://www.nhs.uk/nhs-app/">the NHS app</a></li>
-          <li>your GP surgery website</li>
-          <li>your pharmacy app</li>
-        </ul>
-
-        <p>Allow extra time for your prescription to be approved during busy times, like Easter, Christmas and New Year.</p>
 
       {% endcall %}
+
+        <p>The emergency prescription service is here for you when you need it but you can help save the NHS money if you get your medicine with a standard repeat prescription.</p>
+
+        <h3>Next time you need your medicine</h3>
+
+        {{ list({
+          title: "Do",
+          type: "tick",
+          items: [
+            {
+              text: "set a reminder in your phone or on a calendar to remember to order your repeat prescription."
+            },
+            {
+              text: "check if your pharmacy has an app or text service which tells you when to order your repeat prescription."
+            },
+            {
+              text: "allow more time during public holidays."
+            }
+          ],
+          classes: 'app-do-dont-list app-do-dont-list--multiline'
+        }) }}
+
+        {{
+          list({
+            title: "Don't",
+            type: "cross",
+            items: [
+              {
+                text: "request an emergency supply of medicine unless you genuinely need one"
+              }
+            ],
+            classes: 'nhsuk-u-margin-bottom-4'
+          })
+        }}
 
     {%- endif -%}
 
@@ -147,6 +169,6 @@
 
     {%- endif -%}
 
-  <p>You can continue with your request for an Emergency Prescription.</p>
+  <p>You can continue with your request for an emergency supply of medicine.</p>
 
 {% endblock %}
