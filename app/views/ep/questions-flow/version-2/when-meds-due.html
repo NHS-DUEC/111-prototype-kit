@@ -1,0 +1,40 @@
+{% set page = {
+  title: 'When are you next due to take your medicine?',
+  scripts: {
+    compressedFlowTransition: false
+  },
+  bodyAttributes: {
+    "data-no-exit-transition": "true"
+  },
+  layout: {
+    file: layouts.radios
+  },
+  question: {
+    callout: {
+      html: "<p>Just tell us when the next dose of the medicine you do not have is due.</p><p>We will only recommend services that are open within this time.</p>"
+    },
+    radios: {
+      items: [
+        {
+          text: "In less than 6 hours",
+          value: 'less-than-6-hours'
+        },
+        {
+          text: "In 6 to 12 hours",
+          value: '6-12-hours'
+        },
+        {
+          text: "More than 12 hours",
+          value: 'more-than-12-hours'
+        },
+        {
+          text: "I'm not sure",
+          value: 'not-sure'
+        }
+      ]
+    }
+  },
+  redirectTo: 'where-to-get-help'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}

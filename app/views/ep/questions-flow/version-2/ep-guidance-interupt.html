@@ -1,0 +1,152 @@
+{% set page = {
+  title: 'Managing your repeat prescription',
+  layout: {
+    file: layouts.yesno
+  },
+  question: {
+    supressHeading: true,
+    actions: {
+      button: {
+        text: 'Continue'
+      }
+    }
+  },
+  redirectTo: 'when-meds-due'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block question_body %}
+
+    {%- if data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-approved-by-gp' -%}
+
+        <h2>Next time you need your medicine</h2>
+
+        {{ list({
+          title: "Do",
+          type: "tick",
+          items: [
+            {
+              text: "check with your GP surgery how much time they need to approve your regular repeat prescription."
+            },
+            {
+              text: "allow more time during public holidays."
+            }
+          ],
+          classes: 'app-do-dont-list app-do-dont-list--multiline'
+        }) }}
+
+        {{
+          list({
+            title: "Don't",
+            type: "cross",
+            items: [
+              {
+                text: "request an emergency supply of medicine unless you genuinely need one"
+              }
+            ],
+            classes: 'nhsuk-u-margin-bottom-4'
+          })
+        }}
+
+    {%- endif -%}
+
+    {%- if data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'approved-but-not-ready' -%}
+
+        <h2>Next time you need your medicine</h2>
+
+        {{ list({
+          title: "Do",
+          type: "tick",
+          items: [
+            {
+              text: "check if your pharmacy has an app or text service which tells you when your medicines are available."
+            },
+            {
+              text: "check if your pharmacy offer a 24 hour a day medicine dispenser, if you have trouble going during their opening times."
+            },
+            {
+              text: "allow more time during public holidays."
+            }
+          ],
+          classes: 'app-do-dont-list app-do-dont-list--multiline'
+        }) }}
+
+        {{
+          list({
+            title: "Don't",
+            type: "cross",
+            items: [
+              {
+                text: "request an emergency supply of medicine unless you genuinely need one"
+              }
+            ],
+            classes: 'nhsuk-u-margin-bottom-4'
+          })
+        }}
+
+
+    {%- endif -%}
+
+    {%- if data.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
+
+      {% call callout({
+        classes: "app-callout--attention"
+      }) %}
+
+        <h2>Help save NHS money</h2>
+        <p>The emergency prescription service is here for you when you need it but you can help save the NHS money if you get your medicine with a standard repeat prescription.</p>
+        <p>You could set a reminder in your phone or on a calendar to remember to order your repeat prescription.</p>
+        <p>You can order it using:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li><a href="https://www.nhs.uk/nhs-app/">the NHS app</a></li>
+          <li>your GP surgery website</li>
+          <li>your pharmacy app</li>
+        </ul>
+
+        <p>Allow extra time for your prescription to be approved during busy times, like Easter, Christmas and New Year.</p>
+
+      {% endcall %}
+
+    {%- endif -%}
+
+    {%- if data.whyDidYouNotSendARepeatPrescriptionRequest == 'unable-to-contact-gp' -%}
+
+      {% call callout({
+        classes: "app-callout--attention"
+      }) %}
+
+        <h2>Other ways to order your prescription</h2>
+
+        <p>If you have difficulty contacting your GP surgery, you can order your repeat prescription using:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li><a href="https://www.nhs.uk/nhs-app/">the NHS app</a></li>
+          <li>your GP surgery website</li>
+          <li>your pharmacy app</li>
+        </ul>
+
+        <p>Remember to allow extra time for your prescription to be approved during public or bank holidays, like Christmas and New Year. </p>
+
+      {% endcall %}
+
+    {%- endif -%}
+
+    {%- if data.whyDidYouNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
+
+      {% call callout({
+        classes: "app-callout--attention"
+      }) %}
+
+        <h2>Next time you travel</h2>
+
+        <p>Set a note in your phone or calendar to remember to take your medicines with you. Take extra with you for travel delays. Try to make sure you also have some at home as well for your return.</p>
+
+      {% endcall %}
+
+    {%- endif -%}
+
+  <p>You can continue with your request for an Emergency Prescription.</p>
+
+{% endblock %}
