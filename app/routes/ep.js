@@ -87,17 +87,4 @@ router.post('/questions-flow/version-2/what-happened-to-your-repeat-rx-request',
   next();
 });
 
-router.post('/questions-flow/version-2/pharmacy-out-of-stock-question', function(req, res, next){
-  req.session.data.answers = req.session.data.answers || {};
-  var answer = req.session.data['didYourPharmacyTryToFindYourMedicineFromElsewhere'];
-  req.session.data.answers.didYourPharmacyTryToFindYourMedicineFromElsewhere = answer;
-
-  if(answer == 'no') {
-    return res.redirect('pharmacy-out-of-stock-info');
-  } else {
-    return res.redirect('when-meds-due');
-  }
-  next();
-});
-
 module.exports = router;
