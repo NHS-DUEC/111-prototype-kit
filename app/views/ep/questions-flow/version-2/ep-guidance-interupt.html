@@ -89,45 +89,31 @@
 
     {%- if data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
 
-        <h2>Next time you need your medicine</h2>
+      <h2>If your medicine is out of stock</h2>
 
-        {{ list({
-          title: "Do",
-          type: "tick",
-          items: [
-            {
-              text: "check if your pharmacy has an app or text service which tells you when your medicines are ready to collect."
-            },
-            {
-              text: "allow more time during public holidays."
-            }
-          ],
-          classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
-        }) }}
-
-        {# {{
-          list({
-            title: "Don't",
-            type: "cross",
-            items: [
-              {
-                text: "request an emergency supply of medicine unless you genuinely need one"
-              }
-            ],
-            classes: 'nhsuk-u-margin-bottom-4'
-          })
-        }} #}
-
-        <h3>If your medicine is out of stock</h3>
-{% set insetTextHtml %}
+      {% call insetText({
+        classes: 'nhsuk-u-margin-bottom-4 nhsuk-u-margin-top-4'
+      }) %}
         <p>It is the pharmacist's responsibility to help you get the medicine you need.</p>
-        {% endset %}
+      {% endcall %}
 
-        {{ insetText({
-          html: insetTextHtml
-        }) }}
+      <p>Your pharmacist should contact other local pharmacies to help find stock of your medicine if they do not have it by the time you need it.</p>
 
-        <p>Your pharmacist should contact other local pharmacies to help find stock of your medicine if they do not have it by the time you need it.</p>
+      <div class="app-section-break nhsuk-u-margin-bottom-5"></div>
+
+      <h3>Next time you need your medicine</h3>
+
+      {{ list({
+        title: "Do",
+        type: "tick",
+        items: [
+          {
+            text: "check if your pharmacy has an app or text service which tells you when your medicines are ready to collect."
+          }
+        ],
+        classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
+      }) }}
+
 
     {%- endif -%}
 
