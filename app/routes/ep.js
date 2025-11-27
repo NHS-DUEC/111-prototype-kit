@@ -84,6 +84,10 @@ router.post('/questions-flow/version-2/what-happened-to-your-repeat-rx-request',
   req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['whatHappenedToYourRepeatPrescriptionRequest'];
   req.session.data.answers.whatHappenedToYourRepeatPrescriptionRequest = answer;
+  if(answer == 'not-sure') {
+    console.log('Redirecting to what-happened-to-your-repeat-rx-request');
+    return res.redirect('when-meds-due');
+  }
   next();
 });
 
