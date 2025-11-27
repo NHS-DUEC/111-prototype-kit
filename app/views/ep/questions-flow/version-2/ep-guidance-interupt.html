@@ -49,9 +49,7 @@
           })
         }}
 
-    {%- endif -%}
-
-    {%- if data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'approved-but-not-ready' -%}
+    {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'approved-but-not-ready' -%}
 
         <h2>Next time you need your medicine</h2>
 
@@ -85,9 +83,7 @@
           })
         }}
 
-    {%- endif -%}
-
-    {%- if data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
+    {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
 
       <h2>If your medicine is out of stock</h2>
 
@@ -108,10 +104,7 @@
         classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
       }) }}
 
-
-    {%- endif -%}
-
-    {%- if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
+    {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
 
       {% call callout({
         classes: "app-callout--attention"
@@ -155,9 +148,7 @@
           })
         }}
 
-    {%- endif -%}
-
-    {%- if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'unable-to-contact-gp' -%}
+      {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'unable-to-contact-gp' -%}
 
         <h2>{{ 'Other ways to order your repeat prescription' | noOrphans | safe }}</h2>
 
@@ -169,7 +160,6 @@
           <li>your GP surgery website</li>
           <li>your pharmacy app</li>
         </ul>
-
 
         <h3>Next time you need your medicine</h3>
 
@@ -203,19 +193,55 @@
           })
         }}
 
-    {%- endif -%}
-
-    {%- if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
-
-      {% call callout({
-        classes: "app-callout--attention"
-      }) %}
+    {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
 
         <h2>Next time you travel</h2>
 
-        <p>Set a note in your phone or calendar to remember to take your medicines with you. Take extra with you for travel delays. Try to make sure you also have some at home as well for your return.</p>
+        {{ list({
+          title: "Do",
+          type: "tick",
+          items: [
+            {
+              text: "talk to your GP surgery to tell them that you might need to order earlier so that your medicine is ready to collect before you travel."
+            },
+            {
+              text: "set a reminder in your phone or on a calendar to remember to order your repeat prescription."
+            },
+            {
+              text: "take extra with you for travel delays but make sure you also have some at home as well for your return."
+            },
+            {
+              text: "allow more time during public holidays."
+            }
+          ],
+          classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
+        }) }}
 
-      {% endcall %}
+    {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'not-registered-with-a-gp' -%}
+
+        <h2>Before you need your next medicine</h2>
+
+        {{ list({
+          title: "Do",
+          type: "tick",
+          items: [
+            {
+              text: "register with a GP surgery"
+            }
+          ],
+          classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
+        }) }}
+
+        <p>You can register with a GP in a number of ways which might fit your circumstances, such as:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>with a GP surgery in your local area</li>
+          <li>{{'with a GP surgery outside local area, such as near where you work' | noOrphans | safe }}</li>
+          {# <li>when living away from home you can register as a temporary patient with a GP surgery <div class="nhsuk-hint">for example, many students choose to do this</div></li> #}
+          <li>with a GP surgery as a temporary patient, such as when living and studying away from home</li>
+        </ul>
+
+        <div class="app-section-break nhsuk-u-margin-bottom-5"></div>
 
     {%- endif -%}
 
