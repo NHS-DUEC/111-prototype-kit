@@ -91,15 +91,9 @@
 
       <h2>If your medicine is out of stock</h2>
 
-      {# {% call insetText({
-        classes: 'nhsuk-u-margin-bottom-4 nhsuk-u-margin-top-4'
-      }) %}
-      {% endcall %} #}
       <p>It is the pharmacist's responsibility to help you get the medicine you need.</p>
 
       <p>Your pharmacist should contact other local pharmacies to help find stock of your medicine if they do not have it by the time you need it.</p>
-
-      {# <div class="app-section-break nhsuk-u-margin-bottom-5"></div> #}
 
       <h3>Next time you need your medicine</h3>
 
@@ -165,11 +159,8 @@
 
     {%- if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'unable-to-contact-gp' -%}
 
-      {% call callout({
-        classes: "app-callout--attention"
-      }) %}
+        <h2>{{ 'Other ways to order your repeat prescription' | noOrphans | safe }}</h2>
 
-        <h2>Other ways to order your prescription</h2>
 
         <p>If you have difficulty contacting your GP surgery, you can order your repeat prescription using:</p>
 
@@ -179,9 +170,38 @@
           <li>your pharmacy app</li>
         </ul>
 
-        <p>Remember to allow extra time for your prescription to be approved during public or bank holidays, like Christmas and New Year. </p>
 
-      {% endcall %}
+        <h3>Next time you need your medicine</h3>
+
+        {{ list({
+          title: "Do",
+          type: "tick",
+          items: [
+            {
+              text: "set a reminder in your phone or on a calendar to remember to order your repeat prescription."
+            },
+            {
+              text: "check if your pharmacy has an app or text service which tells you when to order your repeat prescription."
+            },
+            {
+              text: "allow more time during public holidays."
+            }
+          ],
+          classes: 'app-do-dont-list app-do-dont-list--multiline'
+        }) }}
+
+        {{
+          list({
+            title: "Don't",
+            type: "cross",
+            items: [
+              {
+                text: "request an emergency supply of medicine unless you genuinely need one"
+              }
+            ],
+            classes: 'nhsuk-u-margin-bottom-4'
+          })
+        }}
 
     {%- endif -%}
 

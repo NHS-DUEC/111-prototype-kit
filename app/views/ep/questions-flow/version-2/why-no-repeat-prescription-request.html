@@ -1,7 +1,8 @@
 {% set page = {
   title: 'Why did you not send a repeat prescription request?',
   layout: {
-    file: layouts.radios
+    file: layouts.radios,
+    back: true
   },
   question: {
     radios: {
@@ -29,7 +30,7 @@
       ]
     }
   },
-  redirectTo: 'when-meds-due'
+  redirectTo: 'ep-guidance-interupt'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}

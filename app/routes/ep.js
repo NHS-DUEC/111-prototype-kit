@@ -91,4 +91,15 @@ router.post('/questions-flow/version-2/what-happened-to-your-repeat-rx-request',
   next();
 });
 
+router.post('/questions-flow/version-2/why-no-repeat-prescription-request', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data['whyDidYouNotSendARepeatPrescriptionRequest'];
+  req.session.data.answers.whyDidYouNotSendARepeatPrescriptionRequest = answer;
+  // if(answer == 'not-sure') {
+  //   console.log('Redirecting to what-happened-to-your-repeat-rx-request');
+  //   return res.redirect('when-meds-due');
+  // }
+  next();
+});
+
 module.exports = router;

@@ -1,5 +1,8 @@
 {% set layout = {
-  file: '111/layouts/base.html'
+  file: '111/layouts/base.html',
+  layout: {
+    back: true
+  }
 } %}
 
 {% set question = _sublayout.question | merge(page.question | default({})) %}

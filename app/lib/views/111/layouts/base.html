@@ -54,7 +54,7 @@
 {% set title = (page.title | default(_sublayout.title | default('title not set')) + ' &ndash; ' + serviceName) | safe %}
 {% set bodyClasses = pathclasses + (' ' if page.bodyclasses else '') + (page.bodyclasses | d('')) + (' nhs-app-native' if appframe) %}
 {% set containerClasses = page.containerClasses | default('') + (' app-width-container' if appframe) %}
-{% set mainClasses = (page.mainClasses | default('')) + (' app-main-wrapper' if appframe) %}
+{% set mainClasses = (page.mainClasses | default(_sublayout.mainClasses | default(layout.mainClasses | default('')))) + (' app-main-wrapper' if appframe) %}
 
 {# some defalt body attributes should be added here if needed #}
 {% set bodyAttributes = (_sublayout.bodyAttributes | default({
@@ -119,8 +119,9 @@
     {% endif %}
 
     <div class="nhsuk-width-container {{ containerClasses }}">
+
       {%- set showBreadCrumbs = page.breadcrumbs or _sublayout.layout.breadcrumbs or layout.layout.breadcrumbs -%}
-      {%- set showBackLink = page.layout.back or _sublayout.layout.back -%}
+      {%- set showBackLink = page.layout.back | default(_sublayout.layout.back | default(layout.layout.back)) -%}
 
       {%- block context_navigation -%}
         {%- if showBreadCrumbs or showBackLink -%}
@@ -148,7 +149,7 @@
             {% block back_link %}
               {{ backLink({
                 href: page.layout.back.href | d(_sublayout.layout.back.href | d('javascript:history.back();')),
-                text: page.layout.back.text | d(_sublayout.layout.back.text | d('Go back'))
+                text: page.layout.back.text | d(_sublayout.layout.back.text | d('Back'))
               }) }}
             {% endblock back_link %}
           {% endif %}
@@ -156,7 +157,7 @@
         {% endif %}
       {%- endblock context_navigation -%}
 
-      <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main">
+      <main class="nhsuk-main-wrapper {{ mainClasses }}{% if showBreadCrumbs or showBackLink %} nhsuk-main-wrapper--s{% endif %}" id="maincontent" role="main">
 
         {# kept to honour the block if somebody has used it based on the prototype kit docs #}
         {% block beforeContent %}{% endblock beforeContent %}
