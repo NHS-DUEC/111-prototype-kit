@@ -1,5 +1,13 @@
 {% set page = {
   title: 'Home',
+  scripts: {
+    compressedFlowTransition: true
+  },
+  bodyAttributes: {
+    "data-no-entry-transition": "true",
+    "data-transition-message": "Skipping to EP questions »",
+    "data-transition-delay": ".5"
+  },
   layout: {
     content_secondary: {
       show: true
@@ -18,13 +26,9 @@
 
 {% block content_primary %}
 
-    <p class="nhsuk-body-l">Use this service to request a limited emergency supply of a medicine you’ve completely run out of.</p>
-    <p>This must be a medicine you are prescribed regularly, through a repeat prescription.</p>
+    <p class="nhsuk-body-l">Use this service to request a limited emergency supply of medicine you have completely run out of.</p>
+    <p>This is only for medicine you're regularly prescribed on a repeat prescription.</p>
     <p>You will be charged your usual prescription fee. If you do not usually pay, it will be free.</p>
-
-    {% call insetText() %}
-      <p>Please only use this service as a last resort, because providing an emergency supply of medicine will cause increased cost and workload for the NHS.</p>
-    {% endcall %}
 
     <h2>When not to use this service</h2>
     <p>If you need medicine and also have any symptoms, call 111 and speak to an adviser instead.</p>
@@ -33,8 +37,20 @@
         <li>antibiotics for a new or recent problem</li>
         <li>controlled drugs that require identification to collect</li>
     </ul>
+    {% call insetText({
+      classes: 'nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-6'
+    }) %}
+      <p>This service does not replace your normal repeat prescription ordering service from your GP or pharmacist.</p>
+    {% endcall %}
 
-    <a role="button" href="#" class="nhsuk-button" data-module="nhsuk-button">Start now</a>
+    <a role="button" href="./was-a-repeat-prescription-requested" class="nhsuk-button" data-module="nhsuk-button">Start now</a>
+
+    {# {% call callout({
+      classes: ''
+    }) %}
+      <p>This service does not replace your normal repeat prescription ordering service from your GP or pharmacist.</p>
+      {% endcall %} #}
+
 
     <p>
         <a href="#">Other ways to contact 111 if you have a hearing problem or need help in other languages</a>
