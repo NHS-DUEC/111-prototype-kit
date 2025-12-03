@@ -105,7 +105,7 @@ router.post('/questions-flow/version-2/why-no-repeat-prescription-request', func
 // ##################################################################
 
 router.post('/questions-flow/version-3/was-a-repeat-prescription-requested', function(req, res){
-  req.session.data.answers = req.session.data.answers || {};
+  req.session.data.answers = {};
   var answer = req.session.data['didYouSendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
