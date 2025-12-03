@@ -115,15 +115,9 @@
 
     {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
 
-      {% call callout({
-        classes: "app-callout--attention"
-      }) %}
+        <h2>Managing your medicines</h2>
 
-        <h2>Help save NHS money</h2>
-
-      {% endcall %}
-
-        <p>The emergency prescription service is here for you when you need it but you can help save the NHS money if you get your medicine with a standard repeat prescription.</p>
+        <p>If you have lots of medicines it can be difficult to remember when to order. Many pharmacists let you request all your medicines at the same time, so you only order once.</p>
 
         <h3>Next time you need your medicine</h3>
 
@@ -132,13 +126,10 @@
           type: "tick",
           items: [
             {
-              text: "set a reminder in your phone or on a calendar to remember to order your repeat prescription."
+              text: "set a calendar reminder to order your repeat prescription in time"
             },
             {
-              text: "check if your pharmacy has an app or text service which tells you when to order your repeat prescription."
-            },
-            {
-              text: "allow more time during public holidays."
+              text: "try using the NHS App, your GP surgery website or your pharmacy app to order your medicine"
             }
           ],
           classes: 'app-do-dont-list app-do-dont-list--multiline'
@@ -150,7 +141,7 @@
             type: "cross",
             items: [
               {
-                text: "request an emergency supply of medicine unless you genuinely need one"
+                text: "forget over public or bank holidays, the GP and pharmacist need more time to approve and dispense medicines"
               }
             ],
             classes: 'nhsuk-u-margin-bottom-4'
