@@ -93,16 +93,21 @@
 
     {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
 
-      <h2>Next time you need your medicine</h2>
+      <h2>If your medicine is not available or out of stock</h2>
 
-      <p>Manage your repeat prescription so you do not run out of medicine.</p>
+      <p>If your medicine is not in stock, your pharmacist can check with other local pharmacies to help you find it.</p>
+
+      <h3>Next time you need your medicine</h3>
 
       {{ list({
         title: "Do",
         type: "tick",
         items: [
           {
-            text: "check if your pharmacy has an app or text service which tells you when your medicines are ready to collect."
+            text: "sign up for text alerts or app notifications (using the NHS App or your pharmacy app) so you know when your medicines are ready to collect"
+          },
+          {
+            text: "check whether your pharmacist offers a stock checking service on their app"
           }
         ],
         classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
