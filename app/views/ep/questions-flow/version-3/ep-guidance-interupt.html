@@ -193,25 +193,40 @@
 
         <h2>Next time you travel</h2>
 
+        <p>Plan ahead so you have enough medicine to travel with and when you get home.</p>
+
         {{ list({
           title: "Do",
           type: "tick",
           items: [
             {
-              text: "talk to your GP surgery to tell them that you might need to order earlier so that your medicine is ready to collect before you travel."
+              text: "check you have enough medicine to last while you're away"
             },
             {
-              text: "set a reminder in your phone or on a calendar to remember to order your repeat prescription."
+              text: "ask the GP surgery to adjust your prescription date to make sure your medicine is ready for you to take away"
             },
             {
-              text: "take extra with you for travel delays but make sure you also have some at home as well for your return."
+              text: "set a calendar reminder to order your repeat prescription in time"
             },
             {
-              text: "allow more time during public holidays."
+              text: "take a few extra days medicine with you, in case you have delays"
             }
           ],
-          classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
+          classes: 'app-do-dont-list app-do-dont-list--multiline'
         }) }}
+
+        {{
+          list({
+            title: "Don't",
+            type: "cross",
+            items: [
+              {
+                text: "forget over public or bank holidays, the GP and pharmacist need more time to approve and dispense medicines"
+              }
+            ],
+            classes: 'nhsuk-u-margin-bottom-4'
+          })
+        }}
 
     {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'not-registered-with-a-gp' -%}
 
