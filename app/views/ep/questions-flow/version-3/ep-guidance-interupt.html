@@ -59,18 +59,20 @@
 
         <h2>Next time you need your medicine</h2>
 
+        <p>Manage your repeat prescription so you do not run out of medicine.</p>
+
         {{ list({
           title: "Do",
           type: "tick",
           items: [
             {
-              text: "check if your pharmacy has an app or text service which tells you when your medicines are available."
+              text: "sign up for text alerts or app notifications (using the NHS App or your pharmacy app) so you know when your medicines are ready to collect"
             },
             {
-              text: "check if your pharmacy offer a 24 hour a day medicine dispenser, if you have trouble going during their opening times."
+              text: "check the opening times of your chosen pharmacy"
             },
             {
-              text: "allow more time during public holidays."
+              text: "ask if they have a 24 hour dispensing machine for out of hours collection"
             }
           ],
           classes: 'app-do-dont-list app-do-dont-list--multiline'
@@ -82,7 +84,7 @@
             type: "cross",
             items: [
               {
-                text: "request an emergency supply of medicine unless you genuinely need one"
+                text: "do not forget to check pharmacy opening times during public and bank holidays, as they may not be open the same times as usual"
               }
             ],
             classes: 'nhsuk-u-margin-bottom-4'
@@ -91,13 +93,9 @@
 
     {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
 
-      <h2>If your medicine is out of stock</h2>
+      <h2>Next time you need your medicine</h2>
 
-      <p>It is the pharmacist's responsibility to help you get the medicine you need.</p>
-
-      <p>Your pharmacist should contact other local pharmacies to help find stock of your medicine if they do not have it by the time you need it.</p>
-
-      <h3>Next time you need your medicine</h3>
+      <p>Manage your repeat prescription so you do not run out of medicine.</p>
 
       {{ list({
         title: "Do",
