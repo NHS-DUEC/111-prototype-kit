@@ -77,21 +77,43 @@ router.get(/(.*)/, (req, res, next) => {
 
 
 /**
- * Extracts the 'redirectTo' property from the request body.
+ * Catch-all POST route for handling redirect logic.
  *
- * @route POST /misc
- * @param {Object} req - Express request object.
- * @param {Object} req.body - The body of the request.
- * @param {string} req.body.redirectTo - The URL or path to redirect to.
- * @param {Object} res - Express response object.
- * @returns {void}
+ * Skips execution entirely when the current request path matches one of the
+ * entries in ignorePaths.
+ *
+ * Behavior:
+ * - If req.path is in ignorePaths: falls through to next middleware without redirect.
+ * - Else:
+ *   - Extracts redirectTo from req.body.
+ *   - Ignores redirectTo when it is an array or falsy.
+ *   - Redirects to the cleaned value (empty string becomes "/").
+ *
+ * @constant {string[]} ignorePaths - Exact paths to skip.
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @param {express.NextFunction} next
+ * @example
+ * // To ignore /settings and /health:
+ * const ignorePaths = ['/settings', '/health'];
  */
+const ignorePaths = [
+  '/settings',
+  '/reset',
+  '/reset-session-data',
+  '/reset-done',
+  '/password'
+];
+
 router.post(/(.*)/, (req, res, next) => {
-  let { redirectTo } = req.body;
-  req.redirectTo = redirectTo ? redirectTo : '';
+  if (ignorePaths.includes(req.path)) {
+    return next(); // skip redirect logic
+  }
+  const { redirectTo } = req.body;
+  req.redirectTo = (!Array.isArray(redirectTo) && redirectTo) ? redirectTo : '';
   next();
 }, (req, res) => {
-    return res.redirect(req.redirectTo)
+  return res.redirect(req.redirectTo || '/');
 });
 
 // supress dev tools 404
