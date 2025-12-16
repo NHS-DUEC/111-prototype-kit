@@ -97,26 +97,26 @@ router.get(/(.*)/, (req, res, next) => {
  * // To ignore /settings and /health:
  * const ignorePaths = ['/settings', '/health'];
  */
-const ignorePaths = [
-  '/settings',
-  '/reset',
-  '/reset-session-data',
-  '/reset-done',
-  '/password',
-  '/prototype-admin',
-  '/prototype-admin/password'
-];
+// const ignorePaths = [
+//   '/settings',
+//   '/reset',
+//   '/reset-session-data',
+//   '/reset-done',
+//   '/password',
+//   '/prototype-admin',
+//   '/prototype-admin/password'
+// ];
 
-router.post(/(.*)/, (req, res, next) => {
-  if (ignorePaths.includes(req.path)) {
-    return next(); // skip redirect logic
-  }
-  const { redirectTo } = req.body;
-  req.redirectTo = (!Array.isArray(redirectTo) && redirectTo) ? redirectTo : '';
-  next();
-}, (req, res) => {
-  return res.redirect(req.redirectTo || '/');
-});
+// router.post(/(.*)/, (req, res, next) => {
+//   if (ignorePaths.includes(req.path)) {
+//     return next(); // skip redirect logic
+//   }
+//   const { redirectTo } = req.body;
+//   req.redirectTo = (!Array.isArray(redirectTo) && redirectTo) ? redirectTo : '';
+//   next();
+// }, (req, res) => {
+//   return res.redirect(req.redirectTo || '/');
+// });
 
 // supress dev tools 404
 router.use('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
