@@ -197,6 +197,7 @@ app.use('/', routes);
 
 // Use 111 online application routes
 app.use('/components', require('./app/lib/routes/components'));
+app.use('/versions', require('./app/lib/routes/versions'));
 app.use('/', require('./app/lib/routes/misc'));
 
 // Automatically route pages
