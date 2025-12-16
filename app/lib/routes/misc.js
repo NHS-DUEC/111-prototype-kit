@@ -103,7 +103,8 @@ const ignorePaths = [
   '/reset-session-data',
   '/reset-done',
   '/password',
-  '/prototype-admin'
+  '/prototype-admin',
+  '/prototype-admin/password'
 ];
 
 router.post(/(.*)/, (req, res, next) => {
