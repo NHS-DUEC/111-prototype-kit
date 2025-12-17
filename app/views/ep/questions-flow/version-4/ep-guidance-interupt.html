@@ -16,11 +16,13 @@
 
 {% extends page.layout.file | d(layouts.base) %}
 
+{% set adviceHeading = "Before you continue, here's some advice" | noOrphans | safe %}
+
 {% block question_body %}
 
     {%- if data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-approved-by-gp' -%}
 
-        <h2>Before you continue, here's some advice</h2>
+        <h2>{{ adviceHeading }}</h2>
 
         <p>To help manage your repeat prescriptions so you do not run out of medicine, you can:</p>
 
@@ -39,7 +41,7 @@
 
     {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'approved-but-not-ready' -%}
 
-        <h2>Before you continue, here's some advice</h2>
+        <h2>{{ adviceHeading }}</h2>
 
         <p>To help manage your repeat prescriptions so you do not run out of medicine, you can:</p>
 
@@ -58,25 +60,21 @@
 
     {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
 
-      <h2>If your medicine is not available or out of stock</h2>
+        <h2>{{ adviceHeading }}</h2>
 
-      <p>If your medicine is not in stock, your pharmacist can check with other local pharmacies to help you find it.</p>
+        <p>If your medicine is not in stock, the pharmacist can check with other local pharmacies to help you find it.</p>
 
-      <h3>Before you continue, here's some advice</h3>
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>sign up for text alerts or app notifications on the NHS App or your pharmacy app so you know when your medicines are ready to collect</li>
+          <li>check whether your pharmacist offers a stock checking service on their app</li>
+        </ul>
 
-      {{ list({
-        title: "Do",
-        type: "tick",
-        items: [
-          {
-            text: "sign up for text alerts or app notifications (using the NHS App or your pharmacy app) so you know when your medicines are ready to collect"
-          },
-          {
-            text: "check whether your pharmacist offers a stock checking service on their app"
-          }
-        ],
-        classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
-      }) }}
+        {{
+          callout({
+            text: 'Allow more time to order your prescription over bank holidays and weekends',
+            classes: 'app-callout--info'
+          })
+        }}
 
     {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
 
@@ -84,7 +82,7 @@
 
         <p>If you have lots of medicines it can be difficult to remember when to order. Many pharmacists let you request all your medicines at the same time, so you only order once.</p>
 
-        <h3>Before you continue, here's some advice</h3>
+        <h3>{{ adviceHeading }}</h3>
 
         {{ list({
           title: "Do",
@@ -125,7 +123,7 @@
           <li>your pharmacy app</li>
         </ul>
 
-        <h3>Before you continue, here's some advice</h3>
+        <h3>{{ adviceHeading }}</h3>
 
         {{ list({
           title: "Do",
