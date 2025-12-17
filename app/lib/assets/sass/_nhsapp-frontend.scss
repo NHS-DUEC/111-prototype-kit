@@ -34,12 +34,9 @@
 
 .nhs-app-native {
   .nhsuk-back-link {
-    margin-bottom: 12px;
-    padding-top: nhsuk-spacing(1);
-
+    margin-bottom: nhsuk-spacing(3);
     @include nhsuk-media-query($from: desktop) {
-      margin-bottom: nhsuk-spacing(3);
-      padding-top: nhsuk-spacing(2);
+      margin-bottom: nhsuk-spacing(4);
     }
   }
 }

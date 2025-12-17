@@ -225,8 +225,19 @@ exampleTemplatesApp.get(/^([^.]+)$/, (req, res, next) => {
 
 app.use('/prototype-admin', prototypeAdminRoutes);
 
-// Redirect all POSTs to GETs - this allows users to use POST for autoStoreData
+// Redirect all POSTs to GETs (or to redirectTo if posted) - allows users to use POST for autoStoreData
 app.post(/^\/([^.]+)$/, (req, res) => {
+	const redirectTo =
+		typeof req.body?.redirectTo === 'string'
+			? req.body.redirectTo.trim()
+			: Array.isArray(req.body?.redirectTo)
+				? req.body.redirectTo[0]
+				: '';
+
+	if (redirectTo) {
+		return res.redirect(redirectTo);
+	}
+
 	res.redirect(
 		urlFormat({
 			pathname: `/${req.params[0]}`,
