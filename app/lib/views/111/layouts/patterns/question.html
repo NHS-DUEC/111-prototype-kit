@@ -1,8 +1,11 @@
 {% set layout = {
-  file: '111/layouts/base.html'
+  file: '111/layouts/base.html',
+  layout: {
+    back: true
+  }
 } %}
 
-{% set question = _sublayout.question | merge(page.question) %}
+{% set question = _sublayout.question | merge(page.question | default({})) %}
 
 {% extends layout.file %}
 
@@ -12,7 +15,7 @@
 
     {% if not question.supressHeading -%}
       <h1 class="nhsuk-heading-l">
-        {{ question.text | d(page.title | d('Question text is required for this template')) | noOrphans }}
+        {{ question.text | d(page.title | d('Question text is required for this template')) | noOrphans | safe }}
       </h1>
     {%- endif %}
 
