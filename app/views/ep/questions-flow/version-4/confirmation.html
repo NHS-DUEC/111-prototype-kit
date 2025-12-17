@@ -91,6 +91,10 @@
     </div>
   </div>
 
+  {% if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'not-registered-with-a-gp' -%}
+    <h1>content here for not-registered-with-a-gp</h1>
+  {% endif %}
+
 {%- endblock content_primary -%}
 
 {% block main_footer %}
