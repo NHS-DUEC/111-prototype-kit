@@ -78,135 +78,60 @@
 
     {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
 
-        <h2>Managing your medicines</h2>
+        <h2>{{ adviceHeading }}</h2>
 
-        <p>If you have lots of medicines it can be difficult to remember when to order. Many pharmacists let you request all your medicines at the same time, so you only order once.</p>
+        <p>To help manage your repeat prescriptions so you do not run out of medicine, you can: </p>
 
-        <h3>{{ adviceHeading }}</h3>
-
-        {{ list({
-          title: "Do",
-          type: "tick",
-          items: [
-            {
-              text: "set a calendar reminder to order your repeat prescription in time"
-            },
-            {
-              text: "try using the NHS App, your GP surgery website or your pharmacy app to order your medicine"
-            }
-          ],
-          classes: 'app-do-dont-list app-do-dont-list--multiline'
-        }) }}
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>set a calendar reminder to order your next repeat prescription in time</li>
+          <li>use the NHS App, your GP surgery website or pharmacy app to order your regular medicines</li>
+        </ul>
 
         {{
-          list({
-            title: "Don't",
-            type: "cross",
-            items: [
-              {
-                text: "forget over public or bank holidays, the GP and pharmacist need more time to approve and dispense medicines"
-              }
-            ],
-            classes: 'nhsuk-u-margin-bottom-4'
+          callout({
+            text: 'Allow more time to order your prescription over bank holidays and weekends',
+            classes: 'app-callout--info'
           })
         }}
 
       {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'unable-to-contact-gp' -%}
 
-        <h2>{{ 'Other ways to order your repeat prescription' | noOrphans | safe }}</h2>
+        <h2>{{ adviceHeading }}</h2>
 
-        <p>If you cannot contact your GP surgery, you can order your regular repeat prescription using:</p>
+        <p>To help manage your repeat prescriptions so you do not run out of medicine, you can: </p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
-          <li><a href="https://www.nhs.uk/nhs-app/">the NHS App</a></li>
-          <li>your GP surgery website</li>
-          <li>your pharmacy app</li>
+          <li>use the NHS App, your GP surgery website or pharmacy app to order your regular medicines</li>
+          <li>set a calendar reminder to order your next repeat prescription in time</li>
+          <li>check if your pharmacy has a reminder service to let you know when to order next</li>
         </ul>
 
-        <h3>{{ adviceHeading }}</h3>
-
-        {{ list({
-          title: "Do",
-          type: "tick",
-          items: [
-            {
-              text: "check when you can order your next repeat prescription so you do not run out completely"
-            },
-            {
-              text: "check if the pharmacy has a reminder service to let you know when to order next time"
-            }
-          ],
-          classes: 'app-do-dont-list app-do-dont-list--multiline'
-        }) }}
-
         {{
-          list({
-            title: "Don't",
-            type: "cross",
-            items: [
-              {
-                text: "forget over public or bank holidays, the GP and pharmacist need more time to approve and dispense medicines"
-              }
-            ],
-            classes: 'nhsuk-u-margin-bottom-4'
+          callout({
+            text: 'Allow more time to order your prescription over bank holidays and weekends',
+            classes: 'app-callout--info'
           })
         }}
 
-    {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
+        {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
 
-        <h2>Next time you travel</h2>
+        <h2>{{ adviceHeading }}</h2>
 
-        <p>Plan ahead so you have enough medicine to travel with and when you get home.</p>
+        <p>To help manage your repeat prescriptions so you do not run out of medicine, you can: </p>
 
-        {{ list({
-          title: "Do",
-          type: "tick",
-          items: [
-            {
-              text: "check you have enough medicine to last while you're away"
-            },
-            {
-              text: "ask the GP surgery to adjust your prescription date to make sure your medicine is ready for you to take away"
-            },
-            {
-              text: "set a calendar reminder to order your repeat prescription in time"
-            },
-            {
-              text: "take a few extra days medicine with you, in case you have delays"
-            }
-          ],
-          classes: 'app-do-dont-list app-do-dont-list--multiline'
-        }) }}
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>check if you have enough medicine to last when you're away</li>
+          <li>ask if the GP can change your prescription date to make sure you have enough medicine to take away and enough when you get home</li>
+          <li>set a calendar reminder to order your next repeat prescription in time</li>
+          <li>take a few extra days medicine with you, in case you have travel delays</li>
+        </ul>
 
         {{
-          list({
-            title: "Don't",
-            type: "cross",
-            items: [
-              {
-                text: "forget over public or bank holidays, the GP and pharmacist need more time to approve and dispense medicines"
-              }
-            ],
-            classes: 'nhsuk-u-margin-bottom-4'
+          callout({
+            text: 'Allow more time to order your prescription over bank holidays and weekends',
+            classes: 'app-callout--info'
           })
         }}
-
-    {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'not-registered-with-a-gp' -%}
-
-        <h2>Before you need your medicine</h2>
-
-        {{ list({
-          title: "Do",
-          type: "tick",
-          items: [
-            {
-              text: "register with a GP surgery"
-            }
-          ],
-          classes: 'app-do-dont-list app-do-dont-list--multiline nhsuk-u-margin-bottom-4'
-        }) }}
-
-        <p>The NHS website gives information about <a href="https://www.nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery/">registering with a GP near you</a>, and <a href="https://www.nhs.uk/nhs-app/nhs-app-help-and-support/prescriptions-in-the-nhs-app/nominating-a-pharmacy/">choosing a nominated pharmacy</a>.</p>
 
     {%- endif -%}
 

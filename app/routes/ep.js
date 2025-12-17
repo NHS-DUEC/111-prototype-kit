@@ -168,7 +168,7 @@ router.post('/questions-flow/version-4/why-no-repeat-prescription-request', func
   req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['whyDidYouNotSendARepeatPrescriptionRequest'];
   req.session.data.answers.whyDidYouNotSendARepeatPrescriptionRequest = answer;
-  if(answer == 'other') {
+  if(answer == 'other' || answer == 'not-registered-with-a-gp') {
     return res.redirect('when-meds-due');
   }
   next();
