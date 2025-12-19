@@ -1,25 +1,26 @@
 {% set page = {
-  title: 'Why did you not send a repeat prescription request?',
+  title: 'Why did they not send a repeat prescription request?',
   layout: {
-    file: layouts.radios
+    file: layouts.radios,
+    back: true
   },
   question: {
     radios: {
       items: [
         {
-          text: "I forgot",
-          value: "i-forgot"
+          text: "They forgot",
+          value: "forgot"
         },
         {
-          text: "I was unable to contact my GP surgery in time",
+          text: "They were unable to contact my GP surgery in time",
           value: "unable-to-contact-gp"
         },
         {
-          text: "I'm away from home",
+          text: "They are away from home",
           value: "away-from-home"
         },
         {
-          text: "I'm not yet registered with a GP surgery",
+          text: "They are not yet registered with a GP surgery",
           value: "not-registered-with-a-gp"
         },
         {
@@ -28,7 +29,8 @@
         }
       ]
     }
-  }
+  },
+  redirectTo: 'ep-guidance-interupt'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}

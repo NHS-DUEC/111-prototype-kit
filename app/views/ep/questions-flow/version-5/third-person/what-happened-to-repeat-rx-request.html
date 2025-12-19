@@ -1,5 +1,11 @@
 {% set page = {
-  title: 'What happened to your repeat prescription request?',
+  title: 'What happened to their repeat prescription request?',
+  scripts: {
+    compressedFlowTransition: false
+  },
+  bodyAttributes: {
+    "data-no-exit-transition": "true"
+  },
   layout: {
     file: layouts.radios
   },
@@ -25,7 +31,7 @@
       ]
     }
   },
-  redirectTo: "when-meds-due"
+  redirectTo: "ep-guidance-interupt"
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}

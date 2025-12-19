@@ -2,6 +2,10 @@
   title: 'Where to get help',
   scripts: {
     compressedFlowTransition: true
+  },
+  bodyAttributes: {
+    "data-no-entry-transition": "true",
+    "data-transition-message": "Skipping to confirmation..."
   }
 } %}
 
@@ -21,16 +25,16 @@
   <h3>Pharmacist (emergency supply)</h3>
 
   <p data-test-id="EP-service-blurb">
-      These pharmacists can provide an emergency supply of some medicines that you are prescribed regularly.
+      These pharmacists can provide an emergency supply of some medicines that they are prescribed regularly.
   </p>
 
   <p class="nhsuk-hint">
-    This service needs more details from you to find your NHS number. The pharmacist will use this to check your prescribed medicines.
+    This service needs more details from you to find their NHS number. The pharmacist will use this to check their prescribed medicines.
   </p>
 
   {{
     actionLink({
-      text: "Start my request",
+      text: "Start their request",
       href: "./confirmation"
     })
   }}

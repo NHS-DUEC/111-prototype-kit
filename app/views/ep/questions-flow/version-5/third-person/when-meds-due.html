@@ -1,32 +1,35 @@
 {% set page = {
-  title: 'When are you next due to take your medicine?',
+  title: 'When are they next due to take their medicine?',
   scripts: {
     compressedFlowTransition: false
+  },
+  bodyAttributes: {
+    "data-no-exit-transition": "true"
   },
   layout: {
     file: layouts.radios
   },
   question: {
     callout: {
-      html: "<p>Just tell us when the next dose of the medicine you do not have is due.</p><p>We will only recommend services that are open within this time.</p>"
+      html: "<p>You do not need to tell us the name of the medicine. A pharmacist will check their records using their NHS number.</p>"
     },
     radios: {
       items: [
         {
           text: "In less than 6 hours",
-          value: ''
+          value: 'less-than-6-hours'
         },
         {
           text: "In 6 to 12 hours",
-          value: ''
+          value: '6-12-hours'
         },
         {
           text: "More than 12 hours",
-          value: ''
+          value: 'more-than-12-hours'
         },
         {
           text: "I'm not sure",
-          value: ''
+          value: 'not-sure'
         }
       ]
     }
