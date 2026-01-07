@@ -5,7 +5,215 @@
 // specific instance of the 111 Online Prototype Kit.
 // #########################################################
 
-.your-selector {
-  content: 'this is a demo selector'
+// Redesigned pharmacy selection pages from Nancy
+// ---------------------------------------------------------
+
+///pharmacy list styling
+
+.pharmacy-card-i{
+    display:flex;
+    flex-direction:column;
+
+    width:100%;
+    margin-top:30px;
+
+}
+
+.pharmacy-details-i{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    background-color:#fff;
+    border-radius: 10px 10px 0px 0px;
+
+    border: 2px solid #d8dde0 ;
+    padding:20px;
+}
+
+.select-panel-i{
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    background-color: 	 	#fff;
+    padding:15px;
+    border-radius: 0px 0px 10px 10px;
+    border-left: 2px solid #d8dde0  ;
+    border-right: 2px solid #d8dde0  ;
+    border-bottom: 6px solid #d8dde0  ;
+};
+
+.select-panel-i p{
+    color:#005eb8;
+    margin-bottom:0px;
+    padding:0px;
+    font-weight:600;
+    align-self: center;
+
+}
+
+.select-panel-i .nhsuk-icon__chevron-right{
+    fill:#005eb8;
+    height:30px;
+    width:30px;
+    align-self: center;
+    padding-top:2px;
+}
+
+.pharmacy-card-i:hover{
+
+    .pharmacy-details-i{
+    border: 2px solid #7C2855;
+    }
+
+        .nhsuk-card__link{
+            color:#7c2855;
+        }
+
+        .pharmacy-details-i h2{
+            color:#7C2855;
+        }
+
+        .select-panel-i{
+            background-color: #7C2855;
+            border-left: 2px solid #7C2855 ;
+            border-right: 2px solid #7C2855 ;
+            border-bottom: 6px solid #7C2855 ;
+        }
+
+        .select-panel-i p{
+            color:#fff;
+        }
+
+        .select-panel-i button{
+          color:#fff;
+          font-size: 30px;
+        }
+
+        .select-panel-i .nhsuk-icon__chevron-right{
+            fill:#fff;
+        }
+    };
+
+    //callout with grey border on the left
+
+    .callout{
+        padding:20px 20px 20px 20px;
+        background-color: #fff;
+        border-left: 5px solid #4c6272;
+        margin-bottom:30px;
+        margin-top:10px;
+    }
+
+    .callout p {
+      margin-bottom:0px;
+    }
+
+    //address card
+    .address-card{
+        padding:20px 20px 1px 20px;
+        background-color: #fff;
+        border-left: 5px solid #d8dde0;
+        margin-bottom:20px;
+    }
+
+    .app-option-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.app-option-list__item {
+ padding:20px 20px 20px 20px;
+        background-color: #fff;
+        border-left: 5px solid #d8dde0;
+        margin-bottom:20px;
+}
+
+.app-service-details{
+
+      @media only screen and (max-width: 768px) {
+    border-left:none;
+  }
+}
+
+.app-service-details__content{
+  padding:16px;
+
+}
+
+.nhsuk-typeahead-wrap {
+  position: relative;
+  margin-bottom:30px;
+}
+.nhsuk-typeahead-listbox {
+  position: absolute;
+  z-index: 1000;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 18rem;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #B1B4B6;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.nhsuk-typeahead-option {
+  padding: .5rem .75rem;
+  cursor: pointer;
+}
+.nhsuk-typeahead-option:hover {
+  background: #e6f0ff;
+}
+.nhsuk-typeahead-option[aria-selected="true"] {
+  background: #d2e3ff;
+}
+.nhsuk-typeahead-hidden {
+  display: none;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+
+.bsl-video iframe{
+  width:100%;
+  height:360px;
+  margin-bottom:20px;
+    @media only screen and (max-width: 768px) {
+    height:250px;
+  }
+}
+
+.topic {
+    padding-bottom:20px;
+}
+
+.topic a {
+    color: 	#005eb8;
+    font-weight:600;
+}
+
+.categories-list li a {
+    color:#005eb8;
+}
+
+.nhsuk-list li a{
+    color:#005eb8;
+}
+
+//text screenshot
+
+.text-screenshot{
+  width:375px;
+  @media only screen and (max-width: 768px) {
+    width:100%;
+  }
 }
 
