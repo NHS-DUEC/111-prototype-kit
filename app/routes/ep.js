@@ -281,7 +281,7 @@ router.post('/questions-flow/version-6/who-needs-help', function(req, res){
   }
 });
 
-// Version 5 - 1st person flow
+// Version 6 - 1st person flow
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 router.post('/questions-flow/version-6/was-a-repeat-prescription-requested', function(req, res){
@@ -320,7 +320,20 @@ router.post('/questions-flow/version-6/why-no-repeat-prescription-request', func
   next();
 });
 
-// Version 5 - third person flow
+router.post('/questions-flow/version-6/pharmacy-list', function(req, res, next){
+  req.session.data.answers = {};
+  var answer = req.session.data['pharmacy'];
+  req.session.data.answers.pharmacy = answer;
+  if(answer == 'dsp') {
+    console.log('Redirecting to pharmacy-other');
+    return res.redirect('confirmation-dsp');
+  } else {
+    return res.redirect('confirmation');
+  }
+  next();
+});
+
+// Version 6 - third person flow
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 router.post('/questions-flow/version-6/third-person/was-a-repeat-prescription-requested', function(req, res){
@@ -355,6 +368,19 @@ router.post('/questions-flow/version-6/third-person/why-no-repeat-prescription-r
   req.session.data.answers.whyDidTheyNotSendARepeatPrescriptionRequest = answer;
   if(answer == 'other' || answer == 'not-registered-with-a-gp') {
     return res.redirect('when-meds-due');
+  }
+  next();
+});
+
+router.post('/questions-flow/version-6/third-person/pharmacy-list', function(req, res, next){
+  req.session.data.answers = {};
+  var answer = req.session.data['pharmacy'];
+  req.session.data.answers.pharmacy = answer;
+  if(answer == 'dsp') {
+    console.log('Redirecting to pharmacy-other');
+    return res.redirect('confirmation-dsp');
+  } else {
+    return res.redirect('confirmation');
   }
   next();
 });

@@ -7,6 +7,7 @@
     "data-no-exit-transition": "true"
   },
   layout: {
+    back: true,
     width: 'three-quarters',
     content_secondary: {
       show: false
@@ -64,10 +65,10 @@
   <div class="app-service-details">
     <div class="app-service-details__content">
       <p>
-        Pharmacy name<br>
-        Secondline Road<br>
-        Thirdline Town<br>
-        {{ data.postcode | default('M1 1EA') }}
+        Local Pharmacy<br>
+        50 Manchester Rd
+        Heywood
+        {{ data.postcode | default('OL10 2AH') }}
       </p>
 
       <p data-test-id="opening-time-text">Open today: 24 hours</p>
