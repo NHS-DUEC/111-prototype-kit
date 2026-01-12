@@ -341,8 +341,8 @@ router.post('/questions-flow/version-6/third-person/was-a-repeat-prescription-re
   var answer = req.session.data['didTheySendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
-    console.log('Redirecting to what-happened-to-your-repeat-rx-request');
-    return res.redirect('what-happened-to-your-repeat-rx-request');
+    console.log('Redirecting to what-happened-to-repeat-rx-request');
+    return res.redirect('what-happened-to-repeat-rx-request');
   } else if (answer == 'no') {
     console.log('Redirecting to why-no-repeat-prescription-request');
     return res.redirect('why-no-repeat-prescription-request');
