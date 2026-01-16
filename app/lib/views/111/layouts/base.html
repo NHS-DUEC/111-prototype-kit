@@ -72,7 +72,7 @@
     id: 'content-secondary',
     width: 'one-third'
   }
-} | merge(page.layout | d({})) %}
+} | merge(_sublayout.layout | d({}) | merge(page.layout | d({}))) %}
 
 {%- set widths = _layout.width | colWidths -%}
 {%- set primary_col_width = widths.primary_col_width -%}
@@ -94,6 +94,10 @@
         header({
           "logo": {
             href: '/'
+          },
+          service: {
+            text: serviceName | default('111 online'),
+            href: "/"
           },
           "showNav": "false",
           "showSearch": "false"

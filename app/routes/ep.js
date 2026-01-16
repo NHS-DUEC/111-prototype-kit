@@ -274,10 +274,10 @@ router.post('/questions-flow/version-6/who-needs-help', function(req, res){
   req.session.data.answers.whoNeedsHelp = answer;
   if(answer == 'me') {
     console.log('1st person');
-    return res.redirect('was-a-repeat-prescription-requested');
+    return res.redirect('module-zero');
   } else {
     console.log('3rd person');
-    return res.redirect('third-person/was-a-repeat-prescription-requested');
+    return res.redirect('third-person/module-zero');
   }
 });
 
