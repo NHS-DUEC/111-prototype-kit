@@ -20,6 +20,7 @@ module.exports = {
   layouts: {
     'base': '111/layouts/base.html',
     'component': '111/layouts/component.html',
+    'start': '111/layouts/start.html',
     'check-your-symptoms': '111/layouts/check-your-symptoms.html',
     'question': '111/layouts/patterns/question.html',
     'date': '111/layouts/patterns/date.html',
