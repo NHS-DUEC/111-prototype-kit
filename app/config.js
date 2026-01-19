@@ -26,7 +26,8 @@ module.exports = {
     'date': '111/layouts/patterns/date.html',
     'yesno': '111/layouts/patterns/yes-no.html',
     'radios': '111/layouts/patterns/radios.html',
-    'modzero': '111/layouts/patterns/confirm-it-is-not.html'
+    'modzero': '111/layouts/patterns/confirm-it-is-not.html',
+    'postcode': '111/layouts/patterns/postcode.html'
   },
 
 	// alias the paths to common embed templates

@@ -1,0 +1,13 @@
+{% set page = {
+    title: 'Where are you now?',
+    postcode: {
+      useLocation: {
+        button: {
+          text: 'Use my current location'
+        }
+      }
+    }
+  }
+%}
+
+{% extends page.layout.file | d(layouts.postcode) %}

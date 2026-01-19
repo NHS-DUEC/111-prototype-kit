@@ -1,0 +1,32 @@
+{% set _sublayout = {
+  file: '111/layouts/patterns/question.html',
+  question: {
+    supressHeading: false,
+    postcode: {
+      idPrefix: page.question.text | default(page.title | default('Question')) | toCamelCase,
+      name: page.question.text | default(page.title | default('Question')) | toCamelCase
+    }
+  }
+} %}
+
+{% extends _sublayout.file %}
+
+{% block question_body %}
+
+  {{
+    (input({
+      label: {
+        text: "Postcode"
+      },
+      classes: 'nhsuk-input--width-10',
+      formGroup: {
+        afterInput: {
+          html: button(page.question.postcode.useLocation.button | default({
+            text: "Use my current location"
+          }) | merge({ classes: "app-button--link" }))
+        }
+      }
+    } | merge(_sublayout.question.postcode)) | merge(page.question.postcode | default({}))) | safe
+  }}
+
+{% endblock question_body %}

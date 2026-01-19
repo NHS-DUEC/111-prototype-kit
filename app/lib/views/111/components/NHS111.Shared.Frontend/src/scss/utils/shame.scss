@@ -54,12 +54,7 @@
   font-size: nhsuk-px-to-rem(19);
 }
 
-/**
- * Spacing on the bottom of buttons causes a bit of a nuisance in most situations so we're just gonna hack it out
- */
-.nhsuk-button:last-child {
-  margin-bottom: 0;
-}
+
 
 /**
  * Back link overrides to make the nhsuk-frontend component work with buttons

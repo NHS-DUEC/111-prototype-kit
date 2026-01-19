@@ -14,7 +14,7 @@
   <form method="post" action="{{ question.action | default('#') }}">
 
     {% if not question.supressHeading -%}
-      <h1 class="nhsuk-heading-xl">
+      <h1 class="nhsuk-heading-l">
         {% if page.caption %}
           <span class="{{ page.caption.classes | default('nhsuk-caption-l') }}">{{ page.caption.text }}</span>
         {% endif %}
