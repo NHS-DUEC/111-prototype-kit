@@ -13,12 +13,12 @@
 
 {% block question_body %}
 
-  {{
-    (input({
+  {% set inputConfigurationObject = {
       label: {
         text: "Postcode"
       },
       classes: 'nhsuk-input--width-10',
+      autocomplete: "postal-code",
       formGroup: {
         afterInput: {
           html: button(page.question.postcode.useLocation.button | default({
@@ -26,7 +26,9 @@
           }) | merge({ classes: "app-button--link" }))
         }
       }
-    } | merge(_sublayout.question.postcode)) | merge(page.question.postcode | default({}))) | safe
-  }}
+    } | merge(_sublayout.question.postcode) | merge(page.question.postcode | default({}))
+  %}
+
+  {{ input(inputConfigurationObject) }}
 
 {% endblock question_body %}

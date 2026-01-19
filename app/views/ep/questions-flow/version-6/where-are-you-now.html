@@ -1,13 +1,13 @@
 {% set page = {
     title: 'Where are you now?',
-    postcode: {
-      useLocation: {
-        button: {
-          text: 'Use my current location'
-        }
+    redirectTo: './age',
+    question: {
+      postcode: {
+        name: "answers[postcode][location]"
       }
     }
   }
 %}
 
 {% extends page.layout.file | d(layouts.postcode) %}
+w

@@ -284,8 +284,19 @@ router.post('/questions-flow/version-6/who-needs-help', function(req, res){
 // Version 6 - 1st person flow
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+router.post('/questions-flow/version-6/guided-entry/medicines-help', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data['chooseOneOfThese'];
+  req.session.data.answers.medicinesHelpRequested = answer;
+  if(answer == 'EmergencyPrescription') {
+    console.log('Redirecting to EP Start');
+    return res.redirect('../ep-start');
+  }
+  next()
+});
+
 router.post('/questions-flow/version-6/was-a-repeat-prescription-requested', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['didYouSendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
