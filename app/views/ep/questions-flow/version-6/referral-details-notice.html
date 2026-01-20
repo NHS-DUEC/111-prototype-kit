@@ -1,0 +1,33 @@
+{% set page = {
+  title: 'We need some personal details'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block content_header %}
+  <h1 class="nhsuk-heading-l">
+    {{ page.title }}
+  </h1>
+{% endblock content_header %}
+
+{% block content_primary %}
+
+<p>We will now ask for your:</p>
+
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>name</li>
+  <li>date of birth</li>
+  <li>home postcode</li>
+  <li>phone number</li>
+</ul>
+
+<p>If you want a confirmation for your referral, we will ask how to send it to you.</p>
+
+{{
+  callout({
+    text: 'You do not need to tell us what medicine you take. The pharmacist will check your records.',
+    classes: 'app-callout--info'
+  })
+}}
+
+{% endblock content_primary %}

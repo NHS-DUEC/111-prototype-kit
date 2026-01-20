@@ -333,19 +333,19 @@ router.post('/questions-flow/version-6/why-no-repeat-prescription-request', func
   next();
 });
 
-router.post('/questions-flow/version-6/pharmacy-list', function(req, res, next){
-  req.session.data.answers = req.session.data.answers || {};
-  var answer = req.session.data.answers.pharmacy;
-  console.log(`Answer: ${answer}`);
-  if(answer == 'dsp') {
-    console.log('Redirecting to confirmation dsp');
-    return res.redirect('confirmation-dsp');
-  } else {
-    console.log('Redirecting to confirmation highstreet');
-    return res.redirect('confirmation');
-  }
-  next();
-});
+// router.post('/questions-flow/version-6/pharmacy-list', function(req, res, next){
+//   req.session.data.answers = req.session.data.answers || {};
+//   var answer = req.session.data.answers.pharmacy;
+//   console.log(`Answer: ${answer}`);
+//   if(answer == 'dsp') {
+//     console.log('Redirecting to confirmation dsp');
+//     return res.redirect('confirmation-dsp');
+//   } else {
+//     console.log('Redirecting to confirmation highstreet');
+//     return res.redirect('confirmation');
+//   }
+//   next();
+// });
 
 // Version 6 - third person flow
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

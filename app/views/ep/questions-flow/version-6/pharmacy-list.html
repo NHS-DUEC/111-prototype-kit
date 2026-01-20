@@ -6,7 +6,7 @@
       show: true
     }
   },
-  redirectTo: 'confirmation'
+  redirectTo: 'referral-details-notice'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
@@ -82,7 +82,7 @@
           <p>If these pharmacies cannot help you get your emergency supply call 111 instead.</p>
     {% endcall %}
 
-    {# <input type="hidden" name="redirectTo" value="{{ page.redirectTo }}"> #}
+    <input type="hidden" name="redirectTo" value="{{ page.redirectTo }}">
 
   </form>
 
