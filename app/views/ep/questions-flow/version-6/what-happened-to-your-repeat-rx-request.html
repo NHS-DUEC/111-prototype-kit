@@ -1,16 +1,11 @@
 {% set page = {
   title: 'What happened to your repeat prescription request?',
-  scripts: {
-    compressedFlowTransition: false
-  },
-  bodyAttributes: {
-    "data-no-exit-transition": "true"
-  },
   layout: {
     file: layouts.radios
   },
   question: {
     radios: {
+      name: 'answers[prescriptionWhathappened]',
       items: [
       {
         text: "It's not been approved yet by the GP",
@@ -30,8 +25,7 @@
       }
       ]
     }
-  },
-  redirectTo: "ep-guidance-interupt"
+  }
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}

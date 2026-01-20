@@ -105,7 +105,7 @@ router.post('/questions-flow/version-2/why-no-repeat-prescription-request', func
 // ##################################################################
 
 router.post('/questions-flow/version-3/was-a-repeat-prescription-requested', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['didYouSendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
@@ -142,7 +142,7 @@ router.post('/questions-flow/version-3/why-no-repeat-prescription-request', func
 // ##################################################################
 
 router.post('/questions-flow/version-4/was-a-repeat-prescription-requested', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['didYouSendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
@@ -179,7 +179,7 @@ router.post('/questions-flow/version-4/why-no-repeat-prescription-request', func
 // ##################################################################
 
 router.post('/questions-flow/version-5/who-needs-help', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['whoNeedsHelp'];
   req.session.data.answers.whoNeedsHelp = answer;
   if(answer == 'me') {
@@ -195,7 +195,7 @@ router.post('/questions-flow/version-5/who-needs-help', function(req, res){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 router.post('/questions-flow/version-5/was-a-repeat-prescription-requested', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['didYouSendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
@@ -231,7 +231,7 @@ router.post('/questions-flow/version-5/why-no-repeat-prescription-request', func
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 router.post('/questions-flow/version-5/third-person/was-a-repeat-prescription-requested', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['didTheySendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
@@ -269,7 +269,7 @@ router.post('/questions-flow/version-5/third-person/why-no-repeat-prescription-r
 // ##################################################################
 
 router.post('/questions-flow/version-6/who-needs-help', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['whoNeedsHelp'];
   req.session.data.answers.whoNeedsHelp = answer;
   if(answer == 'me') {
@@ -286,9 +286,7 @@ router.post('/questions-flow/version-6/who-needs-help', function(req, res){
 
 router.post('/questions-flow/version-6/guided-entry/medicines-help', function(req, res, next){
   req.session.data.answers = req.session.data.answers || {};
-  var answer = req.session.data['chooseOneOfThese'];
-  req.session.data.answers.medicinesHelpRequested = answer;
-  if(answer == 'EmergencyPrescription') {
+  if(req.session.data.answers.journey == 'EmergencyPrescription') {
     console.log('Redirecting to EP Start');
     return res.redirect('../ep-start');
   }
@@ -297,8 +295,8 @@ router.post('/questions-flow/version-6/guided-entry/medicines-help', function(re
 
 router.post('/questions-flow/version-6/was-a-repeat-prescription-requested', function(req, res){
   req.session.data.answers = req.session.data.answers || {};
-  var answer = req.session.data['didYouSendARepeatPrescriptionRequestToYourGpSurgery'];
-  req.session.data.answers.wasARepeatPrescriptionRequested = answer;
+  var answer = req.session.data.answers.prescriptionRequested;
+  console.log(`Answer: ${answer}`);
   if(answer == 'yes') {
     console.log('Redirecting to what-happened-to-your-repeat-rx-request');
     return res.redirect('what-happened-to-your-repeat-rx-request');
@@ -313,18 +311,22 @@ router.post('/questions-flow/version-6/was-a-repeat-prescription-requested', fun
 
 router.post('/questions-flow/version-6/what-happened-to-your-repeat-rx-request', function(req, res, next){
   req.session.data.answers = req.session.data.answers || {};
-  var answer = req.session.data['whatHappenedToYourRepeatPrescriptionRequest'];
-  req.session.data.answers.whatHappenedToYourRepeatPrescriptionRequest = answer;
+  var answer = req.session.data.answers.prescriptionWhathappened;
+  console.log(`Answer: ${answer}`);
   if(answer == 'not-sure') {
+    console.log('Redirecting to when-meds-due');
     return res.redirect('when-meds-due');
+  } else {
+    console.log('Redirecting to ep-guidance-interupt');
+    return res.redirect('ep-guidance-interupt');
   }
   next();
 });
 
 router.post('/questions-flow/version-6/why-no-repeat-prescription-request', function(req, res, next){
   req.session.data.answers = req.session.data.answers || {};
-  var answer = req.session.data['whyDidYouNotSendARepeatPrescriptionRequest'];
-  req.session.data.answers.whyDidYouNotSendARepeatPrescriptionRequest = answer;
+  var answer = req.session.data.answers.prescriptionReasonNotRequested;
+  console.log(`Answer: ${answer}`);
   if(answer == 'other' || answer == 'not-registered-with-a-gp') {
     return res.redirect('when-meds-due');
   }
@@ -332,13 +334,14 @@ router.post('/questions-flow/version-6/why-no-repeat-prescription-request', func
 });
 
 router.post('/questions-flow/version-6/pharmacy-list', function(req, res, next){
-  req.session.data.answers = {};
-  var answer = req.session.data['pharmacy'];
-  req.session.data.answers.pharmacy = answer;
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.pharmacy;
+  console.log(`Answer: ${answer}`);
   if(answer == 'dsp') {
-    console.log('Redirecting to pharmacy-other');
+    console.log('Redirecting to confirmation dsp');
     return res.redirect('confirmation-dsp');
   } else {
+    console.log('Redirecting to confirmation highstreet');
     return res.redirect('confirmation');
   }
   next();
@@ -348,7 +351,7 @@ router.post('/questions-flow/version-6/pharmacy-list', function(req, res, next){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 router.post('/questions-flow/version-6/third-person/was-a-repeat-prescription-requested', function(req, res){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['didTheySendARepeatPrescriptionRequestToYourGpSurgery'];
   req.session.data.answers.wasARepeatPrescriptionRequested = answer;
   if(answer == 'yes') {
@@ -384,7 +387,7 @@ router.post('/questions-flow/version-6/third-person/why-no-repeat-prescription-r
 });
 
 router.post('/questions-flow/version-6/third-person/pharmacy-list', function(req, res, next){
-  req.session.data.answers = {};
+  req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data['pharmacy'];
   req.session.data.answers.pharmacy = answer;
   if(answer == 'dsp') {

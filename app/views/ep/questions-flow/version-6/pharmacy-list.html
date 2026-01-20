@@ -19,11 +19,11 @@
 
   <p>A pharmacist can provide an emergency supply of some medicines that are prescribed regularly.</p>
 
-  <form method="post" novalidate>
+  <form method="post" action="#">
 
     <fieldset class="nhsuk-fieldset nhsuk-u-margin-bottom-4">
 
-      <p>We found 2 pharmacies available near NR2 3LD.</p>
+      <p>We found 2 pharmacies available near {{ data.answers.location.current.postcode | default('M1 1EA') }}</p>
 
       <div class="pharmacy-card-i">
         <div class="pharmacy-details-i">
@@ -39,7 +39,7 @@
           <p style="margin-bottom:0px;">Open today: 9:00am to 6:30pm</p>
         </div>
         <div class="select-panel-i">
-          <button type="submit" name="pharmacy" value="highstreet" class="app-button--link app-option-list__button">
+          <button type="submit" name="answers[pharmacy]" value="highstreet" class="app-button--link app-option-list__button">
             <p>Choose this pharmacy</p>
           </button>
           <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="34" width="34" fill="#4c6272">
@@ -64,7 +64,7 @@
           <p class="nhsuk-body-s" style="margin-bottom:10px;">Rarely, you might be asked to visit their local premises.</p>
         </div>
         <div class="select-panel-i">
-          <button type="submit" name="pharmacy" value="dsp" class="app-button--link app-option-list__button">
+          <button type="submit" name="answers[pharmacy]" value="dsp" class="app-button--link app-option-list__button">
             <p>Choose this pharmacy</p>
           </button>
           <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="34" width="34" fill="#4c6272">
@@ -82,7 +82,7 @@
           <p>If these pharmacies cannot help you get your emergency supply call 111 instead.</p>
     {% endcall %}
 
-    <input type="hidden" name="redirectTo" value="{{ page.redirectTo }}">
+    {# <input type="hidden" name="redirectTo" value="{{ page.redirectTo }}"> #}
 
   </form>
 

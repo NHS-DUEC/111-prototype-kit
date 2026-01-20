@@ -20,7 +20,7 @@
 
 {% block question_body %}
 
-    {%- if data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-approved-by-gp' -%}
+    {%- if data.answers.prescriptionWhathappened == 'not-approved-by-gp' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
@@ -39,7 +39,7 @@
           })
         }}
 
-    {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'approved-but-not-ready' -%}
+    {% elif data.answers.prescriptionWhathappened == 'approved-but-not-ready' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
@@ -58,7 +58,7 @@
           })
         }}
 
-    {% elif data.answers.whatHappenedToYourRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
+    {% elif data.answers.prescriptionWhathappened == 'not-available-at-pharmacy' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
@@ -76,7 +76,7 @@
           })
         }}
 
-    {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'i-forgot' -%}
+    {% elif data.answers.prescriptionReasonNotRequested == 'i-forgot' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
@@ -94,7 +94,7 @@
           })
         }}
 
-      {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'unable-to-contact-gp' -%}
+      {% elif data.answers.prescriptionReasonNotRequested == 'unable-to-contact-gp' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
@@ -113,7 +113,7 @@
           })
         }}
 
-        {% elif data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
+        {% elif data.answers.prescriptionReasonNotRequested == 'away-from-home' -%}
 
         <h2>{{ adviceHeading }}</h2>
 

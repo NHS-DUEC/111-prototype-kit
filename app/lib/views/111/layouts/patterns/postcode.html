@@ -25,7 +25,7 @@
             text: "Use my current location"
           }) | merge({ classes: "app-button--link" }))
         }
-      }
+      } if not _sublayout.question.postcode.hideUseLocation | d(page.question.postcode.hideUseLocation)
     } | merge(_sublayout.question.postcode) | merge(page.question.postcode | default({}))
   %}
 
