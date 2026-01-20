@@ -12,22 +12,29 @@
 
 {% block content_primary %}
 
-<p>We will now ask for your:</p>
+  <p>We will now ask for your:</p>
 
-<ul class="nhsuk-list nhsuk-list--bullet">
-  <li>name</li>
-  <li>date of birth</li>
-  <li>home postcode</li>
-  <li>phone number</li>
-</ul>
+  <ul class="nhsuk-list nhsuk-list--bullet">
+    <li>name</li>
+    <li>date of birth</li>
+    <li>home postcode</li>
+    <li>phone number</li>
+  </ul>
 
-<p>If you want a confirmation for your referral, we will ask how to send it to you.</p>
+  <p>If you want a confirmation for your referral, we will ask how to send it to you.</p>
 
-{{
-  callout({
-    text: 'You do not need to tell us what medicine you take. The pharmacist will check your records.',
-    classes: 'app-callout--info'
-  })
-}}
+  {{
+    callout({
+      text: 'You do not need to tell us what medicine you take. The pharmacist will check your records.',
+      classes: 'app-callout--info'
+    })
+  }}
+
+  {{
+    button({
+      href: './name',
+      text: 'Next'
+    })
+  }}
 
 {% endblock content_primary %}

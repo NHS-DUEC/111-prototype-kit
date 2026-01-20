@@ -6,12 +6,12 @@
       position: 'bottom'
     },
     dateInput: {
-      id: page.question.text | default('date') | toCamelCase,
-      namePrefix: page.question.text | default('date') | toCamelCase,
+      id: page.question.text | d(page.title) | default('date') | toCamelCase,
+      namePrefix: page.question.text | d(page.title) | default('date') | toCamelCase,
       fieldset: {
         legend: {
-          text: page.question.text | d("Enter a date"),
-          classes: "nhsuk-label--l",
+          text: page.question.text | d(page.title) | d("Enter a date"),
+          size: "l",
           isPageHeading: true
         }
       },
