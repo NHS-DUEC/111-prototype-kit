@@ -332,6 +332,34 @@ router.post('/questions-flow/version-6/why-no-repeat-prescription-request', func
   next();
 });
 
+router.post('/questions-flow/version-6/check-home-postcode', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.isHomePostcode;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'yes') {
+    console.log('Redirecting to phone number question');
+    return res.redirect('phone-number');
+  } else {
+    console.log('Redirecting what is your home postcode question');
+    return res.redirect('add-home-postcode');
+  }
+  next();
+});
+
+router.post('/questions-flow/version-6/receipt', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.receipt;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'yes') {
+    console.log('Redirecting to receipt method question');
+    return res.redirect('receipt-method');
+  } else {
+    console.log('Redirecting ');
+    return res.redirect('check-details');
+  }
+  next();
+});
+
 // Version 6 - third person flow
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

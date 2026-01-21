@@ -1,34 +1,35 @@
+
+{# Prevent some repetition by abstracting this to a variable #}
+{% set _questionText = page.question.text | default(page.title | default('Question')) %}
+
+{#
+  _sublayout variable configures the layout. It sets some defaults but allows them
+  to be overriden by the page which is extending from this layout template.
+
+  Some notes:
+  -------------------------------------------------------------------
+  supressHeading is used to allow a seperate heading for the page to that of
+  the form inputs. It is set to true if the page defines the text input's label
+  as being the pageHeading
+
+  After that we default some values for ease and consistency,
+  meaning there is no need to do it for each and every page but they can be overriden
+  on a page by page basic should you need to.
+#}
 {% set _sublayout = {
-  file: '111/layouts/patterns/question.html',
   question: {
-    supressHeading: false,
-    postcode: {
-      idPrefix: page.question.text | default(page.title | default('Question')) | toCamelCase,
-      name: page.question.text | default(page.title | default('Question')) | toCamelCase
+    supressHeading: true,
+    textinput: {
+      classes: 'nhsuk-input--width-10',
+      label: {
+        isPageHeading: true
+      }
     }
-  }
+  } | merge(page.question | default({}))
 } %}
 
-{% extends _sublayout.file %}
+{% extends layouts.textinput %}
 
 {% block question_body %}
-
-  {% set inputConfigurationObject = {
-      label: {
-        text: "Postcode"
-      },
-      classes: 'nhsuk-input--width-10',
-      autocomplete: "postal-code",
-      formGroup: {
-        afterInput: {
-          html: button(page.question.postcode.useLocation.button | default({
-            text: "Use my current location"
-          }) | merge({ classes: "app-button--link" }))
-        }
-      } if not _sublayout.question.postcode.hideUseLocation | d(page.question.postcode.hideUseLocation)
-    } | merge(_sublayout.question.postcode) | merge(page.question.postcode | default({}))
-  %}
-
-  {{ input(inputConfigurationObject) }}
-
+  {{ super() }}
 {% endblock question_body %}

@@ -1,7 +1,7 @@
-{% set page = {
-  title: 'Where are you right now?',
-  redirectTo: './home-postcode',
+{% set _sublayout = {
+  title: 'Choose an option',
   question: {
+    supressQuestionActions: true,
     optionsList: {
       name: 'answers[location][current][address]',
       items: [
@@ -28,4 +28,12 @@
   }
 } %}
 
-{% extends layouts.optionsList %}
+{% set thisQuestion = _sublayout.question | merge(page.question | d({})) %}
+
+{% extends layouts.question %}
+
+{% block question_body %}
+
+  {{ optionsList(thisQuestion.optionsList) }}
+
+{% endblock question_body %}

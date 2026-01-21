@@ -26,8 +26,10 @@ module.exports = {
     'date': '111/layouts/patterns/date.html',
     'yesno': '111/layouts/patterns/yes-no.html',
     'radios': '111/layouts/patterns/radios.html',
+    'checkboxes': '111/layouts/patterns/checkboxes.html',
     'modzero': '111/layouts/patterns/confirm-it-is-not.html',
     'postcode': '111/layouts/patterns/postcode.html',
+    'optionsList': '111/layouts/patterns/choose-an-option.html',
     'textinput': '111/layouts/patterns/text-input.html'
   },
 

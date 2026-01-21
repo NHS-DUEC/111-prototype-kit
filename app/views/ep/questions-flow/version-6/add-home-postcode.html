@@ -1,0 +1,18 @@
+{% set page = {
+  title: 'What is your home postcode?',
+  redirectTo: './phone-number',
+  question: {
+    callout: {
+      text: 'We need this in case the pharmacist needs to call you. Tell us your number if you want to be contacted on behalf of the person who needs help.',
+      position: 'bottom'
+    },
+    textinput: {
+      name: "answers[location][home][postcode]",
+      hint: {
+        text: 'For example, SE1 8UG'
+      }
+    }
+  }
+} %}
+
+{% extends page.layout.file | default(layouts.postcode) %}

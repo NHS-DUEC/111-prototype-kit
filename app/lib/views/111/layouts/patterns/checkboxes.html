@@ -1,0 +1,31 @@
+{% set _sublayout = {
+  file: '111/layouts/patterns/question.html',
+  question: {
+    supressHeading: false,
+    checkboxes: {
+      idPrefix: page.question.text | default(page.title | default('Question')) | toCamelCase,
+      name: page.question.text | default(page.title | default('Question')) | toCamelCase,
+      items: [
+        {
+          value: "option 1",
+          text: "Option 1"
+        },
+        {
+          value: "option 2",
+          text: "Option 2"
+        },
+        {
+          value: "option 3",
+          text: "Option 3"
+        }
+      ]
+    }
+  }
+} %}
+
+{% extends _sublayout.file %}
+
+{% block question_body %}
+  {# this uses a default object from this layout file but that will be superceded by properties set within the page object #}
+  {{ checkboxes(_sublayout.question.checkboxes | merge(page.question.checkboxes | default({}))) }}
+{% endblock question_body %}

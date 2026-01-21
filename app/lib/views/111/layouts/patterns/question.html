@@ -62,11 +62,13 @@
 
     {# block for question actions (buttons) #}
     {% block question_actions %}
+      {% if not question.supressQuestionActions %}
       {{
         button({
           text: 'Next'
         } | merge(question.actions.button | d({})))
       }}
+      {% endif %}
     {% endblock %}
 
     {% set redirectValue = page.redirectTo | default(_sublayout.redirectTo | default(false)) %}

@@ -1,6 +1,7 @@
 
 {# Prevent some repetition by abstracting this to a variable #}
 {% set _questionText = page.question.text | default(page.title | default('Question')) %}
+{% set _isPageHeading = (_sublayout.question.textinput.label.isPageHeading | d(page.question.textinput.label.isPageHeading) | d(false)) %}
 
 {#
   _sublayout variable configures the layout. It sets some defaults but allows them
@@ -15,20 +16,28 @@
   After that we default some values for ease and consistency,
   meaning there is no need to do it for each and every page but they can be overriden
   on a page by page basic should you need to.
+
+  for the 'value' of the input we are using the textinput.name to look up if a value exists in
+  the session data via a nunjucks filter
+
 #}
-{% set _sublayout = {
+{% set _textinputLayout = {
   question: {
-    supressHeading: true if page.question.textinput.label.isPageHeading else false,
+    supressHeading: _isPageHeading,
     textinput: {
       idPrefix: _questionText | toCamelCase,
       name: _questionText | toCamelCase,
+      value: (data | getValueFromPath(page.question.textinput.name)) if page.question.textinput.name,
       label: {
         text: _questionText,
         size: 'l'
-      } if page.question.textinput.label.isPageHeading
+      } if _isPageHeading
     }
-  } | merge(page.question | default({}))
-} %}
+  }
+} | merge(_sublayout | d({}) | merge(page | default({}))) %}
+
+{# this is a fudge to allow sublayout to trickle back into the higherlevel layout #}
+{% set _sublayout = _textinputLayout %}
 
 {% extends layouts.question %}
 
