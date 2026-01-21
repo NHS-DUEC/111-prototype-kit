@@ -1,3 +1,4 @@
+{% from "button/macro.njk" import button %}
 
 {# Prevent some repetition by abstracting this to a variable #}
 {% set _questionText = page.question.text | default(page.title | default('Question')) %}
@@ -18,15 +19,40 @@
 #}
 {% set _sublayout = {
   question: {
-    supressHeading: true,
     textinput: {
       classes: 'nhsuk-input--width-10',
+      autocomplete: "postal-code",
+      formGroup: {
+        afterInput: {
+          html: button(page.question.postcode.useLocation.button | default({
+            href: '#',
+            text: "Use my current location"
+          }) | merge({ classes: "app-button--link" }))
+        }
+      } if not page.question.postcode.hideUseLocation,
       label: {
         isPageHeading: true
       }
-    }
+    } | merge(page.question.postcode)
   } | merge(page.question | default({}))
 } %}
+
+
+{# {% set inputConfigurationObject = {
+      label: {
+        text: "Postcode"
+      },
+      classes: 'nhsuk-input--width-10',
+      autocomplete: "postal-code",
+      formGroup: {
+        afterInput: {
+          html: button(page.question.postcode.useLocation.button | default({
+            text: "Use my current location"
+          }) | merge({ classes: "app-button--link" }))
+        }
+      } if not _sublayout.question.postcode.hideUseLocation | d(page.question.postcode.hideUseLocation)
+    } | merge(_sublayout.question.postcode) | merge(page.question.postcode | default({}))
+  %} #}
 
 {% extends layouts.textinput %}
 

@@ -1,13 +1,16 @@
 {% set page = {
-    title: 'Where are you now?',
-    redirectTo: './age',
-    question: {
-      postcode: {
-        name: "answers[location][current][postcode]",
-        hideUseLocation: true
+  title: 'Where are you now?',
+  redirectTo: './age',
+  question: {
+    postcode: {
+      name: "answers[location][current][postcode]",
+      hideUseLocation: true,
+      label: {
+        text: 'Postcode',
+        isPageHeading: false
       }
     }
   }
-%}
+} %}
 
-{% extends page.layout.file | d(layouts.postcode) %}
+{% extends page.layout.file | default(layouts.postcode) %}

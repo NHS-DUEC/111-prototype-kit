@@ -1,3 +1,4 @@
+{% set _fieldID = page.question.text | d(page.title) | default('date') | toCamelCase %}
 {% set _sublayout = {
   file: '111/layouts/patterns/question.html',
   question: {
@@ -6,14 +7,19 @@
       position: 'bottom'
     },
     dateInput: {
-      id: page.question.text | d(page.title) | default('date') | toCamelCase,
-      namePrefix: page.question.text | d(page.title) | default('date') | toCamelCase,
+      id: _fieldID,
+      namePrefix: _fieldID,
       fieldset: {
         legend: {
           text: page.question.text | d(page.title) | d("Enter a date"),
           size: "l",
           isPageHeading: true
         }
+      },
+      values: {
+        day: data.answers._fieldID.day,
+        month: data.answers._fieldID.month,
+        year: data.answers._fieldID.year,
       },
       hint: {
         text: page.question.hint | default("For example, 9 12 1981")
