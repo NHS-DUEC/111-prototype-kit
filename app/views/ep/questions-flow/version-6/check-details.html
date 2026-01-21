@@ -1,0 +1,20 @@
+{% set page = {
+  title: 'Check request details',
+  layout: {
+    back: true
+  }
+} %}
+
+{% extends layouts.base %}
+
+{% block content_primary %}
+
+  <h1 class="nhsuk-heading-l">{{ page.title | noOrphans | safe }}</h1>
+
+  {% call insetText() %}
+    <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-0">Pharmacist (emergency supply)</h2>
+    <p>dkjdjd</p>
+  {% endcall %}
+
+  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam expedita culpa magnam id quidem delectus eos exercitationem aliquid dignissimos vero quas cumque doloremque, necessitatibus incidunt nam minima repellendus provident ducimus.</p>
+{% endblock content_primary %}
