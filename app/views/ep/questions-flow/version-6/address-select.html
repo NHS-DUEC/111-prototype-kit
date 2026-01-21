@@ -6,13 +6,30 @@
 
 {% block question_body %}
 
-  <ul class="app-option-list">
-    <li class="app-option-list__item">
-      <button type="submit"  name="currentAddress" value="address1" class="app-button--link app-option-list__button">1a Warwick Street, Norwich, Norfolk, NR2 3LD</button>
-    </li>
-    <li class="app-option-list__item">
-      <button type="submit"  name="currentAddress" value="address2" class="app-button--link app-option-list__button">2 Warwick Street, Norwich, Norfolk, NR2 3LD</button>
-    </li>
-  </ul>
+  {{
+    optionsList({
+      name: 'answers[location][current][address]',
+      items: [
+        {
+          text: '1 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '2 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '3 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '4 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '5 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '6 Aneurin Bevan Way, Middleton, Manchester'
+        }
+      ]
+    })
+  }}
 
 {% endblock question_body %}

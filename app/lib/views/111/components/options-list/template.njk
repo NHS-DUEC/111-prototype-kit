@@ -1,0 +1,13 @@
+{% if params.items %}
+  {% for item in params.items %}
+    {% if loop.first -%}
+      <ul class="app-option-list{{ ' ' + params.classes if params.classes }}">
+    {% endif %}
+      <li class="app-option-list__item">
+        <button type="submit"  name="{{ item.name | default(params.name) }}" value="{{ item.value | default(item.text) }}" class="app-button--link app-option-list__button {{ item.classes if item.classes }}">{{ item.text | default('Item has no text') }}</button>
+      </li>
+    {% if loop.last -%}
+      </ul>
+    {% endif %}
+  {% endfor %}
+{% endif %}
