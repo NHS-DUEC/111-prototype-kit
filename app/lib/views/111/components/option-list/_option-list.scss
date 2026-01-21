@@ -1,0 +1,12 @@
+
+.app-option-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.app-option-list__item {
+  @include nhsuk-responsive-padding(3);
+  background-color: #fff;
+  border-left: 5px solid $nhsuk-border-colour;
+  @include nhsuk-responsive-margin(3, 'bottom');
+}

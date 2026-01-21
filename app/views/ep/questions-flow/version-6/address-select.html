@@ -1,0 +1,18 @@
+{% set page = {
+  title: 'Where are you right now?'
+} %}
+
+{% extends layouts.question %}
+
+{% block question_body %}
+
+  <ul class="app-option-list">
+    <li class="app-option-list__item">
+      <button type="submit"  name="currentAddress" value="address1" class="app-button--link app-option-list__button">1a Warwick Street, Norwich, Norfolk, NR2 3LD</button>
+    </li>
+    <li class="app-option-list__item">
+      <button type="submit"  name="currentAddress" value="address2" class="app-button--link app-option-list__button">2 Warwick Street, Norwich, Norfolk, NR2 3LD</button>
+    </li>
+  </ul>
+
+{% endblock question_body %}
