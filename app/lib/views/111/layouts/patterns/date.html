@@ -17,9 +17,9 @@
         }
       },
       values: {
-        day: data.answers._fieldID.day,
-        month: data.answers._fieldID.month,
-        year: data.answers._fieldID.year,
+        day: (data | getValueFromPath(page.question.dateInput.namePrefix + '[day]')),
+        month: (data | getValueFromPath(page.question.dateInput.namePrefix + '[month]')),
+        year: (data | getValueFromPath(page.question.dateInput.namePrefix + '[year]'))
       },
       hint: {
         text: page.question.hint | default("For example, 9 12 1981")
