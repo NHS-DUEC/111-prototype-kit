@@ -1,15 +1,21 @@
 {% set page = {
   title: 'Check request details',
+  question: {
+    actions: {
+      button: {
+        text: 'Send details'
+      }
+    }
+  },
   layout: {
     back: true
-  }
+  },
+  redirectTo: ('./confirmation-dsp' if data.answers.pharmacy == "dsp" else './confirmation')
 } %}
 
-{% extends layouts.base %}
+{% extends layouts.question %}
 
-{% block content_primary %}
-
-  <h1 class="nhsuk-heading-l">{{ page.title | noOrphans | safe }}</h1>
+{% block question_body %}
 
   {% call insetText() %}
     <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-0">Pharmacist (emergency supply)</h2>
@@ -29,77 +35,120 @@
 
   <hr class="app-section-break app-section-break--thin-wide">
 
-{{ summaryList({
-  card: {
-    heading: "Karen Francis",
-    headingSize: "m",
-    actions: {
-      items: [
+  <h2 class="nhsuk-heading-m">
+    Personal details
+  </h2>
+
+  {{
+    summaryList({
+      rows: [
         {
-          text: "Cancel",
-          href: "#"
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: data.answers.firstname | d('') + ' ' + data.answers.lastname | d('')
+          },
+          actions: {
+            items: [
+              {
+                href: "./name",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
         },
         {
-          text: "Reschedule",
-          href: "#"
+          key: {
+            text: "Date of birth"
+          },
+          value: {
+            text: (data.answers.dob.day + ' / ' + data.answers.dob.month + ' / ' + data.answers.dob.year) if data.answers.dob
+          },
+          actions: {
+            items: [
+              {
+                href: "./date-of-birth",
+                text: "Change",
+                visuallyHiddenText: "date of birth"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Home postcode"
+          },
+          value: {
+            text: data.answers.location.home.postcode | d('')
+          },
+          actions: {
+            items: [
+              {
+                href: "./add-home-postcode",
+                text: "Change",
+                visuallyHiddenText: "home postcode"
+              }
+            ]
+          }
+        },
+        {
+          classes: "nhsuk-summary-list__row--no-border",
+          key: {
+            text: "Location address"
+          },
+          value: {
+            html: (data.answers.location.current.address | d('') | replace(',',',<br>')) + (',<br>' + data.answers.location.current.postcode if data.answers.location.current.postcode)
+          },
+          actions: {
+            items: [
+              {
+                href: "./address-select",
+                text: "Change",
+                visuallyHiddenText: "location address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Phone number"
+          },
+          value: {
+            text: data.answers.phoneNumber | d('')
+          },
+          actions: {
+            items: [
+              {
+                href: "./name",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Confirmation is sent to"
+          },
+          value: {
+            text: data.answers.receipt.textNumber | d('')
+          },
+          actions: {
+            items: [
+              {
+                href: "./receipt-method",
+                text: "Change",
+                visuallyHiddenText: "confirmation details"
+              }
+            ]
+          }
         }
       ]
-    }
-  },
-  rows: [
-    {
-      key: {
-        text: "Name"
-      },
-      value: {
-        text: "Karen Francis"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "name"
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Appointment date"
-      },
-      value: {
-        text: "15 March 2027"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "date of birth"
-          }
-        ]
-      }
-    },
-    {
-      classes: "nhsuk-summary-list__row--no-border",
-      key: {
-        text: "Contact details"
-      },
-      value: {
-        html: "<p>07700 900362</p><p>karen.francis@example.com</p>"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "contact details"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
+    })
+  }}
 
-{% endblock content_primary %}
+  <p>You must be in England to use this service. By confirming these details you agree to share them with the service.</p>
+
+{% endblock question_body %}
