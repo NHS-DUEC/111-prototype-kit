@@ -346,6 +346,27 @@ router.post('/questions-flow/version-6/check-home-postcode', function(req, res, 
   next();
 });
 
+router.post('/questions-flow/version-6/pharmacy-list', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.pharmacy;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'dsp') {
+    req.session.data.pharmacyDetails = {
+      name: 'DSP Pharmacy',
+      type: 'Online Pharmacy'
+    }
+  } else {
+    req.session.data.pharmacyDetails = {
+      name: 'Local Pharmacy - Heywood',
+      addressLine1: '50 Manchester Rd',
+      addressLine2: 'Heywood',
+      postcode: 'OL10 2AH',
+      type: 'Highstreet'
+    }
+  }
+  next()
+});
+
 router.post('/questions-flow/version-6/receipt', function(req, res, next){
   req.session.data.answers = req.session.data.answers || {};
   var answer = req.session.data.answers.receipt;

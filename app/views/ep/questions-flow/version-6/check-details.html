@@ -13,8 +13,93 @@
 
   {% call insetText() %}
     <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-0">Pharmacist (emergency supply)</h2>
-    <p>dkjdjd</p>
+    {% if data.pharmacyDetails %}
+      <p>
+        {{ data.pharmacyDetails.name }}<br>
+        {% if data.pharmacyDetails.type == 'Highstreet' %}
+          {{ data.pharmacyDetails.addressLine1 }}<br>
+          {{ data.pharmacyDetails.addressLine2 }}<br>
+          {{ data.pharmacyDetails.postcode }}
+        {% else %}
+          Online Pharmacy
+        {% endif %}
+      </p>
+    {% endif %}
   {% endcall %}
 
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam expedita culpa magnam id quidem delectus eos exercitationem aliquid dignissimos vero quas cumque doloremque, necessitatibus incidunt nam minima repellendus provident ducimus.</p>
+  <hr class="app-section-break app-section-break--thin-wide">
+
+{{ summaryList({
+  card: {
+    heading: "Karen Francis",
+    headingSize: "m",
+    actions: {
+      items: [
+        {
+          text: "Cancel",
+          href: "#"
+        },
+        {
+          text: "Reschedule",
+          href: "#"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: "Karen Francis"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Appointment date"
+      },
+      value: {
+        text: "15 March 2027"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "date of birth"
+          }
+        ]
+      }
+    },
+    {
+      classes: "nhsuk-summary-list__row--no-border",
+      key: {
+        text: "Contact details"
+      },
+      value: {
+        html: "<p>07700 900362</p><p>karen.francis@example.com</p>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
 {% endblock content_primary %}
