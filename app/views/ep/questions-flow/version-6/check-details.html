@@ -133,7 +133,7 @@
             text: "Confirmation is sent to"
           },
           value: {
-            text: data.answers.receipt.textNumber | d('')
+            html: (data.answers.receipt.textNumber if data.answers.receipt.textNumber) + (('<br>' + data.answers.receipt.emailAddress) if data.answers.receipt.emailAddress)
           },
           actions: {
             items: [
@@ -144,7 +144,7 @@
               }
             ]
           }
-        }
+        } if data.answers.receipt.methods.length > 0
       ]
     })
   }}
