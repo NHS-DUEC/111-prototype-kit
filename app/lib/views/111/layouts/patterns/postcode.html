@@ -43,3 +43,11 @@
 {% block question_body %}
   {{ super() }}
 {% endblock question_body %}
+
+{% block question_append %}
+  {% if _sublayout.question.postcode.dontKnowLink %}
+    <div>
+      <p><a href="#">I don't know the postcode</a></p>
+    </div>
+  {% endif %}
+{% endblock question_append %}
