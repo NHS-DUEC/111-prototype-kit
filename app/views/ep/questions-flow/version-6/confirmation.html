@@ -25,15 +25,18 @@
 
 {% block content_primary %}
 
-  {{ callout({
-    "text": "We have sent your request. You can go to the pharmacy during its opening hours.",
-    "classes": "app-callout--info"
-  })}}
-
-  <p>You need to tell them you were referred by 111.</p>
+  {% call callout({
+    classes: 'app-callout--info'
+  }) %}
+    <p class="nhsuk-body nhsuk-u-margin-bottom-2">We have sent your request</p>
+    {% if data.answers.receipt.methods %}
+      <p>We have also sent a confirmation to {{ (data.answers.receipt.emailAddress | d('hello@gmail.com')) if 'email' in data.answers.receipt.methods }}{{ ' and ' if data.answers.receipt.methods.length > 1 }}{{ (data.answers.receipt.textNumber | d('07967 688450')) if 'text' in data.answers.receipt.methods }}</p>
+    {% endif %}
+  {% endcall %}
 
   <h2>Contacting them before you go</h2>
 
+  <p>You need to tell them you were referred by NHS 111.</p>
   <p>You can call the pharmacy before you go to tell them what medicine you need.</p>
   <p>The pharmacist will then tell you:</p>
 
