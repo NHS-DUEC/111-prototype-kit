@@ -1,11 +1,5 @@
 {% set page = {
   title: 'Contact the pharmacy',
-  scripts: {
-    compressedFlowTransition: false
-  },
-  bodyAttributes: {
-    "data-no-exit-transition": "true"
-  },
   layout: {
     width: 'three-quarters',
     content_secondary: {
@@ -24,11 +18,14 @@
 
 {% block content_primary %}
 
-  {{ callout({
-    "text": "We have sent your request.",
-    "classes": "app-callout--info"
-  })}}
-
+  {% call callout({
+    classes: 'app-callout--info'
+  }) %}
+    <p class="nhsuk-body nhsuk-u-margin-bottom-2">We have sent your request</p>
+    {% if data.answers.receipt.methods %}
+      <p>We have also sent a confirmation to {{ (data.answers.receipt.emailAddress | d('hello@gmail.com')) if 'email' in data.answers.receipt.methods }}{{ ' and ' if data.answers.receipt.methods.length > 1 }}{{ (data.answers.receipt.textNumber | d('07967 688450')) if 'text' in data.answers.receipt.methods }}</p>
+    {% endif %}
+  {% endcall %}
 
   <h2>When you contact the pharmacy</h2>
 

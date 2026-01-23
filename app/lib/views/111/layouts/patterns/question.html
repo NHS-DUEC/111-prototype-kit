@@ -1,11 +1,12 @@
 {% set layout = {
   file: '111/layouts/base.html',
   layout: {
+    width: 'three-quarters',
     back: true
   }
 } %}
 
-{% set question = (_sublayout.question | default({})) | merge(page.question | default({})) %}
+{% set question = (layout | merge(_sublayout.question | default({})) | merge(page.question | default({}))) %}
 
 {% extends layout.file %}
 
