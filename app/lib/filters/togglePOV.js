@@ -1,16 +1,20 @@
-
 /**
- * Toggles point of view (POV) for pronouns based on the specified perspective.
+ * Converts point-of-view specific words based on the desired POV.
  *
- * @param {string} povString - The point of view to use ('first-person' or 'third-person')
- * @param {string} word - The word/pronoun to potentially transform
- * @returns {string} The transformed word if in third-person mode and word matches a pronoun, otherwise returns the original word
- *
- * @example
- * togglePOV('third-person', 'you') // returns 'they'
- * togglePOV('third-person', 'your') // returns 'their'
- * togglePOV('first-person', 'you') // returns 'you'
+ * @param {'first-person' | 'third-person' | boolean} pov - Desired POV or boolean flag for first-person (true) or third-person (false).
+ * @param {string} word - The original word to potentially replace.
+ * @param {string} [replacementString] - Optional explicit replacement that overrides default mappings.
+ * @returns {string} The original word or its POV-appropriate replacement.
  */
+const config = require('../../config.js');
+
+const defaultReplacements = {
+  you: 'they',
+  your: 'their',
+  yours: 'theirs',
+  yourself: 'themselves',
+};
+
 module.exports = function togglePOV(pov, word, replacementString) {
   if (pov === 'first-person' || pov === true) {
     return word;
@@ -18,18 +22,12 @@ module.exports = function togglePOV(pov, word, replacementString) {
     if (replacementString) {
       return replacementString;
     } else {
-      switch (word) {
-        case 'you':
-          return 'they';
-        case 'your':
-          return 'their';
-        case 'yours':
-          return 'theirs';
-        case 'yourself':
-          return 'themselves';
-        default:
-          return word;
-      }
+      const configReplacements = config?.togglePOV?.replacements;
+      const replacements = {
+        ...defaultReplacements,
+        ...(configReplacements || {}),
+      };
+      return replacements[word] || word;
     }
   } else {
     return word;

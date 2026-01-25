@@ -33,8 +33,18 @@ module.exports = {
     'textinput': '111/layouts/patterns/text-input.html'
   },
 
-	// alias the paths to common embed templates
+  // alias the paths to common embed templates
 	displayComponentPath: '111/embeds/display_component.html',
-	codeBlockPath: '111/embeds/code_block.html'
+	codeBlockPath: '111/embeds/code_block.html',
+
+  // Configure point-of-view replacements for the togglePOV filter
+  togglePOV: {
+    replacements: {
+      you: 'they',
+      your: 'their',
+      yours: 'theirs',
+      yourself: 'themselves'
+    }
+  }
 
 }
