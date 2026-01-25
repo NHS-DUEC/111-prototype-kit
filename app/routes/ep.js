@@ -433,4 +433,183 @@ router.post('/questions-flow/version-6/third-person/pharmacy-list', function(req
   next();
 });
 
+// ##################################################################
+// verison 7
+// ##################################################################
+
+router.post('/questions-flow/version-7/who-needs-help', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.whoNeedsHelp;
+  if(answer == 'me') {
+    console.log('1st person');
+    req.session.data.pov = 'first-person';
+    // return res.redirect('module-zero');
+  } else {
+    console.log('3rd person');
+    req.session.data.pov = 'third-person';
+    // return res.redirect('third-person/module-zero');
+  }
+  next()
+});
+
+router.use(function (req, res, next) {
+  res.locals.isFirstPerson = req.session.data?.pov === 'first-person';
+  next();
+});
+
+
+// Version 7 - 1st person flow
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+router.post('/questions-flow/version-7/guided-entry/medicines-help', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  if(req.session.data.answers.journey == 'EmergencyPrescription') {
+    console.log('Redirecting to EP Start');
+    return res.redirect('../ep-start');
+  }
+  next()
+});
+
+router.post('/questions-flow/version-7/was-a-repeat-prescription-requested', function(req, res){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.prescriptionRequested;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'yes') {
+    console.log('Redirecting to what-happened-to-your-repeat-rx-request');
+    return res.redirect('what-happened-to-your-repeat-rx-request');
+  } else if (answer == 'no') {
+    console.log('Redirecting to why-no-repeat-prescription-request');
+    return res.redirect('why-no-repeat-prescription-request');
+  } else {
+    console.log('Redirecting to when meds due');
+    return res.redirect('when-meds-due');
+  }
+});
+
+router.post('/questions-flow/version-7/what-happened-to-your-repeat-rx-request', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.prescriptionWhathappened;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'not-sure') {
+    console.log('Redirecting to when-meds-due');
+    return res.redirect('when-meds-due');
+  } else {
+    console.log('Redirecting to ep-guidance-interupt');
+    return res.redirect('ep-guidance-interupt');
+  }
+  next();
+});
+
+router.post('/questions-flow/version-7/why-no-repeat-prescription-request', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.prescriptionReasonNotRequested;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'other' || answer == 'not-registered-with-a-gp') {
+    return res.redirect('when-meds-due');
+  }
+  next();
+});
+
+router.post('/questions-flow/version-7/check-home-postcode', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.isHomePostcode;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'yes') {
+    console.log('Redirecting to phone number question');
+    return res.redirect('phone-number');
+  } else {
+    console.log('Redirecting what is your home postcode question');
+    return res.redirect('add-home-postcode');
+  }
+  next();
+});
+
+router.post('/questions-flow/version-7/pharmacy-list', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.pharmacy;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'dsp') {
+    req.session.data.pharmacyDetails = {
+      name: 'DSP Pharmacy',
+      type: 'Online Pharmacy'
+    }
+  } else {
+    req.session.data.pharmacyDetails = {
+      name: 'Local Pharmacy - Heywood',
+      addressLine1: '50 Manchester Rd',
+      addressLine2: 'Heywood',
+      postcode: 'OL10 2AH',
+      type: 'Highstreet'
+    }
+  }
+  next()
+});
+
+router.post('/questions-flow/version-7/receipt', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data.answers.receipt;
+  console.log(`Answer: ${answer}`);
+  if(answer == 'yes') {
+    console.log('Redirecting to receipt method question');
+    return res.redirect('receipt-method');
+  } else {
+    console.log('Redirecting ');
+    return res.redirect('check-details');
+  }
+  next();
+});
+
+// Version 7 - third person flow
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+router.post('/questions-flow/version-7/third-person/was-a-repeat-prescription-requested', function(req, res){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data['didTheySendARepeatPrescriptionRequestToYourGpSurgery'];
+  req.session.data.answers.wasARepeatPrescriptionRequested = answer;
+  if(answer == 'yes') {
+    console.log('Redirecting to what-happened-to-repeat-rx-request');
+    return res.redirect('what-happened-to-repeat-rx-request');
+  } else if (answer == 'no') {
+    console.log('Redirecting to why-no-repeat-prescription-request');
+    return res.redirect('why-no-repeat-prescription-request');
+  } else {
+    console.log('Redirecting to when meds due');
+    return res.redirect('when-meds-due');
+  }
+});
+
+router.post('/questions-flow/version-7/third-person/what-happened-to-repeat-rx-request', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data['whatHappenedToTheirRepeatPrescriptionRequest'];
+  req.session.data.answers.whatHappenedToTheirRepeatPrescriptionRequest = answer;
+  if(answer == 'not-sure') {
+    return res.redirect('when-meds-due');
+  }
+  next();
+});
+
+router.post('/questions-flow/version-7/third-person/why-no-repeat-prescription-request', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data['whyDidTheyNotSendARepeatPrescriptionRequest'];
+  req.session.data.answers.whyDidTheyNotSendARepeatPrescriptionRequest = answer;
+  if(answer == 'other' || answer == 'not-registered-with-a-gp') {
+    return res.redirect('when-meds-due');
+  }
+  next();
+});
+
+router.post('/questions-flow/version-7/third-person/pharmacy-list', function(req, res, next){
+  req.session.data.answers = req.session.data.answers || {};
+  var answer = req.session.data['pharmacy'];
+  req.session.data.answers.pharmacy = answer;
+  if(answer == 'dsp') {
+    console.log('Redirecting to pharmacy-other');
+    return res.redirect('confirmation-dsp');
+  } else {
+    return res.redirect('confirmation');
+  }
+  next();
+});
+
+
 module.exports = router;

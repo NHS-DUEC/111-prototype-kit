@@ -1,0 +1,60 @@
+{% set page = {
+  title: 'How should we send your request confirmation?',
+  redirectTo: './check-details'
+} %}
+
+{% extends layouts.question %}
+
+{% block question_body %}
+
+  {% set emailHtml %}
+    {{ input({
+      id: "email",
+      name: "answers[receipt][emailAddress]",
+      value: data.answers.receipt.emailAddress,
+      classes: "nhsuk-u-width-two-thirds",
+      label: {
+        text: "Enter an email address"
+      }
+    }) }}
+  {% endset -%}
+
+  {% set mobileHtml %}
+    {{ input({
+      id: "mobile",
+      name: "answers[receipt][textNumber]",
+      classes: "nhsuk-u-width-two-thirds",
+      value: data.answers.receipt.textNumber,
+      label: {
+        text: "Enter a mobile number"
+      }
+    }) }}
+  {% endset -%}
+
+  {{
+    checkboxes({
+      idPrefix: "contact",
+      name: "answers[receipt][methods]",
+      hint: {
+        text: "You can pick more than one."
+      },
+      items: [
+        {
+          value: "text",
+          text: "Text message",
+          conditional: {
+            html: mobileHtml
+          }
+        },
+        {
+          value: "email",
+          text: "Email",
+          conditional: {
+            html: emailHtml
+          }
+        }
+      ]
+    })
+  }}
+
+{% endblock question_body %}

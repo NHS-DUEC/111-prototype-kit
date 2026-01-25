@@ -1,0 +1,20 @@
+{% set page = {
+  title: 'Where are ' + (isFirstPerson | togglePOV('you')) + ' now?',
+  redirectTo: './age',
+  question: {
+    postcode: {
+      name: "answers[location][current][postcode]",
+      hideUseLocation: true,
+      label: {
+        text: 'Postcode',
+        isPageHeading: false
+      }
+    }
+  }
+} %}
+
+{% extends page.layout.file | default(layouts.postcode) %}
+
+{% block question_prepend %}
+  {{ isFirstPerson | log }}
+{% endblock question_prepend %}

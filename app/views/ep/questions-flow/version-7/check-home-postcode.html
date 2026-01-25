@@ -1,0 +1,14 @@
+{% set page = {
+  title: 'Is ' + data.answers.location.current.postcode | d('M1 1EA') | upper + ' your home postcode?',
+  question: {
+    radios: {
+      name: 'answers[isHomePostcode]'
+    },
+    callout: {
+      position: 'top',
+      text: 'Your postcode helps us find your NHS number.'
+    }
+  }
+} %}
+
+{% extends layouts.yesno %}

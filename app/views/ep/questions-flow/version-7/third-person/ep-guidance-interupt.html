@@ -1,0 +1,140 @@
+{% set page = {
+  title: 'Managing your repeat prescription',
+  layout: {
+    file: layouts.yesno
+  },
+  question: {
+    supressHeading: true,
+    actions: {
+      button: {
+        text: 'Continue'
+      }
+    }
+  },
+  redirectTo: 'when-meds-due'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% set adviceHeading = "Before you continue, here's some advice" | noOrphans | safe %}
+
+{% block question_body %}
+
+    {%- if data.answers.whatHappenedToTheirRepeatPrescriptionRequest == 'not-approved-by-gp' -%}
+
+        <h2>{{ adviceHeading }}</h2>
+
+        <p>To help manage repeat prescriptions so they do not run out of medicine, they can:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>check how much time the GP surgery needs to approve the repeat prescription</li>
+          <li>set a calendar reminder to order their next repeat prescription in time</li>
+          <li>use the NHS App, the GP surgery website or pharmacy app to order their regular medicines</li>
+        </ul>
+
+        {{
+          callout({
+            text: 'Allow more time to order prescriptions over bank holidays and weekends.',
+            classes: 'app-callout--info'
+          })
+        }}
+
+    {% elif data.answers.whatHappenedToTheirRepeatPrescriptionRequest == 'approved-but-not-ready' -%}
+
+        <h2>{{ adviceHeading }}</h2>
+
+        <p>To help manage repeat prescriptions so they do not run out of medicine, they can:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>sign up for text alerts or app notifications from the NHS App or their pharmacy app so they know when their medicines are ready to collect</li>
+          <li>check the opening times of their chosen pharmacy</li>
+          <li>ask if the pharmacy has a 24 hour dispensing machine for evening or weekend collections</li>
+        </ul>
+
+        {{
+          callout({
+            text: 'Allow more time to order prescriptions over bank holidays and weekends.',
+            classes: 'app-callout--info'
+          })
+        }}
+
+    {% elif data.answers.whatHappenedToTheirRepeatPrescriptionRequest == 'not-available-at-pharmacy' -%}
+
+        <h2>{{ adviceHeading }}</h2>
+
+        <p>If the medicine is not in stock, the pharmacist can help find a pharmacy that has it. It may also help to:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>sign up for text alerts or app notifications on the NHS App or their pharmacy app so they know when their medicines are ready to collect</li>
+          <li>check whether their pharmacy offers a stock checking service on their app or website</li>
+        </ul>
+
+        {{
+          callout({
+            text: 'Allow more time to order prescriptions over bank holidays and weekends.',
+            classes: 'app-callout--info'
+          })
+        }}
+
+    {% elif data.answers.whyDidTheyNotSendARepeatPrescriptionRequest == 'forgot' -%}
+
+        <h2>{{ adviceHeading }}</h2>
+
+        <p>To help manage repeat prescriptions so they do not run out of medicine, they can:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>set a calendar reminder to order their next repeat prescription in time</li>
+          <li>use the NHS App, the GP surgery website or pharmacy app to order their regular medicines</li>
+        </ul>
+
+        {{
+          callout({
+            text: 'Allow more time to order prescriptions over bank holidays and weekends.',
+            classes: 'app-callout--info'
+          })
+        }}
+
+      {% elif data.answers.whyDidTheyNotSendARepeatPrescriptionRequest == 'unable-to-contact-gp' -%}
+
+        <h2>{{ adviceHeading }}</h2>
+
+        <p>To help manage repeat prescriptions so they do not run out of medicine, they can:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>use the NHS App, the GP surgery website or pharmacy app to order their regular medicines</li>
+          <li>set a calendar reminder to order their next repeat prescription in time</li>
+          <li>check if the pharmacy has a reminder service for ordering their next repeat prescription</li>
+        </ul>
+
+        {{
+          callout({
+            text: 'Allow more time to order prescriptions over bank holidays and weekends.',
+            classes: 'app-callout--info'
+          })
+        }}
+
+        {% elif data.answers.whyDidTheyNotSendARepeatPrescriptionRequest == 'away-from-home' -%}
+
+        <h2>{{ adviceHeading }}</h2>
+
+        <p>To help manage repeat prescriptions so they do not run out of medicine, they can:</p>
+
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>check they have enough medicine to last while they’re away</li>
+          <li>ask their GP if they can adjust their prescription dates so you have enough medicine before and after you travel</li>
+          <li>set a calendar reminder to order their next repeat prescription in time</li>
+          <li>take some extra medicine with them, in case they have travel delays</li>
+        </ul>
+
+        {{
+          callout({
+            text: 'Allow more time to order prescriptions over bank holidays and weekends.',
+            classes: 'app-callout--info'
+          })
+        }}
+
+    {%- endif -%}
+
+  <p>Continue this request for an emergency supply of medicine.</p>
+
+{% endblock %}

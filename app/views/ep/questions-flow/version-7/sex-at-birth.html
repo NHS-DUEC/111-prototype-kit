@@ -1,0 +1,31 @@
+{% set calloutContent %}
+<p>This online triage depends on knowing your registered sex at birth, not your gender identity.</p>
+<p>We need to know this information so we can ask relevant clinical questions.</p>
+<p>If you feel uncomfortable giving this information, or do not see an option that represents you correctly, you can call 111 to talk to a nurse.</p>
+{% endset %}
+
+{% set page = {
+  title: 'What was your sex at birth?',
+  question: {
+    callout: {
+      html: calloutContent,
+      position: 'bottom'
+    },
+    radios: {
+      name: "answers[sex]",
+      items: [
+        {
+          text: "Female",
+          value: "female"
+        },
+        {
+          text: "Male",
+          value: "male"
+        }
+      ]
+    }
+  },
+  redirectTo: './was-a-repeat-prescription-requested'
+} %}
+
+{% extends layouts.radios %}
