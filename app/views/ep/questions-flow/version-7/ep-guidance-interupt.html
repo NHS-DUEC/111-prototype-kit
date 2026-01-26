@@ -112,7 +112,7 @@
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help you manage your repeat prescriptions and avoid running out of medicine, you can:</p>
+        <p>To help {{ ('you' | togglePOV(isFirstPerson), '') }} manage {{ ('your' | togglePOV(isFirstPerson, ' ')) }} repeat prescriptions {{ ('and' | togglePOV(isFirstPerson), 'so they') }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
           <li>check you have enough medicine to last while you’re away</li>
