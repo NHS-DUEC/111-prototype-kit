@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Did you send a repeat prescription request to your GP surgery?',
+  title: 'Did ' + isFirstPerson | togglePOV('you') + ' send a repeat prescription request to ' + isFirstPerson | togglePOV('your')  + ' GP surgery?',
   layout: {
     file: layouts.yesno,
     back: true
@@ -9,10 +9,10 @@
       name: 'answers[prescriptionRequested]'
     },
     callout: {
-      text: 'We would like to know why you ran out of medicine. Your answer will be used to improve the service.'
+      text: 'We would like to know why ' + (isFirstPerson | togglePOV('you'))  + ' ran out of medicine. Your answer will be used to improve the service.'
     }
   },
-  redirectTo: 'what-happened-to-your-repeat-rx-request'
+  redirectTo: 'what-happened-to-repeat-rx-request'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
