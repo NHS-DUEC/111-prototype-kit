@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Where is ' + (isFirstPerson | togglePOV('your')) + ' age?',
+  title: 'Where is ' + ('your' | togglePOV(isFirstPerson)) + ' age?',
   redirectTo: 'sex-at-birth',
   question: {
     textinput: {

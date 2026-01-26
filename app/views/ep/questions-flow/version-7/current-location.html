@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Where are ' + (isFirstPerson | togglePOV('you')) + ' now?',
+  title: 'Where are ' + ('you' | togglePOV(isFirstPerson)) + ' now?',
   redirectTo: './age',
   question: {
     postcode: {

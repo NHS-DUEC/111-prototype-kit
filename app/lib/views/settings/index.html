@@ -1,5 +1,5 @@
 {% set page = {
-  title: '111 Prototype Kit Docs',
+  title: '111 Prototype Kit - settings',
   layout: {
     content_secondary: {
       visible: true
@@ -28,7 +28,7 @@
       hint: {
         text: 'Changes to the page to the layout used when 111 online is viewed within the NHS App'
       },
-      value: data.appframe,
+      value: data.appframe | d("false"),
       items: [
         {
           value: "true",
@@ -37,6 +37,34 @@
         {
           value: "false",
           text: "Disable"
+        }
+      ]
+    }) }}
+
+    {{ radios({
+      name: "pov",
+      fieldset: {
+        legend: {
+          text: "Point of view",
+          isPageHeading: false,
+          classes: "nhsuk-fieldset__legend--m"
+        }
+      },
+      value: data.pov,
+      items: [
+        {
+          value: "first-person",
+          text: "First person",
+          hint: {
+            text: "User is filling it out themself"
+          }
+        },
+        {
+          value: "third-person",
+          text: "Third person",
+          hint: {
+            text: "User is filling it out on another person's behalf"
+          }
         }
       ]
     }) }}

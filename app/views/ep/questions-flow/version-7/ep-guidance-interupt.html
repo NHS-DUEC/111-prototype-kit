@@ -24,81 +24,77 @@
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help manage your repeat prescriptions so you do not run out of medicine, you can:</p>
+        <p>To help manage {{ ('your' | togglePOV(isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
-          <li>check how much time your GP surgery needs to approve your repeat prescription</li>
-          <li>set a calendar reminder to order your next repeat prescription in time</li>
-          <li>use the NHS App, your GP surgery website or pharmacy app to order your regular medicines</li>
+          <li>check how much time {{ ('your' | togglePOV(isFirstPerson), 'the') }} GP surgery needs to approve {{ ('your' | togglePOV(isFirstPerson), 'the') }}  repeat prescription</li>
+          <li>set a calendar reminder to order {{ ('your' | togglePOV(isFirstPerson)) }}  next repeat prescription in time</li>
+          <li>use the NHS App, {{ ('your' | togglePOV(isFirstPerson), 'the') }} GP surgery website or pharmacy app to order {{ ('your' | togglePOV(isFirstPerson)) }} regular medicines</li>
         </ul>
 
-        {{
-          callout({
-            text: 'Allow more time to order your prescription over bank holidays and weekends.',
-            classes: 'app-callout--info'
-          })
-        }}
+        {% call callout({
+          classes: 'app-callout--info'
+        }) %}
+          <p>Allow more time to order {{ ('your' | togglePOV(isFirstPerson), '') }} prescriptions over bank holidays and weekends.</p>
+        {% endcall %}
 
     {% elif data.answers.prescriptionWhathappened == 'approved-but-not-ready' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help manage your repeat prescriptions so you do not run out of medicine, you can:</p>
+        <p>To help manage {{ ('your' | togglePOV(isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
-          <li>sign up for text alerts or app notifications from the NHS App or your pharmacy app so you know when your medicines are ready to collect</li>
-          <li>check the opening times of your chosen pharmacy</li>
+          <li>sign up for text alerts or app notifications from the NHS App or {{ ('your' | togglePOV(isFirstPerson)) }} pharmacy app so {{ ('you' | togglePOV(isFirstPerson)) }} know when {{ ('your' | togglePOV(isFirstPerson)) }} medicines are ready to collect</li>
+          <li>check the opening times of {{ ('your' | togglePOV(isFirstPerson)) }} chosen pharmacy</li>
           <li>ask if the pharmacy has a 24 hour dispensing machine for evening or weekend collections</li>
         </ul>
 
-        {{
-          callout({
-            text: 'Allow more time to order your prescription over bank holidays and weekends.',
-            classes: 'app-callout--info'
-          })
-        }}
+        {% call callout({
+          classes: 'app-callout--info'
+        }) %}
+          <p>Allow more time to order {{ ('your' | togglePOV(isFirstPerson), '') }} prescriptions over bank holidays and weekends.</p>
+        {% endcall %}
 
     {% elif data.answers.prescriptionWhathappened == 'not-available-at-pharmacy' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>If your medicine is not in stock, the pharmacist can help you find a pharmacy that has it. You can:</p>
+        <p>If {{ ('your' | togglePOV(isFirstPerson, 'the')) }} medicine is not in stock, the pharmacist can help {{ ('you' | togglePOV(isFirstPerson, ' ')) }} find a pharmacy that has it. {{ 'You can:' | togglePOV(isFirstPerson, 'It may also help to:') }}</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet nhsuk-list--spaced">
-          <li>sign up for text alerts or app notifications on the NHS App or your pharmacy’s app to know when your medicine is ready to collect</li>
-          <li>check whether your pharmacy offers a stock checking service on their app or website</li>
+          <li>sign up for text alerts or notifications on the NHS App or {{ ('your' | togglePOV(isFirstPerson)) }} pharmacy app {{ ('to' | togglePOV(isFirstPerson, 'so they')) }} know when {{ ('your' | togglePOV(isFirstPerson)) }} medicines are ready to collect</li>
+          <li>check whether {{ ('your' | togglePOV(isFirstPerson)) }} pharmacy offers a stock checking service on their app or website</li>
         </ul>
 
-        {{
-          callout({
-            text: 'Allow more time to order your prescription over bank holidays and weekends.',
-            classes: 'app-callout--info'
-          })
-        }}
+        {% call callout({
+          classes: 'app-callout--info'
+        }) %}
+          <p>Allow more time to order {{ ('your' | togglePOV(isFirstPerson), '') }} prescriptions over bank holidays and weekends.</p>
+        {% endcall %}
 
-    {% elif data.answers.prescriptionReasonNotRequested == 'i-forgot' -%}
+    {% elif data.answers.prescriptionReasonNotRequested == 'forgot' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help manage your repeat prescriptions so you do not run out of medicine, you can:</p>
+        <p>To help manage {{ ('your' | togglePOV(isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
           <li>set a calendar reminder to order your next repeat prescription in time</li>
           <li>use the NHS App, your GP surgery website or pharmacy app to order your regular medicines</li>
         </ul>
 
-        {{
-          callout({
-            text: 'Allow more time to order your prescription over bank holidays and weekends.',
-            classes: 'app-callout--info'
-          })
-        }}
+        {% call callout({
+          classes: 'app-callout--info'
+        }) %}
+          <p>Allow more time to order {{ ('your' | togglePOV(isFirstPerson), '') }} prescriptions over bank holidays and weekends.</p>
+        {% endcall %}
 
       {% elif data.answers.prescriptionReasonNotRequested == 'unable-to-contact-gp' -%}
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help manage your repeat prescriptions so you do not run out of medicine, you can:</p>
+        <p>To help manage {{ ('your' | togglePOV(isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
           <li>use the NHS App, your GP surgery website or pharmacy app to order your regular medicines</li>
@@ -106,12 +102,11 @@
           <li>check if your pharmacy has a reminder service for ordering your next repeat prescription</li>
         </ul>
 
-        {{
-          callout({
-            text: 'Allow more time to order your prescription over bank holidays and weekends.',
-            classes: 'app-callout--info'
-          })
-        }}
+        {% call callout({
+          classes: 'app-callout--info'
+        }) %}
+          <p>Allow more time to order {{ ('your' | togglePOV(isFirstPerson), '') }} prescriptions over bank holidays and weekends.</p>
+        {% endcall %}
 
         {% elif data.answers.prescriptionReasonNotRequested == 'away-from-home' -%}
 
@@ -126,15 +121,14 @@
           <li>take some extra medicine with you, in case you have travel delays</li>
         </ul>
 
-        {{
-          callout({
-            text: 'Allow more time to order your prescription over bank holidays and weekends.',
-            classes: 'app-callout--info'
-          })
-        }}
+        {% call callout({
+          classes: 'app-callout--info'
+        }) %}
+          <p>Allow more time to order {{ ('your' | togglePOV(isFirstPerson), '') }} prescriptions over bank holidays and weekends.</p>
+        {% endcall %}
 
     {%- endif -%}
 
-  <p>Continue your request for an emergency supply of medicine.</p>
+  <p>Continue {{ ('your' | togglePOV(isFirstPerson), 'this') }} request for an emergency supply of medicine.</p>
 
 {% endblock %}

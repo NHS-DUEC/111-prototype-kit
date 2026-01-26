@@ -40,10 +40,14 @@ module.exports = {
   // Configure point-of-view replacements for the togglePOV filter
   togglePOV: {
     replacements: {
-      you: 'they',
-      your: 'their',
-      yours: 'theirs',
-      yourself: 'themselves'
+      "you": 'they',
+      "your": 'their',
+      "yours": 'theirs',
+      "I": 'they',
+      "I'm": 'they are',
+      "was": 'were',
+      "my": 'their',
+      "yourself": 'themselves'
     }
   }
 
