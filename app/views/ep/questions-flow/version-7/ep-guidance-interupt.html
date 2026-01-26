@@ -80,8 +80,8 @@
         <p>To help manage {{ ('your' | togglePOV(isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
-          <li>set a calendar reminder to order your next repeat prescription in time</li>
-          <li>use the NHS App, your GP surgery website or pharmacy app to order your regular medicines</li>
+          <li>set a calendar reminder to order {{ ('your' | togglePOV(isFirstPerson)) }} next repeat prescription in time</li>
+          <li>use the NHS App, {{ ('your' | togglePOV(isFirstPerson), 'the') }} GP surgery website or pharmacy app to order {{ ('your' | togglePOV(isFirstPerson)) }} regular medicines</li>
         </ul>
 
         {% call callout({
