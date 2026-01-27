@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'What is your date of birth?',
+  title: 'What is your date of birth?' | replace('your', ('your' | togglePOV(isFirstPerson))),
   redirectTo: './address-select',
   question: {
     dateInput: {

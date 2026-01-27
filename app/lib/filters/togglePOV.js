@@ -15,7 +15,7 @@ const defaultReplacements = {
   yourself: 'themselves',
 };
 
-module.exports = function togglePOV(word, pov, replacementString) {
+module.exports = function togglePOV(word, pov, replacementString = undefined) {
   if (pov === 'first-person' || pov === true) {
     return word;
   } else if (pov === 'third-person' || pov === false) {
