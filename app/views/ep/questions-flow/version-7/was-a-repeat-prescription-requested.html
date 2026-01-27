@@ -6,7 +6,8 @@
   },
   question: {
     radios: {
-      name: 'answers[prescriptionRequested]'
+      name: 'answers[prescriptionRequested]',
+      value: data.answers.prescriptionRequested
     },
     callout: {
       text: 'We would like to know why ' + ('you' | togglePOV(isFirstPerson))  + ' ran out of medicine. Your answer will be used to improve the service.'

@@ -449,7 +449,7 @@ router.post('/questions-flow/version-7/who-needs-help', function(req, res, next)
     req.session.data.pov = 'third-person';
     // return res.redirect('third-person/module-zero');
   }
-  next()
+  next();
 });
 
 router.use(function (req, res, next) {
@@ -457,8 +457,8 @@ router.use(function (req, res, next) {
   next();
 });
 
-
-// Version 7 - 1st person flow
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Version 7
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 router.post('/questions-flow/version-7/guided-entry/medicines-help', function(req, res, next){
@@ -467,7 +467,7 @@ router.post('/questions-flow/version-7/guided-entry/medicines-help', function(re
     console.log('Redirecting to EP Start');
     return res.redirect('../ep-start');
   }
-  next()
+  next();
 });
 
 router.post('/questions-flow/version-7/was-a-repeat-prescription-requested', function(req, res){
@@ -542,7 +542,7 @@ router.post('/questions-flow/version-7/pharmacy-list', function(req, res, next){
       type: 'Highstreet'
     }
   }
-  next()
+  next();
 });
 
 router.post('/questions-flow/version-7/receipt', function(req, res, next){

@@ -60,7 +60,7 @@
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>If {{ ('your' | togglePOV(isFirstPerson, 'the')) }} medicine is not in stock, the pharmacist can help {{ ('you' | togglePOV(isFirstPerson, ' ')) }} find a pharmacy that has it. {{ 'You can:' | togglePOV(isFirstPerson, 'It may also help to:') }}</p>
+        <p>If {{ ('your' | togglePOV('your', isFirstPerson, 'the')) }} medicine is not in stock, the pharmacist can help {{ ('you' | togglePOV('you', isFirstPerson, ' ')) }} find a pharmacy that has it. {{ 'You can:' | togglePOV(isFirstPerson, 'It may also help to:') }}</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet nhsuk-list--spaced">
           <li>sign up for text alerts or notifications on the NHS App or {{ ('your' | togglePOV(isFirstPerson)) }} pharmacy app {{ ('to' | togglePOV(isFirstPerson, 'so they')) }} know when {{ ('your' | togglePOV(isFirstPerson)) }} medicines are ready to collect</li>
