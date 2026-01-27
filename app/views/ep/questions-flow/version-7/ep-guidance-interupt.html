@@ -112,13 +112,17 @@
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help {{ ('you' | togglePOV(isFirstPerson), '') }} manage {{ ('your' | togglePOV(isFirstPerson, ' ')) }} repeat prescriptions {{ ('and' | togglePOV(isFirstPerson), 'so they') }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
+        {% if isFirstPerson %}
+          <p>To help manage your repeat prescriptions so you do not run out of medicine, you can:</p>
+        {% else %}
+          <p>To help manage repeat prescriptions so they do not run out of medicine, they can:</p>
+        {% endif %}
 
         <ul class="nhsuk-list nhsuk-list--bullet">
-          <li>check you have enough medicine to last while you’re away</li>
-          <li>ask your GP if they can adjust your prescription dates so you have enough medicine before and after you travel</li>
-          <li>set a calendar reminder to order your next repeat prescription in time</li>
-          <li>take some extra medicine with you, in case you have travel delays</li>
+          <li>check {{ ('you' | togglePOV(isFirstPerson)) }} have enough medicine to last while {{ ("you're" | togglePOV(isFirstPerson)) }} away</li>
+          <li>ask {{ ('your' | togglePOV(isFirstPerson)) }} GP if they can adjust {{ ('your' | togglePOV(isFirstPerson)) }} prescription dates so {{ ('you' | togglePOV(isFirstPerson)) }} have enough medicine before and after {{ ('you' | togglePOV(isFirstPerson)) }} travel</li>
+          <li>set a calendar reminder to order {{ ('your' | togglePOV(isFirstPerson)) }} next repeat prescription in time</li>
+          <li>take some extra medicine with {{ ('you' | togglePOV(isFirstPerson, 'them')) }}, in case {{ ('you' | togglePOV(isFirstPerson)) }} have travel delays</li>
         </ul>
 
         {% call callout({

@@ -76,10 +76,9 @@
     </fieldset>
 
     {% call details({
-      summaryText: 'I cannot use these pharmacies to get an emergency supply of my medicine'
+      summaryText: 'I cannot use these pharmacies to get an emergency supply of ' + ('my' | togglePOV(isFirstPerson))  + ' medicine'
     }) %}
-          <p>If these pharmacies cannot help you get your emergency supply, <a href="#">see other services that can help</a>.</p>
-          <p>If these pharmacies cannot help you get your emergency supply call 111 instead.</p>
+          <p>If these pharmacies cannot help you get {{ ('your' | togglePOV(isFirstPerson)) }} emergency supply call 111 instead.</p>
     {% endcall %}
 
     <input type="hidden" name="redirectTo" value="{{ page.redirectTo }}">

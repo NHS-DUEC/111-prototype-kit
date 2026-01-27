@@ -15,16 +15,16 @@
   <h3>Pharmacist (emergency supply)</h3>
 
   <p>
-      These pharmacists can provide an emergency supply of some medicines that you are prescribed regularly.
+      These pharmacists can provide an emergency supply of some medicines that {{('you' | togglePOV(isFirstPerson))}} are prescribed regularly.
   </p>
 
   <p class="nhsuk-hint">
-    This service needs more details from you to find your NHS number. The pharmacist will use this to check your prescribed medicines.
+    This service needs more details from you to find {{ ('your' | togglePOV(isFirstPerson)) }} NHS number. The pharmacist will use this to check {{ ('your' | togglePOV(isFirstPerson)) }} prescribed medicines.
   </p>
 
   {{
     actionLink({
-      text: "Start my request",
+      text: 'Start ' + ('my' | togglePOV(isFirstPerson, 'their'))  + ' request',
       href: "./pharmacy-list"
     })
   }}
@@ -32,15 +32,15 @@
   {% call details({
     summaryText: "Why is this the recommended service?"
   }) %}
-    <p>We show you services that can help with your symptoms.</p>
-    <p>The places shown are open within the timeframe you need to get help. These services will either have space to see you, or can speak to you on the phone.</p>
+    <p>We show you services that can help with {{ ('your' | togglePOV(isFirstPerson)) }} symptoms.</p>
+    <p>The places shown are open within the timeframe {{ ('you' | togglePOV(isFirstPerson)) }} need to get help. These services will either have space to see {{ ('you' | togglePOV(isFirstPerson, 'them')) }}, or can speak to {{ ('you' | togglePOV(isFirstPerson, 'them')) }} on the phone.</p>
   {% endcall %}
 
   <div class="app-section-break app-section-break--thin-wide"></div>
 
   <p>This service is available in {{ data.answers.location.current.postcode | default('M1 1EA') }}.</p>
 
-  <p><a href="#">Change my location</a></p>
+  <p><a href="#">Change location</a></p>
 
   {# <div class="app-section-break nhsuk-u-margin-bottom-5"></div> #}
 

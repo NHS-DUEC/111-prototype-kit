@@ -43,6 +43,7 @@ module.exports = {
       "you": 'they',
       "your": 'their',
       "yours": 'theirs',
+      "you're": "they’re",
       "I": 'they',
       "I'm": 'they are',
       "was": 'were',
