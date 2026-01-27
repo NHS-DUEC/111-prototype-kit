@@ -2,7 +2,8 @@
   title: ('Is ' + data.answers.location.current.postcode | d('M1 1EA') | upper + ' your home postcode?') | togglePOV(isFirstPerson),
   question: {
     radios: {
-      name: 'answers[isHomePostcode]'
+      name: 'answers[isHomePostcode]',
+      value: data.answers.isHomePostcode
     },
     callout: {
       position: 'top',

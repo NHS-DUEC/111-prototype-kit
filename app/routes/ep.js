@@ -443,11 +443,9 @@ router.post('/questions-flow/version-7/who-needs-help', function(req, res, next)
   if(answer == 'me') {
     console.log('1st person');
     req.session.data.pov = 'first-person';
-    // return res.redirect('module-zero');
   } else {
     console.log('3rd person');
     req.session.data.pov = 'third-person';
-    // return res.redirect('third-person/module-zero');
   }
   next();
 });
@@ -456,10 +454,6 @@ router.use(function (req, res, next) {
   res.locals.isFirstPerson = req.session.data?.pov === 'first-person';
   next();
 });
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Version 7
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 router.post('/questions-flow/version-7/guided-entry/medicines-help', function(req, res, next){
   req.session.data.answers = req.session.data.answers || {};
