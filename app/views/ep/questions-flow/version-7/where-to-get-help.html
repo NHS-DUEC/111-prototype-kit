@@ -7,7 +7,6 @@
   <h1 class="nhsuk-heading-xl">
     {{ page.title }}
   </h1>
-  {# <div class="app-section-break nhsuk-u-margin-bottom-5"></div> #}
 {% endblock content_header %}
 
 {% block content_primary %}
@@ -24,7 +23,7 @@
 
   {{
     actionLink({
-      text: 'Start ' + ('my' | togglePOV(isFirstPerson, 'their'))  + ' request',
+      text: "Start my request" | togglePOV(isFirstPerson),
       href: "./pharmacy-list"
     })
   }}

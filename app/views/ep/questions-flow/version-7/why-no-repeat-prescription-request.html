@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Why did ' +  ('you' | togglePOV(isFirstPerson)) + ' not send a repeat prescription request?',
+  title: 'Why did you not send a repeat prescription request?' | togglePOV(isFirstPerson),
   layout: {
     file: layouts.radios,
     back: true
@@ -9,19 +9,19 @@
       name: 'answers[prescriptionReasonNotRequested]',
       items: [
         {
-          text: ('I' | togglePOV(isFirstPerson)) | capitalize + " forgot",
+          text: "I forgot" | togglePOV(isFirstPerson),
           value: "forgot"
         },
         {
-          text: ('I' | togglePOV(isFirstPerson)) | capitalize + " " + ('was' | togglePOV(isFirstPerson)) + " unable to contact " + ('my' | togglePOV(isFirstPerson)) + " GP surgery in time",
+          text: "I was unable to contact my GP surgery in time" | togglePOV(isFirstPerson),
           value: "unable-to-contact-gp"
         },
         {
-          text: ("I'm" | togglePOV(isFirstPerson)) | capitalize + " away from home",
+          text: "I'm away from home" | togglePOV(isFirstPerson),
           value: "away-from-home"
         },
         {
-          text: ("I'm" | togglePOV(isFirstPerson)) | capitalize + " not yet registered with a GP surgery",
+          text: "I'm not yet registered with a GP surgery" | togglePOV(isFirstPerson),
           value: "not-registered-with-a-gp"
         },
         {

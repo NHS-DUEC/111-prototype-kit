@@ -44,11 +44,32 @@ module.exports = {
       "your": 'their',
       "yours": 'theirs',
       "you're": "they’re",
-      "I": 'they',
-      "I'm": 'they are',
+      "I'm": 'They are',
+      "i": 'they',
       "was": 'were',
       "my": 'their',
-      "yourself": 'themselves'
+      "yourself": 'themselves',
+
+      // Subject / object pronouns
+      "me": "them",
+
+      // Possessive determiners & pronouns
+      "my": "their",
+      "mine": "theirs",
+
+      // Reflexive
+      "myself": "themselves",
+
+      // Common contractions (safe, no verb inflection guessing)
+      // "i'm": "they're",
+      "i’ve": "they’ve",
+      "i'd": "they’d",
+      "i’ll": "they’ll",
+
+      // Capitalised variants (OPTIONAL if you rely on case-preserving logic)
+      // These are not required if your code lowercases for lookup
+      "i’m": "they’re" // curly apostrophe variant (optional but recommended)
+
     }
   }
 

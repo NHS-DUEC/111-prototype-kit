@@ -1,12 +1,12 @@
 {% set page = {
-  title: 'Is ' + data.answers.location.current.postcode | d('M1 1EA') | upper + ' your home postcode?',
+  title: ('Is ' + data.answers.location.current.postcode | d('M1 1EA') | upper + ' your home postcode?') | togglePOV(isFirstPerson),
   question: {
     radios: {
       name: 'answers[isHomePostcode]'
     },
     callout: {
       position: 'top',
-      text: 'Your postcode helps us find your NHS number.'
+      text: 'Your postcode helps us find your NHS number.' | togglePOV(isFirstPerson)
     }
   }
 } %}
