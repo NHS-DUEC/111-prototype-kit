@@ -1,9 +1,9 @@
 {% set page = {
-  title: 'What is your phone number?',
+  title: 'What is your phone number?' | togglePOV(isFirstPerson),
   redirectTo: 'receipt',
   question: {
     callout: {
-      text: 'We need to know what number to call in case the pharmacist needs to contact you.',
+      text: 'We need to know what number to call in case the pharmacist needs to contact you.' | togglePOV("you", isFirstPerson, "them"),
       position: 'top'
     },
     textinput: {
