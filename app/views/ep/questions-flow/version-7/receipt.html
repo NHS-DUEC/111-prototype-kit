@@ -1,10 +1,12 @@
 {% set page = {
+  title: 'Would you like a confirmation of your request?' | togglePOV('you', isFirstPerson, 'you') | togglePOV('your', isFirstPerson, 'their'),
   title: 'Would you like a confirmation of your request?',
   question: {
     radios: {
       name: 'answers[receipt]'
     },
     callout: {
+      text: 'Your confirmation will include details about your request and what will happen next.' | togglePOV(isFirstPerson),
       text: 'Your confirmation will include details about your request and what will happen next.'
     }
   }
