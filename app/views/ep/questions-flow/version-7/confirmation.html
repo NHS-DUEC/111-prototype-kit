@@ -1,11 +1,5 @@
 {% set page = {
   title: 'We have sent your request',
-  scripts: {
-    compressedFlowTransition: false
-  },
-  bodyAttributes: {
-    "data-no-exit-transition": "true"
-  },
   layout: {
     back: false,
     width: 'three-quarters',
@@ -327,5 +321,5 @@
 {%- endblock content_primary -%}
 
 {% block main_footer %}
-  {{ appStickyBottom() }}
+  {# {{ appStickyBottom() }} #}
 {% endblock main_footer %}
