@@ -2,6 +2,10 @@
   title: 'Where are ' + ('you' | togglePOV(isFirstPerson)) + ' now?',
   redirectTo: './age',
   question: {
+    callout: {
+      position: 'bottom',
+      html: ("<p>We need to know where you are so we can find services to help.</p><p>We can only show services or give advice if you are in England.</p>")
+    },
     postcode: {
       name: "answers[location][current][postcode]",
       value: data.answers.location.current.postcode,
