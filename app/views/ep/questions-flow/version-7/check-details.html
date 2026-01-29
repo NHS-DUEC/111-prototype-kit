@@ -200,7 +200,7 @@
               text: "Home postcode"
             },
             value: {
-              text: data.answers.location.home.postcode | d('')
+              text: (data.answers.location.current.postcode if data.answers.isHomePostcode == "yes" else data.answers.location.home.postcode)
             },
             actions: {
               items: [
