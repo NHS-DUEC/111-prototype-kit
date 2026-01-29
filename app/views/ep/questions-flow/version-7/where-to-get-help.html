@@ -17,7 +17,7 @@
       These pharmacists can provide an emergency supply of some medicines that {{('you' | togglePOV(isFirstPerson))}} are prescribed regularly.
   </p>
 
-  <p class="nhsuk-hint">
+  <p class="nhsuk-hint nhsuk-u-margin-bottom-5">
     This service needs more details from you to find {{ ('your' | togglePOV(isFirstPerson)) }} NHS number. The pharmacist will use this to check {{ ('your' | togglePOV(isFirstPerson)) }} prescribed medicines.
   </p>
 
@@ -28,14 +28,7 @@
     })
   }}
 
-  {% call details({
-    summaryText: "Why is this the recommended service?"
-  }) %}
-    <p>We show you services that can help with {{ ('your' | togglePOV(isFirstPerson)) }} symptoms.</p>
-    <p>The places shown are open within the timeframe {{ ('you' | togglePOV(isFirstPerson)) }} need to get help. These services will either have space to see {{ ('you' | togglePOV(isFirstPerson, 'them')) }}, or can speak to {{ ('you' | togglePOV(isFirstPerson, 'them')) }} on the phone.</p>
-  {% endcall %}
-
-  <div class="app-section-break app-section-break--thin-wide"></div>
+  <div class="app-section-break nhsuk-u-margin-top-0 app-section-break--thin-wide"></div>
 
   <p>This service is available in {{ data.answers.location.current.postcode | default('M1 1EA') }}.</p>
 
