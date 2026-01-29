@@ -94,12 +94,12 @@
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help manage {{ ('your' | togglePOV(isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
+        <p>To help manage {{ ('your' | togglePOV('your', isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
           <li>use the NHS App, {{ ('your' | togglePOV(isFirstPerson, 'the')) }} GP surgery website or pharmacy app to order {{ ('your' | togglePOV(isFirstPerson)) }} regular medicines</li>
           <li>set a calendar reminder to order {{ ('your' | togglePOV(isFirstPerson)) }} next repeat prescription in time</li>
-          <li>check if {{ ('your' | togglePOV(isFirstPerson, 'the')) }} pharmacy has a reminder service for ordering {{ ('your' | togglePOV(isFirstPerson)) }} next repeat prescription</li>
+          <li>check if {{ ('your' | togglePOV('your', isFirstPerson, 'the')) }} pharmacy has a reminder service for ordering {{ ('your' | togglePOV(isFirstPerson)) }} next repeat prescription</li>
         </ul>
 
         {% call callout({

@@ -1,7 +1,7 @@
 {% set calloutContent %}
 <p>This online triage depends on knowing {{ 'your' | togglePOV(isFirstPerson) }} registered sex at birth, not {{ 'your' | togglePOV(isFirstPerson) }} gender identity.</p>
 <p>We need to know this information so we can ask relevant clinical questions.</p>
-<p>If {{ 'you' | togglePOV(isFirstPerson) }} feel uncomfortable giving this information, or do not see an option that represents {{ 'you' | togglePOV(isFirstPerson, 'them') }} correctly, you can call 111 to talk to a nurse.</p>
+<p>If {{ 'you' | togglePOV(isFirstPerson) }} feel uncomfortable giving this information, or do not see an option that represents {{ 'you' | togglePOV('you', isFirstPerson, 'them') }} correctly, you can call 111 to talk to a nurse.</p>
 {% endset %}
 
 {% set page = {
