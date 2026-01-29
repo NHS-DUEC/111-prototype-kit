@@ -357,7 +357,7 @@ router.post('/questions-flow/version-6/pharmacy-list', function(req, res, next){
     }
   } else {
     req.session.data.pharmacyDetails = {
-      name: 'Local Pharmacy - Heywood',
+      name: 'Heywood Pharmacy - Heywood',
       addressLine1: '50 Manchester Rd',
       addressLine2: 'Heywood',
       postcode: 'OL10 2AH',

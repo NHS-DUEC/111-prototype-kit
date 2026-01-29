@@ -13,6 +13,37 @@
 
 {% block content_primary %}
 
+      {% set physicalPharmacyHTML %}
+      <div class="app-service-details">
+        <div class="app-service-details__content">
+          <p>
+            Heywood Pharmacy<br>
+            50 Manchester Rd<br>
+            Heywood<br>
+            {{ data.postcode | default('OL10 2AH') }}
+          </p>
+
+          <p><a href="tel:01616884500">0161 688 4500</a></p>
+
+          <p>Open today: 24 hours</p>
+          <p>2.4 miles away</p>
+
+          {# <div class="nhsuk-action-link">
+            <a class="nhsuk-action-link__link" href="#">
+              <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+              </svg>
+              <span class="nhsuk-action-link__text">Book an appointment</span>
+            </a>
+          </div> #}
+        </div>
+        <div class="app-service-details__map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15829092.975812001!2d-29.403383806044953!3d52.18840539750917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47deca2df836a047%3A0x7ec89c06d0427889!2sKent%20and%20Canterbury%20Hospital!5e0!3m2!1sen!2suk!4v1711532429758!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+      </div>
+      {% endset %}
+
   {# ==================================================================
   If completed referral for themself (1st person)
   ================================================================== #}
@@ -121,34 +152,7 @@
 
       <p>You might need to show proof of identity when you get there, such as photo ID or a credit or debit card.</p>
 
-      <div class="app-service-details">
-        <div class="app-service-details__content">
-          <p>
-            Local Pharmacy<br>
-            50 Manchester Rd
-            Heywood
-            {{ data.postcode | default('OL10 2AH') }}
-          </p>
-
-          <p data-test-id="opening-time-text">Open today: 24 hours</p>
-          <p>2.4 miles away</p>
-
-          {# <br> #}
-
-          {# <div class="nhsuk-action-link">
-            <a class="nhsuk-action-link__link" href="#">
-              <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-              <path d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-              </svg>
-              <span class="nhsuk-action-link__text">Book an appointment</span>
-            </a>
-          </div> #}
-        </div>
-        <div class="app-service-details__map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15829092.975812001!2d-29.403383806044953!3d52.18840539750917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47deca2df836a047%3A0x7ec89c06d0427889!2sKent%20and%20Canterbury%20Hospital!5e0!3m2!1sen!2suk!4v1711532429758!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
-        </div>
-      </div>
+      {{ physicalPharmacyHTML | safe }}
 
       {% if data.answers.prescriptionReasonNotRequested == 'not-registered-with-a-gp' -%}
         <h2>How to register with a GP surgery</h2>
@@ -273,34 +277,7 @@
 
       <p>You or the person collecting the medicine might need to show proof of identity such as photo ID or a credit or debit card. </p>
 
-      <div class="app-service-details">
-        <div class="app-service-details__content">
-          <p>
-            Local Pharmacy<br>
-            50 Manchester Rd
-            Heywood
-            {{ data.postcode | default('OL10 2AH') }}
-          </p>
-
-          <p data-test-id="opening-time-text">Open today: 24 hours</p>
-          <p>2.4 miles away</p>
-
-          {# <br> #}
-
-          {# <div class="nhsuk-action-link">
-            <a class="nhsuk-action-link__link" href="#">
-              <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-              <path d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-              </svg>
-              <span class="nhsuk-action-link__text">Book an appointment</span>
-            </a>
-          </div> #}
-        </div>
-        <div class="app-service-details__map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15829092.975812001!2d-29.403383806044953!3d52.18840539750917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47deca2df836a047%3A0x7ec89c06d0427889!2sKent%20and%20Canterbury%20Hospital!5e0!3m2!1sen!2suk!4v1711532429758!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
-        </div>
-      </div>
+      {{ physicalPharmacyHTML | safe }}
 
       {% if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'not-registered-with-a-gp' -%}
         <h2>How to register with a GP surgery</h2>

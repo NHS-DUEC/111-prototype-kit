@@ -17,7 +17,7 @@
 
 {% block content_primary %}
 
-  <p>A pharmacist can provide an emergency supply of some medicines that are prescribed regularly.</p>
+  <p>A pharmacist can provide an emergency supply of some medicines that {{'you' | togglePOV(isFirstPerson) }} are prescribed regularly.</p>
 
   <form method="post" action="#">
 
