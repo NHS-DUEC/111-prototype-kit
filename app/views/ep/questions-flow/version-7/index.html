@@ -29,4 +29,20 @@
 
 {% extends page.layout.file | d(layouts.base) %}
 
-{% block small_screen_expanders %}{% endblock small_screen_expanders %}
+{% block large_screen_expanders %}
+    <details class="nhsuk-details nhsuk-expander">
+      <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">Expander title here</span></summary>
+      <div class="nhsuk-details__text">
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, fugiat ad assumenda dolorem vero quaerat quidem voluptates sunt recusandae consequatur veritatis cum blanditiis pariatur natus totam culpa cumque impedit ipsa?</p>
+      </div>
+    </details>
+{% endblock large_screen_expanders %}
+
+{% block small_screen_expanders %}
+    <details class="nhsuk-details nhsuk-expander">
+      <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">Expander title here</span></summary>
+      <div class="nhsuk-details__text">
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, fugiat ad assumenda dolorem vero quaerat quidem voluptates sunt recusandae consequatur veritatis cum blanditiis pariatur natus totam culpa cumque impedit ipsa?</p>
+      </div>
+    </details>
+{% endblock small_screen_expanders %}
