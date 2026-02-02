@@ -1,5 +1,5 @@
 {% set _sublayout = {
-  title: 'Call 999 now for any of these',
+  title: 'Call 999 now for any of these:',
   layout: {
     content_primary: {
       width: 'full'
@@ -13,7 +13,6 @@
   <div class="app-callout app-callout--alert app-callout--alert-bordered nhsuk-u-margin-bottom-2">
 
     <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-4 app-u-color-red">{{ page.heading.text | default((page.title) | default(_sublayout.title)) }}</h1>
-    {# <h2 class="nhsuk-heading-s nhsuk-u-margin-bottom-3">{{ page.subheading.text | default("Call 999 now for any of these:") }}</h2> #}
 
     {% block content_primary_body %}
       {% block custom_list %}
@@ -83,6 +82,9 @@
       {% endblock custom_list %}
 
       {% block custom_assistive_content %}
+
+        <p>British Sign Language (BSL) speakers can <a href="https://999bsl.co.uk/">make a video call to 999</a>.</p>
+
         <p>Deaf people can use 18000 to contact 999 using text relay.</p>
       {% endblock custom_assistive_content %}
 
