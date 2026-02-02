@@ -261,7 +261,7 @@
         </li>
       </ul>
 
-      <p>If they not call the pharmacy before they go, the pharmacist will check this information when they arrive.</p>
+      <p>If they do not call the pharmacy before they go, the pharmacist will check this information when they arrive.</p>
 
       <h2>If the pharmacy has no stock</h2>
       <p>If the medicine is not in stock, the pharmacist will contact other local pharmacies to find it for them.</p>
@@ -279,7 +279,7 @@
 
       {{ physicalPharmacyHTML | safe }}
 
-      {% if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'not-registered-with-a-gp' -%}
+      {% if data.answers.prescriptionReasonNotRequested == 'not-registered-with-a-gp' -%}
         <h2>How to register with a GP surgery</h2>
         <p>Use the NHS website to <a href="https://www.nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery/">register with a GP surgery</a> and <a href="https://www.nhs.uk/nhs-app/nhs-app-help-and-support/prescriptions-in-the-nhs-app/nominating-a-pharmacy/">choose a nominated pharmacy</a>.</p>
       {% endif %}

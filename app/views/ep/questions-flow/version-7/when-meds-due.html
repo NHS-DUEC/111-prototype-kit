@@ -4,6 +4,10 @@
     file: layouts.radios
   },
   question: {
+    callout: {
+      text: 'You do not need to tell us what medicine you take. The pharmacist will check your records.' | togglePOV(isFirstPerson),
+      position: 'top'
+    },
     radios: {
       name: 'answers[whenMedsDue]',
       value: data.answers.whenMedsDue,
