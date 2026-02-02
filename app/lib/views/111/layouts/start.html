@@ -121,6 +121,8 @@
         </div>
       </details>
 
+    {% block large_screen_expanders %}{% endblock large_screen_expanders %}
+
     </div>
   </div>
 </div>
@@ -128,7 +130,7 @@
 <div class="app-u-small-screen-only nhsuk-u-reading-width">
   <div class="nhsuk-expander-group app-expander-group--homepage">
 
-    <details data-test-id="get-medical-help-expander" class="nhsuk-details nhsuk-expander app-u-small-screen-only app-expander--mobile-highlight">
+    <details class="nhsuk-details nhsuk-expander app-u-small-screen-only app-expander--mobile-highlight">
       <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">Get medical help</span></summary>
       <div class="nhsuk-details__text">
         <h2 class="nhsuk-heading-m nhsuk-u-margin-top-4">I want to get:</h2>
@@ -192,6 +194,8 @@
         </ul>
       </div>
     </details>
+
+    {% block small_screen_expanders %}{% endblock small_screen_expanders %}
 
   </div>
 </div>

@@ -84,8 +84,9 @@
     {% call details({
       summaryText: 'Can I use my local pharmacy?' | togglePOV(isFirstPerson, { caseMode: 'lower' })
     }) %}
-        <p>{{ "The recommended services offer an NHS referral. This means you will only pay an NHS prescription charge, if you usually pay them. If not, your medicine will still be free." | togglePOV(isFirstPerson) }}</p>
-        <p>{{ "You can ask your usual pharmacy to help, but they might charge for a private prescription and cost of the medicine. This is more expensive than paying the NHS prescription charge. Everyone has to pay this, even if you usually get free NHS prescriptions." | togglePOV(isFirstPerson) }}</p>
+        <p>{{ "The recommended services offer an NHS referral." | togglePOV(isFirstPerson) }}</p>
+        <p>{{ "You can ask your usual pharmacy to help, but they might charge for a private prescription and cost of the medicine." | togglePOV(isFirstPerson) }}</p>
+        <p>{{ "This is more expensive than paying the NHS prescription charge. Everyone has to pay this, even if you usually get free NHS prescriptions." | togglePOV(isFirstPerson) }}</p>
     {% endcall %}
 
     <input type="hidden" name="redirectTo" value="{{ page.redirectTo }}">
