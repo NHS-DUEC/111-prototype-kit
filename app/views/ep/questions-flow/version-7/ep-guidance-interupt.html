@@ -42,7 +42,7 @@
 
         <h2>{{ adviceHeading }}</h2>
 
-        <p>To help manage {{ ('your' | togglePOV(isFirstPerson), '') }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
+        <p>To help manage {{ ('your' | togglePOV(isFirstPerson)) }} repeat prescriptions so {{ ('you' | togglePOV(isFirstPerson)) }} do not run out of medicine, {{ ('you' | togglePOV(isFirstPerson)) }} can:</p>
 
         <ul class="nhsuk-list nhsuk-list--bullet">
           <li>sign up for text alerts or app notifications from the NHS App or {{ ('your' | togglePOV(isFirstPerson)) }} pharmacy app so {{ ('you' | togglePOV(isFirstPerson)) }} know when {{ ('your' | togglePOV(isFirstPerson)) }} medicines are ready to collect</li>
@@ -53,7 +53,7 @@
         {% call callout({
           classes: 'app-callout--info'
         }) %}
-          <p>Allow more time to order {{ ('your' | togglePOV(isFirstPerson), '') }} prescriptions over bank holidays and weekends.</p>
+          <p>Allow more time to order prescriptions over bank holidays and weekends.</p>
         {% endcall %}
 
     {% elif data.answers.prescriptionWhathappened == 'not-available-at-pharmacy' -%}
