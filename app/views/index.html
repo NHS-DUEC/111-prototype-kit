@@ -11,119 +11,27 @@
 {% extends page.layout.file | d(layouts.base) %}
 
 {% block content_header %}
-  <h1 class="nhsuk-heading-xl">
-    Emergency Prescriptions
+  <h1 class="nhsuk-heading-l">
+    Welcome
   </h1>
 {% endblock content_header %}
 
 {% block content_primary %}
+  <p>Thank you for giving us your time today.</p>
 
-  <p>This is a prototype developed by a team within NHS England's Digital Urgent and Emergency Care directorate who are working to solve the following problems:</p>
-
-  <ul class="nhsuk-list nhsuk-list--number">
+  <ul class="nhsuk-list app-list--spaced">
     <li>
-      Reduce the number of avoidable emergency prescription referrals from 111 online.
+      <a href="/ep/questions-flow/version-7/">Start page</a>
     </li>
     <li>
-      Prevent intentional and unintentional overuse of emergency prescription referrals.
+      <a href="/ep/questions-flow/version-7/pharmacy-list">Service selection</a> (Pharmacy list)
+    </li>
+    <li>
+      <a href="/ep/questions-flow/version-7/confirmation-highstreet">Confirmation</a> (Highstreet)
+    </li>
+    <li>
+      <a href="/ep/questions-flow/version-7/confirmation-dsp">Confirmation</a> (DSP)
     </li>
   </ul>
 
-  <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
-
-  <h2 class="nhsuk-heading-l">
-    Designs
-  </h2>
-
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-one-third">
-        <h3 class="nhsuk-heading-m">
-          Emergency Prescription questions
-        </h3>
-    </div>
-    <div class="nhsuk-grid-column-two-thirds">
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/version-7/">Version 7</a>
-      </h3>
-      <p>This version includes the updated referral flow</p>
-      <p>Adds new mechanism for showing 1st and third-person content</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/version-6/">Version 6</a>
-      </h3>
-      <p>In this version has iterated content within the guidance</p>
-      <p>Added in the new pharmacy selection screen to be added to our research</p>
-      <p>Updated confirmation page to show selected pharmacy type</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/version-5/ep-start">Version 5</a>
-      </h3>
-      <p>In this version has iterated content within the guidance and we added the content for registering with a GP to the confirmation page.</p>
-      <p>Added in the third person flow and associated iterated content.</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/version-4/ep-start">Version 4</a>
-      </h3>
-      <p>In this version has iterated the pattern used for the dynamic guidance pages.</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/version-3/ep-start">Version 3</a>
-      </h3>
-      <p>In this version has iterated content design for the dynamic guidance information.</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/version-2/ep-start">Version 2</a>
-      </h3>
-      <p>In this version we explore providing additional content based on the answers the user provides about why they need an Emergency Prescription.</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/version-1/ep-start">Version 1</a>
-      </h3>
-      <p>Iteration based on feedback from the design crit. Changing dynamic content to be presented in the middle of the flow rather than appended to the confirmation page.</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/questions-flow/original/ep-start">Live (13th November 2025)</a>
-      </h3>
-      <p>The existing 111 online emergency prescription questions flow as of 13th November 2025.</p>
-
-    </div>
-  </div>
-
-  <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
-
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-one-third">
-        <h3 class="nhsuk-heading-m">
-          Start page
-        </h3>
-    </div>
-    <div class="nhsuk-grid-column-two-thirds">
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/start-page/original">Live (12th November 2025) </a>
-      </h3>
-      <p>The existing 111 online emergency prescription start page as of 12th November 2025.</p>
-
-      <h3 class="nhsuk-heading-s nhsuk-u-margin-bottom-2">
-        <a href="ep/start-page/version-1">Last resort</a>
-      </h3>
-      <p>A message added to the start page appealing to users to use the Emergency Prescription service sparingly.</p>
-
-    </div>
-  </div>
-
-
 {% endblock %}
-
-{% block content_secondary %}
-    <h3 class="nhsuk-heading-s">Quick links</h3>
-    <ul class="nhsuk-list nhsuk-list--bullet">
-      <li>
-        <a href="https://nhsd-confluence.digital.nhs.uk/spaces/1O/pages/1191510714/111+Emergency+Prescriptions+Misuse">Confluence page</a>
-      </li>
-      <li>
-        <a href="https://nhsdigitalcorporate.enterprise.slack.com/archives/C09F8H04QE6">EP Misuse on slack</a>
-      </li>
-    </ul>
-{% endblock content_secondary %}

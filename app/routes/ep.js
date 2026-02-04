@@ -553,4 +553,32 @@ router.post('/questions-flow/version-7/receipt', function(req, res, next){
   next();
 });
 
+const baseAnswers = {
+  firstname: 'Firstname',
+  lastname: 'Lastname',
+  receipt: {
+    emailAddress: 'email@nhs.net',
+    methods: ['email']
+  },
+  whenMedsDue: 'less-than-6-hours',
+  age: '44',
+  pov: 'first-person'
+}
+
+router.get('/questions-flow/version-7/confirmation-highstreet', function(req, res, next){
+  req.session.data.answers = utils.deepMerge(req.session.data.answers || baseAnswers, {
+    pharmacy: 'highstreet'
+  });
+  console.log(`Using override highstreet confirmation route`);
+  res.redirect('confirmation');
+});
+
+router.get('/questions-flow/version-7/confirmation-dsp', function(req, res, next){
+  req.session.data.answers = utils.deepMerge(req.session.data.answers || baseAnswers, {
+    pharmacy: 'dsp'
+  });
+  console.log(`Using override dsp confirmation route`);
+  res.redirect('confirmation');
+});
+
 module.exports = router;
