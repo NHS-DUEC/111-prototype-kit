@@ -692,11 +692,11 @@ router.post('/questions-flow/version-8/receipt', function(req, res, next){
   next();
 });
 
-
 router.get('/questions-flow/version-8/confirmation-highstreet', function(req, res, next){
   req.session.data.answers = utils.deepMerge(req.session.data.answers || baseAnswers, {
     pharmacy: 'highstreet'
   });
+  req.session.data.pov = 'first-person';
   console.log(`Using override highstreet confirmation route`);
   res.redirect('confirmation');
 });
