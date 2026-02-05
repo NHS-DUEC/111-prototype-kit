@@ -1,0 +1,68 @@
+{% set page = {
+  title: 'We need some personal details',
+  layout: {
+    width: 'three-quarters',
+    back: true
+  }
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block content_header %}
+  <h1 class="nhsuk-heading-l">
+    {{ page.title }}
+  </h1>
+{% endblock content_header %}
+
+{% block content_primary %}
+
+  {% if isFirstPerson %}
+
+    <p>We will now ask for your:</p>
+
+    <ul class="nhsuk-list nhsuk-list--bullet">
+      <li>name</li>
+      <li>date of birth</li>
+      <li>location</li>
+      <li>home postcode</li>
+      <li>phone number</li>
+    </ul>
+
+    <p>If you want a confirmation for {{ ('your' | togglePOV(isFirstPerson)) }} referral, we will ask how to send it to you.</p>
+
+  {% else %}
+
+    <p>We will now ask for some personal details about the person who needs help.</p>
+    <p>Their:</p>
+
+    <ul class="nhsuk-list nhsuk-list--bullet">
+      <li>name</li>
+      <li>date of birth</li>
+      <li>location</li>
+      <li>home postcode</li>
+      <li>phone number</li>
+    </ul>
+
+    <p>We also need to know:</p>
+
+    <ul class="nhsuk-list--bullet">
+      <li>who to contact if we need to speak to someone and their phone number</li>
+      <li>if you want a text or email confirmation of the referral</li>
+    </ul>
+
+  {% endif %}
+
+  {% call callout({
+    classes: 'app-callout--info'
+  }) %}
+    <p>You do not need to tell us what medicine {{ ('you' | togglePOV(isFirstPerson)) }} take. The pharmacist will check {{ ('your' | togglePOV(isFirstPerson)) }} records.</p>
+  {% endcall %}
+
+  {{
+    button({
+      href: './name',
+      text: 'Next'
+    })
+  }}
+
+{% endblock content_primary %}

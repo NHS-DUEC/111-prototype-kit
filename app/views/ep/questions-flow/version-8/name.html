@@ -1,0 +1,35 @@
+{% set page = {
+  title: 'What is your name?' | togglePOV('your', isFirstPerson),
+  layout: {
+    file: layouts.question
+  },
+  redirectTo: './date-of-birth'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block question_body %}
+
+  {{
+    input({
+      name: 'answers[firstname]',
+      value: data.answers.firstname,
+      label: {
+        text: 'First name'
+      },
+      classes: 'nhsuk-input--width-20'
+    })
+  }}
+
+  {{
+    input({
+      name: 'answers[lastname]',
+      value: data.answers.lastname,
+      label: {
+        text: 'Last name'
+      },
+      classes: 'nhsuk-input--width-20'
+    })
+  }}
+
+{% endblock question_body %}
