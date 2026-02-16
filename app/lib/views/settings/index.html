@@ -1,10 +1,5 @@
 {% set page = {
-  title: '111 Prototype Kit - settings',
-  layout: {
-    content_secondary: {
-      visible: true
-    }
-  }
+  title: '111 Prototype Kit - settings'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
@@ -41,6 +36,16 @@
       ]
     }) }}
 
+    {{ button({
+      text: "Update NHS App mode"
+    }) }}
+
+  </form>
+
+  <hr class="app-section-break app-section-break--thin-wide">
+
+  <form action="#" method="post">
+
     {{ radios({
       name: "pov",
       fieldset: {
@@ -50,7 +55,7 @@
           classes: "nhsuk-fieldset__legend--m"
         }
       },
-      value: data.pov,
+      value: data.pov | d('first-person'),
       items: [
         {
           value: "first-person",
@@ -70,9 +75,22 @@
     }) }}
 
     {{ button({
-      text: "Save"
+      text: "Update point of view"
     }) }}
 
+  </form>
+
+  <hr class="app-section-break app-section-break--thin-wide">
+
+  <h3>Reset session data</h3>
+
+  <p>Click the button below to reset any data captured during this session</p>
+
+  <form action="/prototype-admin/reset-session-data" method="post">
+    <input type="hidden" name="returnPage" value="{{ returnPage }}">
+    {{ button({
+      text: "Reset all session data"
+    }) }}
   </form>
 
 {% endblock content_primary %}

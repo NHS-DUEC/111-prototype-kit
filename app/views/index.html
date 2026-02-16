@@ -1,44 +1,41 @@
 {% set page = {
-  title: 'Home',
+  title: 'Prototype',
   layout: {
-    back: false,
-    content_secondary: {
-      show: true
-    }
+    back: false
+  },
+  links: {
+    title: 'Prototype quick links',
+    items: [
+      {
+        'text': 'Home',
+        'href': '/'
+      }
+    ]
   }
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
-{% block content_header %}
-  <h1 class="nhsuk-heading-l">
-    Welcome
-  </h1>
-{% endblock content_header %}
-
 {% block content_primary %}
-  <p>Thank you for your time today.</p>
+  <h1 class="nhsuk-heading-l">
+    {{ page.title }}
+  </h1>
 
-  <ul class="nhsuk-list app-list--spaced">
-    <li>
-      <a href="/ep/questions-flow/version-8/">NHS 111 start</a>
-    </li>
-    <li>
-      <a href="/ep/questions-flow/version-8/ep-start">NHS 111 - Emergency Prescription start</a>
-    </li>
-    <li>
-      <a href="/ep/questions-flow/version-8/was-a-repeat-prescription-requested">Repeat prescription request</a>
-    </li>
-    <li>
-      <a href="/ep/questions-flow/version-8/pharmacy-list">Service selection</a> (Pharmacy list)
-    </li>
-    <li>
-      <a href="/ep/questions-flow/version-8/confirmation-highstreet">Confirmation</a> (Highstreet)
-    </li>
-    <li>
-      <a href="/ep/questions-flow/version-8/confirmation-dsp">Confirmation</a> (DSP)
-    </li>
-  </ul>
+  <p>Thank you for your time today</p>
+
+  {% for item in page.links.items %}
+    {% if loop.first %}
+      <ul class="nhsuk-list">
+    {% endif %}
+        <li><a href="{{ item.href }}">{{ item.text }}</a></li>
+    {% if loop.last %}
+      </ul>
+    {% endif %}
+  {% endfor %}
 {% endblock %}
 
-{% block footer %} {% endblock footer %}
+{% block footer %}
+  {% call appFooter() %}
+    <p><a href="/settings">Prototype settings</a></p>
+  {% endcall %}
+{% endblock footer %}

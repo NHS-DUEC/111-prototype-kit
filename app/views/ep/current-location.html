@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Where are ' + ('you' | togglePOV(isFirstPerson)) + ' now?',
+  title: 'Where are you now?' | togglePOV,
   redirectTo: './age',
   question: {
     callout: {

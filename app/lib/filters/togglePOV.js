@@ -1,14 +1,20 @@
 /**
  * togglePOV supports 3 call patterns:
  *
- * 1) Whole-string mode:
+ * 1) Whole-string mode (explicit POV):
  *    togglePOV(input, pov, options?)
  *
- * 2) Targeted replace-in-string mode:
+ * 1b) Whole-string mode (infer POV from template context):
+ *    togglePOV(input, options?)
+ *
+ * 2) Targeted replace-in-string mode (explicit POV):
  *    togglePOV(input, word, pov, replacementString?, options?)
  *
+ * 2b) Targeted replace-in-string mode (infer POV from template context):
+ *    togglePOV(input, word, replacementString?, options?)
+ *
  * 3) Word-only mode:
- *    togglePOV(word, pov, replacementString?, options?)
+ *    togglePOV(word, pov?)
  *
  * Options:
  *  - wholeWord (default true): replace whole tokens only
@@ -140,11 +146,38 @@ function replaceAllInString(text, search, baseReplacement, options) {
   });
 }
 
+function isPlainObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function normalizePov(value) {
+  if (value === true || value === 'first-person') return 'first-person';
+  if (value === false || value === 'third-person') return 'third-person';
+  return undefined;
+}
+
+function resolvePov(explicitPov, templateState) {
+  const explicit = normalizePov(explicitPov);
+  if (explicit) return explicit;
+
+  const ctx = templateState?.ctx || {};
+  const fromIsFirstPerson = normalizePov(ctx.isFirstPerson);
+  if (fromIsFirstPerson) return fromIsFirstPerson;
+
+  const fromSessionPov = normalizePov(ctx.data?.pov);
+  if (fromSessionPov) return fromSessionPov;
+
+  const fromSessionIsFirstPerson = normalizePov(ctx.data?.isFirstPerson);
+  if (fromSessionIsFirstPerson) return fromSessionIsFirstPerson;
+
+  return undefined;
+}
+
 module.exports = function togglePOV(...args) {
   // Detect call shape:
-  // A) (input, pov, options?) -> whole-string mode
-  // B) (input, word, pov, replacementString?, options?) -> targeted string mode
-  // C) (word, pov, replacementString?, options?) -> word-only mode
+  // A) (input, pov?, options?) -> whole-string mode
+  // B) (input, word, pov?, replacementString?, options?) -> targeted string mode
+  // C) (word, pov?) -> word-only mode
 
   let input;
   let word;
@@ -153,25 +186,35 @@ module.exports = function togglePOV(...args) {
   let options;
 
   const argCount = args.length;
+  const second = args[1];
+  const third = args[2];
+  const secondIsPov = normalizePov(second) !== undefined;
+  const thirdIsPov = normalizePov(third) !== undefined;
+  const secondIsOptions = isPlainObject(second);
+  const thirdIsOptions = isPlainObject(third);
+  const isWholeStringMode =
+    argCount === 1 ||
+    (argCount === 2 && (secondIsPov || secondIsOptions)) ||
+    (argCount === 3 && secondIsPov && thirdIsOptions);
 
-  // Whole-string mode: (input, pov, options?)
-  // Identify by: 2 args OR 3 args where 3rd is an object (options)
-  // AND second arg looks like pov (string/boolean)
-  if (
-    (argCount === 2 || (argCount === 3 && typeof args[2] === 'object')) &&
-    (typeof args[1] === 'string' || typeof args[1] === 'boolean')
-  ) {
+  if (isWholeStringMode) {
     input = args[0];
-    pov = args[1];
-    options = argCount === 3 ? args[2] : {};
+    pov = secondIsPov ? second : undefined;
+    options =
+      (argCount === 2 && secondIsOptions)
+        ? second
+        : (argCount === 3 && thirdIsOptions)
+          ? third
+          : {};
+    const resolvedPov = resolvePov(pov, this);
 
     const text = String(input ?? '');
 
     // First-person: no change
-    if (pov === 'first-person' || pov === true) return text;
+    if (resolvedPov === 'first-person') return text;
 
     // Third-person: apply ALL replacements found in the string
-    if (pov === 'third-person' || pov === false) {
+    if (resolvedPov === 'third-person') {
       const replacements = getReplacements();
 
       // Replace longer keys first to avoid overlaps (e.g. "yourself" before "your")
@@ -188,27 +231,49 @@ module.exports = function togglePOV(...args) {
 
   // Targeted or word-only mode
   if (argCount >= 3) {
-    // (input, word, pov, replacementString?, options?)
-    [input, word, pov, replacementString, options] = args;
+    // (input, word, pov?, replacementString?, options?)
+    [input, word] = args;
+
+    if (thirdIsPov) {
+      pov = third;
+      if (isPlainObject(args[3])) {
+        options = args[3];
+      } else {
+        replacementString = args[3];
+        options = args[4];
+      }
+    } else {
+      if (thirdIsOptions) {
+        options = third;
+      } else {
+        replacementString = third;
+        options = args[3];
+      }
+    }
   } else {
-    // (word, pov, replacementString?, options?)
-    [word, pov, replacementString, options] = args;
-    input = undefined;
+    // (input, word?) in templates OR (word, pov?) when called directly
+    if (secondIsPov || second === undefined) {
+      [word, pov] = args;
+      input = undefined;
+    } else {
+      [input, word] = args;
+    }
   }
 
   const opts = options || {};
   const { caseInsensitive = true, caseMode = 'preserve' } = opts;
+  const resolvedPov = resolvePov(pov, this);
 
   const search = String(word ?? '');
   if (!search) return input == null ? '' : String(input ?? '');
 
   // First-person: no change
-  if (pov === 'first-person' || pov === true) {
+  if (resolvedPov === 'first-person') {
     return input == null ? search : String(input ?? '');
   }
 
   // Third-person: replace
-  if (pov === 'third-person' || pov === false) {
+  if (resolvedPov === 'third-person') {
     const searchKey = caseInsensitive ? search.toLowerCase() : search;
     const baseReplacement = resolveReplacement(searchKey, replacementString);
 
@@ -233,6 +298,10 @@ module.exports = function togglePOV(...args) {
 // togglePOV("I forgot", "third-person");
 // -> "They forgot"
 
+// Whole-string mode (POV inferred from this.ctx.isFirstPerson / this.ctx.data.pov)
+// {{ "I forgot. You lost your keys." | togglePOV }}
+// -> "They forgot. They lost their keys." (when third-person)
+
 // togglePOV("I forgot. You lost your keys.", "third-person");
 // -> "They forgot. They lost their keys."
 
@@ -250,6 +319,10 @@ module.exports = function togglePOV(...args) {
 // Targeted replace in string with explicit replacement
 // togglePOV("I'm ready. I'm here.", "I'm", "third-person", "they're");
 // -> "They're ready. They're here."
+
+// Targeted replace in string (POV inferred)
+// {{ "What is your name?" | togglePOV("your") }}
+// -> "What is their name?" (when third-person)
 
 // Word-only mode
 // togglePOV("YOU", "third-person"); // "THEY"

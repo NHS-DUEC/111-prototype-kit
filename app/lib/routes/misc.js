@@ -52,6 +52,9 @@ router.all(/(.*)/, (req, res, next) => {
     res.locals.appframe = false;
   }
 
+  // this is to help render prototype as though it is for either a first or third person user
+  res.locals.isFirstPerson = req.session.data?.pov === 'first-person';
+
 	// send some request details to the view
 	res.locals.request = { path, params, originalUrl };
 
