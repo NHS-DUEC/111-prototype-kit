@@ -1,10 +1,5 @@
 {% set page = {
-  title: '111 Prototype Kit Docs',
-  layout: {
-    content_secondary: {
-      visible: true
-    }
-  }
+  title: '111 Prototype Kit - settings'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
@@ -28,7 +23,7 @@
       hint: {
         text: 'Changes to the page to the layout used when 111 online is viewed within the NHS App'
       },
-      value: data.appframe,
+      value: data.appframe | d("false"),
       items: [
         {
           value: "true",
@@ -42,9 +37,60 @@
     }) }}
 
     {{ button({
-      text: "Save"
+      text: "Update NHS App mode"
     }) }}
 
+  </form>
+
+  <hr class="app-section-break app-section-break--thin-wide">
+
+  <form action="#" method="post">
+
+    {{ radios({
+      name: "pov",
+      fieldset: {
+        legend: {
+          text: "Point of view",
+          isPageHeading: false,
+          classes: "nhsuk-fieldset__legend--m"
+        }
+      },
+      value: data.pov | d('first-person'),
+      items: [
+        {
+          value: "first-person",
+          text: "First person",
+          hint: {
+            text: "User is filling it out themself"
+          }
+        },
+        {
+          value: "third-person",
+          text: "Third person",
+          hint: {
+            text: "User is filling it out on another person's behalf"
+          }
+        }
+      ]
+    }) }}
+
+    {{ button({
+      text: "Update point of view"
+    }) }}
+
+  </form>
+
+  <hr class="app-section-break app-section-break--thin-wide">
+
+  <h3>Reset session data</h3>
+
+  <p>Click the button below to reset any data captured during this session</p>
+
+  <form action="/prototype-admin/reset-session-data" method="post">
+    <input type="hidden" name="returnPage" value="{{ returnPage }}">
+    {{ button({
+      text: "Reset all session data"
+    }) }}
   </form>
 
 {% endblock content_primary %}

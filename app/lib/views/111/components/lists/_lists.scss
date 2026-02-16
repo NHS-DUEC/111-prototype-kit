@@ -12,3 +12,11 @@
     margin-bottom: nhsuk-spacing(4);
   }
 }
+
+.app-list--spaced {
+  li {
+    &:not(:last-child) {
+      margin-bottom: nhsuk-spacing(3);
+    }
+  }
+}

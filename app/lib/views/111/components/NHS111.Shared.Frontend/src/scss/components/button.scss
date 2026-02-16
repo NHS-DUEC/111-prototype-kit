@@ -76,6 +76,8 @@
   cursor: pointer;
   border-radius: 0;
   @include nhsuk-link-style-default;
+  min-height: auto;
+  align-self: center;
 
   &:focus,
   &:hover {

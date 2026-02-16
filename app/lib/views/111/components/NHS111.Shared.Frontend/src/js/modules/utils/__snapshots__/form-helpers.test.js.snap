@@ -92,7 +92,7 @@ exports[`formError method correctly sets errors on radio fields 1`] = `
     </div>
   </fieldset>
 
-  <button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
+  <button data-test-id="send-feedback-button" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
     Send feedback
   </button>
   <p class="nhsuk-hint" data-feedback-nojs-message="">
@@ -181,7 +181,7 @@ exports[`formError method correctly sets errors on textarea field 1`] = `
     </div>
   </fieldset>
 
-  <button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
+  <button data-test-id="send-feedback-button" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
     Send feedback
   </button>
   <p class="nhsuk-hint" data-feedback-nojs-message="">
@@ -270,7 +270,7 @@ exports[`formError method correctly sets errors on textarea field with different
     </div>
   </fieldset>
 
-  <button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
+  <button data-test-id="send-feedback-button" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
     Send feedback
   </button>
   <p class="nhsuk-hint" data-feedback-nojs-message="">
@@ -361,7 +361,7 @@ exports[`formError method correctly sets repeated errors on radio fields 1`] = `
     </div>
   </fieldset>
 
-  <button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
+  <button data-test-id="send-feedback-button" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
     Send feedback
   </button>
   <p class="nhsuk-hint" data-feedback-nojs-message="">
@@ -452,7 +452,7 @@ exports[`formError method correctly sets repeated errors on textarea fields 1`] 
     </div>
   </fieldset>
 
-  <button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
+  <button data-test-id="send-feedback-button" class="nhsuk-button nhsuk-u-margin-bottom-2" type="submit">
     Send feedback
   </button>
   <p class="nhsuk-hint" data-feedback-nojs-message="">

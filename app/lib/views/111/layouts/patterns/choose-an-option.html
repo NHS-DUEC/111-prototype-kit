@@ -1,0 +1,39 @@
+{% set _sublayout = {
+  title: 'Choose an option',
+  question: {
+    supressQuestionActions: true,
+    optionsList: {
+      name: 'answers[location][current][address]',
+      items: [
+        {
+          text: '1 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '2 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '3 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '4 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '5 Aneurin Bevan Way, Middleton, Manchester'
+        },
+        {
+          text: '6 Aneurin Bevan Way, Middleton, Manchester'
+        }
+      ]
+    }
+  }
+} %}
+
+{% set thisQuestion = _sublayout.question | merge(page.question | d({})) %}
+
+{% extends layouts.question %}
+
+{% block question_body %}
+
+  {{ optionsList(thisQuestion.optionsList) }}
+
+{% endblock question_body %}

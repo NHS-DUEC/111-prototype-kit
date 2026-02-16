@@ -87,12 +87,12 @@ export class FeedbackForm {
       <p>Feedback is used to improve the service. We do not reply to requests for medical help.</p>
       <p>If you need urgent help for mental health, you can:</p>
       <ul>
-        <li>visit <a href="https://www.mind.org.uk/need-urgent-help/" target="_blank" rel="noopener" data-event-trigger="click" data-event-value="Feedback with trigger words: Mind website">Mind<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></li>
-        <li>text <a href="https://giveusashout.org/" target="_blank" rel="noopener" data-event-trigger="click" data-event-value="Feedback with trigger words: SHOUT website">SHOUT<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> to 85258</li>
-        <li>phone 116 123 to talk to <a href="https://www.samaritans.org/how-we-can-help/contact-samaritan/" target="_blank" rel="noopener" data-event-trigger="click" data-event-value="Feedback with trigger words: Samaritans website">Samaritans<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></li>
-        <li>find other sources of help on <a href="https://www.nhs.uk/nhs-services/mental-health-services/" target="_blank" rel="noopener" data-event-trigger="click" data-event-value="Feedback with trigger words: NHS.UK mental health services">NHS.UK<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></li>
+        <li>visit <a href="https://www.mind.org.uk/need-urgent-help/" target="_blank" rel="noopener">Mind<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></li>
+        <li>text <a href="https://giveusashout.org/" target="_blank" rel="noopener">SHOUT<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> to 85258</li>
+        <li>phone 116 123 to talk to <a href="https://www.samaritans.org/how-we-can-help/contact-samaritan/" target="_blank" rel="noopener">Samaritans<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></li>
+        <li>find other sources of help on <a href="https://www.nhs.uk/nhs-services/mental-health-services/" target="_blank" rel="noopener">NHS.UK<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></li>
       </ul>
-      <p>If your life is in immediate danger call 999 or <a href="https://www.nhs.uk/service-search/find-an-accident-and-emergency-service" target="_blank" rel="noopener" data-event-trigger="click" data-event-value="Feedback with trigger words: NHS.UK nearest A&E service">go to your nearest A&E<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>.</p>
+      <p>If your life is in immediate danger call 999 or <a href="https://www.nhs.uk/service-search/find-an-accident-and-emergency-service" target="_blank" rel="noopener">go to your nearest A&E<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>.</p>
     `;
     triggerWordMessage.classList.add(
       "nhsuk-u-margin-bottom-0",

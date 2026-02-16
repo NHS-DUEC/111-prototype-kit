@@ -1,0 +1,16 @@
+{% set page = {
+  title: 'What is ' + ('your' | togglePOV(isFirstPerson)) + ' age?',
+  redirectTo: 'sex-at-birth',
+  question: {
+    textinput: {
+      name: "answers[age]",
+      value: data.answers.age,
+      classes: 'nhsuk-input--width-3',
+      label: {
+        isPageHeading: true
+      }
+    }
+  }
+} %}
+
+{% extends page.layout.file | default(layouts.textinput) %}

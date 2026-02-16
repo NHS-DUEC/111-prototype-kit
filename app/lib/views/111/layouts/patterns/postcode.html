@@ -1,0 +1,53 @@
+{% from "button/macro.njk" import button %}
+
+{# Prevent some repetition by abstracting this to a variable #}
+{% set _questionText = page.question.text | default(page.title | default('Question')) %}
+
+{#
+  _sublayout variable configures the layout. It sets some defaults but allows them
+  to be overriden by the page which is extending from this layout template.
+
+  Some notes:
+  -------------------------------------------------------------------
+  supressHeading is used to allow a seperate heading for the page to that of
+  the form inputs. It is set to true if the page defines the text input's label
+  as being the pageHeading
+
+  After that we default some values for ease and consistency,
+  meaning there is no need to do it for each and every page but they can be overriden
+  on a page by page basic should you need to.
+#}
+{% set _sublayout = {
+  question: {
+    textinput: {
+      classes: 'nhsuk-input--width-10',
+      autocomplete: "postal-code",
+      value: (data | getValueFromPath(page.question.postcode.name)) if page.question.postcode.name,
+      formGroup: {
+        afterInput: {
+          html: button(page.question.postcode.useLocation.button | default({
+            href: '#',
+            text: "Use my current location"
+          }) | merge({ classes: "app-button--link" }))
+        }
+      } if not page.question.postcode.hideUseLocation,
+      label: {
+        isPageHeading: true
+      }
+    } | merge(page.question.postcode)
+  } | merge(page.question | default({}))
+} %}
+
+{% extends layouts.textinput %}
+
+{% block question_body %}
+  {{ super() }}
+{% endblock question_body %}
+
+{% block question_append %}
+  {% if _sublayout.question.postcode.dontKnowLink %}
+    <div>
+      <p><a href="#">I don't know the postcode</a></p>
+    </div>
+  {% endif %}
+{% endblock question_append %}

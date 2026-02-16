@@ -1,0 +1,24 @@
+{% set page = {
+  title: 'What is your phone number?' if isFirstPerson else 'What phone number should we use?',
+  redirectTo: 'receipt',
+  layout: {
+    width: 'three-quarters'
+  },
+  question: {
+    callout: {
+      text: ('We need to know what number to call in case the pharmacist needs to contact you.' if isFirstPerson else 'We need this in case the pharmacist needs to call you. Tell us your number if you want to be contacted on behalf of the person who needs help.'),
+      position: 'top'
+    },
+    textinput: {
+      name: "answers[phoneNumber]",
+      value: data.answers.phoneNumber,
+      classes: 'nhsuk-input--width-20',
+      label: {
+        text: 'Enter a mobile or landline number',
+        isPageHeading: false
+      }
+    }
+  }
+} %}
+
+{% extends page.layout.file | default(layouts.textinput) %}

@@ -1,10 +1,12 @@
 {% set page = {
-  title: 'What happened to your repeat prescription request?',
+  title: 'What happened to ' + ('your' | togglePOV(isFirstPerson))  + ' repeat prescription request?',
   layout: {
     file: layouts.radios
   },
   question: {
     radios: {
+      name: 'answers[prescriptionWhathappened]',
+      value: data.answers.prescriptionWhathappened,
       items: [
       {
         text: "It's not been approved yet by the GP",
@@ -24,8 +26,7 @@
       }
       ]
     }
-  },
-  redirectTo: "when-meds-due"
+  }
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}

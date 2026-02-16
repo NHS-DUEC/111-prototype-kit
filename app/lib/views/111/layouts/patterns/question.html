@@ -1,20 +1,24 @@
 {% set layout = {
   file: '111/layouts/base.html',
   layout: {
+    width: 'three-quarters',
     back: true
   }
 } %}
 
-{% set question = _sublayout.question | merge(page.question | default({})) %}
+{% set question = (layout | merge(_sublayout.question | default({})) | merge(page.question | default({}))) %}
 
 {% extends layout.file %}
 
 {% block content_primary %}
 
-  <form method="post" action="{{ page.question.action | default(_sublayout.question.action | default('#')) }}">
+  <form method="post" action="{{ question.action | default('#') }}">
 
     {% if not question.supressHeading -%}
       <h1 class="nhsuk-heading-l">
+        {% if page.caption %}
+          <span class="{{ page.caption.classes | default('nhsuk-caption-l') }}">{{ page.caption.text }}</span>
+        {% endif %}
         {{ question.text | d(page.title | d('Question text is required for this template')) | noOrphans | safe }}
       </h1>
     {%- endif %}
@@ -59,14 +63,16 @@
 
     {# block for question actions (buttons) #}
     {% block question_actions %}
+      {% if not question.supressQuestionActions %}
       {{
         button({
           text: 'Next'
         } | merge(question.actions.button | d({})))
       }}
+      {% endif %}
     {% endblock %}
 
-    {% set redirectValue = page.redirectTo | default(_sublayout.redirectTo) %}
+    {% set redirectValue = page.redirectTo | default(_sublayout.redirectTo | default(false)) %}
 
     {% if redirectValue %}
       <input type="hidden" name="redirectTo" value="{{ redirectValue }}">

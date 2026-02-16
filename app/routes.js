@@ -8,7 +8,7 @@ const router = express.Router()
 // Your routes beneath here
 // ########################################################
 
-router.use('/version-1', require('./routes/version-1'))
+router.use('/ep', require('./routes/ep'))
 
 // ########################################################
 module.exports = router

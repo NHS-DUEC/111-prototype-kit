@@ -1,284 +1,63 @@
-{%- from 'components/header/macro.njk' import header %}
-{%- from 'components/footer/macro.njk' import footer %}
-{%- from 'components/skip-link/macro.njk' import skipLink %}
-{%- from 'components/action-link/macro.njk' import actionLink %}
-{%- from 'components/breadcrumb/macro.njk' import breadcrumb %}
-{%- from 'components/card/macro.njk' import card %}
-{%- from 'components/contents-list/macro.njk' import contentsList %}
-{%- from 'components/details/macro.njk' import details %}
-{%- from 'components/header/macro.njk' import header %}
-{%- from 'components/hero/macro.njk' import hero %}
-{%- from 'components/footer/macro.njk' import footer %}
-{%- from 'components/do-dont-list/macro.njk' import list %}
-{%- from 'components/images/macro.njk' import image %}
-{%- from 'components/inset-text/macro.njk' import insetText %}
-{%- from 'components/pagination/macro.njk' import pagination %}
-{%- from 'components/skip-link/macro.njk' import skipLink %}
-{%- from 'components/tables/macro.njk' import table %}
-{%- from 'components/warning-callout/macro.njk' import warningCallout %}
-{%- from 'components/back-link/macro.njk' import backLink %}
-{%- from 'components/button/macro.njk' import button %}
-{%- from 'components/checkboxes/macro.njk' import checkboxes %}
-{%- from 'components/date-input/macro.njk' import dateInput %}
-{%- from 'components/error-message/macro.njk' import errorMessage %}
-{%- from 'components/error-summary/macro.njk' import errorSummary %}
-{%- from 'components/fieldset/macro.njk' import fieldset %}
-{%- from 'components/hint/macro.njk' import hint %}
-{%- from 'components/input/macro.njk' import input %}
-{%- from 'components/label/macro.njk' import label %}
-{%- from 'components/radios/macro.njk' import radios %}
-{%- from 'components/select/macro.njk' import select %}
-{%- from 'components/summary-list/macro.njk' import summaryList %}
-{%- from 'components/tag/macro.njk' import tag %}
-{%- from 'components/textarea/macro.njk' import textarea %}
+{% extends layouts.base %}
 
-{%- from "nhsapp/styles/icon/macro.njk" import nhsappIcon %}
-{% from "nhsapp/components/bottom-navigation/macro.njk" import nhsappBottomNavigation with context %}
-{% from "nhsapp/components/global-navigation-native/macro.njk" import nhsappGlobalNavigation with context %}
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+<div class="nhsuk-u-reading-width">
 
-    <title>
-      111 online - NHS.UK!
-    </title>
+  <h1 class="nhsuk-heading-xl app-u-large-screen-only">
+    <span class="nhsuk-caption-l">111 online</span>
+    <span data-test-id="heading-text">Get help for your symptoms</span>
+  </h1>
 
-    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" rel="preload" as="font" crossorigin="crossorigin">
-    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" rel="preload" as="font" crossorigin="crossorigin">
+  <h1 class="nhsuk-heading-xl nhsuk-u-margin-bottom-5 app-u-small-screen-only">
+    111 online
+  </h1>
 
-    <link rel="stylesheet" href="/css/legacy.css" media="all">
+  <p>If you think you need medical help right now, 111 online can tell you what to do next.</p>
 
-    {% block customStyles %}{% endblock %}
+  <p>You can also <a href="/start/language-bsl-help">get help in another language, or British Sign Language (BSL)
+      <svg width="25px" height="20px" viewBox="0 0 764 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path style="fill: 	#005eb8;"
+          d="M349.98 0C356.38 0 362.56 2.07001 367.81 5.96001C375.66 11.93 380.21 21.82 379.7 31.77C379.27 40.11 373.5 46.47 367.39 53.21C365.52 55.27 363.59 57.4 361.81 59.6C349.73 74.52 337.01 89.41 324.71 103.81C318.68 110.87 312.45 118.17 306.36 125.39L306.28 125.49L306.2 125.59C303.17 129.64 301.99 134.09 302.79 138.46C303.63 143.04 305.75 146.85 309.13 149.79C312.13 152.36 316.03 153.78 320.12 153.78C320.52 153.78 321.46 153.78 322.53 153.32C326.79 152.68 330.46 150.56 332.97 147.28L348.69 129.24L352.65 124.7L384.57 88.07C392.85 78.57 400.66 68.52 408.22 58.8C413.33 52.23 418.61 45.44 423.97 38.89L425.25 37.32C432.19 28.82 439.37 20.02 449.13 17.19C451.83 16.41 454.63 16.01 457.45 16.01C464.23 16.01 470.93 18.32 476.29 22.52C488.61 32.16 491.16 50.39 481.96 63.16C461.36 91.85 435.77 118.06 411.03 143.4C401.8 152.85 392.26 162.62 383.17 172.34L383.12 172.4L383.07 172.46C380.03 175.95 378.65 180.35 379.08 185.24C379.54 189.7 381.75 193.94 385.15 196.91C388.14 199.48 392.05 200.9 396.14 200.9C401.27 200.9 405.91 198.88 409.13 195.28L480.23 119.34C480.37 119.19 480.55 119.03 480.76 118.87C483.19 117.01 485.53 114.79 487.03 112.93L487.82 111.94C488.08 111.72 488.45 111.4 488.77 111.03C494.47 104.74 502.63 101.13 511.15 101.13C518.52 101.13 525.55 103.83 530.96 108.73C536.76 113.99 540.29 121.34 540.89 129.43C541.13 136.89 538.92 143.79 534.5 149.4C534.05 149.8 533.66 150.2 533.31 150.59L442.73 242.78L442.64 242.87L442.55 242.97C439.51 246.46 438.13 250.86 438.56 255.75C439.04 260.39 441.01 264.19 444.63 267.42C447.62 269.99 451.53 271.41 455.62 271.41C464.29 271.41 470.23 264.8 475.01 259.49C476.05 258.34 477.03 257.24 477.97 256.29L480.08 254.16C486.49 247.67 493.13 240.95 499.55 234.22C500.47 233.26 501.39 232.27 502.31 231.27C508.18 224.95 514.26 218.4 522.28 216.87C523.6 216.62 524.95 216.49 526.31 216.49C534.37 216.49 543.47 221.09 551.27 229.11C553.84 231.75 555.05 235.43 554.51 238.94C554.03 242.04 552.23 244.58 549.45 246.08C549.24 246.19 391.05 331.31 384.26 334.97C383.72 335.27 383.28 335.59 382.93 335.84L382.86 335.89L354.91 350.9C354.25 351.26 353.56 351.44 352.89 351.44C351.51 351.44 350.15 350.68 349.34 349.47C348.79 348.64 348.28 347.29 349 345.55L376.33 279.88C376.51 279.46 376.66 279.04 376.79 278.61C385.09 251.58 384.42 212.26 355.25 190.38C344.01 181.95 330.74 177.49 316.86 177.49C313.75 177.49 310.59 177.72 307.45 178.16C290.5 180.63 275.62 189.44 265.6 202.91C254.69 217.1 249.05 236.02 243.59 254.31L243.11 255.94C240.39 264.62 237.15 274.7 233.77 283.65C216.87 328.29 192.26 365.61 166.21 405.13C159.72 414.97 153.01 425.14 146.51 435.33C143.13 440.63 140.05 446.17 137.37 451.79C130.65 465.88 123.37 482.76 120.36 501.13C118.38 513.2 117.29 525.57 117.13 537.88C117.13 538.37 117.1 539.24 117.06 540.39C116.94 544.23 116.74 550.67 116.82 556.88C116.84 558.35 116.17 559.35 115.61 559.92C114.8 560.74 113.7 561.21 112.59 561.21C111.94 561.21 111.3 561.05 110.69 560.72C99.17 554.62 88.12 547.35 77.85 539.11C46.46 514.07 23.14 480.62 10.41 442.42C3.71001 421.69 -2.41 397.32 3.01 373.58C16.34 309.42 23.05 255.71 24.11 204.55C24.58 181.83 23.63 158.89 22.7 136.7L22.65 135.58C21.89 117.4 22.38 101.66 36.1 93.04C40.92 90.24 46.32 88.76 51.72 88.76C54.11 88.76 56.46 89.06 58.81 89.66C72.31 92.84 80.21 102.35 85.22 121.46C88.22 132.92 88.3 144.67 88.39 157.12C88.4 158.95 88.41 160.78 88.44 162.61C88.55 171.8 88.56 181.15 88.58 190.19C88.58 195.61 88.59 201.04 88.62 206.46C88.71 223.57 89.26 240.93 90.32 259.53C90.52 263.1 90.78 267.53 92.98 271.5C95.43 275.9 100.23 278.53 105.82 278.53C108.81 278.53 111.67 277.76 114.1 276.31C115.19 275.66 116.31 274.79 117.43 273.73C123.41 268.05 128.38 261.04 133.18 254.26C135.71 250.69 138.1 247.31 140.61 244.15C145.34 238.19 150.25 232.1 155 226.21C158.09 222.37 161.17 218.55 164.19 214.79L177.65 197.99C178.52 196.94 179.26 195.77 179.83 194.55L323.62 14.8C323.62 14.8 323.68 14.72 323.8 14.63C324.79 13.77 325.61 12.89 326.3 11.94C331.26 5.54 338.19 1.42 345.83 0.330002C347.21 0.130002 348.62 0.0200043 350.02 0.0200043M316.44 212.57C324.64 212.57 332.24 215.64 337.86 221.22L338 221.36L338.15 221.48C346.82 228.69 347.54 245.57 345.31 259.06C344.2 266.88 343.18 271.53 340.07 278.51C336.17 287.84 329.27 304.18 321.95 321.47C313.29 341.95 304.34 363.13 298.52 377.07C295.86 382.62 290.48 394 298.26 403.85C301.52 407.97 306.07 410.15 311.43 410.15C316.05 410.15 321.24 408.47 326.05 405.42C335.03 400.6 352.46 391.23 368.01 382.88L389.07 371.56C400.07 365.66 419.44 355.17 441.86 343.03C501.15 310.93 582.32 266.99 611.04 252.36C615.42 250.46 619.99 249.5 624.62 249.5C638.92 249.5 653.76 259.31 654.45 278.08C654.86 288.45 647.66 300.32 638.07 305.1L638.01 305.13L637.95 305.16C627.54 310.77 597.74 326.82 562.98 345.53C519.47 368.95 468.21 396.55 437.5 413.1L437.43 413.14L437.36 413.18C436.39 413.75 435.42 414.25 434.48 414.73C431.54 416.24 428.49 417.81 426.02 421.21C422.01 426.79 421.44 433.67 424.49 439.61C427.44 445.36 433.27 448.93 439.7 448.93C440.04 448.93 440.39 448.93 440.74 448.9L441.56 448.85L442.3 448.51C467.5 437.15 529.86 403.13 584.88 373.11C621.08 353.36 652.34 336.31 667.94 328.45C672.23 326.3 676.61 323.81 681.24 321.17C692.66 314.68 704.46 307.96 714.91 306.56C716.36 306.34 717.82 306.23 719.26 306.23C729.37 306.23 738.86 312 744.02 321.3C749.18 330.6 749.02 341.36 743.58 350.1L743.54 350.16L743.5 350.22C738.14 359.47 726.72 365.29 716.63 370.42C715 371.25 713.4 372.06 711.95 372.83C692.41 382.58 623.2 417.84 562.14 448.95C529.09 465.79 497.52 481.88 475.39 493.12C472.66 494.49 469.82 496.29 467.58 500.1C464.23 505.71 464.05 511.98 467.08 517.32C470.17 522.75 476 526.13 482.3 526.13C485.45 526.13 488.62 525.26 491.49 523.6C518.23 510.47 553.3 492.33 587.23 474.79C643 445.95 700.66 416.13 725.78 406.16C728.62 405.27 731.5 404.82 734.33 404.82C744.67 404.82 754.33 410.84 759.55 420.52C764.62 429.94 764.19 440.81 758.39 449.61C754.83 455.09 748.36 460.57 741.92 463.58L741.84 463.62L741.76 463.66C730.34 469.57 705.75 481.89 677.27 496.15C621.99 523.83 546.27 561.74 506.46 583.09C498.67 587.13 493.92 594.47 494.36 601.79C494.74 608.11 498.95 613.23 505.92 615.84L506.02 615.88L506.12 615.91C507.98 616.51 509.74 616.8 511.51 616.8C515.92 616.8 519.5 614.95 523.29 612.99L524.47 612.38C546.29 601.53 578.66 585.35 609.96 569.69C642.68 553.33 673.59 537.87 686.21 531.64L686.31 531.59L686.41 531.54C692.26 528.27 699.46 526.4 706.17 526.4C711.51 526.4 719.17 527.57 725.4 533.13L725.47 533.19L725.54 533.25C732.1 538.65 735.79 546.74 735.69 555.46C735.58 564.57 731.33 573.31 724.31 578.89C705.63 590.69 656.99 616.87 609.95 642.19C576.32 660.29 541.55 679.01 517.71 692.48C510.35 696.36 502.27 700.76 493.72 705.43C477.26 714.4 460.25 723.68 445.7 730.68C423.42 741.07 399.87 747.32 375.67 749.24C370.09 749.73 364.38 749.98 358.72 749.98C294.82 749.98 231.62 718.74 193.77 668.41C154.24 616.95 140.12 546.61 157.79 489.23C161.92 475.83 168.18 462.89 177.5 448.52C181.09 442.98 185.17 437.13 190.74 429.56C213.03 399.21 230.81 364.37 246.69 331.23C255.25 313.38 262.73 294.79 269.96 276.82C276.38 260.87 283.02 244.37 290.35 228.57C294.93 218.69 304.93 212.56 316.45 212.56"
+          fill="white" />
+      </svg>
+    </a>
+  </p>
 
-    <script src="/nhsuk-frontend/nhsuk.min.js" defer="defer"></script>
+</div>
 
-    <link rel="shortcut icon" href="/nhsuk-frontend/assets/favicons/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/nhsuk-frontend/assets/favicons/apple-touch-icon-180x180.png">
-    <link rel="mask-icon" href="/nhsuk-frontend/assets/favicons/favicon.svg" color="#005eb8">
-    <link rel="icon" sizes="192x192" href="/nhsuk-frontend/assets/favicons/favicon-192x192.png">
-    <meta name="msapplication-TileImage" content="/nhsuk-frontend/assets/favicons/mediumtile-144x144.png">
-    <meta name="msapplication-TileColor" content="#005eb8">
-    <meta name="msapplication-square70x70logo" content="/nhsuk-frontend/assets/favicons/smalltile-70x70.png">
-    <meta name="msapplication-square150x150logo" content="/nhsuk-frontend/assets/favicons/mediumtile-150x150.png">
-    <meta name="msapplication-wide310x150logo" content="/nhsuk-frontend/assets/favicons/widetile-310x150.png">
-    <meta name="msapplication-square310x310logo" content="/nhsuk-frontend/assets/favicons/largetile-310x310.png">
+<div class="app-u-large-screen-only">
 
-    {% block head %}{% endblock %}
+  <h2 class="nhsuk-heading-l">I want to get:</h2>
 
-  </head>
-
-  <body class="{{ bodyClasses }}">
-
-    <script>
-      document.body.className = (
-        (document.body.className)
-        ? document.body.className + ' js-enabled'
-        : 'js-enabled');
-    </script>
-
-    {{ skipLink({
-      href: '#symptoms',
-      text: 'Skip to main content'
-    }) }}
-
-
-    {% if appframe %}
-      {# <div class="app-nhs-app-back-link-shim"></div> #}
-      {{ nhsappGlobalNavigation() }}
-    {% else %}
-      {{
-        header({
-          "service": {
-            "name": serviceName,
-            "href": "/"
-          },
-          "showNav": "false",
-          "showSearch": "false"
-        })
-      }}
+  {% set appSignage %}
+    {% for link in page.entrylinks %}
+    {% if loop.first %}
+    <ul class="app-signage">
+      {% endif %}
+      <li class="app-signage__item">
+        <a class="app-signage__link" href="{{ link.url | default('#') }}">
+          {{ link.text }}
+          <svg class="app-signage__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
+          </svg>
+        </a>
+      </li>
+      {% if loop.last %}
+    </ul>
     {% endif %}
+    {% endfor %}
+  {% endset %}
 
+  {{ appSignage | safe }}
 
-    <div class="nhsuk-width-container">
-      <div class="nhsuk-grid-row">
-        <div class="nhsuk-grid-column-full">
-          <!-- smol -->
-          <div class="nhsuk-u-reading-width alt-sml-page-content">
-            <h1 class="nhsuk-heading-xl nhsuk-u-padding-top-5 nhsuk-u-margin-bottom-4">111 Online</h1>
-            <p>
-              If you think you need medical help right now, we can tell you what to do next.
-            </p>
+  <div class="nhsuk-u-reading-width">
 
-            <!-- include "includes/strike-banner.html" -->
+    <div class="nhsuk-expander-group">
 
-          </div>
-          <!-- big -->
-          <div class="alt-lrg-page-content">
-            <h1 class="nhsuk-heading-xl nhsuk-u-padding-top-5">
-              <span class="nhsuk-caption-l">111 Online</span>
-              Get help for your symptoms
-            </h1>
-            <div class="nhsuk-u-reading-width">
-              <p class="nhsuk-body">
-                If you think you need medical help right now, 111 online can tell you what to do next.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- smol -->
-    <details class="nhsuk-details nhsuk-expander nhsuk-expander-special screen-smol">
-      <summary class="nhsuk-details__summary">
-        <span class="nhsuk-details__summary-text">
-          Get medical help
-        </span>
-      </summary>
-      <div class="nhsuk-details__text">
-        <div class="nhsuk-u-reading-width">
-          <h2 class="nhsuk-heading-m nhsuk-u-padding-top-4">I want to get:</h2>
-        </div>
-        <ul class="app-list-signage">
-          <li>
-            <a href="{{ page.startLink | d('111-start') }}">
-              help for my symptoms or injury
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="/edge">
-              dental help
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="/edge">
-              mental health help
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="/edge">
-              a prescription or medicines information
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-
-          <li>
-            <a href="/edge">
-              help with an existing medical condition
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-        </ul>
-
-        <div class="nhsuk-u-reading-width">
-          <h2 class="nhsuk-heading-s">When to call 111 instead</h2>
-          <p>
-            <a href="/edge">Call 111</a>
-            if you cannot use the online service because you:
-          </p>
-          <ul>
-            <li>have complex medical problems</li>
-            <li>need to get end-of-life care, or report a death</li>
-            <li>have safeguarding concerns about a child or vulnerable adult</li>
-          </ul>
-          <p>
-            <a href="/edge">Other ways to contact 111 if you have a hearing problem or need help in other languages</a>
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <!-- big -->
-    <div class="nhsuk-width-container screen-full">
-      <div class="nhsuk-grid-row">
-        <div class="nhsuk-grid-column-full">
-          <div class="nhsuk-u-padding-bottom-4">
-            <div class="nhsuk-u-reading-width">
-              <h2 class="nhsuk-heading-l">I want to get:</h2>
-            </div>
-            <ul class="app-list-signage app-list-signage--two-columns">
-              <li>
-                <a href="{{ page.startLink | d('111-start') }}">
-                  help for my symptoms or injury
-                  <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                    <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="/edge">
-                  dental help
-                  <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                    <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="/edge">
-                  mental health help
-                  <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                    <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="/edge">
-                  a prescription or medicines information
-                  <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                    <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-                  </svg>
-                </a>
-              </li>
-
-              <li>
-                <a href="/edge">
-                  help with an existing medical condition
-                  <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" height="34" width="34">
-                    <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-
-            <!-- include "includes/strep-a-banner.html" -->
-
-            <div class="nhsuk-u-reading-width">
-              <p>
-                <a href="/edge">Other ways to contact 111 if you have a hearing problem or need help in other languages</a>
-              </p>
-            </div>
-
-            <!-- Seems to be old content <div class="nhsuk-u-reading-width"> <h2 class="nhsuk-heading-s">When to call 111 instead</h2> <p> <a href="/edge">Call 111</a> if you cannot use the online service because you: </p> <ul> <li>have complex medical problems</li> <li>need to get end-of-life care, or report a death</li> <li>have safeguarding concerns about a child or vulnerable adult</li> </ul> </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- smol -->
-    <div class="screen-smol">
-      <details class="nhsuk-details nhsuk-expander nhsuk-expander-alt">
+      <details class="nhsuk-details nhsuk-expander">
         <summary class="nhsuk-details__summary">
-          <span class="nhsuk-details__summary-text">
-            See more NHS services
-          </span>
+          <span class="nhsuk-details__summary-text">See more NHS services</span>
         </summary>
         <div class="nhsuk-details__text">
           <p>Find out how to access a range of NHS services, such as:</p>
@@ -287,210 +66,138 @@
             <li>managing hospital referrals</li>
             <li>COVID-19 vaccinations</li>
           </ul>
-          <div class="nhsuk-action-link nhsuk-u-margin-0">
-            <a class="nhsuk-action-link__link" href="https://www.nhs.uk/nhs-services/">
-              <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <div class="nhsuk-action-link ">
+            <a href="https://www.nhs.uk/nhs-services/?_id=111Website" class=" nhsuk-action-link__link">
+              <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
                 <path d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
               </svg>
-              <span class="nhsuk-action-link__text">Find out about other NHS services on NHS.UK</span>
+              <span class="nhsuk-action-link__text" data-test-id="action-link-text">Find out about other NHS services on NHS.UK</span>
             </a>
           </div>
         </div>
       </details>
 
-      <details class="nhsuk-details nhsuk-expander nhsuk-expander-alt">
+      <details class="nhsuk-details nhsuk-expander">
         <summary class="nhsuk-details__summary">
-          <span class="nhsuk-details__summary-text">
-            Waiting for a 111 callback?
-          </span>
+          <span class="nhsuk-details__summary-text">Waiting for a 111 callback?</span>
         </summary>
         <div class="nhsuk-details__text">
-          <p>
-            The 111 callback service might be busy.
-          </p>
-
-          <div class="nhsuk-action-link nhsuk-u-margin-0">
-            <a class="nhsuk-action-link__link" href="https://111.nhs.uk/111callback">
-              <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <p>The 111 callback service might be busy.</p>
+          <div class="nhsuk-action-link ">
+            <a href="https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/?_id=111Website" class=" nhsuk-action-link__link" >
+              <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
                 <path d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
               </svg>
-              <span class="nhsuk-action-link__text">Get information about 111 callbacks</span>
+              <span class="nhsuk-action-link__text" data-test-id="action-link-text">Get information about 111 callbacks</span>
             </a>
           </div>
         </div>
       </details>
 
-      <details class="nhsuk-details nhsuk-expander nhsuk-expander-alt">
-        <summary class="nhsuk-details__summary">
-          <span class="nhsuk-details__summary-text">
-            How 111 online works
-          </span>
-        </summary>
+      <details class="nhsuk-details nhsuk-expander">
+        <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">How 111 online works</span></summary>
         <div class="nhsuk-details__text">
-          <p>
-            111 online will not give you a diagnosis, but we will direct you to the best place to get help for your symptoms.
-          </p>
+          <p>111 online will not give you a diagnosis, but we will direct you to the best place to get help for your symptoms.</p>
+
           <p>We cannot:</p>
+
           <ul>
-            <li>issue
-              <a href="/edge">fit notes</a>
-              - you need to contact your GP surgery</li>
+            <li>issue <a href="https://www.nhs.uk/common-health-questions/caring-carers-and-long-term-conditions/when-do-i-need-a-fit-note/?_id=111Website" >fit notes</a> - you need
+              to contact your GP surgery</li>
             <li>make or cancel appointments for you in other parts of the NHS</li>
           </ul>
-          <p>Read about
-            <a href="/edge">how 111 online works in detail</a>
-          </p>
-          <p>
-            NHS 111 online is available in England only.
-          </p>
-          <p>
-            Get help in:
-          </p>
+
+          <p>Read about <a href="https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/how-nhs-111-online-works/?_id=111Website"
+              data-test-id="how-it-works">how 111 online works in detail</a></p>
+          <p>NHS 111 online is available in England only.</p>
+          <p>Get help in:</p>
           <ul>
-            <li>
-              <a href="/edge">Northern Ireland</a>
-            </li>
-            <li>
-              <a href="/edge">Scotland</a>
-            </li>
-            <li>
-              <a href="/edge">Wales</a>
-            </li>
+            <li><a href="https://www.nidirect.gov.uk/campaigns/illnesses-and-conditions?_id=111Website" >Northern Ireland</a></li>
+            <li><a href="https://www.nhs24.scot/?_id=111Website" >Scotland</a></li>
+            <li><a href="https://111.wales.nhs.uk/?_id=111Website" >Wales</a></li>
           </ul>
         </div>
       </details>
+
+    {% block large_screen_expanders %}{% endblock large_screen_expanders %}
+
     </div>
+  </div>
+</div>
 
-    <!-- big -->
-    <div class="nhsuk-width-container screen-full">
-      <div class="nhsuk-grid-row">
-        <div class="nhsuk-grid-column-full">
-          <div class="nhsuk-u-reading-width">
+<div class="app-u-small-screen-only nhsuk-u-reading-width">
+  <div class="nhsuk-expander-group app-expander-group--homepage">
 
-            <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-2">
-              <summary class="nhsuk-details__summary">
-                <span class="nhsuk-details__summary-text">
-                  See more NHS services
-                </span>
-              </summary>
-              <div class="nhsuk-details__text">
-                <p>Find out how to access a range of NHS services, such as:</p>
-                <ul>
-                  <li>GP appointment booking</li>
-                  <li>managing hospital referrals</li>
-                  <li>COVID-19 vaccinations</li>
-                </ul>
-                <div class="nhsuk-action-link nhsuk-u-margin-0">
-                  <a class="nhsuk-action-link__link" href="https://www.nhs.uk/nhs-services/">
-                    <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" width="36" height="36">
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-                    </svg>
-                    <span class="nhsuk-action-link__text">Find out about other NHS services on NHS.UK</span>
-                  </a>
-                </div>
-              </div>
-            </details>
+    <details class="nhsuk-details nhsuk-expander app-u-small-screen-only app-expander--mobile-highlight">
+      <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">Get medical help</span></summary>
+      <div class="nhsuk-details__text">
+        <h2 class="nhsuk-heading-m nhsuk-u-margin-top-4">I want to get:</h2>
+        {{ appSignage | safe }}
+      </div>
+    </details>
 
-            <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-2">
-              <summary class="nhsuk-details__summary">
-                <span class="nhsuk-details__summary-text">
-                  Waiting for a 111 callback?
-                </span>
-              </summary>
-              <div class="nhsuk-details__text">
-                <p>
-                  The 111 callback service might be busy.
-                </p>
-
-                <div class="nhsuk-action-link nhsuk-u-margin-0">
-                  <a class="nhsuk-action-link__link" href="https://111.nhs.uk/111callback">
-                    <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" width="36" height="36">
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-                    </svg>
-                    <span class="nhsuk-action-link__text">Get information about 111 callbacks</span>
-                  </a>
-                </div>
-              </div>
-            </details>
-
-            <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-2">
-              <summary class="nhsuk-details__summary">
-                <span class="nhsuk-details__summary-text">
-                  How 111 online works
-                </span>
-              </summary>
-              <div class="nhsuk-details__text">
-
-                <p>
-                  111 online will not give you a diagnosis, but we will direct you to the best place to get help for your symptoms.
-                </p>
-                <p>We cannot:</p>
-                <ul>
-                  <li>issue
-                    <a href="/edge">fit notes</a>
-                    - you need to contact your GP surgery</li>
-                  <li>make or cancel appointments for you in other parts of the NHS</li>
-                </ul>
-                <p>Read about
-                  <a href="/edge">how 111 online works in detail</a>
-                </p>
-                <p>
-                  NHS 111 online is available in England only.
-                </p>
-                <p>
-                  Get help in:
-                </p>
-                <ul>
-                  <li>
-                    <a href="/edge">Northern Ireland</a>
-                  </li>
-                  <li>
-                    <a href="/edge">Scotland</a>
-                  </li>
-                  <li>
-                    <a href="/edge">Wales</a>
-                  </li>
-                </ul>
-              </div>
-            </details>
-
-          </div>
+    <details class="nhsuk-details nhsuk-expander">
+      <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">See more NHS services</span></summary>
+      <div class="nhsuk-details__text">
+        <p>Find out how to access a range of NHS services, such as:</p>
+        <ul>
+          <li>GP appointment booking</li>
+          <li>managing hospital referrals</li>
+          <li>COVID-19 vaccinations</li>
+        </ul>
+        <div class="nhsuk-action-link ">
+          <a  href="https://www.nhs.uk/nhs-services/?_id=111Website" class=" nhsuk-action-link__link">
+            <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+            </svg>
+            <span class="nhsuk-action-link__text" data-test-id="action-link-text">Find out about other NHS services on NHS.UK</span>
+          </a>
         </div>
       </div>
-    </div>
+    </details>
 
-    <footer role="contentinfo" class="nhsuk-u-margin-top-6">
-      <div class="nhsuk-footer" id="nhsuk-footer">
-        <div class="nhsuk-width-container">
-          <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-two-thirds">
-              <p class="nhsuk-body-s">
-                This website only stores the cookies that are needed to make it work. Read more about
-                <a href="/edge">how we use cookies</a>.
-              </p>
-            </div>
-          </div>
-          <ul class="nhsuk-footer__list">
-            <li class="nhsuk-footer__list-item">
-              <a class="nhsuk-footer__list-item-link" href="/edge">Privacy statement</a>
-            </li>
-            <li class="nhsuk-footer__list-item">
-              <a class="nhsuk-footer__list-item-link" href="/edge">Terms and conditions</a>
-            </li>
-            <li class="nhsuk-footer__list-item">
-              <a class="nhsuk-footer__list-item-link" href="/edge">Accessibility statement</a>
-            </li>
-          </ul>
+    <details class="nhsuk-details nhsuk-expander">
+      <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">Waiting for a 111 callback?</span></summary>
+      <div class="nhsuk-details__text">
+        <p>The 111 callback service might be busy.</p>
+        <div class="nhsuk-action-link ">
+          <a data-test-id="waiting-for-a-callback-mobile" href="https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/?_id=111Website" class=" nhsuk-action-link__link" >
+            <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+            </svg>
+            <span class="nhsuk-action-link__text" data-test-id="action-link-text">Get information about 111 callbacks</span>
+          </a>
         </div>
       </div>
-    </footer>
+    </details>
 
-    <!-- Custom JavaScript files can be added to this file -->
-    {# {% include "includes/scripts.html" %} #}
+    <details class="nhsuk-details nhsuk-expander">
+      <summary class="nhsuk-details__summary"><span class="nhsuk-details__summary-text">How 111 online works</span></summary>
+      <div class="nhsuk-details__text">
+        <p>111 online will not give you a diagnosis, but we will direct you to the best place to get help for your symptoms.</p>
+        <p>We cannot:</p>
+        <ul>
+          <li>issue <a href="https://www.nhs.uk/common-health-questions/caring-carers-and-long-term-conditions/when-do-i-need-a-fit-note/?_id=111Website">fit notes</a> - you need to contact your GP surgery</li>
+          <li>make or cancel appointments for you in other parts of the NHS</li>
+        </ul>
+        <p>Read about <a href="https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/how-nhs-111-online-works/?_id=111Website">how 111 online works in detail</a></p>
+        <p>NHS 111 online is available in England only.</p>
+        <p>Get help in:</p>
+        <ul>
+          <li><a href="https://www.nidirect.gov.uk/campaigns/illnesses-and-conditions?_id=111Website" >Northern Ireland</a></li>
+          <li><a href="https://www.nhs24.scot/?_id=111Website" >Scotland</a></li>
+          <li><a href="https://111.wales.nhs.uk/?_id=111Website" >Wales</a></li>
+        </ul>
+      </div>
+    </details>
 
-  </body>
-</html>
+    {% block small_screen_expanders %}{% endblock small_screen_expanders %}
+
+  </div>
+</div>
+
+{% endblock %}

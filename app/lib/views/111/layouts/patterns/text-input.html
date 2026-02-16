@@ -1,0 +1,46 @@
+
+{# Prevent some repetition by abstracting this to a variable #}
+{% set _questionText = page.question.text | default(page.title | default('Question')) %}
+{% set _isPageHeading = (_sublayout.question.textinput.label.isPageHeading | d(page.question.textinput.label.isPageHeading) | d(false)) %}
+
+{#
+  _sublayout variable configures the layout. It sets some defaults but allows them
+  to be overriden by the page which is extending from this layout template.
+
+  Some notes:
+  -------------------------------------------------------------------
+  supressHeading is used to allow a seperate heading for the page to that of
+  the form inputs. It is set to true if the page defines the text input's label
+  as being the pageHeading
+
+  After that we default some values for ease and consistency,
+  meaning there is no need to do it for each and every page but they can be overriden
+  on a page by page basic should you need to.
+
+  for the 'value' of the input we are using the textinput.name to look up if a value exists in
+  the session data via a nunjucks filter
+
+#}
+{% set _textinputLayout = {
+  question: {
+    supressHeading: _isPageHeading,
+    textinput: {
+      idPrefix: _questionText | toCamelCase,
+      name: _questionText | toCamelCase,
+      value: (data | getValueFromPath(page.question.textinput.name)) if page.question.textinput.name,
+      label: {
+        text: _questionText,
+        size: 'l'
+      } if _isPageHeading
+    }
+  }
+} | merge(_sublayout | d({}) | merge(page | default({}))) %}
+
+{# this is a fudge to allow sublayout to trickle back into the higherlevel layout #}
+{% set _sublayout = _textinputLayout %}
+
+{% extends layouts.question %}
+
+{% block question_body %}
+  {{ input(_sublayout.question.textinput) | safe }}
+{% endblock question_body %}
