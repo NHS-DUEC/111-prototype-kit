@@ -1,0 +1,14 @@
+{
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "javascript": {
+          "suggestionActions": {
+            // This specifically targets JavaScript “hint” diagnostics like ts(80001)
+            "enabled": false,
+          },
+        },
+      },
+    },
+  },
+}

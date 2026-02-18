@@ -1,15 +1,21 @@
 // ########################################################
 // External dependancies
 // ########################################################
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+
+// ########################################################
+// 111 online prototype Kit routes
+// ########################################################
+
+router.use(require("./lib/routes/ooo-routes"));
 
 // ########################################################
 // Your routes beneath here
 // ########################################################
 
-router.use('/ep', require('./routes/ep'))
+router.use("/ep", require("./routes/ep"));
 
 // ########################################################
-module.exports = router
+module.exports = router;
 // ########################################################

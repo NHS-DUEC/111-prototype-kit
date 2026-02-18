@@ -1,22 +1,9 @@
-/**
- * @param {typeof config} config
- */
-module.exports =
-  (config) =>
-  /**
-   * @param {Request} req
-   * @param {Response} res
-   * @param {NextFunction} next
-   */
-  (req, res, next) => {
-    res.locals.serviceName = config.serviceName
-    res.locals.debug = config.debug
-    res.locals.componentDoc = config.displayComponentPath
-    res.locals.codeBlock = config.codeBlockPath
-    next()
-  }
+const config = require("./config");
 
-/**
- * @import { NextFunction, Request, Response } from 'express'
- * @import config from './config.js'
- */
+module.exports = function (req, res, next) {
+  res.locals.layouts = config.layouts;
+  res.locals.debug = config.debug;
+  res.locals.componentDoc = config.displayComponentPath;
+  res.locals.codeBlock = config.codeBlockPath;
+  next();
+};

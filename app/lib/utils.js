@@ -1,9 +1,8 @@
-const nunjucks = require('nunjucks');
-const EmbedExtension = require('./extensions/embed');
-const RepeatExtension = require('./extensions/repeat');
+const EmbedExtension = require("./extensions/embed");
+const RepeatExtension = require("./extensions/repeat");
 
 function isObject(value) {
-  return value !== null && typeof value === 'object' && !Array.isArray(value);
+  return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
 function deepMerge(target, source) {
@@ -25,8 +24,8 @@ function deepMerge(target, source) {
 
 exports.deepMerge = deepMerge;
 
-exports.addExtensions = function(env) {
+exports.addExtensions = function (env) {
   // register it under the name “embed”
-  env.addExtension('EmbedExtension', new EmbedExtension());
-  env.addExtension('RepeatExtension', new RepeatExtension());
-}
+  env.addExtension("EmbedExtension", new EmbedExtension());
+  env.addExtension("RepeatExtension", new RepeatExtension());
+};
