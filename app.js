@@ -6,7 +6,7 @@ const sessionDataDefaults = require("./app/data/session-data-defaults");
 const filters = require("./app/filters");
 const locals = require("./app/locals");
 const routes = require("./app/routes");
-const appUtils = require("./app/lib/utils");
+
 const EmbedExtension = require("./app/lib/extensions/embed");
 const RepeatExtension = require("./app/lib/extensions/repeat");
 
