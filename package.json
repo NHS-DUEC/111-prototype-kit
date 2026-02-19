@@ -1,48 +1,23 @@
 {
-	"name": "nhsuk-prototype-kit",
-	"version": "7.1.0",
-	"description": "Rapidly create HTML prototypes of NHS websites and services.",
-	"main": "app.js",
-	"scripts": {
-		"start": "node ."
-	},
-	"author": "https://github.com/nhsuk/",
-	"license": "MIT",
-	"dependencies": {
-		"@babel/core": "^7.28.4",
-		"@babel/preset-env": "^7.28.3",
-		"@inquirer/prompts": "^7.9.0",
-		"body-parser": "^2.2.0",
-		"browser-sync": "^3.0.4",
-		"client-sessions": "^0.8.0",
-		"cookie-parser": "^1.4.7",
-		"dotenv": "^17.2.2",
-		"express": "^5.1.0",
-		"express-session": "^1.18.2",
-		"gulp": "^5.0.1",
-		"gulp-babel": "^8.0.0",
-		"gulp-clean": "^0.4.0",
-		"gulp-clean-css": "^4.3.0",
-		"gulp-nodemon": "^2.5.0",
-		"gulp-rename": "^2.1.0",
-		"gulp-sass": "^6.0.1",
-		"he": "^1.2.0",
-		"highlight.js": "^11.11.1",
-		"html-format": "^1.1.7",
-		"http-proxy-middleware": "^3.0.5",
-		"lodash": "^4.17.21",
-		"mergician": "^2.0.2",
-		"nhsapp-frontend": "^5.0.3",
-		"nhsuk-frontend": "^10.3.1",
-		"nhsuk-prototype-kit": "^8.0.1",
-		"nunjucks": "^3.2.4",
-		"path": "^0.12.7",
-		"plugin-error": "^2.0.1",
-		"portscanner": "^2.2.0",
-		"sass-embedded": "1.77.5"
-	},
-	"devDependencies": {},
-	"engines": {
-		"node": "^v24.13.0"
-	}
+  "name": "nhs-111-prototype-kit",
+  "description": "Rapidly create HTML prototypes of NHS websites and services.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node .",
+    "watch": "echo 'run this instead: npm start'"
+  },
+  "author": "https://github.com/nhsuk/",
+  "license": "MIT",
+  "dependencies": {
+    "he": "^1.2.0",
+    "highlight.js": "^11.11.1",
+    "html-format": "^1.1.7",
+    "mergician": "^2.0.2",
+    "nhsapp-frontend": "^5.0.3",
+    "nhsuk-frontend": "^10.3.1",
+    "nhsuk-prototype-kit": "^8.0.1"
+  },
+  "engines": {
+    "node": "^22.11.0 || ^24.11.0"
+  }
 }

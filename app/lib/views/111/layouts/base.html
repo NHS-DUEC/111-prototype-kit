@@ -1,5 +1,3 @@
-{% set assetPath = '/nhsuk-frontend/assets' %}
-
 {% extends "prototype-kit-template.njk" %}
 
 {% from "attributes.njk" import nhsukAttributes %}
@@ -78,7 +76,7 @@
 {%- set secondary_col_width = widths.secondary_col_width -%}
 
 {% block head %}
-  <link href="/css/main.css" rel="stylesheet">
+  <link href="/assets/sass/main.css" rel="stylesheet">
 {% endblock %}
 
 {# Set the page title #}
@@ -234,12 +232,12 @@
 {% endblock %}
 
 {% block bodyEnd %}
-  {# brings through the underlying javascript from the prototype-kit-template #}
+  {# brings through the underlying block content from the prototype-kit-template #}
   {{ super()}}
   {% block scripts %}
-    {# Custom JavaScript files can be added to this file #}
-    {% include "includes/scripts.html" %}
-    {% include "111/includes/scripts.html" %}
+    <script type="module" src="/assets/javascript/main.js"></script>
+    {# Custom 111 JavaScript #}
+    <script src="/assets/javascript/prototype.js"></script>
     {# For adding page specific JavsScript #}
     {% block pageScripts %}{% endblock %}
   {% endblock %}

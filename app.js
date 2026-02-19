@@ -16,7 +16,12 @@ const viewsPath = [
   "node_modules/nhsapp-frontend/dist",
 ];
 
-const entryPoints = ["app/assets/sass/main.scss", "app/assets/javascript/*.js"];
+const entryPoints = [
+  "app/assets/sass/main.scss",
+  "app/assets/sass/highlight.scss",
+  "app/assets/sass/legacy.scss",
+  "app/assets/javascript/*.js",
+];
 
 async function init() {
   const prototype = await NHSPrototypeKit.init({
