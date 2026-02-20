@@ -5,16 +5,18 @@ const express = require("express");
 const router = express.Router();
 
 // ########################################################
-// 111 online prototype Kit routes
+// Your routes here
 // ########################################################
 
-router.use(require("./lib/routes/ooo-routes"));
-
 // ########################################################
-// Your routes beneath here
+// 111 Prototype Kit Routes here
 // ########################################################
 
+// generic 111 prototype kit routes
 router.use("/ep", require("./routes/ep"));
+
+// generic 111 prototype kit routes
+router.use(require("./lib/routes/ooo-routes"));
 
 // ########################################################
 module.exports = router;

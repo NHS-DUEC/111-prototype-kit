@@ -28,7 +28,7 @@
       <li>phone number</li>
     </ul>
 
-    <p>If you want a confirmation for {{ ('your' | togglePOV(isFirstPerson)) }} referral, we will ask how to send it to you.</p>
+    <p>If you want a confirmation for {{ ('your' | togglePOV({ pov: isFirstPerson })) }} referral, we will ask how to send it to you.</p>
 
   {% else %}
 
@@ -55,7 +55,7 @@
   {% call callout({
     classes: 'app-callout--info'
   }) %}
-    <p>You do not need to tell us what medicine {{ ('you' | togglePOV(isFirstPerson)) }} take. The pharmacist will check {{ ('your' | togglePOV(isFirstPerson)) }} records.</p>
+    <p>You do not need to tell us what medicine {{ ('you' | togglePOV({ pov: isFirstPerson })) }} take. The pharmacist will check {{ ('your' | togglePOV({ pov: isFirstPerson })) }} records.</p>
   {% endcall %}
 
   {{

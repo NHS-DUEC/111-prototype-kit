@@ -1,10 +1,24 @@
 var express = require("express");
 var router = express.Router();
+const { format: urlFormat } = require("url");
 const config = require("../../config.js");
+const utils = require("../utils");
 
-// ################################################
-// MISC
-// ################################################
+/**
+ * Redirects directory-style page URLs to a canonical trailing-slash form.
+ * Concrete page routes are skipped by `shouldRedirectToTrailingSlash`.
+ */
+router.use((req, res, next) => {
+  if (!utils.shouldRedirectToTrailingSlash(req)) return next();
+
+  return res.redirect(
+    301,
+    urlFormat({
+      pathname: `${req.path}/`,
+      query: req.query,
+    }),
+  );
+});
 
 /**
  * Checks if the provided `path` string is non-empty and processes it to build a dashed string.
@@ -53,7 +67,7 @@ router.all(/(.*)/, (req, res, next) => {
   }
 
   // this is to help render prototype as though it is for either a first or third person user
-  res.locals.isFirstPerson = req.session.data?.pov === "first-person";
+  res.locals.isFirstPerson = req.session?.data?.pov === "first-person";
 
   // send some request details to the view
   res.locals.request = { path, params, originalUrl };
@@ -69,6 +83,12 @@ router.all(/(.*)/, (req, res, next) => {
  * Redirects to `redirectTo` when provided in the request body, otherwise
  * redirects back to the current route while preserving the query string.
  */
+router.post("/settings", (req, res) => {
+  // toggle the appframe value in the session
+  // req.session.data.appframe = req.session.data.appframe === 'true' ? 'false' : 'true';
+  res.redirect(req.get("referer") || "/");
+});
+
 router.post(/^\/([^.]+)$/, (req, res) => {
   const redirectTo =
     typeof req.body?.redirectTo === "string"
@@ -87,12 +107,6 @@ router.post(/^\/([^.]+)$/, (req, res) => {
       query: req.query,
     }),
   );
-});
-
-router.post("/settings", (req, res) => {
-  // toggle the appframe value in the session
-  // req.session.data.appframe = req.session.data.appframe === 'true' ? 'false' : 'true';
-  res.redirect(req.get("referer") || "/");
 });
 
 // if edge page requested anywhere in this app render the edge.html page

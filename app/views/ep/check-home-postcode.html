@@ -1,5 +1,5 @@
 {% set page = {
-  title: ('Is ' + data.answers.location.current.postcode | d('M1 1EA') | upper + ' your home postcode?') | togglePOV(isFirstPerson),
+  title: ('Is ' + data.answers.location.current.postcode | d('M1 1EA') | upper + ' your home postcode?') | togglePOV({ pov: isFirstPerson }),
   question: {
     radios: {
       name: 'answers[isHomePostcode]',
@@ -7,7 +7,7 @@
     },
     callout: {
       position: 'top',
-      text: 'Your postcode helps us find your NHS number.' | togglePOV(isFirstPerson)
+      text: 'Your postcode helps us find your NHS number.' | togglePOV({ pov: isFirstPerson })
     }
   }
 } %}

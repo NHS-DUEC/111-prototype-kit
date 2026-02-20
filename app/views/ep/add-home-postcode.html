@@ -1,9 +1,9 @@
 {% set page = {
-  title: 'What is your home postcode?' | togglePOV(isFirstPerson),
+  title: 'What is your home postcode?' | togglePOV({ pov: isFirstPerson }),
   redirectTo: './phone-number',
   question: {
     callout: {
-      text: 'Your home postcode helps us find your NHS number.' | togglePOV(isFirstPerson),
+      text: 'Your home postcode helps us find your NHS number.' | togglePOV({ pov: isFirstPerson }),
       position: 'top'
     },
     postcode: {
