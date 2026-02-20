@@ -5,14 +5,16 @@ const express = require("express");
 const router = express.Router();
 
 // ########################################################
-// Your routes here
+// Your routes here (line 10)
 // ########################################################
 
 // ########################################################
-// 111 Prototype Kit Routes here
+// 111 Prototype Kit Routes - keep these at the end of this
+// file so they don't get in the way of your custom routes
 // ########################################################
 
-// generic 111 prototype kit routes
+// Example Emergency Prescription routes - these are used
+// in the EP section of the prototype
 router.use("/ep", require("./routes/ep"));
 
 // generic 111 prototype kit routes
