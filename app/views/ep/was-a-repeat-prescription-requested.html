@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Did ' + 'you' | togglePOV(isFirstPerson) + ' send a repeat prescription request to ' + 'your' | togglePOV(isFirstPerson)  + ' GP surgery?',
+  title: 'Did ' + 'you' | togglePOV({ pov: isFirstPerson }) + ' send a repeat prescription request to ' + 'your' | togglePOV({ pov: isFirstPerson })  + ' GP surgery?',
   layout: {
     file: layouts.yesno if isFirstPerson else layouts.radios,
     back: true
@@ -10,7 +10,7 @@
       value: data.answers.prescriptionRequested
     },
     callout: {
-      text: 'We would like to know why ' + ('you' | togglePOV(isFirstPerson))  + ' ran out of medicine. Your answer will be used to improve the service.'
+      text: 'We would like to know why ' + ('you' | togglePOV({ pov: isFirstPerson }))  + ' ran out of medicine. Your answer will be used to improve the service.'
     }
   }
 } %}

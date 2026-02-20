@@ -1,6 +1,8 @@
+@use "sass:color";
+
 /* as seen on the module zero page */
 .app-two-tone-list {
-  color: mix($nhsuk-text-color, #fff, 80%);
+  color: color.mix($nhsuk-text-color, #fff, 80%);
 }
 
 .app-two-tone-list__highlight {

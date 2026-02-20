@@ -17,7 +17,7 @@
 
 {% block content_primary %}
 
-  <p>A pharmacist can provide an emergency supply of some medicines that {{'you' | togglePOV(isFirstPerson) }} are prescribed regularly.</p>
+  <p>A pharmacist can provide an emergency supply of some medicines that {{'you' | togglePOV({ pov: isFirstPerson }) }} are prescribed regularly.</p>
 
   <form method="post" action="#">
 
@@ -76,17 +76,17 @@
     </fieldset>
 
     {% call details({
-      summaryText: 'I cannot use these pharmacies to get an emergency supply of ' + ('my' | togglePOV(isFirstPerson))  + ' medicine'
+      summaryText: 'I cannot use these pharmacies to get an emergency supply of ' + ('my' | togglePOV({ pov: isFirstPerson }))  + ' medicine'
     }) %}
-          <p>If these pharmacies cannot help you get {{ ('your' | togglePOV(isFirstPerson)) }} emergency supply call 111 instead.</p>
+          <p>If these pharmacies cannot help you get {{ ('your' | togglePOV({ pov: isFirstPerson })) }} emergency supply call 111 instead.</p>
     {% endcall %}
 
     {% call details({
-      summaryText: 'Can I use my local pharmacy?' | togglePOV(isFirstPerson, { caseMode: 'lower' })
+      summaryText: 'Can I use my local pharmacy?' | togglePOV({ pov: isFirstPerson, caseMode: 'lower' })
     }) %}
-        <p>{{ "The recommended services offer an NHS referral." | togglePOV(isFirstPerson) }}</p>
-        <p>{{ "You can ask your usual pharmacy to help, but they might charge for a private prescription and cost of the medicine." | togglePOV(isFirstPerson) }}</p>
-        <p>{{ "This is more expensive than paying the NHS prescription charge. Everyone has to pay this, even if you usually get free NHS prescriptions." | togglePOV(isFirstPerson) }}</p>
+        <p>{{ "The recommended services offer an NHS referral." | togglePOV({ pov: isFirstPerson }) }}</p>
+        <p>{{ "You can ask your usual pharmacy to help, but they might charge for a private prescription and cost of the medicine." | togglePOV({ pov: isFirstPerson }) }}</p>
+        <p>{{ "This is more expensive than paying the NHS prescription charge. Everyone has to pay this, even if you usually get free NHS prescriptions." | togglePOV({ pov: isFirstPerson }) }}</p>
     {% endcall %}
 
     <input type="hidden" name="redirectTo" value="{{ page.redirectTo }}">

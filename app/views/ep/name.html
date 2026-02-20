@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'What is your name?' | togglePOV('your', isFirstPerson),
+  title: 'What is your name?' | togglePOV({ word: 'your', pov: isFirstPerson }),
   layout: {
     file: layouts.question
   },

@@ -1,50 +1,39 @@
 /**
- * togglePOV supports 3 call patterns:
+ * togglePOV uses an object-based config.
  *
- * 1) Whole-string mode (explicit POV):
- *    togglePOV(input, pov, options?)
+ * Template usage:
+ *   {{ "Text with your words" | togglePOV({ pov: isFirstPerson }) }}
+ *   {{ "Text with your words" | togglePOV({ word: "your", pov: isFirstPerson }) }}
+ *   {{ "you" | togglePOV({ word: "you", replacement: "them", pov: isFirstPerson }) }}
  *
- * 1b) Whole-string mode (infer POV from template context):
- *    togglePOV(input, options?)
+ * Config keys:
+ *   pov: 'first-person' | 'third-person' | true | false
+ *   word: optional search term for targeted replacement
+ *   replacement: optional replacement override for `word`
+ *   wholeWord: default true
+ *   caseInsensitive: default true
+ *   caseMode: 'preserve' | 'lower' | 'upper'
  *
- * 2) Targeted replace-in-string mode (explicit POV):
- *    togglePOV(input, word, pov, replacementString?, options?)
- *
- * 2b) Targeted replace-in-string mode (infer POV from template context):
- *    togglePOV(input, word, replacementString?, options?)
- *
- * 3) Word-only mode:
- *    togglePOV(word, pov?)
- *
- * Options:
- *  - wholeWord (default true): replace whole tokens only
- *  - caseInsensitive (default true): match regardless of case
- *  - caseMode (default 'preserve'): 'preserve' | 'lower' | 'upper'
- *
- * Case-preserving rules:
- *  - "you" -> "they"
- *  - "You" -> "They"
- *  - "YOU" -> "THEY"
- *  - Special-case: single-letter tokens like "I" behave like Title Case -> "They"
- *
- * Whole-token matching supports punctuation tokens like "I'm" using lookbehind boundaries
- * when available (with a safe fallback for older Node versions).
+ * POV resolution:
+ * 1) explicit `pov` (string or boolean)
+ * 2) `ctx.data.answers.pov` (session answers)
+ * 4) context fallbacks (`ctx.isFirstPerson`, `ctx.data.pov`, ...)
  */
-const config = require('../../config.js');
+const config = require("../../config.js");
 
 const defaultReplacements = {
   // second-person -> third-person plural
-  you: 'they',
-  your: 'their',
-  yours: 'theirs',
-  yourself: 'themselves',
+  you: "they",
+  your: "their",
+  yours: "theirs",
+  yourself: "themselves",
 
-  // first-person -> third-person plural (safe, token-level)
-  i: 'they',
-  me: 'them',
-  my: 'their',
-  mine: 'theirs',
-  myself: 'themselves',
+  // first-person -> third-person plural
+  i: "they",
+  me: "them",
+  my: "their",
+  mine: "theirs",
+  myself: "themselves",
   "i'm": "they're",
   "i’ve": "they’ve",
   "i'd": "they’d",
@@ -53,36 +42,27 @@ const defaultReplacements = {
 };
 
 function escapeRegExp(str) {
-  return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return String(str).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function applyCase(source, target, caseMode = 'preserve') {
+function applyCase(source, target, caseMode = "preserve") {
   const s = String(source);
   const t = String(target);
 
-  // Explicit override
-  if (caseMode === 'lower') return t.toLowerCase();
-  if (caseMode === 'upper') return t.toUpperCase();
+  if (caseMode === "lower") return t.toLowerCase();
+  if (caseMode === "upper") return t.toUpperCase();
 
-  // preserve (default)
-
-  // Single-letter tokens like "I" should behave like Title Case, not ALL CAPS
+  // Single-letter tokens like "I" should behave like Title Case, not ALL CAPS.
   if (s.length === 1) {
     return t[0].toUpperCase() + t.slice(1).toLowerCase();
   }
 
-  // ALL CAPS
   if (s === s.toUpperCase()) return t.toUpperCase();
 
-  // Title case
-  if (
-    s[0] === s[0].toUpperCase() &&
-    s.slice(1) === s.slice(1).toLowerCase()
-  ) {
+  if (s[0] === s[0].toUpperCase() && s.slice(1) === s.slice(1).toLowerCase()) {
     return t[0].toUpperCase() + t.slice(1).toLowerCase();
   }
 
-  // default: lower
   return t.toLowerCase();
 }
 
@@ -100,7 +80,7 @@ function resolveReplacement(searchLower, replacementString) {
 function supportsLookbehind() {
   try {
     // eslint-disable-next-line no-new
-    new RegExp('(?<!a)b');
+    new RegExp("(?<!a)b");
     return true;
   } catch {
     return false;
@@ -112,13 +92,11 @@ function buildPattern(search, { wholeWord, useLookbehindBoundaries }) {
 
   if (!wholeWord) return escaped;
 
-  // Preferred: supports "I'm", "you're", "NHS-111", etc.
   if (useLookbehindBoundaries) {
     return `(?<![A-Za-z0-9_])${escaped}(?![A-Za-z0-9_])`;
   }
 
-  // Fallback if lookbehind isn’t available (older Node):
-  // Capture "start or non-word char" prefix so we can re-insert it.
+  // Fallback for runtimes without lookbehind support.
   return `(^|[^A-Za-z0-9_])(${escaped})(?![A-Za-z0-9_])`;
 }
 
@@ -126,16 +104,15 @@ function replaceAllInString(text, search, baseReplacement, options) {
   const {
     wholeWord = true,
     caseInsensitive = true,
-    caseMode = 'preserve',
+    caseMode = "preserve",
   } = options || {};
 
   const useLookbehindBoundaries = supportsLookbehind();
   const pattern = buildPattern(search, { wholeWord, useLookbehindBoundaries });
-  const flags = caseInsensitive ? 'gi' : 'g';
+  const flags = caseInsensitive ? "gi" : "g";
   const re = new RegExp(pattern, flags);
 
   if (wholeWord && !useLookbehindBoundaries) {
-    // Fallback pattern has 2 groups: (prefix)(match)
     return String(text).replace(re, (full, prefix, match) => {
       return `${prefix}${applyCase(match, baseReplacement, caseMode)}`;
     });
@@ -147,20 +124,33 @@ function replaceAllInString(text, search, baseReplacement, options) {
 }
 
 function isPlainObject(value) {
-  return value !== null && typeof value === 'object' && !Array.isArray(value);
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+function firstDefined(...values) {
+  return values.find((value) => value !== undefined);
 }
 
 function normalizePov(value) {
-  if (value === true || value === 'first-person') return 'first-person';
-  if (value === false || value === 'third-person') return 'third-person';
+  if (value === true || value === "first-person") return "first-person";
+  if (value === false || value === "third-person") return "third-person";
   return undefined;
 }
 
 function resolvePov(explicitPov, templateState) {
+  const ctx = templateState?.ctx || {};
   const explicit = normalizePov(explicitPov);
   if (explicit) return explicit;
 
-  const ctx = templateState?.ctx || {};
+  // New preferred source: session answers POV.
+  const fromAnswersPov =
+    normalizePov(ctx.data?.answers?.pov) || normalizePov(ctx.answers?.pov);
+  if (fromAnswersPov) return fromAnswersPov;
+
   const fromIsFirstPerson = normalizePov(ctx.isFirstPerson);
   if (fromIsFirstPerson) return fromIsFirstPerson;
 
@@ -170,160 +160,117 @@ function resolvePov(explicitPov, templateState) {
   const fromSessionIsFirstPerson = normalizePov(ctx.data?.isFirstPerson);
   if (fromSessionIsFirstPerson) return fromSessionIsFirstPerson;
 
+  const fromAnswersIsFirstPerson =
+    normalizePov(ctx.data?.answers?.isFirstPerson) ||
+    normalizePov(ctx.answers?.isFirstPerson);
+  if (fromAnswersIsFirstPerson) return fromAnswersIsFirstPerson;
+
   return undefined;
 }
 
-module.exports = function togglePOV(...args) {
-  // Detect call shape:
-  // A) (input, pov?, options?) -> whole-string mode
-  // B) (input, word, pov?, replacementString?, options?) -> targeted string mode
-  // C) (word, pov?) -> word-only mode
+function applyWholeString(text, options) {
+  const replacements = getReplacements();
+  const keys = Object.keys(replacements).sort((a, b) => b.length - a.length);
 
-  let input;
-  let word;
-  let pov;
-  let replacementString;
-  let options;
+  return keys.reduce((acc, key) => {
+    const baseReplacement = resolveReplacement(key, undefined);
+    return replaceAllInString(acc, key, baseReplacement, options);
+  }, text);
+}
 
-  const argCount = args.length;
-  const second = args[1];
-  const third = args[2];
-  const secondIsPov = normalizePov(second) !== undefined;
-  const thirdIsPov = normalizePov(third) !== undefined;
-  const secondIsOptions = isPlainObject(second);
-  const thirdIsOptions = isPlainObject(third);
-  const isWholeStringMode =
-    argCount === 1 ||
-    (argCount === 2 && (secondIsPov || secondIsOptions)) ||
-    (argCount === 3 && secondIsPov && thirdIsOptions);
+function executeToggle(
+  { input, word, pov, replacementString, options },
+  templateState,
+) {
+  const opts = options || {};
+  const { caseInsensitive = true, caseMode = "preserve" } = opts;
+  const resolvedPov = resolvePov(pov, templateState);
 
-  if (isWholeStringMode) {
-    input = args[0];
-    pov = secondIsPov ? second : undefined;
-    options =
-      (argCount === 2 && secondIsOptions)
-        ? second
-        : (argCount === 3 && thirdIsOptions)
-          ? third
-          : {};
-    const resolvedPov = resolvePov(pov, this);
+  const hasWord = word !== undefined && word !== null;
+  const textInput = input == null ? undefined : String(input ?? "");
 
-    const text = String(input ?? '');
+  // Whole-string mode
+  if (!hasWord) {
+    const text = String(input ?? "");
 
-    // First-person: no change
-    if (resolvedPov === 'first-person') return text;
-
-    // Third-person: apply ALL replacements found in the string
-    if (resolvedPov === 'third-person') {
-      const replacements = getReplacements();
-
-      // Replace longer keys first to avoid overlaps (e.g. "yourself" before "your")
-      const keys = Object.keys(replacements).sort((a, b) => b.length - a.length);
-
-      return keys.reduce((acc, key) => {
-        const baseReplacement = resolveReplacement(key, undefined);
-        return replaceAllInString(acc, key, baseReplacement, options);
-      }, text);
+    if (resolvedPov === "third-person") {
+      return applyWholeString(text, opts);
     }
 
     return text;
   }
 
-  // Targeted or word-only mode
-  if (argCount >= 3) {
-    // (input, word, pov?, replacementString?, options?)
-    [input, word] = args;
+  const search = String(word ?? "");
+  if (!search) return textInput == null ? "" : textInput;
 
-    if (thirdIsPov) {
-      pov = third;
-      if (isPlainObject(args[3])) {
-        options = args[3];
-      } else {
-        replacementString = args[3];
-        options = args[4];
-      }
-    } else {
-      if (thirdIsOptions) {
-        options = third;
-      } else {
-        replacementString = third;
-        options = args[3];
-      }
-    }
-  } else {
-    // (input, word?) in templates OR (word, pov?) when called directly
-    if (secondIsPov || second === undefined) {
-      [word, pov] = args;
-      input = undefined;
-    } else {
-      [input, word] = args;
-    }
+  if (resolvedPov === "first-person") {
+    return textInput == null ? search : textInput;
   }
 
-  const opts = options || {};
-  const { caseInsensitive = true, caseMode = 'preserve' } = opts;
-  const resolvedPov = resolvePov(pov, this);
-
-  const search = String(word ?? '');
-  if (!search) return input == null ? '' : String(input ?? '');
-
-  // First-person: no change
-  if (resolvedPov === 'first-person') {
-    return input == null ? search : String(input ?? '');
-  }
-
-  // Third-person: replace
-  if (resolvedPov === 'third-person') {
+  if (resolvedPov === "third-person") {
     const searchKey = caseInsensitive ? search.toLowerCase() : search;
     const baseReplacement = resolveReplacement(searchKey, replacementString);
 
-    // Word-only mode
-    if (input == null) {
+    if (textInput == null) {
       return applyCase(search, baseReplacement, caseMode);
     }
 
-    // Targeted replace within string mode
-    return replaceAllInString(String(input), search, baseReplacement, opts);
+    return replaceAllInString(textInput, search, baseReplacement, opts);
   }
 
-  // Unknown pov: no change
-  return input == null ? search : String(input ?? '');
+  return textInput == null ? search : textInput;
+}
+
+function toOptions(cfg) {
+  const nestedOptions = isPlainObject(cfg.options) ? cfg.options : {};
+  const options = { ...nestedOptions };
+
+  if (hasOwn(cfg, "wholeWord")) options.wholeWord = cfg.wholeWord;
+  if (hasOwn(cfg, "caseInsensitive"))
+    options.caseInsensitive = cfg.caseInsensitive;
+  if (hasOwn(cfg, "caseMode")) options.caseMode = cfg.caseMode;
+
+  return options;
+}
+
+function parseObjectConfig(inputFromPipe, configArg) {
+  const cfg = isPlainObject(configArg) ? configArg : {};
+  const options = toOptions(cfg);
+
+  const hasInputOverride =
+    hasOwn(cfg, "input") || hasOwn(cfg, "text") || hasOwn(cfg, "value");
+  const explicitInput = hasOwn(cfg, "input")
+    ? cfg.input
+    : hasOwn(cfg, "text")
+      ? cfg.text
+      : cfg.value;
+
+  return {
+    input: hasInputOverride ? explicitInput : inputFromPipe,
+    word: firstDefined(cfg.word, cfg.search, cfg.target, cfg.find),
+    pov: cfg.pov,
+    replacementString: firstDefined(
+      cfg.replacement,
+      cfg.replacementString,
+      cfg.replaceWith,
+    ),
+    options,
+  };
+}
+
+function parseInvocation(input, config) {
+  // Direct object-only mode for JS callers:
+  // togglePOV({ input, pov, word, replacement, ...options })
+  if (config === undefined && isPlainObject(input)) {
+    return parseObjectConfig(undefined, input);
+  }
+
+  // Template mode:
+  // {{ "text" | togglePOV({ pov, word, replacement, ...options }) }}
+  // {{ "text" | togglePOV }}
+  return parseObjectConfig(input, config);
+}
+
+module.exports = function togglePOV(input, config) {
+  return executeToggle(parseInvocation(input, config), this);
 };
-
-/* -------------------------
-   Examples (copy/paste)
--------------------------- */
-
-// Whole-string mode
-// togglePOV("I forgot", "third-person");
-// -> "They forgot"
-
-// Whole-string mode (POV inferred from this.ctx.isFirstPerson / this.ctx.data.pov)
-// {{ "I forgot. You lost your keys." | togglePOV }}
-// -> "They forgot. They lost their keys." (when third-person)
-
-// togglePOV("I forgot. You lost your keys.", "third-person");
-// -> "They forgot. They lost their keys."
-
-// Force casing for replacements
-// togglePOV("I forgot. You lost your keys.", "third-person", { caseMode: "lower" });
-// -> "they forgot. they lost their keys."
-
-// togglePOV("I forgot. You lost your keys.", "third-person", { caseMode: "upper" });
-// -> "THEY forgot. THEY lost THEIR keys."
-
-// Token with apostrophe (whole-string mode)
-// togglePOV("I'm ready. I'm here.", "third-person");
-// -> "They're ready. They're here."
-
-// Targeted replace in string with explicit replacement
-// togglePOV("I'm ready. I'm here.", "I'm", "third-person", "they're");
-// -> "They're ready. They're here."
-
-// Targeted replace in string (POV inferred)
-// {{ "What is your name?" | togglePOV("your") }}
-// -> "What is their name?" (when third-person)
-
-// Word-only mode
-// togglePOV("YOU", "third-person"); // "THEY"
-// togglePOV("I", "third-person");   // "They"

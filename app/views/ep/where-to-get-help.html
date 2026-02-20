@@ -14,16 +14,16 @@
   <h3>Pharmacist (emergency supply)</h3>
 
   <p>
-      These pharmacists can provide an emergency supply of some medicines that {{('you' | togglePOV(isFirstPerson))}} are prescribed regularly.
+      These pharmacists can provide an emergency supply of some medicines that {{('you' | togglePOV({ pov: isFirstPerson }))}} are prescribed regularly.
   </p>
 
   <p class="nhsuk-hint nhsuk-u-margin-bottom-5">
-    This service needs more details from you to find {{ ('your' | togglePOV(isFirstPerson)) }} NHS number. The pharmacist will use this to check {{ ('your' | togglePOV(isFirstPerson)) }} prescribed medicines.
+    This service needs more details from you to find {{ ('your' | togglePOV({ pov: isFirstPerson })) }} NHS number. The pharmacist will use this to check {{ ('your' | togglePOV({ pov: isFirstPerson })) }} prescribed medicines.
   </p>
 
   {{
     actionLink({
-      text: "Start my request" | togglePOV(isFirstPerson),
+      text: "Start my request" | togglePOV({ pov: isFirstPerson }),
       href: "./pharmacy-list"
     })
   }}

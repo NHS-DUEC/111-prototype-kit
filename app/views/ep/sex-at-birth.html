@@ -1,11 +1,11 @@
 {% set calloutContent %}
-<p>This online triage depends on knowing {{ 'your' | togglePOV(isFirstPerson) }} registered sex at birth, not {{ 'your' | togglePOV(isFirstPerson) }} gender identity.</p>
+<p>This online triage depends on knowing {{ 'your' | togglePOV({ pov: isFirstPerson }) }} registered sex at birth, not {{ 'your' | togglePOV({ pov: isFirstPerson }) }} gender identity.</p>
 <p>We need to know this information so we can ask relevant clinical questions.</p>
-<p>If {{ 'you' | togglePOV(isFirstPerson) }} feel uncomfortable giving this information, or do not see an option that represents {{ 'you' | togglePOV('you', isFirstPerson, 'them') }} correctly, you can call 111 to talk to a nurse.</p>
+<p>If {{ 'you' | togglePOV({ pov: isFirstPerson }) }} feel uncomfortable giving this information, or do not see an option that represents {{ 'you' | togglePOV({ word: 'you', pov: isFirstPerson, replacement: 'them' }) }} correctly, you can call 111 to talk to a nurse.</p>
 {% endset %}
 
 {% set page = {
-  title: 'What was ' + ('your' | togglePOV(isFirstPerson)) + ' sex at birth?',
+  title: 'What was ' + ('your' | togglePOV({ pov: isFirstPerson })) + ' sex at birth?',
   question: {
     callout: {
       html: calloutContent,
