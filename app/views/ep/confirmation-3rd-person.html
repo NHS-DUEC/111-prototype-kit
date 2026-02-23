@@ -1,0 +1,151 @@
+{% set page = {
+  title: 'We have sent your request',
+  layout: {
+    back: false,
+    width: 'three-quarters',
+    content_secondary: {
+      show: false
+    }
+  }
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block content_primary %}
+
+  {% set physicalPharmacyHTML %}
+  <div class="app-service-details">
+    <div class="app-service-details__content">
+      <p>
+        Heywood Pharmacy<br>
+        50 Manchester Rd<br>
+        Heywood<br>
+        {{ data.postcode | default('OL10 2AH') }}
+      </p>
+
+      <p><a href="tel:01616884500">0161 688 4500</a></p>
+
+      <p>Open today: 24 hours</p>
+      <p>2.4 miles away</p>
+
+    </div>
+    <div class="app-service-details__map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15829092.975812001!2d-29.403383806044953!3d52.18840539750917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47deca2df836a047%3A0x7ec89c06d0427889!2sKent%20and%20Canterbury%20Hospital!5e0!3m2!1sen!2suk!4v1711532429758!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+  </div>
+  {% endset %}
+
+  {% if data.answers.pharmacy == "dsp" %}
+
+    <h1>Contact the pharmacy</h1>
+
+    {% call callout({
+      classes: 'app-callout--info'
+    }) %}
+      <p class="nhsuk-body nhsuk-u-margin-bottom-2">We have sent your request</p>
+      {% if data.answers.receipt.methods %}
+        <p>We have also sent a confirmation to {{ (data.answers.receipt.emailAddress | d('hello@gmail.com')) if 'email' in data.answers.receipt.methods }}{{ ' and ' if data.answers.receipt.methods.length > 1 }}{{ (data.answers.receipt.textNumber | d('07967 688450')) if 'text' in data.answers.receipt.methods }}</p>
+      {% endif %}
+    {% endcall %}
+
+    <h2>When you contact the pharmacy</h2>
+
+    <p>You need to tell them they were referred by 111.</p>
+
+    <p>The pharmacist will then tell you:</p>
+
+    <ul>
+      <li>if it is safe to give them the medicine</li>
+      <li>if they have it in stock</li>
+      <li>what to do if they cannot give them the medicine</li>
+    </ul>
+
+    <h2>Getting the medicine sent to them</h2>
+    <p>If the pharmacist can supply the medicine they will arrange to deliver it to them.</p>
+    <p>The medicine should turn up in time for them to take their next dose. If it does not, contact the pharmacy again.</p>
+    <p>They will not have to pay for the delivery.</p>
+
+    <h2>If the medicine is out of stock</h2>
+    <p>The pharmacist will contact another service for you. It is the pharmacist's responsibility to help get the medicine they need.</p>
+
+    <div class="app-service-details">
+      <div class="app-service-details__content">
+        <h2 class="nhsuk-card__heading nhsuk-heading-s">
+          Drugs4Delivery
+        </h2>
+        <p>You can call today between: 8:30am to 6:00pm</p>
+
+        <p class="nhsuk-u-margin-bottom-0"><b>Telephone</b></p>
+        <h2 class="nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-0"><a href="#">0161 6884500</a></h2>
+      </div>
+    </div>
+
+    {% if data.answers.whyDidYouNotSendARepeatPrescriptionRequest == 'not-registered-with-a-gp' -%}
+      <h2>How to register with a GP surgery</h2>
+      <p>The NHS website gives information about <a href="https://www.nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery/">registering with a GP near them</a>, and <a href="https://www.nhs.uk/nhs-app/nhs-app-help-and-support/prescriptions-in-the-nhs-app/nominating-a-pharmacy/">choosing a nominated pharmacy</a>. </p>
+    {% endif %}
+
+  {% else %}
+
+    <h1>Go to the pharmacy</h1>
+
+    {% call callout({
+      classes: 'app-callout--info'
+    }) %}
+      <p class="nhsuk-body">We have sent your request. </p>
+      <p>You or the person needing the medicine can go to the pharmacy during its opening hours.</p>
+      {% if data.answers.receipt.methods %}
+        <p>We have also sent a confirmation to {{ (data.answers.receipt.emailAddress | d('hello@gmail.com')) if 'email' in data.answers.receipt.methods }}{{ ' and ' if data.answers.receipt.methods.length > 1 }}{{ (data.answers.receipt.textNumber | d('07967 688450')) if 'text' in data.answers.receipt.methods }}</p>
+      {% endif %}
+    {% endcall %}
+
+    <h2>Contacting the pharmacy before going </h2>
+
+    <p>Tell the pharmacist they were referred by 111.</p>
+
+    <p>You or the person needing the medicine can call the pharmacy before going to tell them what medicine is needed.</p>
+
+    <p>The pharmacist will advise:</p>
+
+    <ul class="nhsuk-list nhsuk-list--bullet">
+      <li>
+        if it is safe to give them the medicine
+      </li>
+      <li>
+        if they have it in stock
+      </li>
+      <li>
+        what to do if they cannot give them the medicine
+      </li>
+    </ul>
+
+    <p>If they do not call the pharmacy before they go, the pharmacist will check this information when they arrive.</p>
+
+    <h2>If the pharmacy has no stock</h2>
+    <p>If the medicine is not in stock, the pharmacist will contact other local pharmacies to find it for them.</p>
+    <p>It is the pharmacist’s responsibility to help the person get the medicine they need.</p>
+
+    <h2>What happens when you get there</h2>
+    <p>The pharmacist will:</p>
+
+    <ul class="nhsuk-list nhsuk-list--bullet">
+      <li>check their records to see what they are regularly prescribed</li>
+      <li>ask any questions to get any information they need</li>
+    </ul>
+
+    <p>You or the person collecting the medicine might need to show proof of identity such as photo ID or a credit or debit card. </p>
+
+    {{ physicalPharmacyHTML | safe }}
+
+    {% if data.answers.prescriptionReasonNotRequested == 'not-registered-with-a-gp' -%}
+      <h2>How to register with a GP surgery</h2>
+      <p>Use the NHS website to <a href="https://www.nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery/">register with a GP surgery</a> and <a href="https://www.nhs.uk/nhs-app/nhs-app-help-and-support/prescriptions-in-the-nhs-app/nominating-a-pharmacy/">choose a nominated pharmacy</a>.</p>
+    {% endif %}
+
+  {% endif %}
+
+{%- endblock content_primary -%}
+
+{% block main_footer %}
+  {# {{ appStickyBottom() }} #}
+{% endblock main_footer %}

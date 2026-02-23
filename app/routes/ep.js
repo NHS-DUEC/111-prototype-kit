@@ -126,6 +126,17 @@ router.post("/receipt", function (req, res, next) {
   next();
 });
 
+router.get("/confirmation", function (req, res, next) {
+  req.session.data = req.session.data || {};
+  var pov = req.session.data.pov;
+
+  if (pov == "third-person") {
+    return res.render("ep/confirmation-3rd-person");
+  }
+
+  return res.render("ep/confirmation-1st-person");
+});
+
 router.get("/confirmation-highstreet", function (req, res, next) {
   req.session.data.answers = utils.deepMerge(
     req.session.data.answers || baseAnswers,
